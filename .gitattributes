@@ -1,0 +1,12 @@
+dk.u text eol=lf
+dk0 text eol=lf
+*.c text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.json text eol=lf
+*.jsonc text eol=lf
+*.sed text eol=lf
+*.sh text eol=lf
+*.u text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

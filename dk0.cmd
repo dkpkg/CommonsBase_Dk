@@ -1,0 +1,219 @@
+@ECHO OFF
+REM ##########################################################################
+REM # File: dk\dk0.cmd                                             #
+REM #                                                                        #
+REM # Copyright 2025 Diskuv, Inc.                                            #
+REM #                                                                        #
+REM # Licensed under the Open Software License version 3.0                   #
+REM # (the "License"); you may not use this file except in compliance        #
+REM # with the License. You may obtain a copy of the License at              #
+REM #                                                                        #
+REM #     https://opensource.org/license/osl-3-0-php/                        #
+REM #                                                                        #
+REM ##########################################################################
+
+REM Recommendation: Place this file in source control.
+
+REM The canonical way to run this script is: ./dk0
+REM That works in Powershell on Windows, and in Unix. Copy-and-paste works!
+REM
+REM Purpose: Install dk0 if not present. Then invoke dk0.
+
+SETLOCAL ENABLEDELAYEDEXPANSION
+
+REM Coding guidelines
+REM 1. Microsoft way of getting around PowerShell permissions:
+REM    https://github.com/microsoft/vcpkg/blob/71422c627264daedcbcd46f01f1ed0dcd8460f1b/bootstrap-vcpkg.bat
+REM 2. Hygiene: Capitalize keywords, variables, commands, operators and options
+REM 3. Detect errors with `%ERRORLEVEL% EQU` (etc). https://ss64.com/nt/errorlevel.html
+REM 3. In nested blocks like `IF EXIST xxx ( ... )` use delayed !ERRORLEVEL!. https://stackoverflow.com/a/4368104/21513816
+REM 4. Use functions ("subroutines"):
+REM    https://learn.openwaterfoundation.org/owf-learn-windows-shell/best-practices/best-practices/#use-functions-to-create-reusable-blocks-of-code
+REM 5. Use XCOPY for copying files since it has sane exit codes for scripting (unlike COPY).
+REM    Create an intermediate subdirectory if needed since XCOPY only copies directories well.
+
+REM Invoke-WebRequest guidelines
+REM 1. Use $ProgressPreference = 'SilentlyContinue' always. Terrible slowdown w/o it.
+REM    https://stackoverflow.com/questions/28682642
+
+SET DK_PROJECT_DIR=%~dp0
+SET DKCODER_PWD=%CD%
+
+REM Update within dksdk-coder:
+REM   f_dk0() { ver=$1; install -d build; for i in darwin_arm64 darwin_x86_64 linux_x86 linux_x86_64 windows_x86_64 windows_x86; do extexe=; case $i in windows_*) extexe=.exe ;; esac; curl -Lo "build/dk0-$i" "https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0/$ver/dk0-$i$extexe"; done }
+REM   f_dk0 2.4.2.79
+REM   shasum -a 256 build/dk0-* | awk 'BEGIN{FS="[ /-]"} {printf "SET DK_CKSUM_%s=%s\n", toupper($5), $1}' | sort | grep -v 9491d4737000e80bcbdd7a39e9dc13c2178ff865beff7d800d6159bfc395e8fa
+REM
+REM   Empty value if the architecture is not supported.
+REM   In particular, use empty instead of 9491d4737000e80bcbdd7a39e9dc13c2178ff865beff7d800d6159bfc395e8fa which is checksum for HTTP 404 error.
+REM -------------------------------------
+SET DK_VER=2.4.2.173
+SET DK_CKSUM_WINDOWS_X86_64=2caf3c567b1cde68e7fff03e0b299443aa343cce510e84ccac0163f5d75da633
+SET DK_CKSUM_WINDOWS_X86=
+
+REM --------- Quiet Detection ---------
+SET DK_QUIET=0
+SET _XCOPY_SWITCHES=
+SET _DKEXE_OPTIONS=
+
+REM --------- Data Home ---------
+
+IF "%DKCODER_DATA_HOME%" == "" (
+    SET DK_DATA_HOME=%LOCALAPPDATA%\Programs\dk0
+) ELSE (
+    SET DK_DATA_HOME=%DKCODER_DATA_HOME%
+)
+
+REM -------------- single binary executable --------------
+
+REM Download dk0.exe
+REM     Use subdir of %TEMP% since XCOPY does not work changing basenames during copy.
+IF "%PROGRAMFILES(x86)%" == "" (
+    REM 32-bit Windows
+    IF "%DK_CKSUM_WINDOWS_X86%" == "" (
+        ECHO.Windows 32-bit PCs are not supported as host machines.
+        ECHO.Instead develop on a 64-bit PC and cross-compile with DkStd_Std.Exe to 32-bit Windows target PCs.
+        EXIT /B 1
+    )
+    SET "DK_EXEDIR=%DK_DATA_HOME%\dk0exe-%DK_VER%-windows_x86"
+    IF NOT EXIST "!DK_EXEDIR!" MKDIR "!DK_EXEDIR!"
+    SET "DK_EXE=!DK_EXEDIR!\dk0.exe"
+    IF NOT EXIST "!DK_EXE!" (
+        IF %DK_QUIET% EQU 0 ECHO.dk0 executable:
+        IF NOT EXIST "%TEMP%\%DK_CKSUM_WINDOWS_X86%" MKDIR "%TEMP%\%DK_CKSUM_WINDOWS_X86%"
+        CALL :downloadFile ^
+            dk0 ^
+            "dk %DK_VER% 32-bit" ^
+            "https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0/%DK_VER%/dk0-windows_x86.exe" ^
+            %DK_CKSUM_WINDOWS_X86%\dk0.exe ^
+            %DK_CKSUM_WINDOWS_X86%
+        REM On error the error message was already displayed.
+        IF !ERRORLEVEL! NEQ 0 EXIT /B !ERRORLEVEL!
+        XCOPY "%TEMP%\%DK_CKSUM_WINDOWS_X86%\dk0.exe" "!DK_EXEDIR!" %_XCOPY_SWITCHES% /v /g /i /r /n /y /j >NUL
+        IF !ERRORLEVEL! NEQ 0 EXIT /B !ERRORLEVEL!
+        REM It is okay if the temp dir is not cleaned up. No error checking.
+        IF NOT "%DK_CKSUM_WINDOWS_X86%" == "" RD "%TEMP%\%DK_CKSUM_WINDOWS_X86%" /s /q
+    )
+) ELSE (
+    SET "DK_EXEDIR=%DK_DATA_HOME%\dk0exe-%DK_VER%-windows_x86_64"
+    IF NOT EXIST "!DK_EXEDIR!" MKDIR "!DK_EXEDIR!"
+    SET "DK_EXE=!DK_EXEDIR!\dk0.exe"
+    IF NOT EXIST "!DK_EXE!" (
+        IF %DK_QUIET% EQU 0 ECHO.dk0 executable:
+        IF NOT EXIST "%TEMP%\%DK_CKSUM_WINDOWS_X86_64%" MKDIR "%TEMP%\%DK_CKSUM_WINDOWS_X86_64%"
+        CALL :downloadFile ^
+            dk0 ^
+            "dk0 %DK_VER% 64-bit" ^
+            "https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0/%DK_VER%/dk0-windows_x86_64.exe" ^
+            %DK_CKSUM_WINDOWS_X86_64%\dk0.exe ^
+            %DK_CKSUM_WINDOWS_X86_64%
+        REM On error the error message was already displayed.
+        IF !ERRORLEVEL! NEQ 0 EXIT /B !ERRORLEVEL!
+        XCOPY "%TEMP%\%DK_CKSUM_WINDOWS_X86_64%\dk0.exe" "!DK_EXEDIR!" %_XCOPY_SWITCHES% /v /g /i /r /n /y /j >NUL
+        IF !ERRORLEVEL! NEQ 0 EXIT /B !ERRORLEVEL!
+        REM It is okay if the temp dir is not cleaned up. No error checking.
+        IF NOT "%DK_CKSUM_WINDOWS_X86_64%" == "" RD "%TEMP%\%DK_CKSUM_WINDOWS_X86_64%" /s /q
+    )
+)
+SET DK_EXEDIR=
+
+REM -------------- DkML PATH ---------
+REM We get "git-sh-setup: file not found" in Git for Windows because
+REM Command Prompt has the "Path" environment variable, while PowerShell
+REM and `with-dkml` use the PATH environment variable. Sadly both
+REM can be present in Command Prompt at the same time. Git for Windows
+REM (called by FetchContent in CMake) does not comport with what Command
+REM Prompt is using. So we let Command Prompt be the source of truth by
+REM removing any duplicated PATH twice and resetting to what Command Prompt
+REM thinks the PATH is.
+
+SET _DK_PATH=%PATH%
+SET PATH=
+SET PATH=
+SET PATH=%_DK_PATH%
+SET "_DK_PATH="
+
+REM -------------- Clear environment -------
+
+SET "DK_QUIET="
+
+REM -------------- Run executable --------------
+
+SET DKCODER_ARG0=%0
+
+REM     Unset local variables
+SET "DK_DATA_HOME="
+SET "DK_QUIET="
+SET "_DK_PATH="
+SET "_XCOPY_SWITCHES="
+REM.    Probably a Windows batch expert can fix the following:
+REM.        adding `--cell "dk0=%DK_PROJECT_DIR%"` can garble a long command line:
+REM         FATAL: The build failed.
+REM         No command given. Try `dk0 --help`
+REM.    So we pass along forward slashes instead of backslashes.
+SET "_CELL=%DK_PROJECT_DIR%"
+SET "_CELL=%_CELL:\=/%"
+REM     Then run it
+"%DK_EXE%" %_DKEXE_OPTIONS% -isystem "%DK_PROJECT_DIR%\etc\dk\i" --cell "dk0=%_CELL%" %*
+EXIT /B %ERRORLEVEL%
+
+REM ------ SUBROUTINE [downloadFile]
+REM Usage: downloadFile ID "FILE DESCRIPTION" "URL" FILENAME SHA256
+REM
+REM Procedure:
+REM   1. Download from <quoted> URL ARG3 (example: "https://github.com/ninja-build/ninja/releases/download/v%DK_VER%/dk.exe")
+REM      to the temp directory with filename ARG4 (example: something-x64.zip)
+REM   2. SHA-256 integrity check from ARG5 (example: 524b344a1a9a55005eaf868d991e090ab8ce07fa109f1820d40e74642e289abc)
+REM
+REM Error codes:
+REM   1 - Can't download from the URL.
+REM   2 - SHA-256 verification failed.
+
+:downloadFile
+
+REM Replace "DESTINATION" double quotes with single quotes
+SET DK_DOWNLOAD_URL=%3
+SET DK_DOWNLOAD_URL=%DK_DOWNLOAD_URL:"='%
+
+REM 1. Download from <quoted> URL ARG3 (example: "https://github.com/ninja-build/ninja/releases/download/v%DK_VER%/dk.exe")
+REM    to the temp directory with filename ARG4 (example: something-x64.zip)
+IF %DK_QUIET% EQU 0 ECHO.  Downloading %3
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command ^
+    "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest %DK_DOWNLOAD_URL% -OutFile '%TEMP%\%4'" >NUL
+IF %ERRORLEVEL% NEQ 0 (
+    REM Fallback to BITSADMIN because sometimes corporate policy does not allow executing PowerShell.
+    REM BITSADMIN overwhelms the console so user-friendly to do PowerShell then BITSADMIN.
+    IF %DK_QUIET% EQU 0 (
+        BITSADMIN /TRANSFER dk0-%1 /DOWNLOAD /PRIORITY FOREGROUND ^
+            %3 "%TEMP%\%4"
+    ) ELSE (
+        BITSADMIN /TRANSFER dk0-%1 /DOWNLOAD /PRIORITY FOREGROUND ^
+            %3 "%TEMP%\%4" >NUL
+    )
+    REM Short-circuit return with error code from function if can't download.
+    IF !ERRORLEVEL! NEQ 0 (
+        ECHO.
+        ECHO.Could not download %2.
+        ECHO.
+        EXIT /B 1
+    )
+)
+
+REM 2. SHA-256 integrity check from ARG5 (example: 524b344a1a9a55005eaf868d991e090ab8ce07fa109f1820d40e74642e289abc)
+IF %DK_QUIET% EQU 0 ECHO.  Performing SHA-256 validation of %4
+FOR /F "tokens=* usebackq" %%F IN (`certutil -hashfile "%TEMP%\%4" sha256 ^| findstr /v hash`) DO (
+    SET "DK_CKSUM_WINDOWS_X86_64_ACTUAL=%%F"
+)
+IF /I NOT "%DK_CKSUM_WINDOWS_X86_64_ACTUAL%" == "%5" (
+    ECHO.
+    ECHO.Could not verify the integrity of %2.
+    ECHO.Expected SHA-256 %5
+    ECHO.but received %DK_CKSUM_WINDOWS_X86_64_ACTUAL%.
+    ECHO.Make sure that you can access the Internet, and there is nothing
+    ECHO.intercepting network traffic.
+    ECHO.
+    EXIT /B 2
+)
+
+REM Return from [downloadFile]
+EXIT /B 0

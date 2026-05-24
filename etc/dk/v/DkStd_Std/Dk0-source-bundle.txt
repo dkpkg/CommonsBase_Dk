@@ -1,0 +1,6 @@
+Planned source-bundle note for the future Dk0 package.
+
+The package will consume the latest MlFront release tarball and split the
+resulting artifacts between the Dk0.DuneCache and Dk0 package definitions.
+The exact fetch, unpack, and staging recipe will be added later, once the
+real MlFront build flow is ready.

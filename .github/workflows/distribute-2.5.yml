@@ -1,0 +1,103 @@
+on:
+  push:
+    tags:
+      - '2.5.*' # secrets are tied to version 2.5
+  workflow_dispatch: # allow manual triggering from GitHub page
+
+jobs:
+  distribute:
+    # The secrets created by `./dk0 prepare-version --ci github VERSION`
+    # are tied to this environment only.
+    environment: dk-distribution
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+            # curl and build-essential are part of ubuntu-24.04 CI runner, so test with:
+            #   docker run -v .:/work --workdir /work -it ubuntu:24.04 bash -c "apt update && apt install -y curl build-essential && sh ./dk0 distribute --actual-in-place --library DkStd_Std.Dk0@2.4.2 part1 dist-any.u"
+            #   docker run -v .:/work --workdir /work -it quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5 sh ./dk0 distribute --actual-in-place --library DkStd_Std.Dk0@2.4.2 part1 dist-any.u
+          - runs-on: ubuntu-latest
+            distscript: dist-Linux_x86.u
+            target-abi: Linux_x86
+          - runs-on: ubuntu-latest
+            distscript: dist-Linux_x86_64.u
+            target-abi: Linux_x86_64
+          # Re-enable Linux arm64 only when every distribution job uses the same
+          # experimental-mlfront-ref setting. Mixing bootstrap paths changes the
+          # producer application version and causes `combine` to fail.
+          # - runs-on: ubuntu-24.04-arm
+          #   distscript: dist-Linux_arm64.u
+          #   # BOOTSTRAP ALERT: Until dk0 is bootstrapped with native Linux
+          #   # arm64 support, we have to build dk0 arm64 with ocaml/setup-ocaml.
+          #   experimental-mlfront-ref: true
+          #   # RedHat only distributes date versioned manylinux images for a few
+          #   # months. Use
+          #   # https://quay.io/repository/pypa/manylinux_2_28_aarch64?tab=tags&tag=latest
+          #   # to get a new version.
+          - runs-on: macos-latest
+            distscript: dist-Darwin_arm64.u
+            execution-abi: Darwin_arm64
+          - runs-on: macos-latest
+            distscript: dist-Darwin_x86_64.u
+            execution-abi: Darwin_arm64
+            target-abi: Darwin_x86_64
+          - runs-on: windows-latest
+            distscript: dist-Windows_x86.u
+            target-abi: Windows_x86
+          - runs-on: windows-latest
+            distscript: dist-Windows_x86_64.u
+          - runs-on: windows-latest
+            distscript: dist-Windows_arm64.u
+            target-abi: Windows_arm64
+
+    runs-on: ${{ matrix.runs-on }}
+
+    steps:
+      - name: Harden Runner # Optional but recommended
+        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        with: { egress-policy: audit }
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Distribute Modules
+        uses: diskuv/dk-distribute@v2
+        with:
+            pubkey: ${{ secrets.distribute_2_5_pubkey }}
+            seckey: ${{ secrets.distribute_2_5_seckey }}
+            options: -nosysinc
+            use-cache: true
+            distscript: ${{ matrix.distscript }}
+            execution-abi: ${{ matrix.execution-abi }}
+            target-abi: ${{ matrix.target-abi }}
+            experimental-dk-owner: ${{ github.repository_owner == 'dkpkg' && 'diskuv' || github.repository_owner }}
+            experimental-mlfront-ref: ${{ github.ref_type != 'tag' && 'HEAD' }}
+
+  combine:
+    needs: distribute
+    permissions:
+      contents: write # for action-gh-release
+      id-token: write # for actions/attest-build-provenance
+      attestations: write # for actions/attest-build-provenance
+      #   required but does not work in `act`! bug: https://github.com/nektos/act/issues/6025
+      artifact-metadata: write # for actions/attest-build-provenance
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner # Optional but recommended
+        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        with: { egress-policy: audit }
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Combine Modules
+        uses: diskuv/dk-distribute/combine@v2
+
+      - name: Attest
+        id: attest
+        uses: actions/attest-build-provenance@v3
+        with: { subject-path: dk-dist/* }
+
+      - name: Release ${{ github.job }}
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1. Mar 15, 2026
+        with: { files: dk-dist/*, body_path: ".dist-CHANGELOG.txt" }

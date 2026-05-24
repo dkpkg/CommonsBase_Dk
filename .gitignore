@@ -1,0 +1,15 @@
+act.distribute.secrets
+dk-dist/
+etc/dk/i/values.unattested.json
+t/c/
+t/d/
+t/k/
+t/m/
+t/o/
+t/p/
+t/x0/
+t/xc/
+t/xr/
+t-tmp/
+/target/
+/build/
