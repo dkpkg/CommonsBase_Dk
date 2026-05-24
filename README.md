@@ -1,22 +1,21 @@
 # DkStd_Std
 
-`DkStd_Std` is the bootstrap scaffold for the core dk standard tooling.
+`DkStd_Std` now carries the bootstrap split for dk0 packaging.
 
-This repository is only a bootstrap scaffold for the planned
-`DkStd_Std.Dk0.DuneCache@2.4.2` and `DkStd_Std.Dk0@2.4.2` packages.
-The future `Dk0@2.4.2` package will consume the latest MlFront release
-tarball, but the concrete build recipe is intentionally deferred.
+Implemented here:
 
-Repository scaffold:
+- a source-bundle pin for the latest MlFront release tarball
+- a `DkStd_Std.Dk0.DuneCache@2.4.2` package that repackages that tarball into
+  a reusable zip artifact for all supported slots
+- a `DkStd_Std.Dk0@2.4.2` recipe that stages the cache, runs a concrete
+  `dune build`, and installs `bin/dk0.exe` for Windows x86_64 only
 
-- `etc/dk/v/DkStd_Std/` — package notes and future values files.
-- `dist-*.u` — placeholder distribution scripts for the planned release
-  matrix.
+Still pending:
 
-The planned package targets in this repository are:
+- the executable package for non-Windows_x86_64 slots
+- validation of the toolchain/dependency bootstrap on real runners
+
+Package targets in this repo:
 
 - `DkStd_Std.Dk0.DuneCache@2.4.2`
 - `DkStd_Std.Dk0@2.4.2`
-
-`Dk0@2.4.2` is intended to package the `bin/dk0.exe` executable built from the
-latest MlFront release tarball.

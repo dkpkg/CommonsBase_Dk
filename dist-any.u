@@ -1,2 +1,13 @@
--- Placeholder distribution script for DkStd_Std.Dk0.DuneCache@2.4.2 and DkStd_Std.Dk0@2.4.2.
--- Replace this scaffold when the MlFront-based build recipe lands.
+## DkStd_Std bootstrap handoff
+
+This repository now pins the latest MlFront release tarball and starts the
+real Dk0 packaging split:
+
+- `DkStd_Std.Dk0.Bundle@2.4.2.173` tracks the upstream source tarball
+- `DkStd_Std.Dk0.DuneCache@2.4.2` repackages that tarball into a cacheable zip
+  for all supported slots
+- `DkStd_Std.Dk0@2.4.2` emits `bin/dk0.exe` only for Windows x86_64; the other
+  executable slots remain out of scope until the toolchain is broadened
+
+The current bootstrap path is intentionally explicit so the executable slice can
+be widened later without changing the public package layout again.

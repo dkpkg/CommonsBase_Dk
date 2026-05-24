@@ -46,6 +46,9 @@ jobs:
             distscript: dist-Windows_x86.u
             target-abi: Windows_x86
           - runs-on: windows-latest
+            # This is the only matrix entry that currently exercises the
+            # Windows x86_64 executable dk0.exe slice; the other Windows jobs
+            # remain bootstrap/cache validation only.
             distscript: dist-Windows_x86_64.u
           - runs-on: windows-latest
             distscript: dist-Windows_arm64.u

@@ -1,1 +1,6 @@
-## DkStd_Std bootstrap scaffold
+-- Bootstrap distribution entrypoint for DkStd_Std.Dk0.DuneCache@2.4.2 and the
+-- Windows x86_64-only DkStd_Std.Dk0@2.4.2 executable slice.
+--
+-- The current concrete slice repackages the latest MlFront release tarball
+-- into a reusable source/cache artifact, while the executable package emits
+-- only the supported Windows x86_64 dk0.exe payload.

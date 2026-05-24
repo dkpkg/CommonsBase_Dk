@@ -1,6 +1,15 @@
-Planned source-bundle note for the future Dk0 package.
+DkStd_Std.Dk0 source bundle
 
-The package will consume the latest MlFront release tarball and split the
-resulting artifacts between the Dk0.DuneCache and Dk0 package definitions.
-The exact fetch, unpack, and staging recipe will be added later, once the
-real MlFront build flow is ready.
+Latest upstream MlFront release:
+
+- tag: 2.4.2.173
+- tarball: https://gitlab.com/dkml/build-tools/MlFront/-/archive/2.4.2.173/MlFront-2.4.2.173.tar.gz
+
+This repo now keeps the source handoff explicit:
+
+- `DkStd_Std.Dk0.Bundle@2.4.2.173` tracks the tarball
+- `DkStd_Std.Dk0.DuneCache@2.4.2` repackages the tarball into a reusable zip
+  for every supported slot
+- `DkStd_Std.Dk0@2.4.2` consumes that cache artifact for a Windows x86_64-only
+  `dune build` and `bin/dk0.exe` install path
+The remaining executable slots still need follow-up.

@@ -1,0 +1,32 @@
+// Latest MlFront source tarball used as the bootstrap handoff for Dk0.
+// The Dk0.DuneCache package repackages this tarball into a zip artifact so the
+// eventual DkStd_Std.Dk0@2.4.2 build can reuse it without re-fetching.
+{
+  "$schema": "https://github.com/diskuv/dk/raw/refs/heads/V2_5/etc/jsonschema/dk-values.json",
+  "schema_version": { "major": 1, "minor": 0 },
+  "bundles": [
+    {
+      "id": "DkStd_Std.Dk0.Bundle@2.4.2.173",
+      "listing": {
+        "origins": [
+          {
+            "name": "gitlab-mlfront-2.4.2.173",
+            "mirrors": [
+              "https://gitlab.com/dkml/build-tools/MlFront/-/archive/2.4.2.173"
+            ]
+          }
+        ]
+      },
+      "assets": [
+        {
+          "origin": "gitlab-mlfront-2.4.2.173",
+          "path": "MlFront-2.4.2.173.tar.gz",
+          "checksum": {
+            "sha256": "9eb6440fe5c62f6db72a4e6fe6fafe9dc27e6d609905f4d9d72740eafd5999b3"
+          },
+          "size": 4415889
+        }
+      ]
+    }
+  ]
+}
