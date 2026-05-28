@@ -30,8 +30,8 @@ set -euf
 # In particular, use empty instead of 9491d4737000e80bcbdd7a39e9dc13c2178ff865beff7d800d6159bfc395e8fa which is checksum for HTTP 404 error.
 # -------------------------------------
 majminpat_ver=2.4.2.180
-cksum256_darwin_arm64=894f3a38fadd01e13db85389d9eb085ad3c31abcc942c5be500968c809a7a3f8
-cksum256_darwin_x86_64=fd86abf0a0c5cf961cbe5ceecfbbff8cc4271b989db74749d5042a146a5fcd28
+cksum256_darwin_arm64=e13d0dee14dc1c3da1189ce6ca6aabae50c6f1077252d499b1ea42e229b69ed4
+cksum256_darwin_x86_64=1cfd0531eaecea2e823c4b1dcba9aef146d3e08c9681993033016107c45b5348
 cksum256_linux_x86_64=6855cedecfb8ef83cb770285a5bdf8afde1e76d5ec7a34ad69eb5e54ac347a0b
 cksum256_linux_x86=703c0c0624291bee94c9c816a3b8bb781f794e9d7c819d8d2cd40a177312fadf
 
@@ -656,4 +656,4 @@ export DKCODER_ARG0="$0"
 export DKCODER_PWD="$dk_pwd"
 export DK_PROJECT_DIR
 #   shellcheck disable=SC2086
-exec "$DK_EXE" -isystem "$DK_PROJECT_DIR/etc/dk/i" --cell "dk0=$DK_PROJECT_DIR" $_DKEXE_OPTIONS "$@"
+exec "$DK_EXE" -isystem "$DK_PROJECT_DIR/etc/dk/i" $_DKEXE_OPTIONS "$@"

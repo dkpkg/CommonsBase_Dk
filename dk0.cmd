@@ -48,7 +48,7 @@ REM   Empty value if the architecture is not supported.
 REM   In particular, use empty instead of 9491d4737000e80bcbdd7a39e9dc13c2178ff865beff7d800d6159bfc395e8fa which is checksum for HTTP 404 error.
 REM -------------------------------------
 SET DK_VER=2.4.2.180
-SET DK_CKSUM_WINDOWS_X86_64=62fc2b36d6eb38e455b5a30f2a71f1a55aab1eedb40cca3c334dcaa7339b8852
+SET DK_CKSUM_WINDOWS_X86_64=ad15cc08b43474ca893134b7ebbf04b442cd700de42769521b91d2ffba53e881
 SET DK_CKSUM_WINDOWS_X86=
 
 REM --------- Quiet Detection ---------
@@ -72,7 +72,7 @@ IF "%PROGRAMFILES(x86)%" == "" (
     REM 32-bit Windows
     IF "%DK_CKSUM_WINDOWS_X86%" == "" (
         ECHO.Windows 32-bit PCs are not supported as host machines.
-        ECHO.Instead develop on a 64-bit PC and cross-compile with the 64-bit dk0 executable to 32-bit Windows target PCs.
+        ECHO.Instead develop on a 64-bit PC and cross-compile with StdStd_Std.Exe to 32-bit Windows target PCs.
         EXIT /B 1
     )
     SET "DK_EXEDIR=%DK_DATA_HOME%\dk0exe-%DK_VER%-windows_x86"
@@ -146,15 +146,8 @@ SET "DK_DATA_HOME="
 SET "DK_QUIET="
 SET "_DK_PATH="
 SET "_XCOPY_SWITCHES="
-REM.    Probably a Windows batch expert can fix the following:
-REM.        adding `--cell "dk0=%DK_PROJECT_DIR%"` can garble a long command line:
-REM         FATAL: The build failed.
-REM         No command given. Try `dk0 --help`
-REM.    So we pass along forward slashes instead of backslashes.
-SET "_CELL=%DK_PROJECT_DIR%"
-SET "_CELL=%_CELL:\=/%"
 REM     Then run it
-"%DK_EXE%" %_DKEXE_OPTIONS% -isystem "%DK_PROJECT_DIR%\etc\dk\i" --cell "dk0=%_CELL%" %*
+"%DK_EXE%" %_DKEXE_OPTIONS% -isystem "%DK_PROJECT_DIR%\etc\dk\i" %*
 EXIT /B %ERRORLEVEL%
 
 REM ------ SUBROUTINE [downloadFile]
