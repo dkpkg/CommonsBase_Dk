@@ -47,8 +47,8 @@ REM
 REM   Empty value if the architecture is not supported.
 REM   In particular, use empty instead of 9491d4737000e80bcbdd7a39e9dc13c2178ff865beff7d800d6159bfc395e8fa which is checksum for HTTP 404 error.
 REM -------------------------------------
-SET DK_VER=2.4.2.179
-SET DK_CKSUM_WINDOWS_X86_64=d086d7bb664452a6cd2692ca5e030a985b75b9d3b08d8a59c66edcfc08b1b56f
+SET DK_VER=2.4.2.180
+SET DK_CKSUM_WINDOWS_X86_64=62fc2b36d6eb38e455b5a30f2a71f1a55aab1eedb40cca3c334dcaa7339b8852
 SET DK_CKSUM_WINDOWS_X86=
 
 REM --------- Quiet Detection ---------
@@ -72,7 +72,7 @@ IF "%PROGRAMFILES(x86)%" == "" (
     REM 32-bit Windows
     IF "%DK_CKSUM_WINDOWS_X86%" == "" (
         ECHO.Windows 32-bit PCs are not supported as host machines.
-        ECHO.Instead develop on a 64-bit PC and cross-compile with DkStd_Std.Exe to 32-bit Windows target PCs.
+        ECHO.Instead develop on a 64-bit PC and cross-compile with the 64-bit dk0 executable to 32-bit Windows target PCs.
         EXIT /B 1
     )
     SET "DK_EXEDIR=%DK_DATA_HOME%\dk0exe-%DK_VER%-windows_x86"
