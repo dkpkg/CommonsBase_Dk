@@ -1,12 +1,12 @@
 // Latest MlFront source tarball used as the bootstrap handoff for Dk0.
 // The Dk0.DuneCache package repackages this tarball into a zip artifact so the
-// eventual DkStd_Std.Dk0@2.4.2 build can reuse it without re-fetching.
+// eventual CommonsBase_Dk.Dk0@2.4.2 build can reuse it without re-fetching.
 {
-  "$schema": "https://github.com/diskuv/dk/raw/refs/heads/V2_5/etc/jsonschema/dk-values.json",
+  "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "bundles": [
     {
-      "id": "DkStd_Std.Dk0.Bundle@2.4.2.173",
+      "id": "CommonsBase_Dk.Dk0.Bundle@2.4.2",
       "listing": {
         "origins": [
           {

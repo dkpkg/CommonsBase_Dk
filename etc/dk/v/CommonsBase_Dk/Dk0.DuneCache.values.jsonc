@@ -1,17 +1,17 @@
-// DkStd_Std.Dk0.DuneCache@2.4.2 is the concrete bootstrap slice.
+// CommonsBase_Dk.Dk0.DuneCache@2.4.2 is the concrete bootstrap slice.
 //
 // It does not pretend to compile the final executable yet. Instead it
 // repackages the latest MlFront release tarball into a reusable zip artifact
-// that the future DkStd_Std.Dk0@2.4.2 build can install and build from.
+// that the future CommonsBase_Dk.Dk0@2.4.2 build can install and build from.
 {
-  "$schema": "https://github.com/diskuv/dk/raw/refs/heads/V2_5/etc/jsonschema/dk-values.json",
+  "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "forms": [
     {
-      "id": "DkStd_Std.Dk0.DuneCache@2.4.2",
+      "id": "CommonsBase_Dk.Dk0.DuneCache@2.4.2",
       "precommands": {
         "private": [
-          "post-object CommonsBase_Std.Extract.F_TarToZip@0.1.0 -f output.zip modver=DkStd_Std.Dk0.DuneCache.Zip@2.4.2 tarmodver=DkStd_Std.Dk0.Bundle@2.4.2.173 tarassetpath=MlFront-2.4.2.173.tar.gz"
+          "post-object CommonsBase_Std.Extract.F_TarToZip@0.1.0 -f output.zip modver=CommonsBase_Dk.Dk0.DuneCache.Zip@2.4.2 tarmodver=CommonsBase_Dk.Dk0.Bundle@2.4.2 tarassetpath=MlFront-2.4.2.173.tar.gz"
         ]
       },
       "function": {
