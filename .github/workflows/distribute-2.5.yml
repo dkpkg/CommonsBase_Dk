@@ -15,8 +15,8 @@ jobs:
       matrix:
         include:
             # curl and build-essential are part of ubuntu-24.04 CI runner, so test with:
-            #   docker run -v .:/work --workdir /work -it ubuntu:24.04 bash -c "apt update && apt install -y curl build-essential && sh ./dk0 distribute --actual-in-place --library DkStd_Std.Dk0@2.4.2 part1 dist-any.u"
-            #   docker run -v .:/work --workdir /work -it quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5 sh ./dk0 distribute --actual-in-place --library DkStd_Std.Dk0@2.4.2 part1 dist-any.u
+            #   docker run -v .:/work --workdir /work -it ubuntu:24.04 bash -c "apt update && apt install -y curl build-essential && sh ./dk0 distribute --actual-in-place --library CommonsBase_Dk.Dk0@2.4.2 part1 dist-any.u"
+            #   docker run -v .:/work --workdir /work -it quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5 sh ./dk0 distribute --actual-in-place --library CommonsBase_Dk.Dk0@2.4.2 part1 dist-any.u
           - runs-on: ubuntu-latest
             distscript: dist-Linux_x86.u
             target-abi: Linux_x86

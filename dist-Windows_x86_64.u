@@ -1,2 +1,2 @@
--- Windows_x86_64 distribution slice for DkStd_Std.Dk0.DuneCache@2.4.2.
+-- Windows_x86_64 distribution slice for CommonsBase_Dk.Dk0.DuneCache@2.4.2.
 -- This is the only slot that currently emits the executable dk0.exe slice.
