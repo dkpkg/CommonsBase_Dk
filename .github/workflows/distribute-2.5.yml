@@ -64,12 +64,12 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Distribute Modules
-        uses: diskuv/dk-distribute@v2
+        uses: diskuv/dk-distribute@v3
         with:
             pubkey: ${{ secrets.distribute_2_5_pubkey }}
             seckey: ${{ secrets.distribute_2_5_seckey }}
             options: -nosysinc
-            use-cache: true
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -94,7 +94,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Combine Modules
-        uses: diskuv/dk-distribute/combine@v2
+        uses: diskuv/dk-distribute/combine@v3
 
       - name: Attest
         id: attest
