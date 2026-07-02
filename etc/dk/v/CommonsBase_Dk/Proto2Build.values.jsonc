@@ -1,0 +1,62 @@
+// R2 prototype: build the protolib dune package as a dk object off DkML+Dune
+// (MSVC via vcvars) and emit its install tree as a single install.zip.
+// Source (incl. the vcvars bat) is a tarball asset unpacked into s/.
+// Test: dk0 -I etc/dk/v --trust-local-package CommonsBase_Dk get-object CommonsBase_Dk.Proto2Build@0.0.1 -s Release.Windows_x86_64 -d target/proto2
+{
+    "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
+    "schema_version": { "major": 1, "minor": 0 },
+    "forms": [
+        {
+            "id": "CommonsBase_Dk.Proto2Build@0.0.1",
+            "function": {
+                "execution": [ { "name": "OSFamily", "value": "windows" } ],
+                "envmods": [
+                    "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Win32@4.14.3 -s Release.Windows_x86_64 -d : -e 'bin/*')${/}bin",
+                    "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s Release.Windows_x86_64 -d : -e 'bin/*')${/}bin",
+                    "<PATH=$(--path=absnative get-object CommonsBase_GNU.Toolchain.W64dev@2.5.0 -s Release.execution_abi -d : -e 'bin/*')${/}bin"
+                ],
+                "commands": [
+                    [
+                        "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+                        "mkdir",
+                        "-p",
+                        "s"
+                    ],
+                    [
+                        "$(--path=absnative get-object CommonsBase_GNU.Toolchain.W64dev@2.5.0 -s Release.execution_abi -e bin/tar.exe -d :)${/}bin${/}tar.exe",
+                        "xzf",
+                        "$(--path=absnative get-asset CommonsBase_Dk.Apparatus.Proto2SrcB@1.0.0 -p assets/proto2-srcb.tar.gz -f proto2-srcb.tar.gz)",
+                        "-C",
+                        "s"
+                    ],
+                    [
+                        "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+                        "mkdir",
+                        "-p",
+                        "${CACHEABS}/pfx"
+                    ],
+                    [
+                        "--cmd.exe",
+                        "/c",
+                        "\"`\"s${/}proto2-build.bat`\" `\"$(--path=absnative get-object CommonsBase_Build.VSWhere@3.1.7 -s Release.execution_abi -e bin/vswhere.exe -d :)${/}bin${/}vswhere.exe`\" x64 `\"${CACHEABS}${/}pfx`\"\""
+                    ],
+                    [
+                        "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+                        "env",
+                        "--chdir",
+                        "${CACHEABS}/pfx",
+                        "$(get-object CommonsBase_Std.S7z@25.1.0 -s Release.execution_abi -e '*' -d :)/7zz.exe",
+                        "a",
+                        "${SLOTABS.Release.Windows_x86_64}/install.zip",
+                        "."
+                    ]
+                ]
+            },
+            "outputs": {
+                "assets": [
+                    { "slots": ["Release.Windows_x86_64"], "paths": ["install.zip"] }
+                ]
+            }
+        }
+    ]
+}

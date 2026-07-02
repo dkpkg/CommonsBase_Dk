@@ -1,0 +1,4 @@
+(executable
+ (name protoapp)
+ (public_name protoapp)
+ (libraries protolib))

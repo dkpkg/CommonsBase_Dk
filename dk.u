@@ -1,6 +1,91 @@
--- Bootstrap distribution entrypoint for CommonsBase_Dk.Dk0.DuneCache@2.4.2 and the
--- Windows x86_64-only CommonsBase_Dk.Dk0@2.4.2 executable slice.
---
--- The current concrete slice repackages the latest MlFront release tarball
--- into a reusable source/cache artifact, while the executable package emits
--- only the supported Windows x86_64 dk0.exe payload.
+## workspace
+
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml" }
+  'import'
+  'github-l2'
+  { {
+      'CommonsLang_OCaml', '2.5.202606301755', {
+        'blake2b-256:6cba9b091b28d85c6a7e5a1f4ee07b0ecdc11aef18201a20af2edf352f55d6d9',
+        'sha256:3cce2eb7bcdeb01828683d16836142f4a7834ee0c90f5bff99f036e18d6e466e',
+        'sha1:3cb37d2c76f8e981cfa388447546af8ca3098f5b'
+      } },
+    {
+      'CommonsBase_Build', '2.5.202606262035', {
+        'blake2b-256:e0c911ac306eec0894b7bb8bd9288424e4fbc3974f2d47c2fb777e452552beb0',
+        'sha256:ec474d5c879ed5e384860df4f5dcfacdeec4f344e3bc51e52642054f6eac6e36',
+        'sha1:225af735f9743fbcaee4bfc37ee3e6754f95c6e4'
+      } },
+    {
+      'CommonsBase_FileMagic', '2.5.202606260339', {
+        'blake2b-256:e493f5360697ab40a071b101bfb0a35392ea1675485b4d4592c10e950fe1cb09',
+        'sha256:bdfc012cd409dfcf83b94e5589be310e2659997632d71d86bfc35d64f6d0393c',
+        'sha1:42d6f05436b4361240a0f0ce1152edc46fc2f02b'
+      } },
+    {
+      'CommonsBase_FileMagic', '2.5.202606262047', {
+        'blake2b-256:266b8435a34e20e3435bfb930b9e7eda7d3b3c0822139a3a6fcb0ecdb82bd700',
+        'sha256:6e83c3fb03c66920c23349ca4a49b5fb4eaa56b2e195b2ff40eb88593aa26e59',
+        'sha1:d058be16ddb29e50b4f510629e22f8476dbf551e'
+      } },
+    {
+      'CommonsBase_GNU', '2.5.202606260339', {
+        'blake2b-256:35d18482aefa34c1c70188775f02e0bbef7dd8b6701000da4cd01017ae70ea4f',
+        'sha256:29234c2ad45b06629ba8d2e4c3c39b7f5eba24bdd967baf25dfc52ec6083d733',
+        'sha1:d8c257e1f3c4832a233e4d624787121a19ed3812'
+      } },
+    {
+      'CommonsBase_GNU', '2.5.202606262052', {
+        'blake2b-256:cafc6b0af4619a79d2521bf3d3305de342f18c565c13a1e64580fd7dfa3b727d',
+        'sha256:c10b455c881fda298a8fc319959fe29e19f5ba46c9a411cc906aa69a4773203a',
+        'sha1:71826d0a78b888270d41196031e22d3a679f94d6'
+      } },
+    {
+      'CommonsBase_LLVM', '2.5.202606260339', {
+        'blake2b-256:b07de5d4cda43075c4e71aa41cd8577953d282872d869803cd8bb13beb57c147',
+        'sha256:6615b5af558e9e08a7d4fdf150716253c4399587a567383cecf75fb55d9b8c89',
+        'sha1:e6f46f909276cae8cd04a74e0a9e1012f655834a'
+      } },
+    {
+      'CommonsBase_LLVM', '2.5.202606262035', {
+        'blake2b-256:be28d427463915d7d76cd77843c219ed9f3c090867d3504697faa10530b55ad4',
+        'sha256:e406a9f363bdbdbdb31d5412a29b85483c03c50096669b447a9034a5d76c673c',
+        'sha1:2fa025e836655a9c83f7272c8203e20f424232eb'
+      } },
+    {
+      'CommonsBase_Remote', '2.5.202606251324', {
+        'blake2b-256:b77d54a3c7da56fedbd5061b5136ccad82565fd08f98d1915a41dae618b45cbf',
+        'sha256:4bde4707cde42505eb22e3e13b9efdccae4729ebda35449fa5b22484acbc8b2f',
+        'sha1:42e12d7f93c28edea2d7e191cce000af68147d12'
+      } },
+    {
+      'CommonsBase_Remote', '2.5.202606262035', {
+        'blake2b-256:ddf3324c63d73e0f6496befb840c3ead6db52934048b64c52b6bd413d7d2c46e',
+        'sha256:f8173d95c31c1441efc5c9435861b2eea8e3ea96508c36db79ebd056243376e3',
+        'sha1:f1e88a95965f9c3e198c4fc44f8beb1e260c0fb9'
+      } },
+    {
+      'CommonsBase_Std', '2.5.202606240625', {
+        'blake2b-256:6450d810180892d71647fe63c2313d17df5ce23eef80e1050a13cf7ad4417b31',
+        'sha256:9eac4142bc0a80e5b51d3b89e83069672873ec628256afe849408ab64f954100',
+        'sha1:8c02d3bf95fe54717dd1798f292c6d6688a63faa'
+      } },
+    {
+      'CommonsBase_Std', '2.5.202606262031', {
+        'blake2b-256:900b27b1b73e76e5f1c7d95c8484b4457245ec430e05c89c443705622abaa6b4',
+        'sha256:7e4e8b645e75a415f78be7361f928a6be1cc092d133f13406e58f388dbf988df',
+        'sha1:757c997d4893f1c93e53df5578a4105c294a5713'
+      } } }
+
+## Assets
+
+### CommonsBase_Dk.Apparatus@1.0.0
+
+  % unified.asset { name="Proto2SrcB", file="assets/proto2-srcb.tar.gz" }
+  'asset'
+  '731'
+  'sha256:1c36e8e5bb3bb678198609900825abb9ac9a06f135be61fc32be21449ebe690b'
+
+  % unified.asset { name="Proto2AppSrc", file="assets/proto2app-src.tar.gz" }
+  'asset'
+  '805'
+  'sha256:f4704953c3daffaa6ca0e599fc87ae4fbe66dde90e789eb2054eddd7e894d3cd'
