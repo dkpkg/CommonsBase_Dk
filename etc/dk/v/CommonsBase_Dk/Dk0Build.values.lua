@@ -115,6 +115,22 @@ CommonsBase_Dk__Dk0Build__2_4_2.SLOTS = {
   "Release.Darwin_x86_64", "Release.Darwin_arm64"
 }
 
+-- Per-abi metadata for the per-slot build commands. `msvc` is the vcvarsall
+-- architecture on Windows slots, "-" on Unix slots (no MSVC). Each opam build
+-- command is emitted once per abi and gated to that abi's ${SLOTABS.<abi>}, so
+-- dk0 skips the non-matching commands when building a given slot (see
+-- ThunkAst.can_optimize_out_resolved_term). Populate by bracket-index because
+-- slot names contain dots.
+CommonsBase_Dk__Dk0Build__2_4_2.ABIS = {
+  { slot = "Release.Windows_x86_64", msvc = "x64" },
+  { slot = "Release.Windows_x86",    msvc = "x86" },
+  { slot = "Release.Linux_x86_64",   msvc = "-" },
+  { slot = "Release.Linux_x86",      msvc = "-" },
+  { slot = "Release.Linux_arm64",    msvc = "-" },
+  { slot = "Release.Darwin_x86_64",  msvc = "-" },
+  { slot = "Release.Darwin_arm64",   msvc = "-" }
+}
+
 -- Packages provided by toolchain objects or purely virtual: never built and
 -- never staged as dependency objects.
 CommonsBase_Dk__Dk0Build__2_4_2.PROVIDED = {}
@@ -521,31 +537,41 @@ function CommonsBase_Dk__Dk0Build__2_4_2.shq(s)
 end
 
 -- Build a single opam command as a coreutils `env` invocation that chdirs into
--- the source and stages the dependency prefix via OCAMLPATH/OCAMLFIND_CONF, then
--- runs the argv directly. A `/bin/sh -c "..."` wrapper cannot be used: dk0
--- tokenizes each command-array element (splitting on spaces, honoring quotes and
--- $(...) subshells), so a shell string with `&&` and quoting fails to parse.
--- `env NAME=VALUE ... CMD ARGS` needs no shell. The prefix paths are relative to
--- the chdir target `s/` (so `../p/lib` resolves to the build-root prefix). The
--- Dune object binary is `dune.exe`, so a leading `dune` is rewritten; the
--- compiler and dune bins are already on PATH via the form envmods.
-function CommonsBase_Dk__Dk0Build__2_4_2.shcommand(coreutils, wrapperfetch, argv)
-  -- Run the opam command through the build wrapper: `/bin/sh <wrapper> <argv>`.
-  -- The wrapper chdirs into s/ and derives an ABSOLUTE OCAMLPATH/OCAMLFIND_CONF
-  -- from $PWD (dk0 exposes no build-dir variable and dune rejects relative
-  -- toolchain paths). A leading `dune` is rewritten to the Dune object's
-  -- `dune.exe`.
-  -- `coreutils` is a busybox-style multiplexer; /bin/sh is not one of its
-  -- applets, so reach it through `coreutils env /bin/sh ...` (env execs sh).
-  local cmd = { coreutils, "env", "/bin/sh", wrapperfetch }
+-- the source and stages the dependency prefix via the wrapper. Returns a LIST of
+-- commands, one per abi (the opam build is the same everywhere but the shell and
+-- MSVC activation differ per OS): the invocation is
+--   coreutils env <shell> <wrapper> <gate> <arch> <argv...>
+-- where <shell> is /bin/sh on Unix and MSYS2's dash on Windows; <gate> is
+-- ${SLOTABS.<abi>}, a throwaway argument whose only purpose is to scope the
+-- command to that abi (dk0 skips a command whose referenced output slot is not
+-- the one being built); and <arch> is the vcvarsall arch on Windows or "-" on
+-- Unix. The wrapper drops <gate>, activates MSVC when <arch> is not "-", chdirs
+-- into s/, stages the dependency prefix, and runs the argv. A leading `dune` is
+-- rewritten to the Dune object's `dune.exe`.
+function CommonsBase_Dk__Dk0Build__2_4_2.percommand(coreutils, wrapperfetch, msys2dash, argv)
+  local H = CommonsBase_Dk__Dk0Build__2_4_2
+  local rewritten = {}
   local ai = 1
   while argv[ai] ~= nil do
     local a = argv[ai]
     if ai == 1 and a == "dune" then a = "dune.exe" end
-    table.insert(cmd, a)
+    table.insert(rewritten, a)
     ai = ai + 1
   end
-  return cmd
+  local out = {}
+  local mi = 1
+  while H.ABIS[mi] ~= nil do
+    local abi = H.ABIS[mi]
+    local shell = "/bin/sh"
+    if abi.msvc ~= "-" then shell = msys2dash end
+    local cmd = { coreutils, "env", shell, wrapperfetch,
+      "${SLOTABS." .. abi.slot .. "}", abi.msvc }
+    local ri = 1
+    while rewritten[ri] ~= nil do table.insert(cmd, rewritten[ri]); ri = ri + 1 end
+    table.insert(out, cmd)
+    mi = mi + 1
+  end
+  return out
 end
 
 -- ---------------------------------------------------------------------------
@@ -790,16 +816,27 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- (derived from $PWD at runtime) so dune finds the staged dependency libraries
   -- by findlib META discovery. It is fetched once and reused by every command.
   local wrapperfetch = "$(get-asset CommonsBase_Dk.Dk0Build.Wrapper@" .. modversion .. " -p wrapper.sh -f build-wrapper.sh)"
+  -- The Windows POSIX shell is MSYS2's dash (its runtime translates the unix-form
+  -- PATH into Windows form for the native dune.exe/cl.exe children, and provides
+  -- cygpath). MSYS2 ships only the Windows_x86_64 tree; a Windows_x86 host runs
+  -- the same x86_64 tooling. Referenced only in Windows-gated commands, so it is
+  -- never resolved on Unix slots.
+  local msys2dash = "$(get-object CommonsLang_OCaml.MSYS2@2026.6.11 -s Release.Windows_x86_64 -m ./usr/bin/dash.exe -f dash.exe -e '*')"
 
-  -- each opam command runs through the wrapper (v1 Unix; Dune object = dune.exe)
+  -- each opam command is emitted per abi (Unix via /bin/sh, Windows via MSYS2
+  -- dash + MSVC), gated to its slot; dk0 runs only the matching abi's commands
   local bi = 1
   while buildargvs[bi] ~= nil do
-    table.insert(commands, H.shcommand(coreutils, wrapperfetch, buildargvs[bi]))
+    local percmds = H.percommand(coreutils, wrapperfetch, msys2dash, buildargvs[bi])
+    local pj = 1
+    while percmds[pj] ~= nil do table.insert(commands, percmds[pj]); pj = pj + 1 end
     bi = bi + 1
   end
   local ii = 1
   while installargvs[ii] ~= nil do
-    table.insert(commands, H.shcommand(coreutils, wrapperfetch, installargvs[ii]))
+    local percmds = H.percommand(coreutils, wrapperfetch, msys2dash, installargvs[ii])
+    local pj = 1
+    while percmds[pj] ~= nil do table.insert(commands, percmds[pj]); pj = pj + 1 end
     ii = ii + 1
   end
 
