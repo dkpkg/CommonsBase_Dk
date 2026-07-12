@@ -49,8 +49,10 @@ local M = {
 --   ip/ - the install prefix for THIS package only; install.zip = ip/ alone,
 --         so a Pkg object never re-ships its dependencies.
 --   Toolchain on PATH (form envmods): the relocatable OCaml 4.14 compiler
---   CommonsLang_OCaml.DkML.Unix@4.14.3 and CommonsLang_OCaml.Dune@3.23.1; for
---   non-dune packages also GNU make from CommonsBase_GNU.Make@4.4.1.
+--   CommonsLang_OCaml.DkML@4.14.3 (the unified object that covers every slot -
+--   the Unix compiler on Unix slots, the MSVC compiler on Windows slots) and
+--   CommonsLang_OCaml.Dune@3.23.1; for non-dune packages also GNU make from
+--   CommonsBase_GNU.Make@4.4.1.
 --   Command tools (get-object subshells): CommonsBase_Std.Coreutils@0.8.0
 --   (mkdir/cp/env), CommonsBase_Std.Toybox@0.8.9 (tar), CommonsBase_Std.S7z@25.1.0
 --   (7zz zip/unzip).
@@ -807,7 +809,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- for the non-dune packages (configure/make/make install), whose opam fields
   -- invoke `make` directly.
   local envmods = {
-    "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Unix@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+    "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
     "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin"
   }
   if uses_dune == 0 then
