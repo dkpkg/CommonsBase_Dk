@@ -651,31 +651,35 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   fenv.bools["ocaml:native"] = "true"
   fenv.bools["ocaml:preinstalled"] = "false"
   fenv.strings["ocaml:version"] = "4.14.3"
+  -- A dune package (its build field invokes dune) installs to a RELATIVE ip/
+  -- prefix, which dune resolves once from the source root and which keeps the
+  -- output reproducible (an absolute build path would leak into dune-package).
+  -- A non-dune package (configure/make) needs the ABSOLUTE token @IP@ that the
+  -- wrapper rewrites, because its recursive make resolves the prefix from
+  -- subdirectories. Numeric flag, not boolean (lua-ml booleans are unreliable).
+  local uses_dune = 0
+  if type(entry.build) == "string" and string.find(entry.build, "dune") ~= nil then
+    uses_dune = 1
+  end
+  local ip = "@IP@"
+  if uses_dune == 1 then ip = "../ip" end
+
   local vars = {}
   vars["name"] = pkg
   vars["jobs"] = "4"
   vars["make"] = "make"
-  -- Install into a SEPARATE prefix ip/ from the staged dependency prefix p/, so
-  -- each Pkg object's install.zip contains only its own files (p/ holds the
-  -- dependencies, on OCAMLPATH via the wrapper; ip/ receives this package).
-  vars["prefix"] = "../ip"
-  vars["bin"] = "../ip/bin"
-  vars["lib"] = "../ip/lib"
-  vars["man"] = "../ip/man"
+  vars["prefix"] = ip
+  vars["bin"] = ip .. "/bin"
+  vars["lib"] = ip .. "/lib"
+  vars["man"] = ip .. "/man"
   vars["dev"] = "false"
 
   local buildargvs = H.field_to_argvs(entry.build, fenv, vars, pkg)
   local installargvs = H.field_to_argvs(entry.install, fenv, vars, pkg)
 
   -- dune install fallback when the package relies on opam's .install handling
-  local uses_dune = false
-  local bchk = 1
-  while buildargvs[bchk] ~= nil do
-    if buildargvs[bchk][1] == "dune" then uses_dune = true end
-    bchk = bchk + 1
-  end
-  if installargvs[1] == nil and uses_dune then
-    installargvs = { { "dune", "install", "--prefix", "../ip", pkg } }
+  if installargvs[1] == nil and uses_dune == 1 then
+    installargvs = { { "dune", "install", "--prefix", ip, pkg } }
   end
 
   -- The build wrapper stages the dependency prefix p/ with an absolute OCAMLPATH
@@ -696,6 +700,17 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   end
 
   table.insert(commands, { sevenzz, "a", "-tzip", "${SLOT.request}/install.zip", "./ip/*" })
+
+  -- Toolchain on PATH: the DkML compiler and Dune for every package; GNU make
+  -- for the non-dune packages (configure/make/make install), whose opam fields
+  -- invoke `make` directly.
+  local envmods = {
+    "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Unix@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+    "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin"
+  }
+  if uses_dune == 0 then
+    table.insert(envmods, "<PATH=$(--path=absnative get-object CommonsBase_GNU.Make@4.4.1 -s Release.execution_abi -d : -e 'bin/*')${/}bin")
+  end
 
   return {
     submit = {
@@ -719,10 +734,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
           {
             id = request.submit.outputid,
             function_ = {
-              envmods = {
-                "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Unix@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
-                "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin"
-              },
+              envmods = envmods,
               commands = commands
             },
             outputs = {
