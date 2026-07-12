@@ -583,7 +583,17 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   local coreutils = "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')"
 
   local commands = {}
-  table.insert(commands, { coreutils, "mkdir", "-p", "s", "p/bin", "p/lib", "ip" })
+  table.insert(commands, { coreutils, "mkdir", "-p", "s", "p/bin", "p/lib/seq", "ip" })
+
+  -- Provide the findlib `seq` stub so `(libraries seq)` resolves. For OCaml >=
+  -- 4.07 the opam `seq` package is the virtual `seq.base`: Seq is in the stdlib
+  -- and the package ships only a dummy META (empty requires). It has no Pkg
+  -- object to stage, so the rule places the stub directly into every prefix.
+  table.insert(commands, {
+    coreutils, "cp",
+    "$(get-asset CommonsBase_Dk.Dk0Build.SeqMeta@" .. modversion .. " -p seq-META -f seq-meta-src)",
+    "p/lib/seq/META"
+  })
 
   -- Stage the TRANSITIVE dependency closure into p/, not just direct deps: a
   -- staged dune library (e.g. dune-configurator) records its own requires (csexp)
@@ -602,9 +612,13 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   local queue = {}
   local qh, qt = 1, 0
   local di = 1
+  -- A dep is staged only when it has a buildable source in the lock. Skip
+  -- PROVIDED (compiler/dune) and source-less virtuals (e.g. seq is the compiler
+  -- stdlib's Seq, base-domains, conf-*), which have no Pkg object to stage.
   while entry.depends ~= nil and entry.depends[di] ~= nil do
     local dep = entry.depends[di]
-    if H.PROVIDED[dep] == nil and seen[dep] == nil then
+    if H.PROVIDED[dep] == nil and seen[dep] == nil and byname[dep] ~= nil
+      and type(byname[dep].source) == "table" then
       seen[dep] = 1; qt = qt + 1; queue[qt] = dep
     end
     di = di + 1
@@ -617,7 +631,8 @@ function rules.F_BuildLockedPackage(command, request, continue_)
       local dj = 1
       while de.depends[dj] ~= nil do
         local d2 = de.depends[dj]
-        if H.PROVIDED[d2] == nil and seen[d2] == nil then
+        if H.PROVIDED[d2] == nil and seen[d2] == nil and byname[d2] ~= nil
+          and type(byname[d2].source) == "table" then
           seen[d2] = 1; qt = qt + 1; queue[qt] = d2
         end
         dj = dj + 1
