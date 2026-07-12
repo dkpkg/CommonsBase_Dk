@@ -1,14 +1,128 @@
-// Supported executable wiring for CommonsBase_Dk.Dk0@2.4.2.
+// Executable wiring for CommonsBase_Dk.Dk0@2.4.2.
 //
-// This package currently emits only the Windows x86_64 dk0.exe slice. The
-// reusable source/cache bootstrap is multi-slot, but the executable recipe is
-// intentionally limited until a truthful cross-platform toolchain lands.
+// dk0 (MlFront's DkZero_Exec/Shell.exe) is built off the CommonsLang_OCaml DkML
+// compiler (relocatable OCaml 4.14, MSVC on Windows) and Dune, so it covers
+// every DkML slot including the 32-bit Windows_x86 and Linux_x86 ABIs that
+// OCaml 5 drops. Windows_arm64 is deferred: DkML has no arm64-Windows slice.
+//
+// Each per-OS form stages the reusable Dk0.DuneCache source into s/ and runs a
+// plain `dune build src/DkZero_Exec/Shell.exe`. On Windows DkML's OCaml is MSVC,
+// so the build runs under a Visual Studio environment activated by
+// dk0-build-win.bat (vswhere -> vcvarsall). The two Windows arches are separate
+// forms, each building only its arch with a clean source tree.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "forms": [
     {
       "id": "CommonsBase_Dk.Dk0@2.4.2",
+      "precommands": {
+        "private": [
+          "get-object CommonsBase_Dk.Dk0.Win32.X64@2.4.2 -s Release.Windows_x86_64 -d ${SLOT.Release.Windows_x86_64}",
+          "get-object CommonsBase_Dk.Dk0.Win32.X86@2.4.2 -s Release.Windows_x86 -d ${SLOT.Release.Windows_x86}",
+          "get-object CommonsBase_Dk.Dk0.Unix@2.4.2 -s Release.Linux_x86_64 -d ${SLOT.Release.Linux_x86_64}",
+          "get-object CommonsBase_Dk.Dk0.Unix@2.4.2 -s Release.Linux_x86 -d ${SLOT.Release.Linux_x86}",
+          "get-object CommonsBase_Dk.Dk0.Unix@2.4.2 -s Release.Linux_arm64 -d ${SLOT.Release.Linux_arm64}",
+          "get-object CommonsBase_Dk.Dk0.Unix@2.4.2 -s Release.Darwin_x86_64 -d ${SLOT.Release.Darwin_x86_64}",
+          "get-object CommonsBase_Dk.Dk0.Unix@2.4.2 -s Release.Darwin_arm64 -d ${SLOT.Release.Darwin_arm64}"
+        ]
+      },
+      "outputs": {
+        "assets": [
+          { "slots": ["Release.Windows_x86_64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Windows_x86"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Linux_x86_64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Linux_x86"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Linux_arm64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Darwin_x86_64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Darwin_arm64"], "paths": ["bin/dk0.exe"] }
+        ]
+      }
+    },
+    {
+      "id": "CommonsBase_Dk.Dk0.Win32.X64@2.4.2",
+      "precommands": {
+        "sequential": true,
+        "private": [
+          "install-object CommonsBase_Dk.Dk0.DuneCache.Zip@2.4.2 -s Release.Agnostic -m ./output.zip -n 1 -d s"
+        ]
+      },
+      "function": {
+        "execution": [ { "name": "OSFamily", "value": "windows" } ],
+        "envmods": [
+          "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Win32@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+          "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+          "<PATH=$(--path=absnative get-object CommonsBase_GNU.Toolchain.W64dev@2.5.0 -s Release.execution_abi -d : -e 'bin/*')${/}bin"
+        ],
+        "commands": [
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "mkdir",
+            "-p",
+            "${SLOTABS.Release.Windows_x86_64}/bin"
+          ],
+          [
+            "--cmd.exe",
+            "/c",
+            "\"`\"$(--path=absnative get-asset CommonsBase_Dk.Apparatus.Dk0BuildWin@1.0.0 -p assets/dk0/dk0-build-win.bat -f dk0-build-win.bat)`\" `\"$(--path=absnative get-object CommonsBase_Build.VSWhere@3.1.7 -s Release.execution_abi -e bin/vswhere.exe -d :)${/}bin${/}vswhere.exe`\" x64\""
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "cp",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Windows_x86_64}/bin/dk0.exe"
+          ]
+        ]
+      },
+      "outputs": {
+        "assets": [
+          { "slots": ["Release.Windows_x86_64"], "paths": ["bin/dk0.exe"] }
+        ]
+      }
+    },
+    {
+      "id": "CommonsBase_Dk.Dk0.Win32.X86@2.4.2",
+      "precommands": {
+        "sequential": true,
+        "private": [
+          "install-object CommonsBase_Dk.Dk0.DuneCache.Zip@2.4.2 -s Release.Agnostic -m ./output.zip -n 1 -d s"
+        ]
+      },
+      "function": {
+        "execution": [ { "name": "OSFamily", "value": "windows" } ],
+        "envmods": [
+          "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Win32@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+          "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+          "<PATH=$(--path=absnative get-object CommonsBase_GNU.Toolchain.W64dev@2.5.0 -s Release.execution_abi -d : -e 'bin/*')${/}bin"
+        ],
+        "commands": [
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "mkdir",
+            "-p",
+            "${SLOTABS.Release.Windows_x86}/bin"
+          ],
+          [
+            "--cmd.exe",
+            "/c",
+            "\"`\"$(--path=absnative get-asset CommonsBase_Dk.Apparatus.Dk0BuildWin@1.0.0 -p assets/dk0/dk0-build-win.bat -f dk0-build-win.bat)`\" `\"$(--path=absnative get-object CommonsBase_Build.VSWhere@3.1.7 -s Release.execution_abi -e bin/vswhere.exe -d :)${/}bin${/}vswhere.exe`\" x86\""
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "cp",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Windows_x86}/bin/dk0.exe"
+          ]
+        ]
+      },
+      "outputs": {
+        "assets": [
+          { "slots": ["Release.Windows_x86"], "paths": ["bin/dk0.exe"] }
+        ]
+      }
+    },
+    {
+      "id": "CommonsBase_Dk.Dk0.Unix@2.4.2",
       "precommands": {
         "sequential": true,
         "private": [
@@ -17,38 +131,64 @@
       },
       "function": {
         "envmods": [
-          "<PATH=$(get-object CommonsLang_OCaml.Toolchain.W64devkit@5.4.1 -s Release.Windows_x86_64 -d : -e 'bin/*')${/}bin"
+          "<PATH=$(--path=absnative get-object CommonsLang_OCaml.DkML.Unix@4.14.3 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin",
+          "<PATH=$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -d : -e 'bin/*')${/}bin"
         ],
         "commands": [
           [
-            "--cmd.exe",
-            "/c",
-            "\"   cd s && dune build --profile=release src\\DkZero_Exec\\Shell.exe   \""
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "env",
+            "--chdir",
+            "s",
+            "$(--path=absnative get-object CommonsLang_OCaml.Dune@3.23.1 -s ${SLOTNAME.request} -e bin/dune.exe -d :)${/}bin${/}dune.exe",
+            "build",
+            "--profile=release",
+            "src/DkZero_Exec/Shell.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "mkdir",
-            "-p",
-            "${SLOT.request}/bin"
+            "install",
+            "-D",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Linux_x86_64}/bin/dk0.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "cp",
-            "s\\_build\\default\\src\\DkZero_Exec\\Shell.exe",
-            "${SLOT.request}/bin/dk0.exe"
+            "install",
+            "-D",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Linux_x86}/bin/dk0.exe"
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "install",
+            "-D",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Linux_arm64}/bin/dk0.exe"
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "install",
+            "-D",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Darwin_x86_64}/bin/dk0.exe"
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "install",
+            "-D",
+            "s/_build/default/src/DkZero_Exec/Shell.exe",
+            "${SLOTABS.Release.Darwin_arm64}/bin/dk0.exe"
           ]
         ]
       },
       "outputs": {
         "assets": [
-          {
-            "slots": [
-              "Release.Windows_x86_64"
-            ],
-            "paths": [
-              "bin/dk0.exe"
-            ]
-          }
+          { "slots": ["Release.Linux_x86_64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Linux_x86"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Linux_arm64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Darwin_x86_64"], "paths": ["bin/dk0.exe"] },
+          { "slots": ["Release.Darwin_arm64"], "paths": ["bin/dk0.exe"] }
         ]
       }
     }
