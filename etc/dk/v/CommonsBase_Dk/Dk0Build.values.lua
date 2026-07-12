@@ -2,19 +2,106 @@ local M = {
   id = "CommonsBase_Dk.Dk0Build@2.4.2"
 }
 
--- Generic locked-opam-package builder (v1: Unix slots; Windows/MSVC is the
--- plan's step 5). One instance builds ONE package from a dk-opam-lock JSONC:
---   * reads the lock through a files-expression continuation (no 1024-byte
---     subshell cap; the lock is also a declared input asset),
---   * stages each dependency's install.zip object into a private prefix p/,
---   * fetches and untars the locked source into s/,
---   * interprets the opam build:/install: fields (name/jobs/bin/lib/man
---     vars, %{...}% interpolation, dev/with-test/with-doc/ocaml:* filters),
---   * emits the installed prefix as a single install.zip.
+-- ==========================================================================
+-- CommonsBase_Dk.Dk0Build.F_BuildLockedPackage - per-opam-package build rule
+-- ==========================================================================
+--
+-- PURPOSE
+-- One instance of this rule builds exactly ONE opam package - one node of the
+-- solved opam dependency graph - into a per-slot dk object
+-- `<Parent>.Pkg.<Segment>@<version>` whose entire payload is a single
+-- install.zip. dk0 (DkZero_Exec) is then just the object of the root package
+-- `DkZero_Exec`, and its transitive closure is a fan-out of these per-package
+-- objects that dk0's content-addressed cache builds incrementally.
+--
+-- WHERE THE DEPENDENCY GRAPH COMES FROM (the opam solver is NOT run here)
+-- The opam solver runs once, at author time, in the reusable UI rule
+-- CommonsLang_OCaml.Dk.OpamLock.Solve@1.0.0. That rule spawns `opam` (via
+-- request.ui.capture) to solve the pinned dependency closure for every DkML
+-- slot against a pinned opam-repository commit, and writes the solution to a
+-- checked-in JSONC lock (dk-opam-lock.jsonc). The lock IS the frozen, per-slot
+-- opam dependency graph: for each package node it records the version, the
+-- source (opam-cache url + checksums + size + archive type), the direct
+-- `depends` edges, and the raw opam `build:`/`install:` fields. This rule only
+-- READS that lock and never solves, so a build is reproducible and needs no
+-- solver, no network metadata and no opam at build time.
+--
+-- HOW ONE LOCK NODE BECOMES A DYNAMIC BUILD FORM (three phases)
+--   1. `declareoutput` - declares the 7-slot return objects
+--      `<Parent>.Pkg.<Segment>@<version>` and the lock as an input asset.
+--   2. `submit` with continue_ ~= "build" - returns a files-expression
+--      `$(get-asset <lock> ...)` that dk0 materialises, then re-invokes with
+--      continue_ = "build". The lock is read this way (not via a $(...)
+--      subshell) to dodge the 1024-byte subshell cap and to make the lock a
+--      real declared input.
+--   3. `submit` with continue_ == "build" - decodes the lock, finds this
+--      package's entry, and RETURNS a dynamically synthesised `submit.values`:
+--      a `.Src` bundle (the package source, fetched from the opam cache) plus a
+--      `form` whose commands do the build. dk0 builds that form as the Pkg
+--      object. The build is thus data (a value) computed from the lock node,
+--      not a static recipe.
+--
+-- THE BUILD LAYOUT AND ENVIRONMENT
+--   s/  - the unpacked package source (build happens here).
+--   p/  - the staged TRANSITIVE dependency prefix, presented to the build on
+--         OCAMLPATH so libraries are found by findlib META discovery. Always
+--         seeded with p/lib/seq/META (see the seq case below).
+--   ip/ - the install prefix for THIS package only; install.zip = ip/ alone,
+--         so a Pkg object never re-ships its dependencies.
+--   Toolchain on PATH (form envmods): the relocatable OCaml 4.14 compiler
+--   CommonsLang_OCaml.DkML.Unix@4.14.3 and CommonsLang_OCaml.Dune@3.23.1; for
+--   non-dune packages also GNU make from CommonsBase_GNU.Make@4.4.1.
+--   Command tools (get-object subshells): CommonsBase_Std.Coreutils@0.8.0
+--   (mkdir/cp/env), CommonsBase_Std.Toybox@0.8.9 (tar), CommonsBase_Std.S7z@25.1.0
+--   (7zz zip/unzip).
+--   Each opam build/install command runs as
+--     coreutils env /bin/sh <Dk0Build.Wrapper wrapper.sh> <argv...>
+--   The wrapper chdirs into s/, exports an ABSOLUTE OCAMLPATH=<root>/p/lib and
+--   PATH=<root>/p/bin:$PATH (plus OCAMLFIND_CONF when p/lib/findlib.conf was
+--   staged), and rewrites the token @IP@ to the absolute ip/ path. On Windows
+--   (step 5) /bin/sh is dash from CommonsLang_OCaml.MSYS2@<version> and the MSVC
+--   environment is activated before the compile commands run.
+--
+-- BUILD-CASE WALKTHROUGH (by example package)
+--   * Dune leaf - csexp. csexp depends only on PROVIDED packages (dune, ocaml),
+--     so nothing is staged into p/. Dk0Build translates its opam build field
+--     `["dune" "build" "-p" name ...]` into `dune build -p csexp @install` and
+--     supplies the missing install field as the fallback
+--     `dune install --prefix ../ip csexp`. A dune package uses the RELATIVE ip/
+--     prefix, which dune resolves once from the source root and which keeps the
+--     output reproducible (an absolute build path would leak into dune-package).
+--   * Dune with a staged dependency - dune-configurator, which depends on csexp.
+--     csexp's Pkg object install.zip is unpacked into p/ (the `get-object`
+--     subshell is also the dependency edge). dune-configurator's
+--     `dune build -p dune-configurator` finds csexp through the wrapper's
+--     OCAMLPATH by findlib META, links it, and installs to ip/.
+--   * Dune transitive DAG - base, which depends on sexplib0 and
+--     dune-configurator (which depends on csexp). The whole closure
+--     {sexplib0, dune-configurator, csexp} is staged into p/, because a staged
+--     dune library records its own `requires` (dune-configurator requires csexp)
+--     in its dune-package and so needs those present transitively.
+--   * Non-dune configure/make - ocamlfind. make is on PATH through
+--     CommonsBase_GNU.Make@4.4.1; ./configure runs under the POSIX /bin/sh (on
+--     Windows, dash from CommonsLang_OCaml.MSYS2@<version>). Dk0Build translates
+--     the opam build field `[["./configure" ...] [make "all"] [make "opt"]]` and
+--     install field `[make "install"]` into env-wrapped argv commands (make and
+--     configure invoked directly, no shell string). A non-dune package installs
+--     into the ABSOLUTE @IP@ prefix so its own recursive make resolves the
+--     prefix identically from any subdirectory.
+--   * Mixed closure - ppxlib, a dune package whose closure mixes dune libraries
+--     (sexplib0, ocaml-compiler-libs, stdlib-shims, ppx_derivers, re) with the
+--     non-dune ocamlfind. All are staged into p/ in dependency order; the dune
+--     and non-dune paths above compose without special-casing.
+--   * stdlib shim - seq (a dependency of re). For OCaml 4.07 and above the opam
+--     `seq` package is the virtual `seq.base`: Seq is in the stdlib and the
+--     package ships only a dummy findlib META. seq has no Pkg object to stage,
+--     so the rule writes that stub META into p/lib/seq/META in every build so a
+--     package's `(libraries seq)` resolves.
 --
 -- lua-ml notes: no gsub/gmatch/break/#; module-level locals are nil inside
--- rule functions, so helpers live in a unique global table; boolean table
--- values are unreliable, so sets store the key as its own string value.
+-- rule functions, so helpers live in a unique global table; boolean values
+-- (returns, arguments, table values) are unreliable, so flags are numeric and
+-- sets store the key as its own string value.
 CommonsBase_Dk__Dk0Build__2_4_2 = {}
 CommonsBase_Dk__Dk0Build__2_4_2.NULL = {}
 
