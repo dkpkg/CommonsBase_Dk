@@ -491,6 +491,12 @@ function CommonsBase_Dk__Dk0Build__2_4_2.interpolate(s, vars, pkg)
         "unbalanced %{ in `" .. s .. "` for package " .. pkg)
       local var = string.sub(s, i + 2, close - 1)
       local rep = vars[var]
+      -- opam <pkg>:installed is true for provided/closure packages (seeded into
+      -- vars) and false for anything else not queried at build time.
+      if rep == nil and string.len(var) >= 10
+         and string.sub(var, string.len(var) - 9) == ":installed" then
+        rep = "false"
+      end
       assert(rep ~= nil, "unknown %{" .. var .. "}% in `" .. s .. "` for package " .. pkg)
       out = out .. rep
       i = close + 2
@@ -876,6 +882,14 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   vars["ocaml:native"] = "true"
   vars["ocaml:native-dynlink"] = "true"
   vars["ocaml:version"] = "4.14.3"
+  -- opam <pkg>:installed variables: true for provided packages, this package,
+  -- and everything in its dependency closure; interpolate defaults the rest to
+  -- false (see interpolate).
+  vars[pkg .. ":installed"] = "true"
+  local pk = next(H.PROVIDED)
+  while pk ~= nil do vars[pk .. ":installed"] = "true"; pk = next(H.PROVIDED, pk) end
+  local ci3 = 1
+  while closure[ci3] ~= nil do vars[closure[ci3] .. ":installed"] = "true"; ci3 = ci3 + 1 end
 
   -- The build wrapper stages the dependency prefix p/ with an absolute OCAMLPATH
   -- (derived from $PWD at runtime) so dune finds the staged dependency libraries
