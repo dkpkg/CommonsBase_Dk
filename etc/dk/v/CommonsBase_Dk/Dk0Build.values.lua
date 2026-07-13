@@ -160,6 +160,20 @@ end
 -- returned table by Lua type, emitting a JSON number where the values parser
 -- demands a string argv token. Rebuild the decimal digits by hand (lua-ml has no
 -- string.format); non-integral or non-numeric values fall through unchanged.
+-- True when the string is one or more ASCII digits (a value lua-ml would
+-- serialize as a JSON number rather than a string).
+function CommonsBase_Dk__Dk0Build__2_4_2.is_pure_int(s)
+  if type(s) ~= "string" or s == "" then return nil end
+  local i = 1
+  local n = string.len(s)
+  while i <= n do
+    local c = string.sub(s, i, i)
+    if c < "0" or c > "9" then return nil end
+    i = i + 1
+  end
+  return 1
+end
+
 function CommonsBase_Dk__Dk0Build__2_4_2.numstr(v)
   if type(v) == "string" then return v end
   if type(v) ~= "number" then return tostring(v) end
@@ -429,10 +443,21 @@ function CommonsBase_Dk__Dk0Build__2_4_2.filter_atom(words, st, fenv, pkg, ftext
     "unsupported filter `" .. ftext .. "` for package " .. pkg)
   st.idx = st.idx + 1
   local value
+  -- Detect a comparison operator after the identifier. `!=` may arrive as one
+  -- `!=` op or as `!` `=` (two ops), depending on how the field was tokenized.
+  local op = ""
   local nexttok = words[st.idx]
-  if nexttok ~= nil and nexttok.k == "op" and nexttok.v ~= "&" and nexttok.v ~= "|" and nexttok.v ~= "!" then
-    local op = nexttok.v
-    st.idx = st.idx + 1
+  if nexttok ~= nil and nexttok.k == "op" then
+    local nt2 = words[st.idx + 1]
+    if nexttok.v == "!" and nt2 ~= nil and nt2.k == "op" and nt2.v == "=" then
+      op = "!="; st.idx = st.idx + 2
+    elseif nexttok.v == "!=" then
+      op = "!="; st.idx = st.idx + 1
+    elseif nexttok.v ~= "&" and nexttok.v ~= "|" and nexttok.v ~= "!" then
+      op = nexttok.v; st.idx = st.idx + 1
+    end
+  end
+  if op ~= "" then
     local rhs = words[st.idx]
     assert(rhs ~= nil and rhs.k == "str",
       "unsupported comparison in filter `" .. ftext .. "` for package " .. pkg)
@@ -442,6 +467,7 @@ function CommonsBase_Dk__Dk0Build__2_4_2.filter_atom(words, st, fenv, pkg, ftext
     if op == ">=" then value = H.version_ge(lhs, rhs.v)
     elseif op == "<=" then value = H.version_ge(rhs.v, lhs)
     elseif op == "=" then value = (lhs == rhs.v)
+    elseif op == "!=" then value = (lhs ~= rhs.v)
     else assert(false, "unsupported operator `" .. op .. "` in filter `" .. ftext .. "` for package " .. pkg) end
   else
     local b = fenv.bools[wtok.v]
@@ -507,7 +533,17 @@ function CommonsBase_Dk__Dk0Build__2_4_2.field_to_argvs(raw, fenv, vars, pkg)
             -- like `-j%{jobs}%` interpolate to a non-numeric "-j4" and survive.
             if an > 0 and argv[an] == "-j" then argv[an] = nil; an = an - 1 end
           elseif tok.kind == "str" then
-            an = an + 1; argv[an] = H.numstr(H.interpolate(tok.v, vars, pkg))
+            local sval = H.interpolate(tok.v, vars, pkg)
+            -- A standalone pure-integer string (e.g. the mode in `install -m
+            -- 0644`) serializes as a JSON number that the values parser rejects.
+            -- When it follows a short flag, attach it (`-m0644`); getopt-style
+            -- tools accept the attached form and the token stays a string.
+            if an > 0 and H.is_pure_int(sval) and string.sub(argv[an], 1, 1) == "-"
+               and string.len(argv[an]) <= 2 then
+              argv[an] = argv[an] .. sval
+            else
+              an = an + 1; argv[an] = H.numstr(sval)
+            end
           else
             local rep = vars[tok.v]
             assert(rep ~= nil, "unknown opam variable `" .. tok.v .. "` for package " .. pkg)
@@ -548,30 +584,33 @@ end
 -- Unix. The wrapper drops <gate>, activates MSVC when <arch> is not "-", chdirs
 -- into s/, stages the dependency prefix, and runs the argv. A leading `dune` is
 -- rewritten to the Dune object's `dune.exe`.
-function CommonsBase_Dk__Dk0Build__2_4_2.percommand(coreutils, wrapperfetch, msys2dash, argv)
-  local H = CommonsBase_Dk__Dk0Build__2_4_2
-  local rewritten = {}
+-- The opam `os` filter variable for an abi: `win32` on Windows, otherwise the
+-- kernel name opam uses (`macos` for Darwin, `linux` elsewhere). Lets the field
+-- interpreter select os-conditional build/install commands ({os = "win32"}).
+function CommonsBase_Dk__Dk0Build__2_4_2.abi_os(abi)
+  if abi.msvc ~= "-" then return "win32" end
+  if string.find(abi.slot, "Darwin") ~= nil then return "macos" end
+  return "linux"
+end
+
+-- Emit ONE gated command for a single abi, wrapping the opam argv per the
+-- invocation `coreutils env <shell> <wrapper> <gate> <arch> <argv...>`. Because
+-- os-conditional fields make the argv differ per abi, the caller interprets the
+-- field once per abi and calls this for each; the ${SLOTABS.<abi>} gate scopes
+-- the command to that abi. A leading `dune` becomes the Dune object's dune.exe.
+function CommonsBase_Dk__Dk0Build__2_4_2.percommand_abi(coreutils, wrapperfetch, msys2dash, argv, abi)
+  local shell = "/bin/sh"
+  if abi.msvc ~= "-" then shell = msys2dash end
+  local cmd = { coreutils, "env", shell, wrapperfetch,
+    "${SLOTABS." .. abi.slot .. "}", abi.msvc }
   local ai = 1
   while argv[ai] ~= nil do
     local a = argv[ai]
     if ai == 1 and a == "dune" then a = "dune.exe" end
-    table.insert(rewritten, a)
+    table.insert(cmd, a)
     ai = ai + 1
   end
-  local out = {}
-  local mi = 1
-  while H.ABIS[mi] ~= nil do
-    local abi = H.ABIS[mi]
-    local shell = "/bin/sh"
-    if abi.msvc ~= "-" then shell = msys2dash end
-    local cmd = { coreutils, "env", shell, wrapperfetch,
-      "${SLOTABS." .. abi.slot .. "}", abi.msvc }
-    local ri = 1
-    while rewritten[ri] ~= nil do table.insert(cmd, rewritten[ri]); ri = ri + 1 end
-    table.insert(out, cmd)
-    mi = mi + 1
-  end
-  return out
+  return cmd
 end
 
 -- ---------------------------------------------------------------------------
@@ -678,9 +717,19 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   elseif md5c ~= "" then ckind = "md5"; chex = md5c
   elseif sha256o ~= "" then ckind = "sha256"; chex = sha256o end
   assert(chex ~= "", "no cache-usable checksum for `" .. pkg .. "`")
-  -- opam cache: /cache/<kind>/<first2>/<hash>, the archive filename is the hash
+  -- A source in the opam cache is fetched from /cache/<kind>/<first2>/<hash>,
+  -- where the archive filename is the bare hash. A source not in the cache (a
+  -- custom fork or pin, which the lock marks source.incache=0) is fetched from
+  -- its direct URL instead, split into a mirror directory and the archive
+  -- filename. Either way the fetched file is renamed to the hash below, so the
+  -- extraction is identical. srcname is the asset path in the synthesized bundle.
   local srcdir = "https://opam.ocaml.org/cache/" .. ckind .. "/" .. string.sub(chex, 1, 2)
   local srcname = chex
+  if entry.source.incache == 0 then
+    local slash = H.lastindexof(url, "/")
+    srcdir = string.sub(url, 1, slash - 1)
+    srcname = string.sub(url, slash + 1)
+  end
   local srcbundle = modpath .. ".Src@" .. modversion
 
   -- tar flag from the recorded archive type (the cache filename has no extension)
@@ -774,14 +823,17 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- directory; the build wrapper descends into that sole directory (a uniform
   -- shape across all platforms). The fetched file is named with its archive
   -- extension so 7zz detects the format.
-  local srcout = srcname .. "." .. arch
-  local srctar = srcname .. ".tar"
+  local srcout = chex .. "." .. arch
+  local srctar = chex .. ".tar"
   local srcfetch = "$(get-asset " .. srcbundle .. " -p " .. srcname .. " -f " .. srcout .. ")"
+  -- Exclude any examples/ directory: it is never compiled or installed, and
+  -- some source tarballs ship symlinks there that 7zz refuses to extract (a
+  -- "dangerous link path" that otherwise fails the whole extraction).
   if tarflag ~= "" then
     table.insert(commands, { sevenzz, "x", "-y", "-o.", srcfetch })
-    table.insert(commands, { sevenzz, "x", "-y", "-os", srctar })
+    table.insert(commands, { sevenzz, "x", "-y", "-os", srctar, "-xr!examples" })
   else
-    table.insert(commands, { sevenzz, "x", "-y", "-os", srcfetch })
+    table.insert(commands, { sevenzz, "x", "-y", "-os", srcfetch, "-xr!examples" })
   end
 
   -- interpret the opam fields
@@ -819,14 +871,11 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   vars["lib"] = ip .. "/lib"
   vars["man"] = ip .. "/man"
   vars["dev"] = "false"
-
-  local buildargvs = H.field_to_argvs(entry.build, fenv, vars, pkg)
-  local installargvs = H.field_to_argvs(entry.install, fenv, vars, pkg)
-
-  -- dune install fallback when the package relies on opam's .install handling
-  if installargvs[1] == nil and uses_dune == 1 then
-    installargvs = { { "dune", "install", "--prefix", ip, pkg } }
-  end
+  -- opam variables that appear in %{...}% interpolations (not just filters); the
+  -- DkML compiler is native. Mirrors the fenv bools used by eval_filter.
+  vars["ocaml:native"] = "true"
+  vars["ocaml:native-dynlink"] = "true"
+  vars["ocaml:version"] = "4.14.3"
 
   -- The build wrapper stages the dependency prefix p/ with an absolute OCAMLPATH
   -- (derived from $PWD at runtime) so dune finds the staged dependency libraries
@@ -842,21 +891,32 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- dash.exe fails at startup with 0xC0000135 (DLL not found).
   local msys2dash = "$(get-object CommonsLang_OCaml.MSYS2@2026.6.11 -s Release.Windows_x86_64 -e '*' -d :)/usr/bin/dash.exe"
 
-  -- each opam command is emitted per abi (Unix via /bin/sh, Windows via MSYS2
-  -- dash + MSVC), gated to its slot; dk0 runs only the matching abi's commands
-  local bi = 1
-  while buildargvs[bi] ~= nil do
-    local percmds = H.percommand(coreutils, wrapperfetch, msys2dash, buildargvs[bi])
-    local pj = 1
-    while percmds[pj] ~= nil do table.insert(commands, percmds[pj]); pj = pj + 1 end
-    bi = bi + 1
-  end
-  local ii = 1
-  while installargvs[ii] ~= nil do
-    local percmds = H.percommand(coreutils, wrapperfetch, msys2dash, installargvs[ii])
-    local pj = 1
-    while percmds[pj] ~= nil do table.insert(commands, percmds[pj]); pj = pj + 1 end
-    ii = ii + 1
+  -- The opam build/install fields are interpreted once PER ABI, because an
+  -- os-conditional field ({os = "win32"}) yields different commands per OS. Each
+  -- resulting argv is emitted as one command gated to that abi (Unix via
+  -- /bin/sh, Windows via MSYS2 dash + MSVC); dk0 runs only the matching abi's
+  -- commands. Build commands precede install commands within each abi.
+  local ai = 1
+  while H.ABIS[ai] ~= nil do
+    local abi = H.ABIS[ai]
+    fenv.strings["os"] = H.abi_os(abi)
+    local babi = H.field_to_argvs(entry.build, fenv, vars, pkg)
+    local iabi = H.field_to_argvs(entry.install, fenv, vars, pkg)
+    -- dune install fallback when the package relies on opam's .install handling
+    if iabi[1] == nil and uses_dune == 1 then
+      iabi = { { "dune", "install", "--prefix", ip, pkg } }
+    end
+    local bi = 1
+    while babi[bi] ~= nil do
+      table.insert(commands, H.percommand_abi(coreutils, wrapperfetch, msys2dash, babi[bi], abi))
+      bi = bi + 1
+    end
+    local ii = 1
+    while iabi[ii] ~= nil do
+      table.insert(commands, H.percommand_abi(coreutils, wrapperfetch, msys2dash, iabi[ii], abi))
+      ii = ii + 1
+    end
+    ai = ai + 1
   end
 
   table.insert(commands, { sevenzz, "a", "-tzip", "${SLOT.request}/install.zip", "./ip/*" })
