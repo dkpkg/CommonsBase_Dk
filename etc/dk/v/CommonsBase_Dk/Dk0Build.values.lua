@@ -767,9 +767,22 @@ function rules.F_BuildLockedPackage(command, request, continue_)
     ci2 = ci2 + 1
   end
 
-  -- fetch + extract the source (v1: toybox tar; Windows arrives with step 5)
-  local srcfetch = "$(get-asset " .. srcbundle .. " -p " .. srcname .. " -f " .. srcname .. ")"
-  table.insert(commands, { toybox, "tar", "-x" .. tarflag .. "f", srcfetch, "-C", "s", "--strip-components=1" })
+  -- Fetch + extract the source with 7zz, which (unlike toybox) has a slice for
+  -- every slot including Windows. 7zz cannot --strip-components, so a compressed
+  -- archive is first decompressed to a .tar in the build root and its members
+  -- are then extracted into s/ preserving the single top-level <pkg>-<version>/
+  -- directory; the build wrapper descends into that sole directory (a uniform
+  -- shape across all platforms). The fetched file is named with its archive
+  -- extension so 7zz detects the format.
+  local srcout = srcname .. "." .. arch
+  local srctar = srcname .. ".tar"
+  local srcfetch = "$(get-asset " .. srcbundle .. " -p " .. srcname .. " -f " .. srcout .. ")"
+  if tarflag ~= "" then
+    table.insert(commands, { sevenzz, "x", "-y", "-o.", srcfetch })
+    table.insert(commands, { sevenzz, "x", "-y", "-os", srctar })
+  else
+    table.insert(commands, { sevenzz, "x", "-y", "-os", srcfetch })
+  end
 
   -- interpret the opam fields
   local fenv = { bools = {}, strings = {} }
@@ -782,17 +795,20 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   fenv.bools["ocaml:preinstalled"] = "false"
   fenv.strings["ocaml:version"] = "4.14.3"
   -- A dune package (its build field invokes dune) installs to a RELATIVE ip/
-  -- prefix, which dune resolves once from the source root and which keeps the
-  -- output reproducible (an absolute build path would leak into dune-package).
-  -- A non-dune package (configure/make) needs the ABSOLUTE token @IP@ that the
-  -- wrapper rewrites, because its recursive make resolves the prefix from
-  -- subdirectories. Numeric flag, not boolean (lua-ml booleans are unreliable).
+  -- prefix, which dune resolves from the source root and which keeps the output
+  -- reproducible (an absolute build path would leak into dune-package). The
+  -- wrapper runs from s/<pkg-version>/ (the sole directory 7zz extracts, since
+  -- 7zz cannot strip it), which is two levels below the build root that holds
+  -- ip/, so the relative prefix is ../../ip. A non-dune package (configure/make)
+  -- needs the ABSOLUTE token @IP@ that the wrapper rewrites, because its
+  -- recursive make resolves the prefix from subdirectories. Numeric flag, not
+  -- boolean (lua-ml booleans are unreliable).
   local uses_dune = 0
   if type(entry.build) == "string" and string.find(entry.build, "dune") ~= nil then
     uses_dune = 1
   end
   local ip = "@IP@"
-  if uses_dune == 1 then ip = "../ip" end
+  if uses_dune == 1 then ip = "../../ip" end
 
   local vars = {}
   vars["name"] = pkg
@@ -821,7 +837,10 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- cygpath). MSYS2 ships only the Windows_x86_64 tree; a Windows_x86 host runs
   -- the same x86_64 tooling. Referenced only in Windows-gated commands, so it is
   -- never resolved on Unix slots.
-  local msys2dash = "$(get-object CommonsLang_OCaml.MSYS2@2026.6.11 -s Release.Windows_x86_64 -m ./usr/bin/dash.exe -f dash.exe -e '*')"
+  -- Reference dash.exe in place inside the extracted MSYS2 tree (not copied out
+  -- on its own) so its adjacent msys-2.0.dll and friends load; extracting only
+  -- dash.exe fails at startup with 0xC0000135 (DLL not found).
+  local msys2dash = "$(get-object CommonsLang_OCaml.MSYS2@2026.6.11 -s Release.Windows_x86_64 -e '*' -d :)/usr/bin/dash.exe"
 
   -- each opam command is emitted per abi (Unix via /bin/sh, Windows via MSYS2
   -- dash + MSVC), gated to its slot; dk0 runs only the matching abi's commands
