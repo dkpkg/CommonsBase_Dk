@@ -916,9 +916,14 @@ function rules.F_BuildLockedPackage(command, request, continue_)
     fenv.strings["os"] = H.abi_os(abi)
     local babi = H.field_to_argvs(entry.build, fenv, vars, pkg)
     local iabi = H.field_to_argvs(entry.install, fenv, vars, pkg)
-    -- dune install fallback when the package relies on opam's .install handling
+    -- No explicit install field: the package relies on opam processing the
+    -- <pkg>.install file its build generates. A dune package uses `dune install`;
+    -- a non-dune one (topkg-based) is handled by the wrapper's @INSTALL@ step,
+    -- which copies the .install entries into ip/.
     if iabi[1] == nil and uses_dune == 1 then
       iabi = { { "dune", "install", "--prefix", ip, pkg } }
+    elseif iabi[1] == nil then
+      iabi = { { "@INSTALL@", pkg } }
     end
     local bi = 1
     while babi[bi] ~= nil do
