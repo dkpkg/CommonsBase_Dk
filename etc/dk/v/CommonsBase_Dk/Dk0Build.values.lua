@@ -236,6 +236,10 @@ end
 
 -- Sanitize an opam package name into a module id segment: uppercase first
 -- letter, "-" and "." become "_" (ocaml-compiler-libs -> Ocaml_compiler_libs).
+-- A dk namespace term is `[A-Z][a-z0-9_]*`: uppercase initial, then lowercase
+-- (an underscore must be followed by lowercase). opam names are already
+-- lowercase, but local package names carry internal capitals (MlFront_Console),
+-- so lowercase every non-initial character.
 function CommonsBase_Dk__Dk0Build__2_4_2.modsegment(name)
   local out = ""
   local i = 1
@@ -243,7 +247,7 @@ function CommonsBase_Dk__Dk0Build__2_4_2.modsegment(name)
   while i <= n do
     local c = string.sub(name, i, i)
     if c == "-" or c == "." then c = "_" end
-    if i == 1 then c = string.upper(c) end
+    if i == 1 then c = string.upper(c) else c = string.lower(c) end
     out = out .. c
     i = i + 1
   end
@@ -698,49 +702,59 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   assert(lastdot ~= nil, "modver must be a dotted module path")
   local parent = string.sub(modpath, 1, lastdot)
 
-  -- source archive (requires size in the lock)
-  assert(entry.source ~= nil and type(entry.source) == "table" and entry.source.url,
-    "package `" .. pkg .. "` has no source archive in the lock")
-  local url = entry.source.url
-  assert(entry.source.size, "lock has no source.size for `" .. pkg
-    .. "`; regenerate the lock with the size-probing OpamLock rule")
-  -- Collect checksums: sha256 is the dk bundle checksum (dk cannot express
-  -- md5/sha512); sha512/md5/sha256(opam) pick the opam CACHE URL. A sha256 the
-  -- lock *computed* for an md5/sha512-only package is not in the cache, so the
-  -- cache prefers sha512 > md5 > sha256.
-  local sha256, sha512, md5c, sha256o = "", "", "", ""
-  local ci = 1
-  while entry.source.checksums[ci] ~= nil do
-    local cs = entry.source.checksums[ci]
-    if string.sub(cs, 1, 7) == "sha256=" then sha256 = string.sub(cs, 8); sha256o = string.sub(cs, 8)
-    elseif string.sub(cs, 1, 7) == "sha512=" then sha512 = string.sub(cs, 8)
-    elseif string.sub(cs, 1, 4) == "md5=" then md5c = string.sub(cs, 5) end
-    ci = ci + 1
+  -- A local package (MlFront_*/DkZero_*/UnifiedScript_*, marked "local":"t" with
+  -- no source in the lock) has no per-package archive: it is built from the
+  -- shared MlFront source, provided by the CommonsBase_Dk.Dk0Build.MlFrontSrc
+  -- bundle. External packages carry their own source and get a synthesized .Src
+  -- bundle below. The vars default to the local case; the else branch fills in
+  -- the external source (opam cache or, for a custom fork, the direct URL).
+  local is_local = (entry["local"] == "t")
+  local url = ""
+  local sha256 = ""
+  local srcdir = ""
+  local chex = "mlfrontsrc"
+  local srcname = "mlfront-2.4.2.tgz"
+  local srcbundle = "CommonsBase_Dk.Dk0Build.MlFrontSrc@" .. modversion
+  local arch = "tgz"
+  if not is_local then
+    assert(entry.source ~= nil and type(entry.source) == "table" and entry.source.url,
+      "package `" .. pkg .. "` has no source archive in the lock")
+    url = entry.source.url
+    assert(entry.source.size, "lock has no source.size for `" .. pkg
+      .. "`; regenerate the lock with the size-probing OpamLock rule")
+    -- sha256 is the dk bundle checksum (dk cannot express md5/sha512); the cache
+    -- URL prefers the opam-recorded kind sha512 > md5 > sha256.
+    local sha512, md5c, sha256o = "", "", ""
+    local ci = 1
+    while entry.source.checksums[ci] ~= nil do
+      local cs = entry.source.checksums[ci]
+      if string.sub(cs, 1, 7) == "sha256=" then sha256 = string.sub(cs, 8); sha256o = string.sub(cs, 8)
+      elseif string.sub(cs, 1, 7) == "sha512=" then sha512 = string.sub(cs, 8)
+      elseif string.sub(cs, 1, 4) == "md5=" then md5c = string.sub(cs, 5) end
+      ci = ci + 1
+    end
+    assert(sha256 ~= "", "no sha256 checksum for `" .. pkg .. "` in the lock")
+    local ckind = ""
+    chex = ""
+    if sha512 ~= "" then ckind = "sha512"; chex = sha512
+    elseif md5c ~= "" then ckind = "md5"; chex = md5c
+    elseif sha256o ~= "" then ckind = "sha256"; chex = sha256o end
+    assert(chex ~= "", "no cache-usable checksum for `" .. pkg .. "`")
+    -- opam cache: /cache/<kind>/<first2>/<hash> (filename is the bare hash). A
+    -- non-cache source (custom fork/pin, incache=0) is fetched from its direct
+    -- URL, split into mirror dir + filename. Either way the fetch renames to the
+    -- hash below, so extraction is identical.
+    srcdir = "https://opam.ocaml.org/cache/" .. ckind .. "/" .. string.sub(chex, 1, 2)
+    srcname = chex
+    if entry.source.incache == 0 then
+      local slash = H.lastindexof(url, "/")
+      srcdir = string.sub(url, 1, slash - 1)
+      srcname = string.sub(url, slash + 1)
+    end
+    srcbundle = modpath .. ".Src@" .. modversion
+    arch = entry.source.archive
+    if type(arch) ~= "string" then arch = "tgz" end
   end
-  assert(sha256 ~= "", "no sha256 checksum for `" .. pkg .. "` in the lock")
-  local ckind, chex = "", ""
-  if sha512 ~= "" then ckind = "sha512"; chex = sha512
-  elseif md5c ~= "" then ckind = "md5"; chex = md5c
-  elseif sha256o ~= "" then ckind = "sha256"; chex = sha256o end
-  assert(chex ~= "", "no cache-usable checksum for `" .. pkg .. "`")
-  -- A source in the opam cache is fetched from /cache/<kind>/<first2>/<hash>,
-  -- where the archive filename is the bare hash. A source not in the cache (a
-  -- custom fork or pin, which the lock marks source.incache=0) is fetched from
-  -- its direct URL instead, split into a mirror directory and the archive
-  -- filename. Either way the fetched file is renamed to the hash below, so the
-  -- extraction is identical. srcname is the asset path in the synthesized bundle.
-  local srcdir = "https://opam.ocaml.org/cache/" .. ckind .. "/" .. string.sub(chex, 1, 2)
-  local srcname = chex
-  if entry.source.incache == 0 then
-    local slash = H.lastindexof(url, "/")
-    srcdir = string.sub(url, 1, slash - 1)
-    srcname = string.sub(url, slash + 1)
-  end
-  local srcbundle = modpath .. ".Src@" .. modversion
-
-  -- tar flag from the recorded archive type (the cache filename has no extension)
-  local arch = entry.source.archive
-  if type(arch) ~= "string" then arch = "tgz" end
   local tarflag = ""
   if arch == "tgz" then tarflag = "z"
   elseif arch == "txz" then tarflag = "J"
@@ -788,7 +802,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   while entry.depends ~= nil and entry.depends[di] ~= nil do
     local dep = entry.depends[di]
     if H.PROVIDED[dep] == nil and seen[dep] == nil and byname[dep] ~= nil
-      and type(byname[dep].source) == "table" then
+      and (type(byname[dep].source) == "table" or byname[dep]["local"] == "t") then
       seen[dep] = 1; qt = qt + 1; queue[qt] = dep
     end
     di = di + 1
@@ -802,7 +816,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
       while de.depends[dj] ~= nil do
         local d2 = de.depends[dj]
         if H.PROVIDED[d2] == nil and seen[d2] == nil and byname[d2] ~= nil
-          and type(byname[d2].source) == "table" then
+          and (type(byname[d2].source) == "table" or byname[d2]["local"] == "t") then
           seen[d2] = 1; qt = qt + 1; queue[qt] = d2
         end
         dj = dj + 1
@@ -951,24 +965,31 @@ function rules.F_BuildLockedPackage(command, request, continue_)
     table.insert(envmods, "<PATH=$(--path=absnative get-object CommonsBase_GNU.Make@4.4.1 -s Release.execution_abi -d : -e 'bin/*')${/}bin")
   end
 
+  -- External packages get a synthesized .Src bundle carrying their source; a
+  -- local package uses the external MlFrontSrc bundle, so synthesizes none.
+  local src_bundles = {}
+  if not is_local then
+    src_bundles = {
+      {
+        id = srcbundle,
+        listing = { origins = { { name = "src", mirrors = { srcdir } } } },
+        assets = {
+          {
+            origin = "src",
+            path = srcname,
+            checksum = { sha256 = sha256 },
+            size = entry.source.size
+          }
+        }
+      }
+    }
+  end
+
   return {
     submit = {
       values = {
         schema_version = { major = 1, minor = 0 },
-        bundles = {
-          {
-            id = srcbundle,
-            listing = { origins = { { name = "src", mirrors = { srcdir } } } },
-            assets = {
-              {
-                origin = "src",
-                path = srcname,
-                checksum = { sha256 = sha256 },
-                size = entry.source.size
-              }
-            }
-          }
-        },
+        bundles = src_bundles,
         forms = {
           {
             id = request.submit.outputid,
