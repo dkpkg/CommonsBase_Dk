@@ -953,9 +953,15 @@ function rules.F_BuildLockedPackage(command, request, continue_)
     -- No explicit install field: the package relies on opam processing the
     -- <pkg>.install file its build generates. A dune package uses `dune install`;
     -- a non-dune one (topkg-based) is handled by the wrapper's @INSTALL@ step,
-    -- which copies the .install entries into ip/.
+    -- which copies the .install entries into ip/. The prefix is the absolute
+    -- @IP@ (rewritten by the wrapper): dune bakes the resolved prefix into the
+    -- emitted dune-package `sections` whatever form it is given (--relocatable
+    -- does not change that emission), so the wrapper normalizes it afterwards --
+    -- the producer rewrites the prefix to the fixed token @DK0_IP@ (keeping
+    -- install.zip independent of the build directory) and the consumer rewrites
+    -- the token in staged dune-packages to its own p/ prefix.
     if iabi[1] == nil and uses_dune == 1 then
-      iabi = { { "dune", "install", "--prefix", ip, pkg } }
+      iabi = { { "dune", "install", "--prefix", "@IP@", pkg } }
     elseif iabi[1] == nil then
       iabi = { { "@INSTALL@", pkg } }
     end
