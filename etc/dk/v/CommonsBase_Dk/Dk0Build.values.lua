@@ -641,6 +641,44 @@ function rules.F_BuildLockedPackage(command, request, continue_)
     local lockmodver = assert(request.user.lockmodver, "please provide `lockmodver=MODULE@VERSION`")
     local lockassetpath = assert(request.user.lockassetpath, "please provide `lockassetpath=PATH`")
     assert(request.user.pkg, "please provide `pkg=OPAM_PACKAGE_NAME`")
+    -- Declare each direct dependency's Pkg object as an input_object, so the
+    -- engine holds the true build DAG and can schedule independent packages
+    -- concurrently (the driver may then submit the per-package run-functions
+    -- unordered rather than in a forced sequential chain). The dependency Pkg
+    -- ids are siblings of this object, so share its `<...>.Pkg.` prefix; the
+    -- driver passes the direct dependency opam names via `deps[]=` because
+    -- declareoutput runs before the lock asset is fetched (in submit) and so
+    -- cannot read the depends graph itself. input_objects is a scheduling edge
+    -- only: the engine does not instantiate a producer from an object id, so the
+    -- driver must still run-function every package (each registers its own
+    -- return_objects). Absent `deps[]` (the shipped sequential driver), none are
+    -- declared and the build relies on sequential precommand ordering.
+    --
+    -- DORMANT until an engine change: the released dk0 resolves an edge eagerly
+    -- during declareoutput, but a rule producer registers its output object only
+    -- when its run-function is built, so an edge to an unbuilt sibling fails
+    -- ("could not declare input"). Passing `deps[]` therefore only works once the
+    -- split-declareoutput change (register outputs at instantiate, then two-pass
+    -- parallel precommand dispatch) lands; see rotary-phone/splitdeclareoutput.md.
+    -- The sequential driver never passes `deps[]`, so this path stays inert.
+    local input_objects = {}
+    local deps = request.user.deps
+    if deps ~= nil then
+      local at = H.lastindexof(modver, "@")
+      local modpath = string.sub(modver, 1, at - 1)
+      local version = string.sub(modver, at + 1)
+      local lastdot = H.lastindexof(modpath, ".")
+      local pkgprefix = string.sub(modpath, 1, lastdot)   -- "<...>.Pkg."
+      local di = 1
+      while deps[di] ~= nil do
+        table.insert(input_objects, {
+          id = pkgprefix .. H.modsegment(deps[di]) .. "@" .. version,
+          slots = H.SLOTS,
+          execution_slot = "Release.execution_abi"
+        })
+        di = di + 1
+      end
+    end
     return {
       declareoutput = {
         return_objects = {
@@ -650,7 +688,8 @@ function rules.F_BuildLockedPackage(command, request, continue_)
         },
         input_assets = {
           { id = lockmodver, path = lockassetpath }
-        }
+        },
+        input_objects = input_objects
       }
     }
   end
@@ -885,6 +924,9 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   fenv.bools["post"] = "false"
   fenv.bools["ocaml:native"] = "true"
   fenv.bools["ocaml:preinstalled"] = "false"
+  -- Lock-driven builds never install from an opam pin (every source comes from
+  -- the lock), so opam's per-package `pinned` variable is uniformly false.
+  fenv.bools["pinned"] = "false"
   fenv.strings["ocaml:version"] = "4.14.3"
   -- A dune package (its build field invokes dune) installs to a RELATIVE ip/
   -- prefix, which dune resolves from the source root and which keeps the output
@@ -911,6 +953,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   vars["lib"] = ip .. "/lib"
   vars["man"] = ip .. "/man"
   vars["dev"] = "false"
+  vars["pinned"] = "false"
   -- opam variables that appear in %{...}% interpolations (not just filters); the
   -- DkML compiler is native. Mirrors the fenv bools used by eval_filter.
   vars["ocaml:native"] = "true"
