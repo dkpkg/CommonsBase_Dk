@@ -704,18 +704,21 @@ function rules.F_BuildLockedPackage(command, request, continue_)
 
   -- A local package (MlFront_*/DkZero_*/UnifiedScript_*, marked "local":"t" with
   -- no source in the lock) has no per-package archive: it is built from the
-  -- shared MlFront source, provided by the CommonsBase_Dk.Dk0Build.MlFrontSrc
-  -- bundle. External packages carry their own source and get a synthesized .Src
-  -- bundle below. The vars default to the local case; the else branch fills in
-  -- the external source (opam cache or, for a custom fork, the direct URL).
+  -- shared MlFront source, staged (get-object) from the localized-source object
+  -- CommonsBase_Dk.Dk0.MlFrontSource (produced by F_LocalizeSource). External
+  -- packages carry their own source and get a synthesized .Src bundle below. The
+  -- vars default to the local case; the else branch fills in the external source
+  -- (opam cache or, for a custom fork, the direct URL). srcname/srcbundle are
+  -- unused for local (its source is an object fetched by get-object, not a bundle
+  -- asset); arch is zip because F_LocalizeSource emits output.zip.
   local is_local = (entry["local"] == "t")
   local url = ""
   local sha256 = ""
   local srcdir = ""
   local chex = "mlfrontsrc"
-  local srcname = "mlfront-2.4.2.tgz"
-  local srcbundle = "CommonsBase_Dk.Dk0Build.MlFrontSrc@" .. modversion
-  local arch = "tgz"
+  local srcname = ""
+  local srcbundle = ""
+  local arch = "zip"
   if not is_local then
     assert(entry.source ~= nil and type(entry.source) == "table" and entry.source.url,
       "package `" .. pkg .. "` has no source archive in the lock")
@@ -760,6 +763,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   elseif arch == "txz" then tarflag = "J"
   elseif arch == "tbz" then tarflag = "j"
   elseif arch == "tar" then tarflag = ""
+  elseif arch == "zip" then tarflag = ""   -- localized-source object (F_LocalizeSource)
   else assert(false, "unsupported archive type `" .. tostring(arch) .. "` for " .. pkg) end
 
   local toybox = "$(get-object CommonsBase_Std.Toybox@0.8.9 -s Release.execution_abi -m ./toybox -f toybox.exe -e '*')"
@@ -845,7 +849,23 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- extension so 7zz detects the format.
   local srcout = chex .. "." .. arch
   local srctar = chex .. ".tar"
-  local srcfetch = "$(get-asset " .. srcbundle .. " -p " .. srcname .. " -f " .. srcout .. ")"
+  -- A local package stages its source from the shared localized-source object
+  -- (get-object output.zip); an external one fetches its per-package archive
+  -- asset from the synthesized .Src bundle (get-asset).
+  local srcfetch
+  if is_local then
+    -- The localized-source object is a sibling of the Pkg namespace, not a child:
+    -- Pkg objects are <G>.Pkg.<name>@ver while the source is <G>.MlFrontSource@ver
+    -- (G = CommonsBase_Dk.Dk0). `parent` includes the trailing `Pkg.`; strip that
+    -- segment to reach the grandparent G.
+    local pkgseg = string.sub(modpath, 1, lastdot - 1)   -- "<G>.Pkg"
+    local gdot = H.lastindexof(pkgseg, ".")
+    local grandparent = string.sub(pkgseg, 1, gdot)      -- "<G>."
+    srcfetch = "$(get-object " .. grandparent .. "MlFrontSource@" .. modversion
+      .. " -s ${SLOTNAME.request} -m ./output.zip -f " .. srcout .. ")"
+  else
+    srcfetch = "$(get-asset " .. srcbundle .. " -p " .. srcname .. " -f " .. srcout .. ")"
+  end
   -- Exclude any examples/ directory: it is never compiled or installed, and
   -- some source tarballs ship symlinks there that 7zz refuses to extract (a
   -- "dangerous link path" that otherwise fails the whole extraction).
