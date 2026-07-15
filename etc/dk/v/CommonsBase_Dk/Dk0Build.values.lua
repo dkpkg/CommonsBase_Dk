@@ -968,6 +968,33 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   local ci3 = 1
   while closure[ci3] ~= nil do vars[closure[ci3] .. ":installed"] = "true"; ci3 = ci3 + 1 end
 
+  -- opam self-variables: %{_:VAR}% and %{<pkg>:VAR}% refer to THIS package. The
+  -- lib/doc/etc. dirs are the install prefix's conventional subdirectories under
+  -- the package name (the opam .install layout, e.g. cmdliner's Makefile does
+  -- LIBDIR=%{_:lib}% -> ip/lib/cmdliner). Global %{lib}% (prefix/lib) already
+  -- exists above; these are the package-scoped forms. Seed both the `_` alias
+  -- and the real package name. Array of pairs (not a keyed constructor) because
+  -- lua-ml is unreliable with computed keys.
+  local selfver = entry.version
+  if type(selfver) ~= "string" then selfver = modversion end
+  local selfkv = {
+    { "name", pkg }, { "version", selfver }, { "prefix", ip },
+    { "lib", ip .. "/lib/" .. pkg }, { "lib_root", ip .. "/lib" },
+    { "libexec", ip .. "/lib/" .. pkg }, { "libexec_root", ip .. "/lib" },
+    { "bin", ip .. "/bin" }, { "sbin", ip .. "/sbin" }, { "man", ip .. "/man" },
+    { "doc", ip .. "/doc/" .. pkg }, { "share", ip .. "/share/" .. pkg },
+    { "share_root", ip .. "/share" }, { "etc", ip .. "/etc/" .. pkg },
+    { "stublibs", ip .. "/lib/stublibs" }, { "toplevel", ip .. "/lib/toplevel" },
+    { "build", "." }, { "installed", "true" }, { "enable", "enable" },
+    { "pinned", "false" }
+  }
+  local si = 1
+  while selfkv[si] ~= nil do
+    vars["_:" .. selfkv[si][1]] = selfkv[si][2]
+    vars[pkg .. ":" .. selfkv[si][1]] = selfkv[si][2]
+    si = si + 1
+  end
+
   -- The build wrapper stages the dependency prefix p/ with an absolute OCAMLPATH
   -- (derived from $PWD at runtime) so dune finds the staged dependency libraries
   -- by findlib META discovery. It is fetched once and reused by every command.
