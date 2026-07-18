@@ -1,3 +1,17 @@
+# CommonsBase_Dk
+
+## workspace
+
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
+  'import'
+  'github-l2'
+  { {
+      'CommonsBase_Std', '2.6.20260715034712', {
+        'blake2b-256:ce17873f88018da536a8ba479b9f6a5c1de18f6395a158436bb50589972a6eb7',
+        'sha256:fd84db09d22aebea9e579a9e42c63986e26a1ad28e2890e874e2b6784777a5f8',
+        'sha1:6ccd7db2cb64841af17f9c47fce5e346e9e65c10'
+      } } }
+
 -- Bootstrap distribution entrypoint for CommonsBase_Dk.Dk0.DuneCache@2.4.2 and the
 -- Windows x86_64-only CommonsBase_Dk.Dk0@2.4.2 executable slice.
 --
