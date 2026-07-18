@@ -1,0 +1,11 @@
+# Distribution for CommonsBase_Dk (Windows x86_64)
+
+This is the only slot that currently emits the executable dk0.exe slice.
+
+## Dk0 Dune Cache
+
+  $ get-object CommonsBase_Dk.Dk0.DuneCache@2.4.2 -s Release.Windows_x86_64 -f ${RUNTIME}/Windows_x86_64-Dk0.DuneCache-2.4.2.zip
+
+## Dk0 executable
+
+  $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Windows_x86_64 -d ${RUNTIME}/Windows_x86_64-Dk0-2.4.2

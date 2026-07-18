@@ -1,0 +1,7 @@
+# Distribution for CommonsBase_Dk (Windows_arm64)
+
+The executable CommonsBase_Dk.Dk0@2.4.2 slice is still Windows x86_64 only.
+
+## Dk0 Dune Cache
+
+  $ get-object CommonsBase_Dk.Dk0.DuneCache@2.4.2 -s Release.Windows_arm64 -f ${RUNTIME}/Windows_arm64-Dk0.DuneCache-2.4.2.zip
