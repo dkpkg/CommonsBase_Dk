@@ -48,7 +48,15 @@ function rules.F_LocalizeSource(command, request)
           id = modver,
           slots = H.SLOTS,
           execution_slot = "Release.execution_abi"
-        },
+        }
+      }
+    }
+  end
+  if command == "declareinput" then
+    local rawmodver = assert(request.user.rawmodver, "please provide `rawmodver=MODULE@VERSION`")
+    local rawassetpath = assert(request.user.rawassetpath, "please provide `rawassetpath=PATH`")
+    return {
+      declareinput = {
         input_assets = {
           { id = rawmodver, path = rawassetpath }
         }
