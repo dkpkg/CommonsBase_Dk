@@ -1,5 +1,5 @@
 ## workspace
-  %% actual_version("2.4.2.273")
+  %% actual_version("2.4.2.279")
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml" }
   'import'
