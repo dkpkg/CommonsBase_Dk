@@ -5,3 +5,5 @@ The executable CommonsBase_Dk.Dk0@2.4.2 slice is still Windows x86_64 only.
 ## Dk0 Dune Cache
 
   $ get-object CommonsBase_Dk.Dk0.DuneCache@2.4.2 -s Release.Linux_x86_64 -f ${RUNTIME}/Linux_x86_64-Dk0.DuneCache-2.4.2.zip
+  \test(pass)
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "owyja27fraftawlzlhjsrtytek34pvfgwy4lht5oi4dhhx7naewia")\;
