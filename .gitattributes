@@ -10,3 +10,4 @@ dk0 text eol=lf
 *.u text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+assets/dk0/seq-META text eol=lf

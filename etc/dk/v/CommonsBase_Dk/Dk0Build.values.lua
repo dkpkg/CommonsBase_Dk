@@ -641,26 +641,29 @@ function rules.F_BuildLockedPackage(command, request, continue_)
     local lockmodver = assert(request.user.lockmodver, "please provide `lockmodver=MODULE@VERSION`")
     local lockassetpath = assert(request.user.lockassetpath, "please provide `lockassetpath=PATH`")
     assert(request.user.pkg, "please provide `pkg=OPAM_PACKAGE_NAME`")
-    -- Declare each direct dependency's Pkg object as an input_object, so the
+    return {
+      declareoutput = {
+        return_objects = {
+          id = modver,
+          slots = H.SLOTS,
+          execution_slot = "Release.execution_abi"
+        }
+      }
+    }
+  end
+  if command == "declareinput" then
+    local modver = assert(request.user.modver, "please provide `modver=MODULE@VERSION`")
+    local lockmodver = assert(request.user.lockmodver, "please provide `lockmodver=MODULE@VERSION`")
+    local lockassetpath = assert(request.user.lockassetpath, "please provide `lockassetpath=PATH`")
+    -- Declare each direct dependency's Pkg object as an input_object edge, so the
     -- engine holds the true build DAG and can schedule independent packages
-    -- concurrently (the driver may then submit the per-package run-functions
-    -- unordered rather than in a forced sequential chain). The dependency Pkg
-    -- ids are siblings of this object, so share its `<...>.Pkg.` prefix; the
-    -- driver passes the direct dependency opam names via `deps[]=` because
-    -- declareoutput runs before the lock asset is fetched (in submit) and so
-    -- cannot read the depends graph itself. input_objects is a scheduling edge
-    -- only: the engine does not instantiate a producer from an object id, so the
-    -- driver must still run-function every package (each registers its own
-    -- return_objects). Absent `deps[]` (the shipped sequential driver), none are
+    -- concurrently when the driver submits the per-package run-functions
+    -- unordered rather than in a forced sequential chain. The dependency Pkg ids
+    -- are siblings of this object, so share its `<...>.Pkg.` prefix; the driver
+    -- passes the direct dependency opam names via `deps[]=` because declareinput
+    -- runs before the lock asset is fetched (in submit) and so cannot read the
+    -- depends graph itself. Absent `deps[]` (the sequential driver) none are
     -- declared and the build relies on sequential precommand ordering.
-    --
-    -- DORMANT until an engine change: the released dk0 resolves an edge eagerly
-    -- during declareoutput, but a rule producer registers its output object only
-    -- when its run-function is built, so an edge to an unbuilt sibling fails
-    -- ("could not declare input"). Passing `deps[]` therefore only works once the
-    -- split-declareoutput change (register outputs at instantiate, then two-pass
-    -- parallel precommand dispatch) lands; see rotary-phone/splitdeclareoutput.md.
-    -- The sequential driver never passes `deps[]`, so this path stays inert.
     local input_objects = {}
     local deps = request.user.deps
     if deps ~= nil then
@@ -680,12 +683,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
       end
     end
     return {
-      declareoutput = {
-        return_objects = {
-          id = modver,
-          slots = H.SLOTS,
-          execution_slot = "Release.execution_abi"
-        },
+      declareinput = {
         input_assets = {
           { id = lockmodver, path = lockassetpath }
         },
@@ -818,7 +816,7 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- object to stage, so the rule places the stub directly into every prefix.
   table.insert(commands, {
     coreutils, "cp",
-    "$(get-asset CommonsBase_Dk.Dk0Build.SeqMeta@" .. modversion .. " -p seq-META -f seq-meta-src)",
+    "$(get-asset CommonsBase_Dk.Dk0Build.SeqMeta@" .. modversion .. " -p assets/dk0/seq-META -f seq-meta-src)",
     "p/lib/seq/META"
   })
 
@@ -998,7 +996,16 @@ function rules.F_BuildLockedPackage(command, request, continue_)
   -- The build wrapper stages the dependency prefix p/ with an absolute OCAMLPATH
   -- (derived from $PWD at runtime) so dune finds the staged dependency libraries
   -- by findlib META discovery. It is fetched once and reused by every command.
-  local wrapperfetch = "$(get-asset CommonsBase_Dk.Dk0Build.Wrapper@" .. modversion .. " -p wrapper.sh -f build-wrapper.sh)"
+  --
+  -- topfind dependency (cross-package invariant, no per-package handling): topkg
+  -- packages whose pkg.ml starts with `#use "topfind"` (uucp/fmt/logs/ptime/uuidm,
+  -- ...) rely on ocamlfind's opam install staging src/findlib/topfind into
+  -- %{lib}%/findlib (see the lock's ocamlfind install), which lands at
+  -- p/lib/findlib/topfind once staged; the wrapper then exports
+  -- OCAML_TOPLEVEL_PATH=p/lib/findlib. This works for ANY such package because it
+  -- always depends on ocamlfind (topfind IS findlib), so ocamlfind is in its p/
+  -- closure -- nothing package-specific is required here.
+  local wrapperfetch = "$(get-asset CommonsBase_Dk.Dk0Build.Wrapper@" .. modversion .. " -p assets/dk0/wrapper.sh -f build-wrapper.sh)"
   -- The Windows POSIX shell is MSYS2's dash (its runtime translates the unix-form
   -- PATH into Windows form for the native dune.exe/cl.exe children, and provides
   -- cygpath). MSYS2 ships only the Windows_x86_64 tree; a Windows_x86 host runs

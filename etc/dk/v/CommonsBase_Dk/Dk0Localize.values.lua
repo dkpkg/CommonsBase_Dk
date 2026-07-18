@@ -74,7 +74,7 @@ function rules.F_LocalizeSource(command, request)
   -- shell operators). The wrapper puts /usr/bin on PATH (for awk/sed on every
   -- platform; MSYS2 maps it to the dash tree on Windows) and runs the source's
   -- own ci/localize-pristine.sh from mlfront-2.4.2/.
-  local localizefetch = "$(get-asset CommonsBase_Dk.Dk0Localize.Wrapper@2.4.2 -p localize.sh -f localize.sh)"
+  local localizefetch = "$(get-asset CommonsBase_Dk.Dk0Localize.Wrapper@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
 
   local commands = {}
   -- Decompress the .tgz to a .tar in the build root (7zz names it mlfront-raw.tar
