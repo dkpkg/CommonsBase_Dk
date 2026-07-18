@@ -1,11 +1,130 @@
 # CommonsBase_Dk
 
 ## workspace
+  %% actual_version("2.4.2.279")
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
   'import'
   'github-l2'
   { {
+      'CommonsBase_Std', '2.6.20260718183402', {
+        'blake2b-256:60c91372f21bdbf00183ba42e6bcda872f1d90e1902bbd5c491accd8072211d1',
+        'sha256:5a08bb995c7f602ff14683c6811d35864712ef9887890f4baf2b302b132d808f',
+        'sha1:ce1cd56f0ad82062c54183da6a615f0cddb60f42'
+      } } }
+
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
+  'import'
+  'github-l2'
+  { {
+      'CommonsBase_Build', '0.1.20260715044440', {
+        'blake2b-256:3b03ba3bb4cee4d5be5349835c906a32709d4361b9dfe5b246a612bef9dabc5b',
+        'sha256:48c298abbd37f7da611688af34031161cf3f3f98f4052e482a3942c087f8aa16',
+        'sha1:576fdddc29639d4ca23b1f82d428aee403530a9c'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260715034712', {
+        'blake2b-256:ce17873f88018da536a8ba479b9f6a5c1de18f6395a158436bb50589972a6eb7',
+        'sha256:fd84db09d22aebea9e579a9e42c63986e26a1ad28e2890e874e2b6784777a5f8',
+        'sha1:6ccd7db2cb64841af17f9c47fce5e346e9e65c10'
+      } } }
+
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
+
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml" }
+  'import'
+  'github-l2'
+  { {
+      'CommonsBase_GNU', '0.1.20260715081409', {
+        'blake2b-256:83982ef982de3afcd487b0038f11bde64a18fcf353dc748775c0a2aca5875324',
+        'sha256:cd4943b5ec4cdb21441483002343d847776ca32787f68f045a8a3b68e3ac3053',
+        'sha1:72353ba3f7569c0e35704ee29abe20d0a0f8a21c'
+      } },
+    {
+      'CommonsBase_Build', '0.1.20260707131124', {
+        'blake2b-256:ee5519a121205f83ca067aa6e6098c82118bd37238e1bb54c840edb3c1a10304',
+        'sha256:84c901c73178a0c784c7d893bf4e6895fbe09ffe86b8436557530cc4ba0000aa',
+        'sha1:85848478330e6c8ecf377f3dc2af449311ce3518'
+      } },
+    {
+      'CommonsBase_Build', '0.1.20260715044440', {
+        'blake2b-256:3b03ba3bb4cee4d5be5349835c906a32709d4361b9dfe5b246a612bef9dabc5b',
+        'sha256:48c298abbd37f7da611688af34031161cf3f3f98f4052e482a3942c087f8aa16',
+        'sha1:576fdddc29639d4ca23b1f82d428aee403530a9c'
+      } },
+    {
+      'CommonsBase_FileMagic', '0.1.20260711004745', {
+        'blake2b-256:43c9d8f64f623f65e1d0236edaa1af4f0ddb4075c03c617e38a190e7b7aebd9a',
+        'sha256:e19c85c8a15903631b8b0808f703780657523fc9b801d9389ef69f149d78ff84',
+        'sha1:973c3449761d4c7b1e3e2dd04a6284a73631ac95'
+      } },
+    {
+      'CommonsBase_FileMagic', '0.1.20260715080743', {
+        'blake2b-256:69a304448adec6251b00c1fe4c0a6216f7e5810aeb9a69b6dada33b5125e0e5a',
+        'sha256:b1fe7b18ee50a99cbf6ec5d2c791225c322888bd4f2b48de9cb101eba9e7746d',
+        'sha1:c3dc402d758230e271c8af94ee762ef376238283'
+      } },
+    {
+      'CommonsBase_GNU', '0.1.20260711131127', {
+        'blake2b-256:61f30d245b1d38b2ed80dcf93b12fbee5aeef39dc8b3c4f2dde67e5ca900c74e',
+        'sha256:0666222941f713f0c2035024ddf653369473be02a6713ba1dd56155077fa9d63',
+        'sha1:9c556e96bd6533eca61ab6753ca7a5a673f601a2'
+      } },
+    {
+      'CommonsBase_LLVM', '0.1.20260706064049', {
+        'blake2b-256:96b2b482db4652a60893713c652b3bb5be89a143f5e3e7ca6178c99071e0cb11',
+        'sha256:8f32bfb59d849ce62898f23e712c58538c294c37d4cd3cf501f2f66b5cbf5820',
+        'sha1:a59ef674dab40f1c6cc2d2110464784320ab19bd'
+      } },
+    {
+      'CommonsBase_LLVM', '0.1.20260715044440', {
+        'blake2b-256:5e748f7f1beb707bf019c8ba741f62a527cdbd4941dfad79c619fe30b65dd258',
+        'sha256:89072616d92b4563617bb2228ef8353e788286f8794f251261801f3ab177c114',
+        'sha1:e8b1d8e157cb6007df9237a3f365582c74b8753f'
+      } },
+    {
+      'CommonsBase_Remote', '0.1.20260711003204', {
+        'blake2b-256:0d28e832c2b4f9b4cf51f01efda13a4db6edb78c15bbf96dbe151d1de14fd94c',
+        'sha256:726c83e218ef22204dc7c1a8633539c650911a9d34b3113955061899e78a37d2',
+        'sha1:95ec85359195709ef23964952af21a1e66fc8f0e'
+      } },
+    {
+      'CommonsBase_Remote', '0.1.20260711004226', {
+        'blake2b-256:fefb1339cc0c17f9af74c447f19e919d62bf488e3e0f8249945e8a991418f4a6',
+        'sha256:64096f4246e3a0fd9b628d7e7f15bdc214cdbcb6e4ee4dc1db21cdc6be241255',
+        'sha1:9c2138db329d45714e2ef43ff5e0274b6fa9a5b0'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260705051043', {
+        'blake2b-256:156d1836ac816b113880ce282f686b35d9c75e3cb4d69523313f85983ba12d4a',
+        'sha256:105ff8e83d42da3aaa79f37540303f3b3db4cd237cecfd80739387c28c866564',
+        'sha1:f3e1dac5323d0dca4f7df6c77564051a99cd6dac'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260705103327', {
+        'blake2b-256:ef622d15f7fc08b9b30beb5fb767790c213f6e7d08aa266f17b6bae4b7a3f7c0',
+        'sha256:13cba7aa2844019b1acff5ee2ac929fb3cb9193fbfd684412ccc4563424a6d8c',
+        'sha1:44a9a04a3339a99b3c326907d69a689aa103f135'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260706021729', {
+        'blake2b-256:9d442eb18b3cce1667fbe8c3585825aafb3384aa6df825740cb6d30df41fde59',
+        'sha256:b8c8a247672604c9487de530cda33ac4e13bf586b6ec1cc47c4562fe879a4897',
+        'sha1:daa9de5e3ed097e8259f973455a722056d84cba6'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260707120738', {
+        'blake2b-256:fbf6d2ea9bb17069c9f7cd463ee027c291f6fb6692821286501d1523db0febe2',
+        'sha256:d312d776756f822769de278bbf8ccbb167ea2d84d7b1dbf61b47f3c4cdf86a71',
+        'sha1:bfbb3d5be41f7a88023a4367dc84b1ce5dcad14e'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260708055043', {
+        'blake2b-256:41961cab7bdb7b6c703c091ad9ccb75bf48819c1a8ab7aaf9ce5d947072a586b',
+        'sha256:686d8f60f50d6debb12c2faa46f33ae7438be0b30787a01d88de52bebc832f78',
+        'sha1:94296e5e1ad55f335a222fcd27aea40d96355322'
+      } },
+    {
       'CommonsBase_Std', '2.6.20260715034712', {
         'blake2b-256:ce17873f88018da536a8ba479b9f6a5c1de18f6395a158436bb50589972a6eb7',
         'sha256:fd84db09d22aebea9e579a9e42c63986e26a1ad28e2890e874e2b6784777a5f8',
@@ -18,3 +137,10 @@
 -- The current concrete slice repackages the latest MlFront release tarball
 -- into a reusable source/cache artifact, while the executable package emits
 -- only the supported Windows x86_64 dk0.exe payload.
+
+### CommonsBase_Dk.Apparatus@1.0.0
+
+  % unified.asset { name="Dk0BuildWin", file="assets/dk0/dk0-build-win.bat" }
+  'asset'
+  '780'
+  'sha256:dfc038be9e38fdc212e933d5f478bdf4110f197637d15d6b3a3660c904e30928'
