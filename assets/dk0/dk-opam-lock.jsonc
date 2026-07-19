@@ -1,0 +1,2352 @@
+{
+  "packages": {
+    "dune.3.19.1": {
+      "depends": [
+        "ocaml",
+        "menhir",
+        "base-threads",
+        "ocamlfind",
+        "ppxlib",
+        "ppx_inline_test",
+        "csexp",
+        "base-unix",
+        "spawn"
+      ],
+      "version": "3.19.1",
+      "install": null,
+      "build": "[\"ocaml\" \"boot/bootstrap.ml\" \"-j\" jobs]\r\n[\r\n  \"./_boot/dune.exe\"\r\n  \"build\"\r\n  \"dune.install\"\r\n  \"--release\"\r\n  \"--profile\"\r\n  \"dune-bootstrap\"\r\n  \"-j\"\r\n  jobs\r\n]",
+      "source": {
+        "url": "https://github.com/ocaml/dune/releases/download/3.19.1/dune-3.19.1.tbz",
+        "size": 2311564,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=a10386f980cda9417d1465466bed50dd2aef9c93b9d06a0f7feeedb0a1541158",
+          "sha512=d1622939713133a1f28617229896298d6ef194c48a47d011e4b752490fc83893cc920a8395d7ac60bc384a6c9b233ebf0665f38f74f2774a983e9d3b241a7746"
+        ]
+      },
+      "name": "dune",
+      "depends_raw": "\"ocaml\" {>= \"4.08\"}\r\n\"base-unix\"\r\n\"base-threads\"\r\n\"lwt\" {with-dev-setup & os != \"win32\"}\r\n\"cinaps\" {with-dev-setup}\r\n\"csexp\" {with-dev-setup & >= \"1.3.0\"}\r\n\"js_of_ocaml\" {with-dev-setup & >= \"6.0.1\" & os != \"win32\"}\r\n\"js_of_ocaml-compiler\" {with-dev-setup & >= \"6.0.1\" & os != \"win32\"}\r\n\"mdx\" {with-dev-setup & >= \"2.3.0\" & os != \"win32\"}\r\n\"menhir\" {with-dev-setup & os != \"win32\"}\r\n\"ocamlfind\" {with-dev-setup & os != \"win32\"}\r\n\"odoc\" {with-dev-setup & >= \"2.4.0\" & os != \"win32\"}\r\n\"ppx_expect\" {with-dev-setup & >= \"v0.17\" & os != \"win32\"}\r\n\"spawn\" {with-dev-setup}\r\n\"ppx_inline_test\" {with-dev-setup & os != \"win32\"}\r\n\"ppxlib\" {with-dev-setup & >= \"0.35.0\" & os != \"win32\"}\r\n\"ctypes\" {with-dev-setup & os != \"win32\"}\r\n\"utop\" {with-dev-setup & >= \"2.6.0\" & os != \"win32\"}\r\n\"melange\" {with-dev-setup & >= \"5.1.0-51\" & os != \"win32\"}"
+    },
+    "ppx_inline_test.v0.16.1": {
+      "depends": [
+        "base",
+        "time_now",
+        "dune",
+        "ppxlib",
+        "ocaml"
+      ],
+      "version": "v0.16.1",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://github.com/janestreet/ppx_inline_test/archive/refs/tags/v0.16.1.tar.gz",
+        "size": 21965,
+        "archive": "tgz",
+        "checksums": [
+          "md5=470acc022eb7015862307dad8fe9bcba",
+          "sha512=f82d6d9fe6d84b837d69eb35cc92e2a0b6d0802079437e291aa350b89af1df54a996d6c7843019d488a3afe1e635da070f7ca80595dfdfd8257b2d0722725bf9",
+          "sha256=ea4e61e50529d76774904752f642e18eaf21dfe11844a084b133ccbc41e4295d"
+        ]
+      },
+      "name": "ppx_inline_test",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"time_now\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"3.11.1\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}"
+    },
+    "base.v0.16.4": {
+      "depends": [
+        "dune",
+        "dune-configurator",
+        "ocaml",
+        "sexplib0"
+      ],
+      "version": "v0.16.4",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://github.com/janestreet/base/archive/refs/tags/v0.16.4.tar.gz",
+        "size": 442762,
+        "archive": "tgz",
+        "checksums": [
+          "md5=1716b735b93c9d068dd9790bb40d6562",
+          "sha512=ab1bf389889dda97235a76782858521256ab65290831c1234781bc4b3ec8186680616f64b922b0c9dfd11b2ed46e0be9e9b8778904a97ef5f849132b925fd210",
+          "sha256=200c053b69c04dd5cdc5bcb3ae27d098a88a311fb48c28d6382abe76e2a588f5"
+        ]
+      },
+      "name": "base",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"sexplib0\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"dune-configurator\""
+    },
+    "fmlib_pretty.0.6.2": {
+      "depends": [
+        "dune",
+        "ppx_inline_test",
+        "fmlib_std",
+        "ocaml"
+      ],
+      "version": "0.6.2",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "source": {
+        "url": "https://github.com/hbr/fmlib/archive/0.6.2.tar.gz",
+        "size": 269396,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=8b7b1245e7c9b57174aba854e2c44ea22403c12955a0ae01a437604763f350f3"
+        ]
+      },
+      "name": "fmlib_pretty",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0.0\"}\r\n\"odoc\" {with-doc}\r\n\"ppx_inline_test\" {>= \"v0.13.0\"}\r\n\"fmlib_std\" {= version}"
+    },
+    "MlFront_Logs.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Console\" {= version}\r\n\"cmdliner\" {>= \"1.2.0\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"logs\" {>= \"0.7.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "MlFront_Console",
+        "dune",
+        "ocaml",
+        "logs",
+        "cmdliner",
+        "fmt"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Logs"
+    },
+    "ppx_cold.v0.16.0": {
+      "depends": [
+        "dune",
+        "ppxlib",
+        "ocaml",
+        "base"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_cold-v0.16.0.tar.gz",
+        "size": 3749,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=803bdb583b501aa246d8ae34be0c16b892d8ae96852bb593f3e355232e6aa4da"
+        ]
+      },
+      "name": "ppx_cold",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "ocaml-env-mingw64.1": {
+      "depends": [
+        "host-system-mingw",
+        "host-arch-x86_64",
+        "conf-mingw-w64-gcc-x86_64"
+      ],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "ocaml-env-mingw64",
+      "depends_raw": "\"host-system-mingw\" {post}\r\n\"host-arch-x86_64\" {post}\r\n\"conf-mingw-w64-gcc-x86_64\""
+    },
+    "cstruct.6.2.0": {
+      "depends": [
+        "fmt",
+        "ocaml",
+        "dune"
+      ],
+      "version": "6.2.0",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/mirage/ocaml-cstruct/releases/download/v6.2.0/cstruct-6.2.0.tbz",
+        "size": 241841,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=9a78073392580e8349148fa3ab4b1b2e989dc9d30d07401b04c96b7c60f03e62",
+          "sha512=8d33fe6b3707a3994d0225cd33cadde0bb2ca834ef01096e3df33a08e4a8c6d02ebccddf558a73988b8a5595b65fdc10de61efbf872c6c9e55c719c7e19c463d"
+        ]
+      },
+      "name": "cstruct",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"alcotest\" {with-test}\r\n\"fmt\" {>= \"0.8.9\"}\r\n\"crowbar\" {with-test}"
+    },
+    "ppx_deriving.6.0.3": {
+      "depends": [
+        "cppo",
+        "ocaml",
+        "dune",
+        "ppxlib",
+        "ocamlfind",
+        "ppx_derivers"
+      ],
+      "version": "6.0.3",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\r\n[\"dune\" \"build\" \"@doc\" \"-p\" name \"-j\" jobs] {with-doc}",
+      "source": {
+        "url": "https://github.com/ocaml-ppx/ppx_deriving/releases/download/v6.0.3/ppx_deriving-6.0.3.tbz",
+        "size": 42216,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=374aa97b32c5e01c09a97810a48bfa218c213b5b649e4452101455ac19c94a6d",
+          "sha512=971443a5df0acbdad577360deed8c9af137695bec6d826ef517a382941371f3546aef53456dda7c89d0ed30fefadf45d5dae2a8b1940a75aee7f7382c68cedb0"
+        ]
+      },
+      "name": "ppx_deriving",
+      "depends_raw": "\"ocaml\" {>= \"4.05.0\" & < \"5.4\"}\r\n\"dune\" {>= \"1.6.3\"}\r\n\"cppo\" {>= \"1.1.0\" & build}\r\n\"ocamlfind\"\r\n\"ppx_derivers\"\r\n\"ppxlib\" {>= \"0.32.0\" & < \"0.36.0\"}\r\n\"ounit2\" {with-test}"
+    },
+    "ppx_assert.v0.16.0": {
+      "depends": [
+        "base",
+        "dune",
+        "ocaml",
+        "ppxlib",
+        "ppx_sexp_conv",
+        "ppx_compare",
+        "ppx_cold",
+        "ppx_here"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_assert-v0.16.0.tar.gz",
+        "size": 7342,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=57dc6e241827eb1d5112c958f2f682ddd0addf5a8e9d589f5361ec2669883fd5"
+        ]
+      },
+      "name": "ppx_assert",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_cold\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_here\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "fmlib_parse.0.6.2": {
+      "depends": [
+        "ocaml",
+        "dune",
+        "fmlib_pretty",
+        "ppx_inline_test",
+        "fmlib_std"
+      ],
+      "version": "0.6.2",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "source": {
+        "url": "https://github.com/hbr/fmlib/archive/0.6.2.tar.gz",
+        "size": 269396,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=8b7b1245e7c9b57174aba854e2c44ea22403c12955a0ae01a437604763f350f3"
+        ]
+      },
+      "name": "fmlib_parse",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0.0\"}\r\n\"odoc\" {with-doc}\r\n\"ppx_inline_test\" {>= \"v0.13.0\"}\r\n\"fmlib_std\" {= version}\r\n\"fmlib_pretty\" {= version}"
+    },
+    "MlFront_Core.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"stringext\" {>= \"1.6.0\"}\r\n\"crowbar\" {with-test & >= \"0.2.1\"}\r\n\"re\" {with-test & >= \"1.11.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "ocaml",
+        "digestif",
+        "re",
+        "stringext",
+        "dune"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Core"
+    },
+    "mingw-w64-shims.0.2.0": {
+      "depends": [
+        "conf-mingw-w64-gcc-x86_64",
+        "conf-mingw-w64-gcc-i686"
+      ],
+      "version": "0.2.0",
+      "install": null,
+      "build": "\"sh\"\r\n\"./gen_config.sh\"\r\nname\r\n\"i686-binutils\" {conf-mingw-w64-gcc-i686:installed}\r\n\"i686-gcc-core\" {conf-mingw-w64-gcc-i686:installed}\r\n\"i686-gcc-g++-%{?conf-mingw-w64-g++-i686:installed:}%\"\r\n\"x86_64-binutils\" {conf-mingw-w64-gcc-x86_64:installed}\r\n\"x86_64-gcc-core\" {conf-mingw-w64-gcc-x86_64:installed}\r\n\"x86_64-gcc-g++-%{?conf-mingw-w64-g++-x86_64:installed:}%\"\r\n\"pkgconf\" {conf-pkg-config:installed}",
+      "source": {
+        "url": "https://github.com/dra27/mingw-w64-shims/archive/refs/tags/0.2.0.tar.gz",
+        "size": 5992,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=c152e3fcc7f22d61880a2f7f044027e6707ad7c22e5a75651e99925cc09ad5b8",
+          "sha512=8390a07266755f284c8cb8c57e821ec19b2abf3a0d278c48799b4c038585a5607f98cc3ea57fa06323d176a86013fd1fd05321daab6e539d914c0477befa2f20"
+        ]
+      },
+      "name": "mingw-w64-shims",
+      "depends_raw": "(\"conf-mingw-w64-gcc-x86_64\" | \"conf-mingw-w64-gcc-i686\")"
+    },
+    "csexp.1.5.2": {
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "version": "1.5.2",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "source": {
+        "url": "https://github.com/ocaml-dune/csexp/releases/download/1.5.2/csexp-1.5.2.tbz",
+        "size": 11447,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=1a14dd04bb4379a41990248550628c77913a9c07f3c35c1370b6960e697787ff",
+          "sha512=be281018bcfc20d4db14894ef51c4b836d6338d2fdfe22e63d46f405f8dea7349e16f1c0ecd65f73d4c85a2a80e618cdbb8c9dafcbb9f229f04f1adca5b1973c"
+        ]
+      },
+      "name": "csexp",
+      "depends_raw": "\"dune\" {>= \"3.4\"} \"ocaml\" {>= \"4.03.0\"} \"odoc\" {with-doc}"
+    },
+    "MlFront_Console.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"} \"ocaml\" {>= \"4.14\"} \"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Console"
+    },
+    "MlFront_ZipFile.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"re\" {>= \"1.11.0\"}\r\n\"digestif\" {with-test & >= \"1.1.4\"}\r\n\"stringext\" {with-test & >= \"1.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "ocaml",
+        "re",
+        "digestif",
+        "stringext",
+        "dune"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_ZipFile"
+    },
+    "ppx_globalize.v0.16.0": {
+      "depends": [
+        "dune",
+        "ppxlib",
+        "ocaml",
+        "base"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_globalize-v0.16.0.tar.gz",
+        "size": 8266,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=9068d7b4b765112974b17dd354cadf007f044afb11d2f99cd45b2e3b99ab491b"
+        ]
+      },
+      "name": "ppx_globalize",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}"
+    },
+    "menhirLib.20231231": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "20231231",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://gitlab.inria.fr/fpottier/menhir/-/archive/20231231/archive.tar.gz",
+        "size": 1393576,
+        "archive": "tgz",
+        "checksums": [
+          "md5=799748bc3b7a542798a85956c7863865",
+          "sha512=620ff3443143535e03ac98c5e8ee2ddf9ba48f8cfe441302118def1da3e03ffac7f48d4d4cb129766b625ecad0fb341da1baa0169dee8b6d07a5b0bbb735cf2f",
+          "sha256=df39956b3c07323e8edc447e773a386c1dc9036c27951e8517c231a88039c7f6"
+        ]
+      },
+      "name": "menhirLib",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"} \"dune\" {>= \"2.8.0\"}"
+    },
+    "host-arch-x86_64.1": {
+      "depends": [],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "host-arch-x86_64",
+      "depends_raw": null
+    },
+    "ppx_inline_test.v0.16.0": {
+      "depends": [
+        "base",
+        "time_now",
+        "dune",
+        "ppxlib",
+        "ocaml"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_inline_test-v0.16.0.tar.gz",
+        "size": 21826,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=216462f8fe988587d1e90f4a10aeb38664facb6eaeb3df60a32e9fb1a6bfbc67"
+        ]
+      },
+      "name": "ppx_inline_test",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"time_now\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}"
+    },
+    "ppx_hash.v0.16.0": {
+      "depends": [
+        "ppx_compare",
+        "ocaml",
+        "base",
+        "ppxlib",
+        "ppx_sexp_conv",
+        "dune"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_hash-v0.16.0.tar.gz",
+        "size": 28570,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=9b012546b7b9278bfd536f802fb6da88a11ebb5340d8aa47e9bf49acbf13b6e5"
+        ]
+      },
+      "name": "ppx_hash",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "xdg.3.19.1": {
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "version": "3.19.1",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"rm\" \"-rf\" \"vendor/csexp\"]\r\n[\"rm\" \"-rf\" \"vendor/pp\"]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "source": {
+        "url": "https://github.com/ocaml/dune/releases/download/3.19.1/dune-3.19.1.tbz",
+        "size": 2311564,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=a10386f980cda9417d1465466bed50dd2aef9c93b9d06a0f7feeedb0a1541158",
+          "sha512=d1622939713133a1f28617229896298d6ef194c48a47d011e4b752490fc83893cc920a8395d7ac60bc384a6c9b233ebf0665f38f74f2774a983e9d3b241a7746"
+        ]
+      },
+      "name": "xdg",
+      "depends_raw": "\"dune\" {>= \"3.18\"} \"ocaml\" {>= \"4.08\"} \"odoc\" {with-doc}"
+    },
+    "stringext.1.6.0": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "1.6.0",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/rgrinberg/stringext/releases/download/1.6.0/stringext-1.6.0.tbz",
+        "size": 7445,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=db41f5d52e9eab17615f110b899dfeb27dd7e7f89cd35ae43827c5119db206ea",
+          "sha512=d8ebe40f42b598a9bd99f1ef4b00ba93458385a4accd121af66a0bf3b3f8d7135f576740adf1a43081dd409977c2219fd4bdbb5b3d1308890d301d553ed49900"
+        ]
+      },
+      "name": "stringext",
+      "depends_raw": "\"ocaml\" {>= \"4.02.3\"}\r\n\"dune\" {>= \"1.0\"}\r\n\"ounit\" {with-test}\r\n\"qtest\" {with-test & >= \"2.2\"}"
+    },
+    "dune-configurator.3.19.1": {
+      "depends": [
+        "base-unix",
+        "csexp",
+        "dune",
+        "ocaml"
+      ],
+      "version": "3.19.1",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"rm\" \"-rf\" \"vendor/csexp\"]\r\n[\"rm\" \"-rf\" \"vendor/pp\"]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "source": {
+        "url": "https://github.com/ocaml/dune/releases/download/3.19.1/dune-3.19.1.tbz",
+        "size": 2311564,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=a10386f980cda9417d1465466bed50dd2aef9c93b9d06a0f7feeedb0a1541158",
+          "sha512=d1622939713133a1f28617229896298d6ef194c48a47d011e4b752490fc83893cc920a8395d7ac60bc384a6c9b233ebf0665f38f74f2774a983e9d3b241a7746"
+        ]
+      },
+      "name": "dune-configurator",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.08.0\"}\r\n\"base-unix\"\r\n\"csexp\" {>= \"1.5.0\"}\r\n\"odoc\" {with-doc}"
+    },
+    "uucp.15.0.0": {
+      "depends": [
+        "ocamlbuild",
+        "cmdliner",
+        "topkg",
+        "ocaml",
+        "ocamlfind"
+      ],
+      "version": "15.0.0",
+      "install": null,
+      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-uutf\"\r\n\"%{uutf:installed}%\"\r\n\"--with-uunf\"\r\n\"%{uunf:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/uucp/releases/uucp-15.0.0.tbz",
+        "size": 481932,
+        "archive": "tbz",
+        "checksums": [
+          "sha512=ee4acff5666961766321e85e287fb9d5b8d50533319f22bf6f4eceb943242df2d0e0f4e775c4a140f68ca142837938eaa5926e22362215a3365ffe7f8768923b",
+          "sha256=ac4794f405a90b3b80b4039eee12470662633fdec166c42c3c5410f2e64b5330"
+        ]
+      },
+      "name": "uucp",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}\r\n\"uucd\" {with-test}\r\n\"uunf\" {with-test}\r\n\"uutf\" {with-test}"
+    },
+    "cppo.1.6.9": {
+      "depends": [
+        "ocaml",
+        "dune",
+        "base-unix"
+      ],
+      "version": "1.6.9",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\r\n[\"dune\" \"build\" \"-p\" name \"@doc\"] {with-doc}",
+      "source": {
+        "url": "https://github.com/ocaml-community/cppo/archive/v1.6.9.tar.gz",
+        "size": 31210,
+        "archive": "tgz",
+        "checksums": [
+          "md5=d23ffe85ac7dc8f0afd1ddf622770d09",
+          "sha512=26ff5a7b7f38c460661974b23ca190f0feae3a99f1974e0fd12ccf08745bd7d91b7bc168c70a5385b837bfff9530e0e4e41cf269f23dd8cf16ca658008244b44",
+          "sha256=16036d85c11d330a7c8b56f4e071d6bbe86d8937c89d3d79f6eef0e38bdda26a"
+        ]
+      },
+      "name": "cppo",
+      "depends_raw": "\"ocaml\" {>= \"4.02.3\"} \"dune\" {>= \"1.10\"} \"base-unix\""
+    },
+    "duration.0.2.1": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "0.2.1",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/hannesm/duration/releases/download/v0.2.1/duration-0.2.1.tbz",
+        "size": 4699,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=c738c1f38cfb99820c121cd3ddf819de4b2228f0d50eacbd1cc3ce99e7c71e2b",
+          "sha512=0de9e15c7d6188872ddd9994f08616c4a1822e4ac92724efa2c312fbb2fc44cd7cbe4b36bcf66a8451d510c1fc95de481760afbcacb8f83e183262595dcf5f0c"
+        ]
+      },
+      "name": "duration",
+      "depends_raw": "\"ocaml\" {>= \"4.04.2\"} \"dune\" {>= \"1.0\"} \"alcotest\" {with-test & >= \"0.8.1\"}"
+    },
+    "logs.0.7.0": {
+      "depends": [
+        "fmt",
+        "ocamlbuild",
+        "base-threads",
+        "cmdliner",
+        "topkg",
+        "ocaml",
+        "ocamlfind"
+      ],
+      "version": "0.7.0",
+      "install": null,
+      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--pinned\"\r\n\"%{pinned}%\"\r\n\"--with-js_of_ocaml\"\r\n\"%{js_of_ocaml:installed}%\"\r\n\"--with-fmt\"\r\n\"%{fmt:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"\r\n\"--with-lwt\"\r\n\"%{lwt:installed}%\"\r\n\"--with-base-threads\"\r\n\"%{base-threads:installed}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/logs/releases/logs-0.7.0.tbz",
+        "size": 18458,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=86f4a02807eb1a297aae44977d9f61e419c31458a5d7b23c6f55575e8e69d5ca",
+          "md5=2bf021ca13331775e33cf34ab60246f7"
+        ]
+      },
+      "name": "logs",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build}\r\n\"mtime\" {with-test}"
+    },
+    "jane-street-headers.v0.16.0": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/jane-street-headers-v0.16.0.tar.gz",
+        "size": 4844,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=876d409feeb495487b10010fb601c64829d2aa15f1b156b704ec141337d360ea"
+        ]
+      },
+      "name": "jane-street-headers",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"} \"dune\" {>= \"2.0.0\"}"
+    },
+    "MlFront_Thunk.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Core\" {= version}\r\n\"MlFront_Lua\" {= version}\r\n\"MlFront_Progress\" {= version}\r\n\"MlFront_ZipFile\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"fmlib_parse\" {>= \"0.6.2\"}\r\n\"fmlib_pretty\" {>= \"0.6.2\"}\r\n\"fmlib_std\" {>= \"0.6.2\"}\r\n\"ppx_deriving\" {>= \"6.0.2\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "fmlib_std",
+        "MlFront_Progress",
+        "ppx_deriving",
+        "fmlib_pretty",
+        "ocaml",
+        "digestif",
+        "UnifiedScript_Std",
+        "MlFront_ZipFile",
+        "MlFront_Core",
+        "MlFront_Lua",
+        "dune",
+        "fmlib_parse"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Thunk"
+    },
+    "ocaml-compiler-libs.v0.12.4": {
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "version": "v0.12.4",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "source": {
+        "url": "https://github.com/janestreet/ocaml-compiler-libs/releases/download/v0.12.4/ocaml-compiler-libs-v0.12.4.tbz",
+        "size": 5160,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=4ec9c9ec35cc45c18c7a143761154ef1d7663036a29297f80381f47981a07760",
+          "sha512=978dba8dfa61f98fa24fda7a9c26c2e837081f37d1685fe636dc19cfc3278a940cf01a10293504b185c406706bc1008bc54313d50f023bcdea6d5ac6c0788b35"
+        ]
+      },
+      "name": "ocaml-compiler-libs",
+      "depends_raw": "\"dune\" {>= \"2.8\"} \"ocaml\" {>= \"4.04.1\" & < \"5.2.0\"} \"odoc\" {with-doc}"
+    },
+    "MlFront_Cache.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\r\n\"uuidm\" {>= \"0.9.8\"}\r\n\"MlFront_Core\" {= version}\r\n\"UnifiedScript_Top\" {with-test & = version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "fmt",
+        "dune",
+        "ocaml",
+        "MlFront_Core",
+        "mirage-crypto-rng",
+        "uuidm"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Cache"
+    },
+    "base-unix.base": {
+      "depends": [],
+      "version": "base",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "base-unix",
+      "depends_raw": null
+    },
+    "MlFront_ProgressZig.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"uucp\" {>= \"15.0.0\"}\r\n\"MlFront_Progress\" {= version}\r\n\"MlFront_Thunk\" {= version}\r\n\"MlFront_Core\" {= version}\r\n\"MlFront_Console\" {= version}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "ocaml",
+        "MlFront_Console",
+        "dune",
+        "uucp",
+        "MlFront_Core",
+        "MlFront_Progress",
+        "MlFront_Thunk"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_ProgressZig"
+    },
+    "cmdliner.1.3.0": {
+      "depends": [
+        "ocaml"
+      ],
+      "version": "1.3.0",
+      "install": "[make \"install\" \"LIBDIR=%{_:lib}%\" \"DOCDIR=%{_:doc}%\"]\r\n[make \"install-doc\" \"LIBDIR=%{_:lib}%\" \"DOCDIR=%{_:doc}%\"]",
+      "build": "make \"all\" \"PREFIX=%{prefix}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/cmdliner/releases/cmdliner-1.3.0.tbz",
+        "size": 58515,
+        "archive": "tbz",
+        "checksums": [
+          "sha512=4c46bc334444ff772637deae2f5ba03645d7a1b7db523470a1246acfce79b971c764d964cbb02388639b3161b279700d9ade95da550446fb32aa4849c8a8f283",
+          "sha256=8e8180f573b440f6a7a8c208dab2cae4a82384fec732d22784d1bb6e64168cbb"
+        ]
+      },
+      "name": "cmdliner",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}"
+    },
+    "eqaf.0.9": {
+      "depends": [
+        "cstruct",
+        "fmt",
+        "ocaml",
+        "dune"
+      ],
+      "version": "0.9",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" \"1\" \"--no-buffer\" \"--verbose\"] {with-test}",
+      "source": {
+        "url": "https://github.com/mirage/eqaf/releases/download/v0.9/eqaf-0.9.tbz",
+        "size": 30267,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=ec0e28a946ac6817f95d5854f05a9961ae3a8408bb610e79cfad01b9b255dfe0",
+          "sha512=4df7fd3ea35156953a172c1a021aab05b8b122ee8d3cfdb34f96edb1b5133d1fe2721b90cb64287841d770b16c2ffe70559c66e90f8d61a92b73857da22548c4"
+        ]
+      },
+      "name": "eqaf",
+      "depends_raw": "\"ocaml\" {>= \"4.07.0\"}\r\n\"dune\" {>= \"2.0\"}\r\n\"cstruct\" {>= \"1.1.0\"}\r\n\"base64\" {with-test}\r\n\"alcotest\" {with-test}\r\n\"crowbar\" {with-test}\r\n\"fmt\" {with-test & >= \"0.8.7\"}\r\n\"bechamel\" {with-test}"
+    },
+    "ptime.1.2.0": {
+      "depends": [
+        "ocamlbuild",
+        "topkg",
+        "ocaml",
+        "ocamlfind"
+      ],
+      "version": "1.2.0",
+      "install": null,
+      "build": "\"ocaml\" \"pkg/pkg.ml\" \"build\" \"--dev-pkg\" \"%{dev}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/ptime/releases/ptime-1.2.0.tbz",
+        "size": 30885,
+        "archive": "tbz",
+        "checksums": [
+          "sha512=b0c3240dd9e777a5e60b5269eb2e312fc644d29ef55e257d2f2538c03bf62274173ed36e13858c44d2dbee8fe375c9c483e705706e4aa5b3b5c4609ca6324a5c",
+          "sha256=9616747fdf490ec36e8024cab27ee01e3a0af577d8a23226638fa4034de73ab0"
+        ]
+      },
+      "name": "ptime",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build & != \"0.9.0\"}\r\n\"topkg\" {build & >= \"1.0.3\"}"
+    },
+    "arch-x86_64.1": {
+      "depends": [
+        "ocaml-base-compiler",
+        "host-arch-x86_64"
+      ],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "arch-x86_64",
+      "depends_raw": "(\"ocaml-base-compiler\" {post & >= \"4.13.0~\"} |\r\n \"ocaml-variants\" {post & >= \"4.13.0~\"})\r\n\"host-arch-x86_64\" {post}"
+    },
+    "topkg.1.0.8": {
+      "depends": [
+        "ocaml",
+        "ocamlfind",
+        "ocamlbuild"
+      ],
+      "version": "1.0.8",
+      "install": null,
+      "build": "\"ocaml\" \"pkg/pkg.ml\" \"build\" \"--pkg-name\" name \"--dev-pkg\" \"%{dev}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/topkg/releases/topkg-1.0.8.tbz",
+        "size": 96188,
+        "archive": "tbz",
+        "checksums": [
+          "sha512=4b632b60137852bb72ff9c8cdc2e16ac5ece6473569e50963fef9c1e800a0933a516bea1107b04011645afa4a1e78893c82dbce0aa8de2970d4d6c6d0dd2fe02",
+          "sha256=e72a91ef5052c045ed623d41e6bf5c4ee8f514e44786589a23599c521893dc61"
+        ]
+      },
+      "name": "topkg",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"} \"ocamlfind\" {build & >= \"1.6.1\"} \"ocamlbuild\""
+    },
+    "dkml-c-probe.3.2.0": {
+      "depends": [
+        "dune-configurator",
+        "dune",
+        "ocaml"
+      ],
+      "version": "3.2.0",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@runtest\"] {with-test}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@doc\"] {with-doc}",
+      "source": {
+        "url": "https://github.com/diskuv/dkml-c-probe/archive/3.2.0.tar.gz",
+        "size": 27227,
+        "archive": "tgz",
+        "checksums": [
+          "md5=238cfd11173daec2b3eca8df345f42b1",
+          "sha512=0aaf15f0f893ec947ef26545af482d5536ddc2d5a34356d3004dda5c83372d0c488d79ba577dcfed27ff9e4a336f247337b5c9b57d7b2d97563ab8569a886713",
+          "sha256=8a3ac2e9cbd3a26c42ae47cb4e593ebcd8881b79eda3eaf824bf9480dabfa9f8"
+        ]
+      },
+      "name": "dkml-c-probe",
+      "depends_raw": "\"dune\" {>= \"2.9\"}\r\n\"ocaml\" {>= \"4.12.1\"}\r\n\"ounit2\" {>= \"2.2.0\" & with-test}\r\n\"mdx\" {>= \"2.0.0\" & with-test}\r\n\"dune-configurator\" {>= \"2.9\" & build}\r\n\"odoc\" {with-doc}"
+    },
+    "base-nnp.base": {
+      "depends": [
+        "base-domains"
+      ],
+      "version": "base",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "base-nnp",
+      "depends_raw": "\"base-domains\" | \"ocaml-option-nnp\" |\r\n\"ocaml-variants\" {= \"4.06.1+no-naked-pointers+flambda\"}"
+    },
+    "spawn.v0.15.1": {
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "version": "v0.15.1",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "source": {
+        "url": "https://github.com/janestreet/spawn/archive/v0.15.1.tar.gz",
+        "size": 15861,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=9afdee314fab6c3fcd689ab6eb5608d6b78078e6dede3953a47debde06c19d50",
+          "sha512=efdb31d5ec5ea36d0bc80224d4ee04e46ce3428d1662870e6cebece92bc313d6eebee378802c0c059dd6e0cafea515308c31b7dfaf04a098eb4566583c1e9ed4"
+        ]
+      },
+      "name": "spawn",
+      "depends_raw": "\"dune\" {>= \"2.8\"}\r\n\"ppx_expect\" {with-test}\r\n\"ocaml\" {>= \"4.05\"}\r\n\"odoc\" {with-doc}"
+    },
+    "sexplib0.v0.16.0": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/sexplib0-v0.16.0.tar.gz",
+        "size": 22101,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=86dba26468194512f789f2fb709063515a9cb4e5c4461c021c239a369590701d"
+        ]
+      },
+      "name": "sexplib0",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"} \"dune\" {>= \"2.0.0\"}"
+    },
+    "ppx_compare.v0.16.0": {
+      "depends": [
+        "dune",
+        "ppxlib",
+        "ocaml",
+        "base"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_compare-v0.16.0.tar.gz",
+        "size": 13953,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=7ac1dd852e62de6c4b6a879b8bd962c0167db822c39e8c972c8a6af4c48f26aa"
+        ]
+      },
+      "name": "ppx_compare",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "base-domains.base": {
+      "depends": [
+        "ocaml"
+      ],
+      "version": "base",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "base-domains",
+      "depends_raw": "\"ocaml\" {>= \"5.0\"} |\r\n\"ocaml-variants\"\r\n  {= \"4.14.0+domains\" | = \"4.12.0+domains+effects\" | = \"4.12.0+domains\" |\r\n   = \"4.10.0+multicore\" |\r\n   = \"4.10.0+multicore+no-effect-syntax\" |\r\n   = \"4.06.1+multicore\"}"
+    },
+    "DkZero_RuntimeC.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"DkZero_Base\" {= version}\r\n\"spawn\" {>= \"v0.15.1\"}\r\n\"MlFront_ProgressZig\" {= version}\r\n\"MlFront_ProgressPeriod\" {with-test & = version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "DkZero_Base",
+        "dune",
+        "ocaml",
+        "MlFront_ProgressPeriod",
+        "spawn",
+        "MlFront_ProgressZig"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "DkZero_RuntimeC"
+    },
+    "menhirSdk.20231231": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "20231231",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://gitlab.inria.fr/fpottier/menhir/-/archive/20231231/archive.tar.gz",
+        "size": 1393576,
+        "archive": "tgz",
+        "checksums": [
+          "md5=799748bc3b7a542798a85956c7863865",
+          "sha512=620ff3443143535e03ac98c5e8ee2ddf9ba48f8cfe441302118def1da3e03ffac7f48d4d4cb129766b625ecad0fb341da1baa0169dee8b6d07a5b0bbb735cf2f",
+          "sha256=df39956b3c07323e8edc447e773a386c1dc9036c27951e8517c231a88039c7f6"
+        ]
+      },
+      "name": "menhirSdk",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"} \"dune\" {>= \"2.8.0\"}"
+    },
+    "mirage-crypto.2.0.2": {
+      "depends": [
+        "dune-configurator",
+        "eqaf",
+        "ocaml",
+        "dune"
+      ],
+      "version": "2.0.2",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/mirage/mirage-crypto/releases/download/v2.0.2/mirage-crypto-2.0.2.tbz",
+        "size": 2782947,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=739a9d39f34027fbc93557f87c5cac4190a52bddadff72f212faa803d6215874",
+          "sha512=6b72c77026d91d3a8695012f229c54f8131c873955c1ac2177a5f4b26b38d6ff71627fdc264530556830d38e098fe8d9a8fc1504659b75a18c2bf565bb4d896f"
+        ]
+      },
+      "name": "mirage-crypto",
+      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\r\n\"dune\" {>= \"2.7\"}\r\n\"dune-configurator\" {>= \"2.0.0\"}\r\n\"ounit2\" {with-test}\r\n\"ohex\" {with-test & >= \"0.2.0\"}\r\n\"eqaf\" {>= \"0.8\"}"
+    },
+    "host-arch-x86_32.1": {
+      "depends": [],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "host-arch-x86_32",
+      "depends_raw": null
+    },
+    "stdio.v0.16.0": {
+      "depends": [
+        "ocaml",
+        "base",
+        "dune"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/stdio-v0.16.0.tar.gz",
+        "size": 7779,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=61f0b75950614ac5378c6ec0d822cce6463402d919d5810b736fc46522b3a73e"
+        ]
+      },
+      "name": "stdio",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"} \"base\" {>= \"v0.16\" & < \"v0.17\"} \"dune\" {>= \"2.0.0\"}"
+    },
+    "DkZero_Exec.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Console\" {= version}\r\n\"MlFront_Logs\" {= version}\r\n\"MlFront_ProgressPeriod\" {= version}\r\n\"MlFront_ProgressZig\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"DkZero_Base\" {= version}\r\n\"DkZero_RuntimeC\" {= version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "dune",
+        "MlFront_ProgressPeriod",
+        "MlFront_Console",
+        "UnifiedScript_Std",
+        "ocaml",
+        "MlFront_ProgressZig",
+        "MlFront_Logs",
+        "DkZero_Base",
+        "DkZero_RuntimeC"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "DkZero_Exec"
+    },
+    "ocaml-options-vanilla.1": {
+      "depends": [
+        "ocaml-base-compiler"
+      ],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "ocaml-options-vanilla",
+      "depends_raw": "\"ocaml-base-compiler\" {post} | \"ocaml-system\" {post} |\r\n\"ocaml-variants\" {post & >= \"4.12.0~\"}"
+    },
+    "ocaml-env-mingw32.1": {
+      "depends": [
+        "host-system-mingw",
+        "host-arch-x86_32",
+        "conf-mingw-w64-gcc-i686"
+      ],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "ocaml-env-mingw32",
+      "depends_raw": "\"host-system-mingw\" {post}\r\n\"host-arch-x86_32\" {post}\r\n\"conf-mingw-w64-gcc-i686\""
+    },
+    "ocamlbuild.0.14.2+win+unix": {
+      "depends": [
+        "ocaml"
+      ],
+      "version": "0.14.2+win+unix",
+      "install": "[make \"install\"] {os = \"win32\"}\r\n[\"mkdir\" \"-p\" \"%{lib}%/ocamlbuild\"] {os = \"win32\"}\r\n[\"install\" \"-m\" \"0644\" \"META\" \"%{lib}%/ocamlbuild\"] {os = \"win32\"}",
+      "build": "[\r\n  make\r\n  \"-f\"\r\n  \"configure.make\"\r\n  \"all\"\r\n  \"OCAMLBUILD_PREFIX=%{prefix}%\"\r\n  \"OCAMLBUILD_BINDIR=%{bin}%\"\r\n  \"OCAMLBUILD_LIBDIR=%{lib}%\"\r\n  \"OCAMLBUILD_MANDIR=%{man}%\"\r\n  \"OCAML_NATIVE=%{ocaml:native}%\"\r\n  \"OCAML_NATIVE_TOOLS=%{ocaml:native}%\"\r\n] {os != \"win32\"}\r\n[make \"check-if-preinstalled\" \"all\" \"opam-install\"] {os != \"win32\"}\r\n[make \"all\"] {os = \"win32\"}",
+      "source": {
+        "url": "https://github.com/jonahbeckford/ocamlbuild/releases/download/0.14.2-win32-all-r2/src.tar.gz",
+        "incache": 0,
+        "size": 199565,
+        "archive": "tgz",
+        "checksums": [
+          "sha512=c7638715efd8de881e57d22baa7141a0e964704c3fe4557abeebce57bc86355ecfdbe5ad8ac0abdd7e73c7164da62ca36cbdba2716a1d88cabd3546f7adcdf3c",
+          "sha256=ac48fa6b2fa227bfd5c4177841653bd1b1cf605731ea796b25f1a5dc05dc3d93"
+        ]
+      },
+      "name": "ocamlbuild",
+      "depends_raw": "\"ocaml\" {>= \"4.03\"}"
+    },
+    "DkZero_Base.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Cache\" {= version}\r\n\"MlFront_Signify\" {= version}\r\n\"MlFront_Thunk\" {= version}\r\n\"MlFront_ZipFile\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"dkml-c-probe\" {>= \"3.2.0\"}\r\n\"ptime\" {>= \"1.1.0\"}\r\n\"ppx_deriving\" {>= \"6.0.2\"}\r\n\"xdg\" {>= \"3.12.1\"}\r\n\"capnp\" {with-test & >= \"3.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "xdg",
+        "MlFront_Thunk",
+        "ocaml",
+        "ppx_deriving",
+        "dkml-c-probe",
+        "MlFront_Cache",
+        "UnifiedScript_Std",
+        "MlFront_ZipFile",
+        "MlFront_Signify",
+        "dune",
+        "ptime"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "DkZero_Base"
+    },
+    "MlFront_Progress.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"} \"ocaml\" {>= \"4.14\"} \"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Progress"
+    },
+    "ppx_base.v0.16.0": {
+      "depends": [
+        "ocaml",
+        "ppx_globalize",
+        "ppx_compare",
+        "ppx_sexp_conv",
+        "ppx_cold",
+        "ppx_hash",
+        "ppx_enumerate",
+        "dune",
+        "ppxlib"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_base-v0.16.0.tar.gz",
+        "size": 2928,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=64835763153d3262a2fa56cf307a351ebfd10cedf504c488ab3bb93f3d9569a3"
+        ]
+      },
+      "name": "ppx_base",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"ppx_cold\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_enumerate\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_globalize\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_hash\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "conf-mingw-w64-gcc-x86_64.1": {
+      "depends": [],
+      "version": "1",
+      "install": null,
+      "build": "\"x86_64-w64-mingw32-gcc\" \"--version\"",
+      "source": null,
+      "name": "conf-mingw-w64-gcc-x86_64",
+      "depends_raw": "\"msys2\" {build & os = \"win32\" & os-distribution = \"msys2\"}\r\n\"msys2-mingw64\" {os = \"win32\" & os-distribution = \"msys2\"}"
+    },
+    "fmt.0.9.0": {
+      "depends": [
+        "cmdliner",
+        "ocamlbuild",
+        "base-unix",
+        "topkg",
+        "ocaml",
+        "ocamlfind"
+      ],
+      "version": "0.9.0",
+      "install": null,
+      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-base-unix\"\r\n\"%{base-unix:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/fmt/releases/fmt-0.9.0.tbz",
+        "size": 22699,
+        "archive": "tbz",
+        "checksums": [
+          "sha512=66cf4b8bb92232a091dfda5e94d1c178486a358cdc34b1eec516d48ea5acb6209c0dfcb416f0c516c50ddbddb3c94549a45e4a6d5c5fd1c81d3374dec823a83b",
+          "sha256=f1fb20805a22dd75a137d72704a370e7789cf6bdf63948e6817d1c226c141261"
+        ]
+      },
+      "name": "fmt",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}"
+    },
+    "digestif.1.3.0": {
+      "depends": [
+        "dune",
+        "eqaf",
+        "fmt",
+        "ocamlfind",
+        "ocaml"
+      ],
+      "version": "1.3.0",
+      "install": "[\"dune\" \"install\" \"-p\" name] {with-test}\r\n[\"ocaml\" \"./test/test_runes.ml\"] {with-test}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/mirage/digestif/releases/download/v1.3.0/digestif-1.3.0.tbz",
+        "size": 3334564,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=9a6cdcb332539c87f4723fc3bd73626b2675a7b1161fdf0fed309186ce18f427",
+          "sha512=986d98eeb79f75ff69842a7ed4b93b4ff3795df7c09d455ca0c41408d67415a6743253a96c7e0de653dc62db95cb1fd29b1c654472fa11259cddde65dd5dd352"
+        ]
+      },
+      "name": "digestif",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"2.6.0\"}\r\n\"eqaf\"\r\n\"fmt\" {with-test & >= \"0.8.7\"}\r\n\"alcotest\" {with-test}\r\n\"bos\" {with-test}\r\n\"astring\" {with-test}\r\n\"fpath\" {with-test}\r\n\"rresult\" {with-test}\r\n\"ocamlfind\" {with-test}\r\n\"crowbar\" {with-test}"
+    },
+    "ocaml-config.3": {
+      "depends": [
+        "ocaml-base-compiler"
+      ],
+      "version": "3",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "ocaml-config",
+      "depends_raw": "\"ocaml-base-compiler\" {>= \"5.0.0~\" | os = \"win32\"} |\r\n\"ocaml-variants\" {>= \"5.0.0~\" | os = \"win32\"} |\r\n\"ocaml-system\" {>= \"5.0.0~\" | os = \"win32\"} |\r\n\"dkml-base-compiler\" {>= \"4.12.0~\"}"
+    },
+    "MlFront_ProgressPeriod.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Progress\" {= version}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "dune",
+        "ocaml",
+        "MlFront_Progress"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_ProgressPeriod"
+    },
+    "time_now.v0.16.0": {
+      "depends": [
+        "base",
+        "dune",
+        "ocaml",
+        "jane-street-headers",
+        "ppx_optcomp",
+        "jst-config",
+        "ppx_base"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/time_now-v0.16.0.tar.gz",
+        "size": 3668,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=5fa084aadee6aaedbb8976e4a2bc0c1dfe69eecdd0576ff901f21eedd46dc3a1"
+        ]
+      },
+      "name": "time_now",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"jane-street-headers\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"jst-config\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_optcomp\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}"
+    },
+    "base-threads.base": {
+      "depends": [],
+      "version": "base",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "base-threads",
+      "depends_raw": null
+    },
+    "MlFront_Lua.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"fmlib_parse\" {>= \"0.6.2\"}\r\n\"menhir\" {>= \"20180528\"}\r\n\"UnifiedScript_Top\" {with-test & = version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "fmlib_parse",
+        "menhir",
+        "dune",
+        "ocaml"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Lua"
+    },
+    "menhir.20231231": {
+      "depends": [
+        "dune",
+        "menhirLib",
+        "menhirSdk",
+        "menhirCST",
+        "ocaml"
+      ],
+      "version": "20231231",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://gitlab.inria.fr/fpottier/menhir/-/archive/20231231/archive.tar.gz",
+        "size": 1393576,
+        "archive": "tgz",
+        "checksums": [
+          "md5=799748bc3b7a542798a85956c7863865",
+          "sha512=620ff3443143535e03ac98c5e8ee2ddf9ba48f8cfe441302118def1da3e03ffac7f48d4d4cb129766b625ecad0fb341da1baa0169dee8b6d07a5b0bbb735cf2f",
+          "sha256=df39956b3c07323e8edc447e773a386c1dc9036c27951e8517c231a88039c7f6"
+        ]
+      },
+      "name": "menhir",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"dune\" {>= \"2.8.0\"}\r\n\"menhirLib\" {= version}\r\n\"menhirSdk\" {= version}\r\n\"menhirCST\" {= version}"
+    },
+    "ppxlib.0.35.0": {
+      "depends": [
+        "dune",
+        "sexplib0",
+        "ocaml-compiler-libs",
+        "stdlib-shims",
+        "ocaml",
+        "sexplib0",
+        "ppx_derivers",
+        "ocamlfind",
+        "re"
+      ],
+      "version": "0.35.0",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "source": {
+        "url": "https://github.com/ocaml-ppx/ppxlib/releases/download/0.35.0/ppxlib-0.35.0.tbz",
+        "size": 390303,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=d9d959fc9f84260487e45684dc741898a92fc5506b61a7f5cac65d21832db925",
+          "sha512=e428b1e3b89261c7efdaa18016264d1afbf067cb9b0d41124b04796c2487ac7ca8ee9a24a60d56f20d1774cb44aaa9ecf1512f17455812ba8d62d4ef93616ee7"
+        ]
+      },
+      "name": "ppxlib",
+      "depends_raw": "\"dune\" {>= \"3.8\"}\r\n\"ocaml\" {>= \"4.08.0\" & < \"5.4.0\"}\r\n\"ocaml-compiler-libs\" {>= \"v0.11.0\"}\r\n\"ppx_derivers\" {>= \"1.0\"}\r\n\"sexplib0\" {>= \"v0.12\"}\r\n\"sexplib0\" {with-test & >= \"v0.15\"}\r\n\"stdlib-shims\"\r\n\"ocamlfind\" {with-test}\r\n\"re\" {with-test & >= \"1.9.0\"}\r\n\"cinaps\" {with-test & >= \"v0.12.1\"}\r\n\"ocamlformat\" {with-dev-setup & = \"0.26.2\"}\r\n\"odoc\" {with-doc}"
+    },
+    "menhirCST.20231231": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "20231231",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://gitlab.inria.fr/fpottier/menhir/-/archive/20231231/archive.tar.gz",
+        "size": 1393576,
+        "archive": "tgz",
+        "checksums": [
+          "md5=799748bc3b7a542798a85956c7863865",
+          "sha512=620ff3443143535e03ac98c5e8ee2ddf9ba48f8cfe441302118def1da3e03ffac7f48d4d4cb129766b625ecad0fb341da1baa0169dee8b6d07a5b0bbb735cf2f",
+          "sha256=df39956b3c07323e8edc447e773a386c1dc9036c27951e8517c231a88039c7f6"
+        ]
+      },
+      "name": "menhirCST",
+      "depends_raw": "\"ocaml\" {>= \"4.08\"} \"dune\" {>= \"2.8.0\"}"
+    },
+    "conf-mingw-w64-gcc-i686.1": {
+      "depends": [],
+      "version": "1",
+      "install": null,
+      "build": "\"i686-w64-mingw32-gcc\" \"--version\"",
+      "source": null,
+      "name": "conf-mingw-w64-gcc-i686",
+      "depends_raw": "\"msys2\" {build & os = \"win32\" & os-distribution = \"msys2\"}\r\n\"msys2-mingw32\" {os = \"win32\" & os-distribution = \"msys2\"}"
+    },
+    "fmlib_std.0.6.2": {
+      "depends": [
+        "ppx_inline_test",
+        "ocaml",
+        "dune"
+      ],
+      "version": "0.6.2",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "source": {
+        "url": "https://github.com/hbr/fmlib/archive/0.6.2.tar.gz",
+        "size": 269396,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=8b7b1245e7c9b57174aba854e2c44ea22403c12955a0ae01a437604763f350f3"
+        ]
+      },
+      "name": "fmlib_std",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0.0\"}\r\n\"odoc\" {with-doc}\r\n\"ppx_inline_test\" {>= \"v0.13.0\"}"
+    },
+    "MlFront_Signify.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\r\n\"stringext\" {with-test & >= \"1.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "mirage-crypto-rng",
+        "stringext",
+        "dune",
+        "ocaml"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "MlFront_Signify"
+    },
+    "ppx_derivers.1.2.1": {
+      "depends": [
+        "ocaml",
+        "dune"
+      ],
+      "version": "1.2.1",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://github.com/ocaml-ppx/ppx_derivers/archive/1.2.1.tar.gz",
+        "size": 2530,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=b6595ee187dea792b31fc54a0e1524ab1e48bc6068d3066c45215a138cc73b95",
+          "md5=5dc2bf130c1db3c731fe0fffc5648b41"
+        ]
+      },
+      "name": "ppx_derivers",
+      "depends_raw": "\"ocaml\" \"dune\""
+    },
+    "ocamlfind.1.9.5": {
+      "depends": [
+        "ocaml"
+      ],
+      "version": "1.9.5",
+      "install": "[make \"install\"]\r\n[\"install\" \"-m\" \"0755\" \"ocaml-stub\" \"%{bin}%/ocaml\"] {ocaml:preinstalled}",
+      "build": "[\r\n  \"./configure\"\r\n  \"-bindir\"\r\n  bin\r\n  \"-sitelib\"\r\n  lib\r\n  \"-mandir\"\r\n  man\r\n  \"-config\"\r\n  \"%{lib}%/findlib.conf\"\r\n  \"-no-custom\"\r\n  \"-no-camlp4\" {!ocaml:preinstalled & ocaml:version >= \"4.02.0\"}\r\n  \"-no-topfind\" {ocaml:preinstalled}\r\n]\r\n[make \"all\"]\r\n[make \"opt\"] {ocaml:native}",
+      "source": {
+        "url": "http://download.camlcity.org/download/findlib-1.9.5.tar.gz",
+        "size": 271240,
+        "archive": "tgz",
+        "checksums": [
+          "md5=8b893525ce36cb3d4d4952483bcc7cf4",
+          "sha512=03514c618a16b02889db997c6c4789b3436b3ad7d974348d2c6dea53eb78898ab285ce5f10297c074bab4fd2c82931a8b7c5c113b994447a44abb30fca74c715",
+          "sha256=0d4704e60caf313c1bb4565d8690d503ce51fb93c2ea50e22b2e9812243a2571"
+        ]
+      },
+      "name": "ocamlfind",
+      "depends_raw": "\"ocaml\" {>= \"4.00.0\"}"
+    },
+    "stdlib-shims.0.3.0": {
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "version": "0.3.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://github.com/ocaml/stdlib-shims/releases/download/0.3.0/stdlib-shims-0.3.0.tbz",
+        "size": 10163,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=babf72d3917b86f707885f0c5528e36c63fccb698f4b46cf2bab5c7ccdd6d84a",
+          "sha512=1151d7edc8923516e9a36995a3f8938d323aaade759ad349ed15d6d8501db61ffbe63277e97c4d86149cf371306ac23df0f581ec7e02611f58335126e1870980"
+        ]
+      },
+      "name": "stdlib-shims",
+      "depends_raw": "\"dune\" \"ocaml\" {>= \"4.02.3\"}"
+    },
+    "ocaml.5.1.1": {
+      "depends": [
+        "ocaml-config",
+        "ocaml-base-compiler"
+      ],
+      "version": "5.1.1",
+      "install": null,
+      "build": "\"ocaml\" \"%{ocaml-config:share}%/gen_ocaml_config.ml\" _:version _:name",
+      "source": null,
+      "name": "ocaml",
+      "depends_raw": "\"ocaml-config\" {>= \"3\"}\r\n\"ocaml-base-compiler\" {>= \"5.1.1~\" & < \"5.1.2~\"} |\r\n\"ocaml-variants\" {>= \"5.1.1~\" & < \"5.1.2~\"} |\r\n\"ocaml-system\" {>= \"5.1.1~\" & < \"5.1.2~\"} |\r\n\"dkml-base-compiler\" {>= \"5.1.1~\" & < \"5.1.2~\"}"
+    },
+    "ppx_enumerate.v0.16.0": {
+      "depends": [
+        "dune",
+        "ppxlib",
+        "ocaml",
+        "base"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_enumerate-v0.16.0.tar.gz",
+        "size": 9339,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=2832635d6d9ac4c63d48ed51d72745cd8a548e226a6110909d5a412d40ef9953"
+        ]
+      },
+      "name": "ppx_enumerate",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "UnifiedScript_Std.2.4.2": {
+      "install": null,
+      "depends_raw": "\"dune\" {>= \"3.18\"} \"ocaml\" {>= \"4.14\"} \"odoc\" {with-doc}",
+      "version": "2.4.2",
+      "depends": [
+        "dune",
+        "ocaml"
+      ],
+      "local": "t",
+      "source": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "name": "UnifiedScript_Std"
+    },
+    "ppx_sexp_conv.v0.16.0": {
+      "depends": [
+        "base",
+        "sexplib0",
+        "dune",
+        "ppxlib",
+        "ocaml"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_sexp_conv-v0.16.0.tar.gz",
+        "size": 66899,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=41bcb7a3b33bdf50428408bfaf1dbcede528a488ac8c436ce710681bcd91200d"
+        ]
+      },
+      "name": "ppx_sexp_conv",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"sexplib0\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}"
+    },
+    "ppx_here.v0.16.0": {
+      "depends": [
+        "dune",
+        "ppxlib",
+        "ocaml",
+        "base"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_here-v0.16.0.tar.gz",
+        "size": 4964,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=278198b92500c306fab3411e3dede264d678f203eb3295dd8dd79b70ed9273f0"
+        ]
+      },
+      "name": "ppx_here",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}"
+    },
+    "ocaml-option-bytecode-only.1": {
+      "depends": [
+        "ocaml-base-compiler"
+      ],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "ocaml-option-bytecode-only",
+      "depends_raw": "\"ocaml-variants\" {post & >= \"4.12.0~\"} |\r\n\"ocaml-base-compiler\"\r\n  {post & >= \"5.0.0~~\" & arch != \"arm64\" & (arch != \"x86_64\" | os = \"win32\")}"
+    },
+    "ppx_optcomp.v0.16.0": {
+      "depends": [
+        "base",
+        "stdio",
+        "dune",
+        "ppxlib",
+        "ocaml"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_optcomp-v0.16.0.tar.gz",
+        "size": 16720,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=99b209084a5375dafce4c6b128979661ab2ab6bf898a6872d596e65ded590ba2"
+        ]
+      },
+      "name": "ppx_optcomp",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"stdio\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}"
+    },
+    "uuidm.0.9.8": {
+      "depends": [
+        "ocamlbuild",
+        "cmdliner",
+        "topkg",
+        "ocaml",
+        "ocamlfind"
+      ],
+      "version": "0.9.8",
+      "install": null,
+      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "source": {
+        "url": "https://erratique.ch/software/uuidm/releases/uuidm-0.9.8.tbz",
+        "size": 9911,
+        "archive": "tbz",
+        "checksums": [
+          "sha512=d5073ae49c402ab3ea6dc8f86bc5b8cc14129437e23e47da4d91431648fcb31c4dce6308f9c936c58df9a2c6afda61d77105a3022e369cca4e4c140320e803b5",
+          "sha256=fc665b90954342ed5463c4a588adbcda451601531f3a7a5069d525453fed26b3"
+        ]
+      },
+      "name": "uuidm",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}"
+    },
+    "system-mingw.1": {
+      "depends": [
+        "ocaml-env-mingw64",
+        "ocaml-base-compiler",
+        "ocaml-env-mingw32"
+      ],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "system-mingw",
+      "depends_raw": "(\"ocaml-base-compiler\" {post & >= \"4.13.0~\"} |\r\n \"ocaml-variants\" {post & >= \"4.13.0~\"})\r\n(\"ocaml-env-mingw32\" | \"ocaml-env-mingw64\")"
+    },
+    "mirage-crypto-rng.2.0.2": {
+      "depends": [
+        "dune",
+        "digestif",
+        "ocaml",
+        "dune-configurator",
+        "mirage-crypto",
+        "duration",
+        "logs"
+      ],
+      "version": "2.0.2",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/mirage/mirage-crypto/releases/download/v2.0.2/mirage-crypto-2.0.2.tbz",
+        "size": 2782947,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=739a9d39f34027fbc93557f87c5cac4190a52bddadff72f212faa803d6215874",
+          "sha512=6b72c77026d91d3a8695012f229c54f8131c873955c1ac2177a5f4b26b38d6ff71627fdc264530556830d38e098fe8d9a8fc1504659b75a18c2bf565bb4d896f"
+        ]
+      },
+      "name": "mirage-crypto-rng",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"2.7\"}\r\n\"dune-configurator\" {>= \"2.0.0\"}\r\n\"duration\"\r\n\"logs\"\r\n\"mirage-crypto\" {= version}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"ounit2\" {with-test}\r\n\"randomconv\" {with-test & >= \"0.2.0\"}\r\n\"ohex\" {with-test & >= \"0.2.0\"}"
+    },
+    "base-bigarray.base": {
+      "depends": [],
+      "version": "base",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "base-bigarray",
+      "depends_raw": null
+    },
+    "flexdll.0.44": {
+      "depends": [],
+      "version": "0.44",
+      "install": null,
+      "build": null,
+      "source": {
+        "url": "https://github.com/ocaml/flexdll/archive/refs/tags/0.44.tar.gz",
+        "size": 74690,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=b7c6a92286f1f3065324d51083dcb16eec436a4e6e3b8df7cf836b6d7a8b9491",
+          "sha512=87c5e38810dcf4bba43472e6c4e2ea25081a92664e37269f782ef9412e81d37d53edbbeb0acbf5eb821cc5105085a99337b30e55409057121a68472eb51db7c8"
+        ]
+      },
+      "name": "flexdll",
+      "depends_raw": null
+    },
+    "ocaml-base-compiler.5.1.1": {
+      "depends": [
+        "system-mingw",
+        "ocaml-option-bytecode-only",
+        "mingw-w64-shims",
+        "base-nnp",
+        "ocaml-option-bytecode-only",
+        "base-threads",
+        "base-unix",
+        "arch-x86_64",
+        "ocaml",
+        "base-domains",
+        "flexdll",
+        "system-mingw",
+        "base-bigarray",
+        "ocaml-options-vanilla",
+        "base-unix",
+        "mingw-w64-shims"
+      ],
+      "version": "5.1.1",
+      "install": "make \"install\"",
+      "build": "[\r\n  \"./configure\"\r\n  \"--host=x86_64-w64-mingw32\"\r\n    {os-distribution = \"cygwin\" & system-mingw:installed &\r\n     arch-x86_64:installed}\r\n  \"--host=i686-w64-mingw32\"\r\n    {os-distribution = \"cygwin\" & system-mingw:installed &\r\n     arch-x86_32:installed}\r\n  \"--prefix=%{prefix}%\"\r\n  \"--docdir=%{doc}%/ocaml\"\r\n  \"--with-flexdll=%{flexdll:share}%\" {os = \"win32\" & flexdll:installed}\r\n  \"-C\"\r\n  \"CC=cc\" {os = \"openbsd\" | os = \"macos\"}\r\n  \"ASPP=cc -c\" {os = \"openbsd\" | os = \"macos\"}\r\n]\r\n[make \"-j%{jobs}%\"]",
+      "source": {
+        "url": "https://github.com/ocaml/ocaml/archive/5.1.1.tar.gz",
+        "size": 5771148,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=57f7b382b3d71198413ede405d95ef3506f1cdc480cda1dca1e26b37cb090e17"
+        ]
+      },
+      "name": "ocaml-base-compiler",
+      "depends_raw": "\"ocaml\" {= \"5.1.1\" & post}\r\n\"base-unix\" {post}\r\n\"base-bigarray\" {post}\r\n\"base-threads\" {post}\r\n\"base-domains\" {post}\r\n\"base-nnp\" {post}\r\n((\"arch-x86_64\" {os = \"win32\" & arch = \"x86_64\"} & \"system-mingw\" &\r\n  \"mingw-w64-shims\" {os-distribution = \"cygwin\" & build}) |\r\n (\"arch-x86_32\" {os = \"win32\"} & \"ocaml-option-bytecode-only\" &\r\n  \"system-mingw\" &\r\n  \"mingw-w64-shims\" {os-distribution = \"cygwin\" & build}) |\r\n \"base-unix\" {os != \"win32\" & post})\r\n\"ocaml-options-vanilla\" {post}\r\n\"ocaml-option-bytecode-only\"\r\n  {arch != \"arm64\" & arch != \"x86_64\" & arch != \"s390x\" & arch != \"riscv64\"}\r\n\"flexdll\" {>= \"0.42\" & os = \"win32\"}"
+    },
+    "jst-config.v0.16.0": {
+      "depends": [
+        "base",
+        "ppx_assert",
+        "dune",
+        "dune-configurator",
+        "ocaml"
+      ],
+      "version": "v0.16.0",
+      "install": null,
+      "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
+      "source": {
+        "url": "https://ocaml.janestreet.com/ocaml-core/v0.16/files/jst-config-v0.16.0.tar.gz",
+        "size": 4886,
+        "archive": "tgz",
+        "checksums": [
+          "sha256=faead56d8582868cdc099ad54f9bae059cc48710b724600cc64013e73c14d95b"
+        ]
+      },
+      "name": "jst-config",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_assert\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"dune-configurator\""
+    },
+    "seq.base": {
+      "depends": [
+        "ocaml"
+      ],
+      "version": "base",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "seq",
+      "depends_raw": "\"ocaml\" {>= \"4.07.0\"}"
+    },
+    "re.1.11.0": {
+      "depends": [
+        "seq",
+        "ocaml",
+        "dune"
+      ],
+      "version": "1.11.0",
+      "install": null,
+      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "source": {
+        "url": "https://github.com/ocaml/ocaml-re/releases/download/1.11.0/re-1.11.0.tbz",
+        "size": 85340,
+        "archive": "tbz",
+        "checksums": [
+          "sha256=01fc244780c0f6be72ae796b1fb750f367de18624fd75d07ee79782ed6df8d4f",
+          "sha512=3e3712cc1266ec1f27620f3508ea2ebba338f4083b07d8a69dccee1facfdc1971a6c39f9deea664d2a62fd7f2cfd2eae816ca4c274acfadaee992a3befc4b757"
+        ]
+      },
+      "name": "re",
+      "depends_raw": "\"ocaml\" {>= \"4.03\"} \"dune\" {>= \"2.0\"} \"ounit\" {with-test} \"seq\""
+    },
+    "host-system-mingw.1": {
+      "depends": [],
+      "version": "1",
+      "install": null,
+      "build": null,
+      "source": null,
+      "name": "host-system-mingw",
+      "depends_raw": null
+    }
+  },
+  "generated": {
+    "opam_version": "2.5.0",
+    "tool": "CommonsLang_OCaml.Dk.OpamLock@1.0.0"
+  },
+  "slots": {
+    "Release.Windows_x86": {
+      "opam_vars": {
+        "arch": "x86_32",
+        "os": "win32"
+      },
+      "solution": [
+        "ppx_base.v0.16.0",
+        "dune.3.19.1",
+        "re.1.11.0",
+        "ppx_sexp_conv.v0.16.0",
+        "cppo.1.6.9",
+        "ocaml-compiler-libs.v0.12.4",
+        "uuidm.0.9.8",
+        "stdlib-shims.0.3.0",
+        "stdio.v0.16.0",
+        "MlFront_Signify.2.4.2",
+        "cstruct.6.2.0",
+        "cmdliner.1.3.0",
+        "ocaml.5.1.1",
+        "base.v0.16.4",
+        "xdg.3.19.1",
+        "ppx_enumerate.v0.16.0",
+        "mirage-crypto.2.0.2",
+        "UnifiedScript_Std.2.4.2",
+        "ppx_compare.v0.16.0",
+        "system-mingw.1",
+        "dkml-c-probe.3.2.0",
+        "ocaml-options-vanilla.1",
+        "host-system-mingw.1",
+        "duration.0.2.1",
+        "MlFront_Logs.2.4.2",
+        "logs.0.7.0",
+        "DkZero_Exec.2.4.2",
+        "topkg.1.0.8",
+        "spawn.v0.15.1",
+        "MlFront_Core.2.4.2",
+        "base-threads.base",
+        "host-arch-x86_32.1",
+        "seq.base",
+        "menhir.20231231",
+        "time_now.v0.16.0",
+        "ptime.1.2.0",
+        "sexplib0.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "ocaml-option-bytecode-only.1",
+        "ocaml-base-compiler.5.1.1",
+        "fmlib_pretty.0.6.2",
+        "ppx_here.v0.16.0",
+        "fmlib_parse.0.6.2",
+        "base-domains.base",
+        "MlFront_ProgressZig.2.4.2",
+        "base-unix.base",
+        "menhirLib.20231231",
+        "ppx_assert.v0.16.0",
+        "dune-configurator.3.19.1",
+        "ocaml-config.3",
+        "ppxlib.0.35.0",
+        "MlFront_ProgressPeriod.2.4.2",
+        "menhirSdk.20231231",
+        "MlFront_Progress.2.4.2",
+        "ppx_deriving.6.0.3",
+        "ocaml-env-mingw32.1",
+        "base-bigarray.base",
+        "ocamlbuild.0.14.2+win+unix",
+        "eqaf.0.9",
+        "MlFront_Lua.2.4.2",
+        "digestif.1.3.0",
+        "stringext.1.6.0",
+        "MlFront_Console.2.4.2",
+        "MlFront_Cache.2.4.2",
+        "ppx_globalize.v0.16.0",
+        "jst-config.v0.16.0",
+        "base-nnp.base",
+        "jane-street-headers.v0.16.0",
+        "ppx_optcomp.v0.16.0",
+        "mingw-w64-shims.0.2.0",
+        "MlFront_Thunk.2.4.2",
+        "fmlib_std.0.6.2",
+        "mirage-crypto-rng.2.0.2",
+        "DkZero_RuntimeC.2.4.2",
+        "csexp.1.5.2",
+        "MlFront_ZipFile.2.4.2",
+        "ppx_inline_test.v0.16.0",
+        "ppx_derivers.1.2.1",
+        "uucp.15.0.0",
+        "menhirCST.20231231",
+        "DkZero_Base.2.4.2",
+        "ppx_hash.v0.16.0",
+        "flexdll.0.44",
+        "ocamlfind.1.9.5",
+        "fmt.0.9.0",
+        "conf-mingw-w64-gcc-i686.1"
+      ]
+    },
+    "Release.Darwin_arm64": {
+      "opam_vars": {
+        "arch": "arm64",
+        "os": "macos"
+      },
+      "solution": [
+        "ppx_hash.v0.16.0",
+        "dune-configurator.3.19.1",
+        "time_now.v0.16.0",
+        "stdio.v0.16.0",
+        "csexp.1.5.2",
+        "ppx_assert.v0.16.0",
+        "xdg.3.19.1",
+        "uuidm.0.9.8",
+        "menhirCST.20231231",
+        "DkZero_Base.2.4.2",
+        "cmdliner.1.3.0",
+        "ocamlbuild.0.14.2+win+unix",
+        "base.v0.16.4",
+        "ppxlib.0.35.0",
+        "ocaml-config.3",
+        "ppx_inline_test.v0.16.1",
+        "dune.3.19.1",
+        "ppx_derivers.1.2.1",
+        "MlFront_Cache.2.4.2",
+        "eqaf.0.9",
+        "MlFront_ProgressZig.2.4.2",
+        "MlFront_Logs.2.4.2",
+        "DkZero_RuntimeC.2.4.2",
+        "uucp.15.0.0",
+        "MlFront_ProgressPeriod.2.4.2",
+        "base-threads.base",
+        "logs.0.7.0",
+        "topkg.1.0.8",
+        "mirage-crypto.2.0.2",
+        "stringext.1.6.0",
+        "UnifiedScript_Std.2.4.2",
+        "ppx_here.v0.16.0",
+        "ppx_compare.v0.16.0",
+        "ocamlfind.1.9.5",
+        "fmt.0.9.0",
+        "seq.base",
+        "fmlib_std.0.6.2",
+        "base-domains.base",
+        "menhir.20231231",
+        "base-unix.base",
+        "ocaml.5.1.1",
+        "ppx_globalize.v0.16.0",
+        "duration.0.2.1",
+        "ppx_base.v0.16.0",
+        "stdlib-shims.0.3.0",
+        "MlFront_ZipFile.2.4.2",
+        "ocaml-base-compiler.5.1.1",
+        "MlFront_Thunk.2.4.2",
+        "ppx_sexp_conv.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "base-bigarray.base",
+        "ppx_deriving.6.0.3",
+        "fmlib_parse.0.6.2",
+        "MlFront_Signify.2.4.2",
+        "dkml-c-probe.3.2.0",
+        "MlFront_Progress.2.4.2",
+        "MlFront_Lua.2.4.2",
+        "ptime.1.2.0",
+        "MlFront_Core.2.4.2",
+        "base-nnp.base",
+        "MlFront_Console.2.4.2",
+        "spawn.v0.15.1",
+        "ocaml-compiler-libs.v0.12.4",
+        "menhirLib.20231231",
+        "jane-street-headers.v0.16.0",
+        "ocaml-options-vanilla.1",
+        "digestif.1.3.0",
+        "cstruct.6.2.0",
+        "menhirSdk.20231231",
+        "sexplib0.v0.16.0",
+        "ppx_optcomp.v0.16.0",
+        "mirage-crypto-rng.2.0.2",
+        "DkZero_Exec.2.4.2",
+        "re.1.11.0",
+        "fmlib_pretty.0.6.2",
+        "ppx_enumerate.v0.16.0",
+        "jst-config.v0.16.0",
+        "cppo.1.6.9"
+      ]
+    },
+    "Release.Linux_arm64": {
+      "opam_vars": {
+        "arch": "arm64",
+        "os": "linux"
+      },
+      "solution": [
+        "ppx_hash.v0.16.0",
+        "dune-configurator.3.19.1",
+        "time_now.v0.16.0",
+        "stdio.v0.16.0",
+        "csexp.1.5.2",
+        "ppx_assert.v0.16.0",
+        "xdg.3.19.1",
+        "uuidm.0.9.8",
+        "menhirCST.20231231",
+        "DkZero_Base.2.4.2",
+        "cmdliner.1.3.0",
+        "ocamlbuild.0.14.2+win+unix",
+        "base.v0.16.4",
+        "ppxlib.0.35.0",
+        "ocaml-config.3",
+        "ppx_inline_test.v0.16.1",
+        "dune.3.19.1",
+        "ppx_derivers.1.2.1",
+        "MlFront_Cache.2.4.2",
+        "eqaf.0.9",
+        "MlFront_ProgressZig.2.4.2",
+        "MlFront_Logs.2.4.2",
+        "DkZero_RuntimeC.2.4.2",
+        "uucp.15.0.0",
+        "MlFront_ProgressPeriod.2.4.2",
+        "base-threads.base",
+        "logs.0.7.0",
+        "topkg.1.0.8",
+        "mirage-crypto.2.0.2",
+        "stringext.1.6.0",
+        "UnifiedScript_Std.2.4.2",
+        "ppx_here.v0.16.0",
+        "ppx_compare.v0.16.0",
+        "ocamlfind.1.9.5",
+        "fmt.0.9.0",
+        "seq.base",
+        "fmlib_std.0.6.2",
+        "base-domains.base",
+        "menhir.20231231",
+        "base-unix.base",
+        "ocaml.5.1.1",
+        "ppx_globalize.v0.16.0",
+        "duration.0.2.1",
+        "ppx_base.v0.16.0",
+        "stdlib-shims.0.3.0",
+        "MlFront_ZipFile.2.4.2",
+        "ocaml-base-compiler.5.1.1",
+        "MlFront_Thunk.2.4.2",
+        "ppx_sexp_conv.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "base-bigarray.base",
+        "ppx_deriving.6.0.3",
+        "fmlib_parse.0.6.2",
+        "MlFront_Signify.2.4.2",
+        "dkml-c-probe.3.2.0",
+        "MlFront_Progress.2.4.2",
+        "MlFront_Lua.2.4.2",
+        "ptime.1.2.0",
+        "MlFront_Core.2.4.2",
+        "base-nnp.base",
+        "MlFront_Console.2.4.2",
+        "spawn.v0.15.1",
+        "ocaml-compiler-libs.v0.12.4",
+        "menhirLib.20231231",
+        "jane-street-headers.v0.16.0",
+        "ocaml-options-vanilla.1",
+        "digestif.1.3.0",
+        "cstruct.6.2.0",
+        "menhirSdk.20231231",
+        "sexplib0.v0.16.0",
+        "ppx_optcomp.v0.16.0",
+        "mirage-crypto-rng.2.0.2",
+        "DkZero_Exec.2.4.2",
+        "re.1.11.0",
+        "fmlib_pretty.0.6.2",
+        "ppx_enumerate.v0.16.0",
+        "jst-config.v0.16.0",
+        "cppo.1.6.9"
+      ]
+    },
+    "Release.Windows_x86_64": {
+      "opam_vars": {
+        "arch": "x86_64",
+        "os": "win32"
+      },
+      "solution": [
+        "ppx_base.v0.16.0",
+        "dkml-c-probe.3.2.0",
+        "re.1.11.0",
+        "ppx_sexp_conv.v0.16.0",
+        "conf-mingw-w64-gcc-x86_64.1",
+        "ocaml-base-compiler.5.1.1",
+        "uuidm.0.9.8",
+        "stdlib-shims.0.3.0",
+        "stdio.v0.16.0",
+        "MlFront_ProgressZig.2.4.2",
+        "csexp.1.5.2",
+        "base-unix.base",
+        "mirage-crypto-rng.2.0.2",
+        "arch-x86_64.1",
+        "xdg.3.19.1",
+        "ppx_enumerate.v0.16.0",
+        "mingw-w64-shims.0.2.0",
+        "UnifiedScript_Std.2.4.2",
+        "ppx_compare.v0.16.0",
+        "system-mingw.1",
+        "digestif.1.3.0",
+        "ocaml-options-vanilla.1",
+        "host-arch-x86_64.1",
+        "dune-configurator.3.19.1",
+        "MlFront_Core.2.4.2",
+        "jst-config.v0.16.0",
+        "DkZero_Base.2.4.2",
+        "topkg.1.0.8",
+        "spawn.v0.15.1",
+        "MlFront_Console.2.4.2",
+        "base-nnp.base",
+        "fmt.0.9.0",
+        "seq.base",
+        "MlFront_ZipFile.2.4.2",
+        "time_now.v0.16.0",
+        "ptime.1.2.0",
+        "sexplib0.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "ocaml-env-mingw64.1",
+        "ocaml.5.1.1",
+        "fmlib_parse.0.6.2",
+        "ppx_here.v0.16.0",
+        "flexdll.0.44",
+        "base-bigarray.base",
+        "MlFront_ProgressPeriod.2.4.2",
+        "base-threads.base",
+        "menhirCST.20231231",
+        "ppx_assert.v0.16.0",
+        "dune.3.19.1",
+        "ocaml-compiler-libs.v0.12.4",
+        "ppxlib.0.35.0",
+        "MlFront_Progress.2.4.2",
+        "menhirLib.20231231",
+        "MlFront_Lua.2.4.2",
+        "ppx_deriving.6.0.3",
+        "ocaml-config.3",
+        "base.v0.16.4",
+        "ocamlbuild.0.14.2+win+unix",
+        "duration.0.2.1",
+        "MlFront_Logs.2.4.2",
+        "DkZero_RuntimeC.2.4.2",
+        "stringext.1.6.0",
+        "MlFront_Cache.2.4.2",
+        "logs.0.7.0",
+        "ppx_globalize.v0.16.0",
+        "jane-street-headers.v0.16.0",
+        "base-domains.base",
+        "host-system-mingw.1",
+        "ppx_optcomp.v0.16.0",
+        "menhirSdk.20231231",
+        "MlFront_Signify.2.4.2",
+        "fmlib_pretty.0.6.2",
+        "mirage-crypto.2.0.2",
+        "DkZero_Exec.2.4.2",
+        "cppo.1.6.9",
+        "MlFront_Thunk.2.4.2",
+        "ppx_inline_test.v0.16.1",
+        "ppx_derivers.1.2.1",
+        "uucp.15.0.0",
+        "menhir.20231231",
+        "cstruct.6.2.0",
+        "ppx_hash.v0.16.0",
+        "eqaf.0.9",
+        "ocamlfind.1.9.5",
+        "fmlib_std.0.6.2",
+        "cmdliner.1.3.0"
+      ]
+    },
+    "Release.Linux_x86": {
+      "opam_vars": {
+        "arch": "x86_32",
+        "os": "linux"
+      },
+      "solution": [
+        "ppx_globalize.v0.16.0",
+        "dune-configurator.3.19.1",
+        "stringext.1.6.0",
+        "spawn.v0.15.1",
+        "csexp.1.5.2",
+        "ocamlfind.1.9.5",
+        "uuidm.0.9.8",
+        "uucp.15.0.0",
+        "menhirCST.20231231",
+        "DkZero_Base.2.4.2",
+        "cmdliner.1.3.0",
+        "ocaml-options-vanilla.1",
+        "base.v0.16.4",
+        "ppx_sexp_conv.v0.16.0",
+        "ocaml-config.3",
+        "ppx_here.v0.16.0",
+        "dune.3.19.1",
+        "ppx_compare.v0.16.0",
+        "MlFront_Cache.2.4.2",
+        "eqaf.0.9",
+        "MlFront_ProgressZig.2.4.2",
+        "MlFront_Logs.2.4.2",
+        "DkZero_RuntimeC.2.4.2",
+        "UnifiedScript_Std.2.4.2",
+        "MlFront_ProgressPeriod.2.4.2",
+        "base-threads.base",
+        "logs.0.7.0",
+        "time_now.v0.16.0",
+        "mirage-crypto.2.0.2",
+        "stdlib-shims.0.3.0",
+        "topkg.1.0.8",
+        "ppx_hash.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "ocamlbuild.0.14.2+win+unix",
+        "fmt.0.9.0",
+        "re.1.11.0",
+        "fmlib_std.0.6.2",
+        "base-domains.base",
+        "menhir.20231231",
+        "base-unix.base",
+        "ocaml.5.1.1",
+        "ppx_enumerate.v0.16.0",
+        "duration.0.2.1",
+        "ppx_assert.v0.16.0",
+        "stdio.v0.16.0",
+        "MlFront_ZipFile.2.4.2",
+        "ocaml-base-compiler.5.1.1",
+        "MlFront_Thunk.2.4.2",
+        "ppx_optcomp.v0.16.0",
+        "ppx_base.v0.16.0",
+        "base-bigarray.base",
+        "ppx_derivers.1.2.1",
+        "fmlib_parse.0.6.2",
+        "MlFront_Signify.2.4.2",
+        "dkml-c-probe.3.2.0",
+        "xdg.3.19.1",
+        "MlFront_Progress.2.4.2",
+        "MlFront_Lua.2.4.2",
+        "ppxlib.0.35.0",
+        "MlFront_Core.2.4.2",
+        "base-nnp.base",
+        "MlFront_Console.2.4.2",
+        "sexplib0.v0.16.0",
+        "ocaml-compiler-libs.v0.12.4",
+        "menhirLib.20231231",
+        "jane-street-headers.v0.16.0",
+        "ocaml-option-bytecode-only.1",
+        "digestif.1.3.0",
+        "cstruct.6.2.0",
+        "menhirSdk.20231231",
+        "seq.base",
+        "ppx_inline_test.v0.16.0",
+        "mirage-crypto-rng.2.0.2",
+        "DkZero_Exec.2.4.2",
+        "ptime.1.2.0",
+        "fmlib_pretty.0.6.2",
+        "ppx_deriving.6.0.3",
+        "jst-config.v0.16.0",
+        "cppo.1.6.9"
+      ]
+    },
+    "Release.Darwin_x86_64": {
+      "opam_vars": {
+        "arch": "x86_64",
+        "os": "macos"
+      },
+      "solution": [
+        "ppx_hash.v0.16.0",
+        "dune-configurator.3.19.1",
+        "time_now.v0.16.0",
+        "stdio.v0.16.0",
+        "csexp.1.5.2",
+        "ppx_assert.v0.16.0",
+        "xdg.3.19.1",
+        "uuidm.0.9.8",
+        "menhirCST.20231231",
+        "DkZero_Base.2.4.2",
+        "cmdliner.1.3.0",
+        "ocamlbuild.0.14.2+win+unix",
+        "base.v0.16.4",
+        "ppxlib.0.35.0",
+        "ocaml-config.3",
+        "ppx_inline_test.v0.16.1",
+        "dune.3.19.1",
+        "ppx_derivers.1.2.1",
+        "MlFront_Cache.2.4.2",
+        "eqaf.0.9",
+        "MlFront_ProgressZig.2.4.2",
+        "MlFront_Logs.2.4.2",
+        "DkZero_RuntimeC.2.4.2",
+        "uucp.15.0.0",
+        "MlFront_ProgressPeriod.2.4.2",
+        "base-threads.base",
+        "logs.0.7.0",
+        "topkg.1.0.8",
+        "mirage-crypto.2.0.2",
+        "stringext.1.6.0",
+        "UnifiedScript_Std.2.4.2",
+        "ppx_here.v0.16.0",
+        "ppx_compare.v0.16.0",
+        "ocamlfind.1.9.5",
+        "fmt.0.9.0",
+        "seq.base",
+        "fmlib_std.0.6.2",
+        "base-domains.base",
+        "menhir.20231231",
+        "base-unix.base",
+        "ocaml.5.1.1",
+        "ppx_globalize.v0.16.0",
+        "duration.0.2.1",
+        "ppx_base.v0.16.0",
+        "stdlib-shims.0.3.0",
+        "MlFront_ZipFile.2.4.2",
+        "ocaml-base-compiler.5.1.1",
+        "MlFront_Thunk.2.4.2",
+        "ppx_sexp_conv.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "base-bigarray.base",
+        "ppx_deriving.6.0.3",
+        "fmlib_parse.0.6.2",
+        "MlFront_Signify.2.4.2",
+        "dkml-c-probe.3.2.0",
+        "MlFront_Progress.2.4.2",
+        "MlFront_Lua.2.4.2",
+        "ptime.1.2.0",
+        "MlFront_Core.2.4.2",
+        "base-nnp.base",
+        "MlFront_Console.2.4.2",
+        "spawn.v0.15.1",
+        "ocaml-compiler-libs.v0.12.4",
+        "menhirLib.20231231",
+        "jane-street-headers.v0.16.0",
+        "ocaml-options-vanilla.1",
+        "digestif.1.3.0",
+        "cstruct.6.2.0",
+        "menhirSdk.20231231",
+        "sexplib0.v0.16.0",
+        "ppx_optcomp.v0.16.0",
+        "mirage-crypto-rng.2.0.2",
+        "DkZero_Exec.2.4.2",
+        "re.1.11.0",
+        "fmlib_pretty.0.6.2",
+        "ppx_enumerate.v0.16.0",
+        "jst-config.v0.16.0",
+        "cppo.1.6.9"
+      ]
+    },
+    "Release.Linux_x86_64": {
+      "opam_vars": {
+        "arch": "x86_64",
+        "os": "linux"
+      },
+      "solution": [
+        "ppx_hash.v0.16.0",
+        "dune-configurator.3.19.1",
+        "time_now.v0.16.0",
+        "stdio.v0.16.0",
+        "csexp.1.5.2",
+        "ppx_assert.v0.16.0",
+        "xdg.3.19.1",
+        "uuidm.0.9.8",
+        "menhirCST.20231231",
+        "DkZero_Base.2.4.2",
+        "cmdliner.1.3.0",
+        "ocamlbuild.0.14.2+win+unix",
+        "base.v0.16.4",
+        "ppxlib.0.35.0",
+        "ocaml-config.3",
+        "ppx_inline_test.v0.16.1",
+        "dune.3.19.1",
+        "ppx_derivers.1.2.1",
+        "MlFront_Cache.2.4.2",
+        "eqaf.0.9",
+        "MlFront_ProgressZig.2.4.2",
+        "MlFront_Logs.2.4.2",
+        "DkZero_RuntimeC.2.4.2",
+        "uucp.15.0.0",
+        "MlFront_ProgressPeriod.2.4.2",
+        "base-threads.base",
+        "logs.0.7.0",
+        "topkg.1.0.8",
+        "mirage-crypto.2.0.2",
+        "stringext.1.6.0",
+        "UnifiedScript_Std.2.4.2",
+        "ppx_here.v0.16.0",
+        "ppx_compare.v0.16.0",
+        "ocamlfind.1.9.5",
+        "fmt.0.9.0",
+        "seq.base",
+        "fmlib_std.0.6.2",
+        "base-domains.base",
+        "menhir.20231231",
+        "base-unix.base",
+        "ocaml.5.1.1",
+        "ppx_globalize.v0.16.0",
+        "duration.0.2.1",
+        "ppx_base.v0.16.0",
+        "stdlib-shims.0.3.0",
+        "MlFront_ZipFile.2.4.2",
+        "ocaml-base-compiler.5.1.1",
+        "MlFront_Thunk.2.4.2",
+        "ppx_sexp_conv.v0.16.0",
+        "ppx_cold.v0.16.0",
+        "base-bigarray.base",
+        "ppx_deriving.6.0.3",
+        "fmlib_parse.0.6.2",
+        "MlFront_Signify.2.4.2",
+        "dkml-c-probe.3.2.0",
+        "MlFront_Progress.2.4.2",
+        "MlFront_Lua.2.4.2",
+        "ptime.1.2.0",
+        "MlFront_Core.2.4.2",
+        "base-nnp.base",
+        "MlFront_Console.2.4.2",
+        "spawn.v0.15.1",
+        "ocaml-compiler-libs.v0.12.4",
+        "menhirLib.20231231",
+        "jane-street-headers.v0.16.0",
+        "ocaml-options-vanilla.1",
+        "digestif.1.3.0",
+        "cstruct.6.2.0",
+        "menhirSdk.20231231",
+        "sexplib0.v0.16.0",
+        "ppx_optcomp.v0.16.0",
+        "mirage-crypto-rng.2.0.2",
+        "DkZero_Exec.2.4.2",
+        "re.1.11.0",
+        "fmlib_pretty.0.6.2",
+        "ppx_enumerate.v0.16.0",
+        "jst-config.v0.16.0",
+        "cppo.1.6.9"
+      ]
+    }
+  },
+  "opam_repositories": [
+    {
+      "commit": null,
+      "name": "ocaml-mlfront-lock",
+      "url": "git+https://github.com/ocaml/opam-repository.git#93d44806c4a413399879355cb22fb53ba00a1ba5"
+    },
+    {
+      "commit": null,
+      "name": "default",
+      "url": "https://opam.ocaml.org"
+    },
+    {
+      "commit": null,
+      "name": "diskuv-mlfront-lock",
+      "url": "git+https://github.com/diskuv/diskuv-opam-repository.git#2.4.2-39"
+    }
+  ],
+  "schema_version": {
+    "minor": 0,
+    "major": 1
+  },
+  "$schema": "https://diskuv.com/dk/schema/dk-opam-lock-1.0.json"
+}

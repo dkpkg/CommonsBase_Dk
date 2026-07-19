@@ -144,3 +144,17 @@
   'asset'
   '780'
   'sha256:dfc038be9e38fdc212e933d5f478bdf4110f197637d15d6b3a3660c904e30928'
+
+### CommonsBase_Dk.Dk0@2.4.2
+
+  % unified.asset { name="LockBundle", file="assets/dk0/dk-opam-lock.jsonc" }
+  'asset'
+  '89241'
+  'sha256:1f558e43a779e1d0634afee851e1958afeba36831d175869723ff57358c58b7f'
+
+### CommonsBase_Dk.Dk0Localize@2.4.2
+
+  % unified.asset { name="Wrapper", file="assets/dk0/localize.sh" }
+  'asset'
+  '729'
+  'sha256:ea3079f457956ef2f6b7110ef0391cae507836c5588d7d4339fc48afb7569a20'

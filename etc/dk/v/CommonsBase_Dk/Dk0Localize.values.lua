@@ -8,15 +8,16 @@
 -- `localize` step regenerates them -- ci/localize-pristine.sh stamps the version
 -- into each <pkg>.opam.template -> <pkg>.opam and copies dune-project.template
 -- -> dune-project. This rule runs that script over the raw source asset and
--- emits the localized tree as one output.zip object, which
--- CommonsBase_Dk.Dk0Build.F_BuildLockedPackage stages (get-object) as the source
--- for every local package. Localize is pure text substitution (sh + awk/sed, no
--- OCaml toolchain), so the object is host-independent and is produced on
--- whichever slot first requests it.
+-- emits the localized tree as one output.zip object, which the generic build
+-- rule CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage stages (get-object,
+-- via its localsrc= parameter) as the source for every local package. Localize
+-- is pure text substitution (sh + awk/sed, no OCaml toolchain), so the object is
+-- host-independent and is produced on whichever slot first requests it.
 --
--- This lives in its own module (not Dk0Build) so its output object
--- CommonsBase_Dk.Dk0.MlFrontSource is produced by a rule with a stable, minimal
--- signature; Dk0Build only consumes the object, never this rule.
+-- This lives in its own dk0-specific module (localizing the MlFront tree is not
+-- a generic opam concern) so its output object CommonsBase_Dk.Dk0.MlFrontSource
+-- is produced by a rule with a stable, minimal signature; the build rule only
+-- consumes the object, never this rule.
 local M = {
   id = "CommonsBase_Dk.Dk0Localize@2.4.2"
 }
@@ -48,15 +49,7 @@ function rules.F_LocalizeSource(command, request)
           id = modver,
           slots = H.SLOTS,
           execution_slot = "Release.execution_abi"
-        }
-      }
-    }
-  end
-  if command == "declareinput" then
-    local rawmodver = assert(request.user.rawmodver, "please provide `rawmodver=MODULE@VERSION`")
-    local rawassetpath = assert(request.user.rawassetpath, "please provide `rawassetpath=PATH`")
-    return {
-      declareinput = {
+        },
         input_assets = {
           { id = rawmodver, path = rawassetpath }
         }
@@ -82,7 +75,7 @@ function rules.F_LocalizeSource(command, request)
   -- shell operators). The wrapper puts /usr/bin on PATH (for awk/sed on every
   -- platform; MSYS2 maps it to the dash tree on Windows) and runs the source's
   -- own ci/localize-pristine.sh from mlfront-2.4.2/.
-  local localizefetch = "$(get-asset CommonsBase_Dk.Dk0Localize.Wrapper@2.4.2 -p localize.sh -f localize.sh)"
+  local localizefetch = "$(get-asset CommonsBase_Dk.Dk0Localize.Wrapper@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
 
   local commands = {}
   -- Decompress the .tgz to a .tar in the build root (7zz names it mlfront-raw.tar
