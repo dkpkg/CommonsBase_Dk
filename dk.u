@@ -428,7 +428,7 @@
 
 ### CommonsBase_Dk.Dk0Localize@2.4.2
 
-  % unified.asset { name="Wrapper", file="assets/dk0/localize.sh" }
+  % unified.asset { name="Script", file="assets/dk0/localize.sh" }
   'asset'
-  '729'
-  'sha256:ea3079f457956ef2f6b7110ef0391cae507836c5588d7d4339fc48afb7569a20'
+  '827'
+  'sha256:5f8ebb02d285d8d5671718e30baa511081585c33ff730139c6f44648e7438096'
