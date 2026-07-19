@@ -98,18 +98,6 @@
   '89241'
   'sha256:1f558e43a779e1d0634afee851e1958afeba36831d175869723ff57358c58b7f'
 
-### CommonsBase_Dk.Dk0Build@2.4.2
-
-  % unified.asset { name="Wrapper", file="assets/dk0/wrapper.sh" }
-  'asset'
-  '9942'
-  'sha256:b078139616f38ebe4d56c534ce5899ec47db6f0fcb3a78f8b2cab6525955ec51'
-
-  % unified.asset { name="SeqMeta", file="assets/dk0/seq-META" }
-  'asset'
-  '137'
-  'sha256:e95062b4d0519ef8335c02f7d0f1952d11b814c7ab7e6d566a206116162fa2be'
-
 ### CommonsBase_Dk.Dk0Localize@2.4.2
 
   % unified.asset { name="Wrapper", file="assets/dk0/localize.sh" }
