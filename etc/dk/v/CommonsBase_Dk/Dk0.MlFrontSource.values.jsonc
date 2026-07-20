@@ -25,11 +25,14 @@
     {
       "id": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.2",
       // Fetch + extract the raw source at top level: dk0 extracts the .zip
-      // natively and `-n 1` strips its version-specific top-level directory
-      // (MlFront-<ver>/), so the source lands directly in the fixed dir mlfront/.
+      // natively. It is extracted UNSTRIPPED into src/, keeping the archive's
+      // version-specific top directory src/MlFront-<version>/, so the localize
+      // wrapper can derive the full pipeline version from that directory name
+      // (the .git-less archive defeats ci git describe) and then normalize it to
+      // the fixed dir mlfront/.
       "precommands": {
         "private": [
-          "get-asset CommonsBase_Dk.Dk0Localize.RawSrc@2.4.2 -p MlFront-2.4.2.282.zip -n 1 -d mlfront"
+          "get-asset CommonsBase_Dk.Dk0Localize.RawSrc@2.4.2 -p MlFront-2.4.2.282.zip -d src"
         ]
       },
       "function": {

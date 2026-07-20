@@ -1,5 +1,27 @@
 # CommonsBase_Dk
 
+## Overview
+
+Packages the dk0 build tool — Diskuv's MlFront reference implementation — as a
+recipe that rebuilds `bin/dk0.exe` from source, one opam package at a time.
+
+`CommonsBase_Dk` builds dk0 (MlFront's `DkZero_Exec`) as a per-package,
+content-addressed, resumable closure. A checked-in opam lock drives
+`Dk0.Closure`, which run-functions the generic `CommonsLang_OCaml.Dk.OpamBuild`
+rule for every package in `DkZero_Exec`'s dependency closure so each package is
+its own cached dk object; an interrupted build resumes from the completed
+objects. The thin `Dk0` recipe then republishes `DkZero_Exec`'s install prefix
+as `bin/dk0.exe`. The shared MlFront source is fetched from a URL bundle and
+localized into `Dk0.MlFrontSource` (opam/dune metadata regenerated). `Dk1` is
+wired to build the multi-threaded `DkOne_Exec` (dk1) the same way.
+
+(The legacy `Dk0.Bundle`/`Dk0.DuneCache` source-cache slice is retained only
+until the distribution is migrated off it; it is not part of the build above.)
+
+## License
+
+Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
+
 ## workspace
   %% actual_version("2.4.2.282")
   'actual_version'
@@ -405,12 +427,10 @@
         'sha1:da5836e91e1be4f4054b851a0e03f1060ed7afbc'
       } } }
 
--- Bootstrap distribution entrypoint for CommonsBase_Dk.Dk0.DuneCache@2.4.2 and the
--- Windows x86_64-only CommonsBase_Dk.Dk0@2.4.2 executable slice.
---
--- The current concrete slice repackages the latest MlFront release tarball
--- into a reusable source/cache artifact, while the executable package emits
--- only the supported Windows x86_64 dk0.exe payload.
+-- Assets for the per-package dk0 build: the MSVC build activator
+-- (Apparatus.Dk0BuildWin), the checked-in opam lock (Dk0.LockBundle), and the
+-- MlFront localize wrapper (Dk0Localize.Script). Dk0.Closure drives the
+-- per-package build and the Dk0 recipe republishes bin/dk0.exe.
 
 ### CommonsBase_Dk.Apparatus@1.0.0
 
@@ -430,5 +450,5 @@
 
   % unified.asset { name="Script", file="assets/dk0/localize.sh" }
   'asset'
-  '827'
-  'sha256:5f8ebb02d285d8d5671718e30baa511081585c33ff730139c6f44648e7438096'
+  '2085'
+  'sha256:d00d5ed777c36759d2191d00ae8498d519a61ff37e4c5f03cf7856dfd32b4556'

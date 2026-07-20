@@ -1,91 +1,97 @@
-// CommonsBase_Dk.Dk0@2.4.2 -- the final dk0 executable per slot.
+// CommonsBase_Dk.Dk1@2.4.2 -- the final dk1 executable per slot.
 //
-// dk0 (MlFront's DkZero_Exec) is built from source as a per-package opam closure:
-// CommonsBase_Dk.Dk0.Closure@2.4.2 (the generated driver in
-// Dk0.Closure.values.jsonc) run-functions the generic OpamBuild rule for every
-// package in DkZero_Exec's locked dependency closure, in topological order, so
-// each package is its own content-addressed dk object and an interrupted build
-// resumes from the completed objects. Its output is DkZero_Exec's opam install
+// dk1 is MlFront's DkOne_Exec: the MULTI-THREADED implementation of the
+// DkZero_ExecCore virtual engine (dk0 is the single-threaded DkZero_Exec). It is
+// built from source as a per-package opam closure: CommonsBase_Dk.Dk1.Closure@2.4.2
+// (a generated driver, root DkOne_Exec) run-functions the generic OpamBuild rule
+// for every package in DkOne_Exec's locked dependency closure, in topological
+// order. That closure is dk0's closure plus the exec-refactor and multi-threaded
+// packages (DkZero_ExecCore, DkOne_RuntimeC with vendored moonpool, DkOne_Exec);
+// it adds no new external opam packages. Its output is DkOne_Exec's opam install
 // prefix as install.zip.
 //
-// This thin form republishes that prefix's executable as bin/dk0.exe. The precommand
+// This thin form republishes that prefix's executable as bin/dk1.exe. The precommand
 // extracts the closure's install.zip natively (get-object -m <zip> -d <dir> uses
-// dk0's built-in zip support, no external unzip) into ip/. DkZero_Exec installs the
-// binary under the dune public_name `dk0`, so the prefix carries bin/dk0.exe on
-// Windows and bin/dk0 on Unix; each slot copies its variant to the uniform output
-// path bin/dk0.exe.
+// dk0's built-in zip support, no external unzip) into ip/. DkOne_Exec installs the
+// binary under the dune public_name `dk1`, so the prefix carries bin/dk1.exe on
+// Windows and bin/dk1 on Unix; each slot copies its variant to the uniform output
+// path bin/dk1.exe.
 //
-// Validated: Release.Windows_x86_64 builds the full 67-package closure and this
-// form yields a bin/dk0.exe that reports `--version` 2.4.2.
+// NOTE (pending): Dk1.Closure requires a MlFront source that contains the DkOne_*
+// packages (newer than 2.4.2.282). Per the unify decision, the shared source is
+// bumped to the latest 2.4.2 release, the lock re-solved to add DkZero_ExecCore /
+// DkOne_RuntimeC / DkOne_Exec, and both Dk0.Closure and Dk1.Closure regenerated.
+// This wrapper is source-independent (the Dk0 form of it is validated end-to-end)
+// and validates for dk1 once that lands.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "forms": [
     {
-      "id": "CommonsBase_Dk.Dk0@2.4.2",
+      "id": "CommonsBase_Dk.Dk1@2.4.2",
       "precommands": {
         "private": [
-          "get-object CommonsBase_Dk.Dk0.Closure@2.4.2 -s ${SLOTNAME.request} -m ./install.zip -d ip"
+          "get-object CommonsBase_Dk.Dk1.Closure@2.4.2 -s ${SLOTNAME.request} -m ./install.zip -d ip"
         ]
       },
       "function": {
         "commands": [
           // Per-slot copy, gated with the `env -u ${SLOT.Release.<slot>}` trick
           // (dk0 drops a command whose referenced slot is not the one being
-          // built). Windows prefixes ship bin/dk0.exe; Unix prefixes ship bin/dk0.
+          // built). Windows prefixes ship bin/dk1.exe; Unix prefixes ship bin/dk1.
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Windows_x86_64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0.exe", "${SLOTABS.Release.Windows_x86_64}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1.exe", "${SLOTABS.Release.Windows_x86_64}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Windows_x86}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0.exe", "${SLOTABS.Release.Windows_x86}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1.exe", "${SLOTABS.Release.Windows_x86}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86_64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0", "${SLOTABS.Release.Linux_x86_64}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Linux_x86_64}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0", "${SLOTABS.Release.Linux_x86}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Linux_x86}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_arm64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0", "${SLOTABS.Release.Linux_arm64}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Linux_arm64}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Darwin_x86_64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0", "${SLOTABS.Release.Darwin_x86_64}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Darwin_x86_64}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Darwin_arm64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk0", "${SLOTABS.Release.Darwin_arm64}/bin/dk0.exe"
+            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Darwin_arm64}/bin/dk1.exe"
           ]
         ]
       },
       "outputs": {
         "assets": [
-          { "slots": ["Release.Windows_x86_64"], "paths": ["bin/dk0.exe"] },
-          { "slots": ["Release.Windows_x86"], "paths": ["bin/dk0.exe"] },
-          { "slots": ["Release.Linux_x86_64"], "paths": ["bin/dk0.exe"] },
-          { "slots": ["Release.Linux_x86"], "paths": ["bin/dk0.exe"] },
-          { "slots": ["Release.Linux_arm64"], "paths": ["bin/dk0.exe"] },
-          { "slots": ["Release.Darwin_x86_64"], "paths": ["bin/dk0.exe"] },
-          { "slots": ["Release.Darwin_arm64"], "paths": ["bin/dk0.exe"] }
+          { "slots": ["Release.Windows_x86_64"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Windows_x86"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Linux_x86_64"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Linux_x86"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Linux_arm64"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Darwin_x86_64"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Darwin_arm64"], "paths": ["bin/dk1.exe"] }
         ]
       }
     }
