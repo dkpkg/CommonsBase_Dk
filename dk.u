@@ -428,9 +428,11 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       } } }
 
 -- Assets for the per-package dk0 build: the MSVC build activator
--- (Apparatus.Dk0BuildWin), the checked-in opam lock (Dk0.LockBundle), and the
--- MlFront localize wrapper (Dk0Localize.Script). Dk0.Closure drives the
--- per-package build and the Dk0 recipe republishes bin/dk0.exe.
+-- (Apparatus.Dk0BuildWin) and the MlFront localize wrapper (Dk0Localize.Script).
+-- Dk0.Closure drives the per-package build and the Dk0 recipe republishes
+-- bin/dk0.exe. The opam lock is consumed straight from the localized MlFront
+-- source (mlfront/dk.opam-lock.jsonc via Dk0.MlFrontSource), not a separate
+-- checked-in copy, so it never drifts from what the archive actually ships.
 
 ### CommonsBase_Dk.Apparatus@1.0.0
 
@@ -438,13 +440,6 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'asset'
   '793'
   'sha256:01498036219d67f5f28855cad32ead976d3161f33595af7e8538fa3d5b50ef15'
-
-### CommonsBase_Dk.Dk0@2.4.2
-
-  % unified.asset { name="LockBundle", file="assets/dk0/dk-opam-lock.jsonc" }
-  'asset'
-  '89241'
-  'sha256:1f558e43a779e1d0634afee851e1958afeba36831d175869723ff57358c58b7f'
 
 ### CommonsBase_Dk.Dk0Localize@2.4.2
 

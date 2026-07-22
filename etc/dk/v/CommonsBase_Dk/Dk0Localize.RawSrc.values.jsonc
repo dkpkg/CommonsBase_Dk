@@ -2,9 +2,11 @@
 // build time rather than checked in. Dk0Localize.F_LocalizeSource fetches this
 // bundle (get-asset), runs ci/localize-pristine.sh over it, and emits the
 // localized tree as the CommonsBase_Dk.Dk0.MlFrontSource object. The archive is
-// the source for tag 2.4.2.282; localize stamps the base version 2.4.2 into the
-// generated opam files. GitLab -/archive/ tarballs are deterministic, so the
-// pinned sha256 is stable.
+// the source for tag 2.4.2.287, the first tag whose checked-in dk.opam-lock.jsonc
+// includes dk1's DkOne_Exec / DkOne_RuntimeC / DkZero_ExecCore (2.4.2.285 already
+// carried the dk1 source but its lock had not been regenerated yet); localize
+// stamps the base version 2.4.2 into the generated opam files. GitLab -/archive/
+// tarballs are deterministic, so the pinned sha256 is stable.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
@@ -16,7 +18,7 @@
           {
             "name": "mlfront-gitlab",
             "mirrors": [
-              "https://gitlab.com/dkml/build-tools/MlFront/-/archive/2.4.2.282"
+              "https://gitlab.com/dkml/build-tools/MlFront/-/archive/2.4.2.287"
             ]
           }
         ]
@@ -24,11 +26,11 @@
       "assets": [
         {
           "origin": "mlfront-gitlab",
-          "path": "MlFront-2.4.2.282.zip",
+          "path": "MlFront-2.4.2.287.zip",
           "checksum": {
-            "sha256": "8115385ec92584a6a68daa42bc488a59db7d088cb89708eade79d91a20db6a27"
+            "sha256": "04ffbdd1a50f36c12a0df4255dddfa6230aa5697c2eb84702bea5f4fe8b61563"
           },
-          "size": 5321079
+          "size": 5406820
         }
       ]
     }
