@@ -2,8 +2,7 @@
 
 ## Overview
 
-Packages the dk0 build tool — Diskuv's MlFront reference implementation — as a
-recipe that rebuilds `bin/dk0.exe` from source, one opam package at a time.
+Packages the dk0 reference build system and dk1 multithreaded build system.
 
 `CommonsBase_Dk` builds dk0 (MlFront's `DkZero_Exec`) as a per-package,
 content-addressed, resumable closure. A checked-in opam lock drives
