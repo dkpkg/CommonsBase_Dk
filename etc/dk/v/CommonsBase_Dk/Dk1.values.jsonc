@@ -17,12 +17,10 @@
 // Windows and bin/dk1 on Unix; each slot copies its variant to the uniform output
 // path bin/dk1.exe.
 //
-// NOTE (pending): Dk1.Closure requires a MlFront source that contains the DkOne_*
-// packages (newer than 2.4.2.282). Per the unify decision, the shared source is
-// bumped to the latest 2.4.2 release, the lock re-solved to add DkZero_ExecCore /
-// DkOne_RuntimeC / DkOne_Exec, and both Dk0.Closure and Dk1.Closure regenerated.
-// This wrapper is source-independent (the Dk0 form of it is validated end-to-end)
-// and validates for dk1 once that lands.
+// Validated: Release.Windows_x86_64 builds the full 69-package closure (dk0's
+// closure plus DkZero_ExecCore / DkOne_RuntimeC / DkOne_Exec, added by the
+// source bump to 2.4.2.287 and the re-solved lock) and this form yields a
+// bin/dk1.exe that reports `--version` 2.4.2+rev-287.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
@@ -36,6 +34,14 @@
       },
       "function": {
         "commands": [
+          // Create the output bin/ directory. uutils coreutils 0.8.0 has no
+          // `install` applet (only cp/mkdir/mv/...), so the copy below cannot use
+          // `install -D` to make leading dirs; do it explicitly, once, ungated
+          // (${SLOT.request} is the slot being built).
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "mkdir", "-p", "${SLOT.request}/bin"
+          ],
           // Per-slot copy, gated with the `env -u ${SLOT.Release.<slot>}` trick
           // (dk0 drops a command whose referenced slot is not the one being
           // built). Windows prefixes ship bin/dk1.exe; Unix prefixes ship bin/dk1.
@@ -43,43 +49,43 @@
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Windows_x86_64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1.exe", "${SLOTABS.Release.Windows_x86_64}/bin/dk1.exe"
+            "cp", "ip/bin/dk1.exe", "${SLOT.request}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Windows_x86}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1.exe", "${SLOTABS.Release.Windows_x86}/bin/dk1.exe"
+            "cp", "ip/bin/dk1.exe", "${SLOT.request}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86_64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Linux_x86_64}/bin/dk1.exe"
+            "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Linux_x86}/bin/dk1.exe"
+            "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_arm64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Linux_arm64}/bin/dk1.exe"
+            "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Darwin_x86_64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Darwin_x86_64}/bin/dk1.exe"
+            "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Darwin_arm64}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
-            "install", "-D", "ip/bin/dk1", "${SLOTABS.Release.Darwin_arm64}/bin/dk1.exe"
+            "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
           ]
         ]
       },
