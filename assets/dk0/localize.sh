@@ -35,6 +35,10 @@ if [ -z "$d" ]; then
 fi
 version=$(basename "${d%/}" | sed 's|^MlFront-||')
 printf 'VERSION="%s"\n' "$version" > "${d}ci/version.source.sh"
-sed -i "s|(version [^)]*)|(version ${version})|" "${d}dune-project.template"
+# `sed -i` is not portable: BSD sed (macOS) reads the next argument as a
+# mandatory backup suffix, so it swallows the s|...| script. Edit via a temp
+# file, which works on GNU, BSD and MSYS2 sed alike.
+sed "s|(version [^)]*)|(version ${version})|" "${d}dune-project.template" > "${d}dune-project.template.localized"
+mv "${d}dune-project.template.localized" "${d}dune-project.template"
 ( cd "$d" && sh ci/localize-pristine.sh )
 mv "$d" mlfront
