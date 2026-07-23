@@ -69,7 +69,12 @@ jobs:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             options: -nosysinc
-            store: release
+            # Dk0/Dk1 build the full per-package opam closure from source (a
+            # multi-hour job), so use the GitHub Actions cache: each slot saves
+            # its value/trace stores every run (dk-distribute saves on always()),
+            # so a run that hits the 6h limit resumes next time and the value-id
+            # harvest run's build is reused by the fill run instead of rebuilt.
+            store: cache
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
