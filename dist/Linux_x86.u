@@ -1,9 +1,17 @@
-# Distribution for CommonsBase_Dk (Linux_x86)
+# Distribution for CommonsBase_Dk (Linux x86)
 
-The executable CommonsBase_Dk.Dk0@2.4.2 slice is still Windows x86_64 only.
+Ships the `dk0` and `dk1` executables, each built from source as a
+per-package opam closure (CommonsBase_Dk.Dk0.Closure / Dk1.Closure) and
+republished as a single native executable.
 
-## Dk0 Dune Cache
+## Dk0 executable
 
-  $ get-object CommonsBase_Dk.Dk0.DuneCache@2.4.2 -s Release.Linux_x86 -f ${RUNTIME}/Linux_x86-Dk0.DuneCache-2.4.2.zip
+  $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Linux_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Linux_x86-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86", value-id: "oiuq6bsilc53cah4wuvenvu72anlke5ivgpsh2wtrvgfzhwh7keia")\;
+  \dk.object(abi: "Release.Linux_x86", value-id: "o4h5jggmqq3mtlijgd2lwskjph5r54l7ovncykeysmc3uy5taueaa")\;
+
+## Dk1 executable
+
+  $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Linux_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86-dk1.exe
+  \test(pass)
+  \dk.object(abi: "Release.Linux_x86", value-id: "onky6wzcltkcvg3pplzpopxn6imh4z6gs7zpoq4bxyjupxh5sqtrq")\;

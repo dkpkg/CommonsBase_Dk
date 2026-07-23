@@ -1,9 +1,17 @@
-# Distribution for CommonsBase_Dk (Darwin_x86_64)
+# Distribution for CommonsBase_Dk (macOS x86_64)
 
-The executable CommonsBase_Dk.Dk0@2.4.2 slice is still Windows x86_64 only.
+Ships the `dk0` and `dk1` executables, each built from source as a
+per-package opam closure (CommonsBase_Dk.Dk0.Closure / Dk1.Closure) and
+republished as a single native executable.
 
-## Dk0 Dune Cache
+## Dk0 executable
 
-  $ get-object CommonsBase_Dk.Dk0.DuneCache@2.4.2 -s Release.Darwin_x86_64 -f ${RUNTIME}/Darwin_x86_64-Dk0.DuneCache-2.4.2.zip
+  $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Darwin_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Darwin_x86_64-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ofjl7xw75g7hnyp3s2xvztbpfybzbjq34yymbzev7ulnb53tprnwa")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ods3iu6rxzwukb742vffj4ezvitnilv75hnt74n6iarr23wdg6rxq")\;
+
+## Dk1 executable
+
+  $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Darwin_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Darwin_x86_64-dk1.exe
+  \test(pass)
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "om63a5rtp5e2tw7664l2axgadggob7lfmpzwtmgfgv3u5nj4jsnoq")\;
