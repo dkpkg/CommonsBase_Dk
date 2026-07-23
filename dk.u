@@ -30,10 +30,10 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'import'
   'github-l2'
   { {
-      'CommonsBase_Std', '2.6.20260719050058', {
-        'blake2b-256:b4887b451b4450013df5c28117c1a21c3a339d5e2816c1b18165ea63d2d57ce0',
-        'sha256:41c855f506cb00226675fe47f285596105683c013898c8a17d6529c55a2e9f42',
-        'sha1:f2fcc5a02f2e8f4a68bd5c4808f3518f61c1e489'
+      'CommonsBase_Std', '2.6.20260723055125', {
+        'blake2b-256:e98f3024a71bc5b6b22ca624a2c0b0a8dff5c8346d2e1396c137f2a380505285',
+        'sha256:972d2bf05f2a369731458c78f692eb0763d872a10718ebfc3cc28de53be6bf60',
+        'sha1:7b7908b4a94dadf04d4b85b5223ea660370fd9ec'
       } } }
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
@@ -56,22 +56,10 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'import'
   'github-l2'
   { {
-      'CommonsBase_GNU', '0.1.20260719015339', {
-        'blake2b-256:4c38a1445b9b00082b6c91edf9150b24b96bf674c404e7400eada3a59190948e',
-        'sha256:02e9e55ec9dda7dc21e8407f5a0575213f5bcb486e910c5cb6a3954f782e92f7',
-        'sha1:5cc5b511eecffc83a2cd4c831832b4431eec2c0d'
-      } },
-    {
-      'CommonsBase_Build', '0.1.20260707131124', {
-        'blake2b-256:ee5519a121205f83ca067aa6e6098c82118bd37238e1bb54c840edb3c1a10304',
-        'sha256:84c901c73178a0c784c7d893bf4e6895fbe09ffe86b8436557530cc4ba0000aa',
-        'sha1:85848478330e6c8ecf377f3dc2af449311ce3518'
-      } },
-    {
-      'CommonsBase_Build', '0.1.20260715044440', {
-        'blake2b-256:3b03ba3bb4cee4d5be5349835c906a32709d4361b9dfe5b246a612bef9dabc5b',
-        'sha256:48c298abbd37f7da611688af34031161cf3f3f98f4052e482a3942c087f8aa16',
-        'sha1:576fdddc29639d4ca23b1f82d428aee403530a9c'
+      'CommonsBase_GNU', '0.1.20260723070124', {
+        'blake2b-256:cf0c4d46a0473ece8027662d2731c81601f164687bbf9b302ea17dd003d5fcdc',
+        'sha256:53ac93e0238e270828f751287e047373171708e0aa9fc430111bf8437d4c2283',
+        'sha1:06a7e9944c9ac602549947a7c1792589814664ee'
       } },
     {
       'CommonsBase_Build', '0.1.20260718232516', {
@@ -80,146 +68,38 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:abd205268d9a7ca456f22b3425404e0f8ea06dff'
       } },
     {
-      'CommonsBase_FileMagic', '0.1.20260711004745', {
-        'blake2b-256:43c9d8f64f623f65e1d0236edaa1af4f0ddb4075c03c617e38a190e7b7aebd9a',
-        'sha256:e19c85c8a15903631b8b0808f703780657523fc9b801d9389ef69f149d78ff84',
-        'sha1:973c3449761d4c7b1e3e2dd04a6284a73631ac95'
+      'CommonsBase_FileMagic', '0.1.20260723064047', {
+        'blake2b-256:d730843f830dad46227b8163adc400dc84327e502e9ed5bbb8b36c780b4b5d6c',
+        'sha256:db96de9d371ce0514963d41f31756884826998efdaa2c17497486ea8c57106ad',
+        'sha1:ad4eeb33893e59edd043ff5fe6d631a7ca01b598'
       } },
     {
-      'CommonsBase_FileMagic', '0.1.20260715080743', {
-        'blake2b-256:69a304448adec6251b00c1fe4c0a6216f7e5810aeb9a69b6dada33b5125e0e5a',
-        'sha256:b1fe7b18ee50a99cbf6ec5d2c791225c322888bd4f2b48de9cb101eba9e7746d',
-        'sha1:c3dc402d758230e271c8af94ee762ef376238283'
-      } },
-    {
-      'CommonsBase_FileMagic', '0.1.20260718202707', {
-        'blake2b-256:632a1d1a997bb1f3b7063550d7024f161c269bb8c33c35ac95b457b45bf833d7',
-        'sha256:1670b8a3b35c74612180eb2d78f82404bc50022152ef16c6f5a898e58b04dee0',
-        'sha1:271302f5878552b3a3a0fe8d5fd34fedd4fd4f31'
-      } },
-    {
-      'CommonsBase_FileMagic', '0.1.20260718222059', {
-        'blake2b-256:1b259494e42e92d47c36b5f54798d24e503cef556bf35a86a614b92c9a4b1e0a',
-        'sha256:406432a7b2da0c265c1c1ed820f6cca52a80ec58e1782c7609fcc9a20af434f6',
-        'sha1:9702c592ae662069f1801a61457092f62b3f7839'
-      } },
-    {
-      'CommonsBase_FileMagic', '0.1.20260719003502', {
-        'blake2b-256:e9594d7fff2a4070b082d785aeca7b64f360825e50bfd4f28ab3017272322f03',
-        'sha256:ce100439bd9d1b6efe50273fb320aa1101a0f1a0dba234fee7f2579dff0275a7',
-        'sha1:8c5cfdfe79128c98f5cfc79afd3010eaaf7e5405'
-      } },
-    {
-      'CommonsBase_GNU', '0.1.20260711131127', {
-        'blake2b-256:61f30d245b1d38b2ed80dcf93b12fbee5aeef39dc8b3c4f2dde67e5ca900c74e',
-        'sha256:0666222941f713f0c2035024ddf653369473be02a6713ba1dd56155077fa9d63',
-        'sha1:9c556e96bd6533eca61ab6753ca7a5a673f601a2'
-      } },
-    {
-      'CommonsBase_GNU', '0.1.20260715081409', {
-        'blake2b-256:83982ef982de3afcd487b0038f11bde64a18fcf353dc748775c0a2aca5875324',
-        'sha256:cd4943b5ec4cdb21441483002343d847776ca32787f68f045a8a3b68e3ac3053',
-        'sha1:72353ba3f7569c0e35704ee29abe20d0a0f8a21c'
-      } },
-    {
-      'CommonsBase_LLVM', '0.1.20260706064049', {
-        'blake2b-256:96b2b482db4652a60893713c652b3bb5be89a143f5e3e7ca6178c99071e0cb11',
-        'sha256:8f32bfb59d849ce62898f23e712c58538c294c37d4cd3cf501f2f66b5cbf5820',
-        'sha1:a59ef674dab40f1c6cc2d2110464784320ab19bd'
-      } },
-    {
-      'CommonsBase_LLVM', '0.1.20260715044440', {
-        'blake2b-256:5e748f7f1beb707bf019c8ba741f62a527cdbd4941dfad79c619fe30b65dd258',
-        'sha256:89072616d92b4563617bb2228ef8353e788286f8794f251261801f3ab177c114',
-        'sha1:e8b1d8e157cb6007df9237a3f365582c74b8753f'
-      } },
-    {
-      'CommonsBase_LLVM', '0.1.20260718222115', {
-        'blake2b-256:eee1e2a3c2428835a2b7a56d3d613c8e32600781bd427f4c5284d3a5bc93e53a',
-        'sha256:22ad1455901c93ff1863e9f0e83717df563844a0782d31b3239bfb2766e2da42',
-        'sha1:cd51a7742ac635bf2bb9b7275821b37fea9de5f9'
-      } },
-    {
-      'CommonsBase_Remote', '0.1.20260711003204', {
-        'blake2b-256:0d28e832c2b4f9b4cf51f01efda13a4db6edb78c15bbf96dbe151d1de14fd94c',
-        'sha256:726c83e218ef22204dc7c1a8633539c650911a9d34b3113955061899e78a37d2',
-        'sha1:95ec85359195709ef23964952af21a1e66fc8f0e'
-      } },
-    {
-      'CommonsBase_Remote', '0.1.20260711004226', {
-        'blake2b-256:fefb1339cc0c17f9af74c447f19e919d62bf488e3e0f8249945e8a991418f4a6',
-        'sha256:64096f4246e3a0fd9b628d7e7f15bdc214cdbcb6e4ee4dc1db21cdc6be241255',
-        'sha1:9c2138db329d45714e2ef43ff5e0274b6fa9a5b0'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260705051043', {
-        'blake2b-256:156d1836ac816b113880ce282f686b35d9c75e3cb4d69523313f85983ba12d4a',
-        'sha256:105ff8e83d42da3aaa79f37540303f3b3db4cd237cecfd80739387c28c866564',
-        'sha1:f3e1dac5323d0dca4f7df6c77564051a99cd6dac'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260705103327', {
-        'blake2b-256:ef622d15f7fc08b9b30beb5fb767790c213f6e7d08aa266f17b6bae4b7a3f7c0',
-        'sha256:13cba7aa2844019b1acff5ee2ac929fb3cb9193fbfd684412ccc4563424a6d8c',
-        'sha1:44a9a04a3339a99b3c326907d69a689aa103f135'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260706021729', {
-        'blake2b-256:9d442eb18b3cce1667fbe8c3585825aafb3384aa6df825740cb6d30df41fde59',
-        'sha256:b8c8a247672604c9487de530cda33ac4e13bf586b6ec1cc47c4562fe879a4897',
-        'sha1:daa9de5e3ed097e8259f973455a722056d84cba6'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260707120738', {
-        'blake2b-256:fbf6d2ea9bb17069c9f7cd463ee027c291f6fb6692821286501d1523db0febe2',
-        'sha256:d312d776756f822769de278bbf8ccbb167ea2d84d7b1dbf61b47f3c4cdf86a71',
-        'sha1:bfbb3d5be41f7a88023a4367dc84b1ce5dcad14e'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260708055043', {
-        'blake2b-256:41961cab7bdb7b6c703c091ad9ccb75bf48819c1a8ab7aaf9ce5d947072a586b',
-        'sha256:686d8f60f50d6debb12c2faa46f33ae7438be0b30787a01d88de52bebc832f78',
-        'sha1:94296e5e1ad55f335a222fcd27aea40d96355322'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260715034712', {
-        'blake2b-256:ce17873f88018da536a8ba479b9f6a5c1de18f6395a158436bb50589972a6eb7',
-        'sha256:fd84db09d22aebea9e579a9e42c63986e26a1ad28e2890e874e2b6784777a5f8',
-        'sha1:6ccd7db2cb64841af17f9c47fce5e346e9e65c10'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260718183402', {
-        'blake2b-256:60c91372f21bdbf00183ba42e6bcda872f1d90e1902bbd5c491accd8072211d1',
-        'sha256:5a08bb995c7f602ff14683c6811d35864712ef9887890f4baf2b302b132d808f',
-        'sha1:ce1cd56f0ad82062c54183da6a615f0cddb60f42'
+      'CommonsBase_LLVM', '0.1.20260723061853', {
+        'blake2b-256:2add42b9202f0ecbaa1253326b2bbc6d182a3434f375d1548b1a58164b7ddac9',
+        'sha256:bc04736f7a5897fa598b8a8d8988835814b2ad009e75a01f04ebbcc34c3b820b',
+        'sha1:4bdb5076dbbf032a569f262d16327473cbfdc3a1'
       } },
     {
       'CommonsBase_Std', '2.6.20260718222208', {
         'blake2b-256:d28c9e22c422e6c8ab4083eb1be597292dec46276de308106f0798633b82fc20',
         'sha256:ec03493d6f73aa962b9df0be8ccf19be607c7cd28bb89aa2d1de3a882ad33024',
         'sha1:c6eef19dd6c1fdd133c4e4ced6c545e08af628f4'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260723055125', {
+        'blake2b-256:e98f3024a71bc5b6b22ca624a2c0b0a8dff5c8346d2e1396c137f2a380505285',
+        'sha256:972d2bf05f2a369731458c78f692eb0763d872a10718ebfc3cc28de53be6bf60',
+        'sha1:7b7908b4a94dadf04d4b85b5223ea660370fd9ec'
       } } }
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml" }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260719130849', {
-        'blake2b-256:2b248bbb909e95a11da5ef87b7ef4af8c9b45977a77f284c474f749b2175040d',
-        'sha256:c5c749b7916d4290e07435c0e088724891b32249fde61d6e5fdf16eef758bfa6',
-        'sha1:3a28e573ad64273809ce549289e058d4bbbbb1f3'
-      } },
-    {
-      'CommonsBase_Build', '0.1.20260707131124', {
-        'blake2b-256:ee5519a121205f83ca067aa6e6098c82118bd37238e1bb54c840edb3c1a10304',
-        'sha256:84c901c73178a0c784c7d893bf4e6895fbe09ffe86b8436557530cc4ba0000aa',
-        'sha1:85848478330e6c8ecf377f3dc2af449311ce3518'
-      } },
-    {
-      'CommonsBase_Build', '0.1.20260715044440', {
-        'blake2b-256:3b03ba3bb4cee4d5be5349835c906a32709d4361b9dfe5b246a612bef9dabc5b',
-        'sha256:48c298abbd37f7da611688af34031161cf3f3f98f4052e482a3942c087f8aa16',
-        'sha1:576fdddc29639d4ca23b1f82d428aee403530a9c'
+      'CommonsLang_OCaml', '0.1.20260723152049', {
+        'blake2b-256:013f1676da47275bbf9977203b0451006076c46cb575d37be0aa857a4f08760a',
+        'sha256:69c0040cccd32eeb9d80baf7919f651323551cf94ac33d2165547c8a217ad6d0',
+        'sha1:02c91348149d85317f189074942be2f9649d3686'
       } },
     {
       'CommonsBase_Build', '0.1.20260718232516', {
@@ -228,70 +108,28 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:abd205268d9a7ca456f22b3425404e0f8ea06dff'
       } },
     {
-      'CommonsBase_FileMagic', '0.1.20260711004745', {
-        'blake2b-256:43c9d8f64f623f65e1d0236edaa1af4f0ddb4075c03c617e38a190e7b7aebd9a',
-        'sha256:e19c85c8a15903631b8b0808f703780657523fc9b801d9389ef69f149d78ff84',
-        'sha1:973c3449761d4c7b1e3e2dd04a6284a73631ac95'
+      'CommonsBase_FileMagic', '0.1.20260719031456', {
+        'blake2b-256:5fc9c1b7431555288fe31edcf94de1e2022c83b6010eacd9d261b6d0c806745a',
+        'sha256:06d9c857523253a0fa33e0ae72b4dba6e7ff608a37d11422d06b9f5c3df3f8db',
+        'sha1:9a593ba68f0e5742cf91068445ec4d2e964e94b5'
       } },
     {
-      'CommonsBase_FileMagic', '0.1.20260715080743', {
-        'blake2b-256:69a304448adec6251b00c1fe4c0a6216f7e5810aeb9a69b6dada33b5125e0e5a',
-        'sha256:b1fe7b18ee50a99cbf6ec5d2c791225c322888bd4f2b48de9cb101eba9e7746d',
-        'sha1:c3dc402d758230e271c8af94ee762ef376238283'
+      'CommonsBase_FileMagic', '0.1.20260723064047', {
+        'blake2b-256:d730843f830dad46227b8163adc400dc84327e502e9ed5bbb8b36c780b4b5d6c',
+        'sha256:db96de9d371ce0514963d41f31756884826998efdaa2c17497486ea8c57106ad',
+        'sha1:ad4eeb33893e59edd043ff5fe6d631a7ca01b598'
       } },
     {
-      'CommonsBase_FileMagic', '0.1.20260718202707', {
-        'blake2b-256:632a1d1a997bb1f3b7063550d7024f161c269bb8c33c35ac95b457b45bf833d7',
-        'sha256:1670b8a3b35c74612180eb2d78f82404bc50022152ef16c6f5a898e58b04dee0',
-        'sha1:271302f5878552b3a3a0fe8d5fd34fedd4fd4f31'
+      'CommonsBase_GNU', '0.1.20260719171222', {
+        'blake2b-256:abf795c109059d779194c585e7b2b49582acd5e088574b4ecdc37a47738e4cae',
+        'sha256:12b6fb27bb5a1d45ee9d76217e6e96e80b529e5b73d45e97548abe88b0db6ca0',
+        'sha1:dcd6683faba0666c628ab6223a66528393c0498d'
       } },
     {
-      'CommonsBase_FileMagic', '0.1.20260718222059', {
-        'blake2b-256:1b259494e42e92d47c36b5f54798d24e503cef556bf35a86a614b92c9a4b1e0a',
-        'sha256:406432a7b2da0c265c1c1ed820f6cca52a80ec58e1782c7609fcc9a20af434f6',
-        'sha1:9702c592ae662069f1801a61457092f62b3f7839'
-      } },
-    {
-      'CommonsBase_FileMagic', '0.1.20260719003502', {
-        'blake2b-256:e9594d7fff2a4070b082d785aeca7b64f360825e50bfd4f28ab3017272322f03',
-        'sha256:ce100439bd9d1b6efe50273fb320aa1101a0f1a0dba234fee7f2579dff0275a7',
-        'sha1:8c5cfdfe79128c98f5cfc79afd3010eaaf7e5405'
-      } },
-    {
-      'CommonsBase_GNU', '0.1.20260711131127', {
-        'blake2b-256:61f30d245b1d38b2ed80dcf93b12fbee5aeef39dc8b3c4f2dde67e5ca900c74e',
-        'sha256:0666222941f713f0c2035024ddf653369473be02a6713ba1dd56155077fa9d63',
-        'sha1:9c556e96bd6533eca61ab6753ca7a5a673f601a2'
-      } },
-    {
-      'CommonsBase_GNU', '0.1.20260715081409', {
-        'blake2b-256:83982ef982de3afcd487b0038f11bde64a18fcf353dc748775c0a2aca5875324',
-        'sha256:cd4943b5ec4cdb21441483002343d847776ca32787f68f045a8a3b68e3ac3053',
-        'sha1:72353ba3f7569c0e35704ee29abe20d0a0f8a21c'
-      } },
-    {
-      'CommonsBase_GNU', '0.1.20260719015339', {
-        'blake2b-256:4c38a1445b9b00082b6c91edf9150b24b96bf674c404e7400eada3a59190948e',
-        'sha256:02e9e55ec9dda7dc21e8407f5a0575213f5bcb486e910c5cb6a3954f782e92f7',
-        'sha1:5cc5b511eecffc83a2cd4c831832b4431eec2c0d'
-      } },
-    {
-      'CommonsBase_LLVM', '0.1.20260706064049', {
-        'blake2b-256:96b2b482db4652a60893713c652b3bb5be89a143f5e3e7ca6178c99071e0cb11',
-        'sha256:8f32bfb59d849ce62898f23e712c58538c294c37d4cd3cf501f2f66b5cbf5820',
-        'sha1:a59ef674dab40f1c6cc2d2110464784320ab19bd'
-      } },
-    {
-      'CommonsBase_LLVM', '0.1.20260715044440', {
-        'blake2b-256:5e748f7f1beb707bf019c8ba741f62a527cdbd4941dfad79c619fe30b65dd258',
-        'sha256:89072616d92b4563617bb2228ef8353e788286f8794f251261801f3ab177c114',
-        'sha1:e8b1d8e157cb6007df9237a3f365582c74b8753f'
-      } },
-    {
-      'CommonsBase_LLVM', '0.1.20260718222115', {
-        'blake2b-256:eee1e2a3c2428835a2b7a56d3d613c8e32600781bd427f4c5284d3a5bc93e53a',
-        'sha256:22ad1455901c93ff1863e9f0e83717df563844a0782d31b3239bfb2766e2da42',
-        'sha1:cd51a7742ac635bf2bb9b7275821b37fea9de5f9'
+      'CommonsBase_GNU', '0.1.20260723070124', {
+        'blake2b-256:cf0c4d46a0473ece8027662d2731c81601f164687bbf9b302ea17dd003d5fcdc',
+        'sha256:53ac93e0238e270828f751287e047373171708e0aa9fc430111bf8437d4c2283',
+        'sha1:06a7e9944c9ac602549947a7c1792589814664ee'
       } },
     {
       'CommonsBase_LLVM', '0.1.20260719021059', {
@@ -300,58 +138,10 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:d2c2058826f9afe71749408731172e95369aae9b'
       } },
     {
-      'CommonsBase_Remote', '0.1.20260711003204', {
-        'blake2b-256:0d28e832c2b4f9b4cf51f01efda13a4db6edb78c15bbf96dbe151d1de14fd94c',
-        'sha256:726c83e218ef22204dc7c1a8633539c650911a9d34b3113955061899e78a37d2',
-        'sha1:95ec85359195709ef23964952af21a1e66fc8f0e'
-      } },
-    {
-      'CommonsBase_Remote', '0.1.20260711004226', {
-        'blake2b-256:fefb1339cc0c17f9af74c447f19e919d62bf488e3e0f8249945e8a991418f4a6',
-        'sha256:64096f4246e3a0fd9b628d7e7f15bdc214cdbcb6e4ee4dc1db21cdc6be241255',
-        'sha1:9c2138db329d45714e2ef43ff5e0274b6fa9a5b0'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260705051043', {
-        'blake2b-256:156d1836ac816b113880ce282f686b35d9c75e3cb4d69523313f85983ba12d4a',
-        'sha256:105ff8e83d42da3aaa79f37540303f3b3db4cd237cecfd80739387c28c866564',
-        'sha1:f3e1dac5323d0dca4f7df6c77564051a99cd6dac'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260705103327', {
-        'blake2b-256:ef622d15f7fc08b9b30beb5fb767790c213f6e7d08aa266f17b6bae4b7a3f7c0',
-        'sha256:13cba7aa2844019b1acff5ee2ac929fb3cb9193fbfd684412ccc4563424a6d8c',
-        'sha1:44a9a04a3339a99b3c326907d69a689aa103f135'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260706021729', {
-        'blake2b-256:9d442eb18b3cce1667fbe8c3585825aafb3384aa6df825740cb6d30df41fde59',
-        'sha256:b8c8a247672604c9487de530cda33ac4e13bf586b6ec1cc47c4562fe879a4897',
-        'sha1:daa9de5e3ed097e8259f973455a722056d84cba6'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260707120738', {
-        'blake2b-256:fbf6d2ea9bb17069c9f7cd463ee027c291f6fb6692821286501d1523db0febe2',
-        'sha256:d312d776756f822769de278bbf8ccbb167ea2d84d7b1dbf61b47f3c4cdf86a71',
-        'sha1:bfbb3d5be41f7a88023a4367dc84b1ce5dcad14e'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260708055043', {
-        'blake2b-256:41961cab7bdb7b6c703c091ad9ccb75bf48819c1a8ab7aaf9ce5d947072a586b',
-        'sha256:686d8f60f50d6debb12c2faa46f33ae7438be0b30787a01d88de52bebc832f78',
-        'sha1:94296e5e1ad55f335a222fcd27aea40d96355322'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260715034712', {
-        'blake2b-256:ce17873f88018da536a8ba479b9f6a5c1de18f6395a158436bb50589972a6eb7',
-        'sha256:fd84db09d22aebea9e579a9e42c63986e26a1ad28e2890e874e2b6784777a5f8',
-        'sha1:6ccd7db2cb64841af17f9c47fce5e346e9e65c10'
-      } },
-    {
-      'CommonsBase_Std', '2.6.20260718183402', {
-        'blake2b-256:60c91372f21bdbf00183ba42e6bcda872f1d90e1902bbd5c491accd8072211d1',
-        'sha256:5a08bb995c7f602ff14683c6811d35864712ef9887890f4baf2b302b132d808f',
-        'sha1:ce1cd56f0ad82062c54183da6a615f0cddb60f42'
+      'CommonsBase_LLVM', '0.1.20260723061853', {
+        'blake2b-256:2add42b9202f0ecbaa1253326b2bbc6d182a3434f375d1548b1a58164b7ddac9',
+        'sha256:bc04736f7a5897fa598b8a8d8988835814b2ad009e75a01f04ebbcc34c3b820b',
+        'sha1:4bdb5076dbbf032a569f262d16327473cbfdc3a1'
       } },
     {
       'CommonsBase_Std', '2.6.20260718222208', {
@@ -366,64 +156,52 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:f2fcc5a02f2e8f4a68bd5c4808f3518f61c1e489'
       } },
     {
-      'CommonsBase_Win32', '0.1.20260711160809', {
-        'blake2b-256:13371ea11502434581879177bbd598491c0930faf1d85e35a2fbd9e90cce0ae1',
-        'sha256:1d8d57f2ef3759500ee6799cafed1c2bda559c1e360d9513e22a1fc0edb60d48',
-        'sha1:eda53938bfa5982d25646a76d8e530b602785e8f'
+      'CommonsBase_Std', '2.6.20260723055125', {
+        'blake2b-256:e98f3024a71bc5b6b22ca624a2c0b0a8dff5c8346d2e1396c137f2a380505285',
+        'sha256:972d2bf05f2a369731458c78f692eb0763d872a10718ebfc3cc28de53be6bf60',
+        'sha1:7b7908b4a94dadf04d4b85b5223ea660370fd9ec'
       } },
     {
-      'CommonsBase_Win32', '0.1.20260715082735', {
-        'blake2b-256:10554d1b3d647a91abb10dc6b0c001fb372e48a95eb44fea89c0f3f0d1f319b8',
-        'sha256:da23306b4f4da8618e426c82115306f38b71b88a925e32c7499563e0166cb135',
-        'sha1:b2f8d22d0c6c701bb888eb8b9f8fb7e7e3ec814f'
+      'CommonsBase_Win32', '0.1.20260720170430', {
+        'blake2b-256:6b32755e07ae4ca1782257f0cbf1ebe415643560b4906c74e464215c7305e8a9',
+        'sha256:82665762f663fab6e5adbe08027167abd81ce5b5b5b2cca83b9c2329d73c3064',
+        'sha1:950914e8ce82ee4af0555a73c9d9850fff5dd835'
       } },
     {
-      'CommonsBase_Win32', '0.1.20260718222220', {
-        'blake2b-256:4a05ab9c6fc2bf394f51005f5e2ecef5c7359205dc48bf11ff60e06316b5863e',
-        'sha256:5071c066072ad0ae08c872ec782253c59fe8e1ec5bf8ec8aa754c15990235fdb',
-        'sha1:e8e50ce6033e18d22b63c2fd3fc27def713232b2'
+      'CommonsLang_OCaml', '0.1.20260722233246', {
+        'blake2b-256:2a48669ca934e301aebed9d1644ab1870786d45debc8d54b662f73b40a05711d',
+        'sha256:afd12ece0b50bfbe78c2b78771e72da49cc6a98fb513058d0480148cb942a853',
+        'sha1:8d964ebade60d17ab340ed547f1ac8cb85be91cc'
       } },
     {
-      'CommonsLang_OCaml', '0.1.20260719061947', {
-        'blake2b-256:fcdd204ffb6db5c5cb00a9e4fb7e5706e30ab666d8830e3560c474a440043e9f',
-        'sha256:ce70427141fbe0523fe55f625e722f070ecaa60992a60643a3cf70114f65b7bf',
-        'sha1:1322bb117aae6088023ff39cb700566fffde9118'
+      'CommonsLang_OCaml', '0.1.20260723013956', {
+        'blake2b-256:c7bce90e4e4020497033c8cf97b05725681f6cc083311dd65e637b8d4fa09759',
+        'sha256:1596bf9ca3c7294c63934a0cef975b619b94ce8be8b8528abdc63c01512a2c97',
+        'sha1:5da5fe949232d266f4fa4249443f9d7ebfa394c4'
       } },
     {
-      'NotMatveevKondratyev_Libinotify', '0.1.20260711150329', {
-        'blake2b-256:29083cf040c4f8877043ddcbb655e63cb6caab36fc7ee10b4347a8a0c567008e',
-        'sha256:970c3425a0bbe7d55757e75f2d3bc7b6f7c3fffdea56a158943afef63bc83d5b',
-        'sha1:364916085f250c8f2d68f97ea60d2a9f1983838b'
+      'CommonsLang_OCaml', '0.1.20260723080146', {
+        'blake2b-256:80b17aabb437ed95504d51ad61d8ae134659b4d55c5354f86d0ed9eb570cad32',
+        'sha256:649a45ff8cdf08f90da802a08ea52973c5aa70c13c0b1a2e7acb572c21233974',
+        'sha1:6ff4d12b46f9acc54397ceafa7cb23ee88933e3d'
       } },
     {
-      'NotMatveevKondratyev_Libinotify', '0.1.20260715082003', {
-        'blake2b-256:d477ef09f32937a39040fdfdb2f48e7eadc84990879485f9e3d940abcd66988b',
-        'sha256:956fa92eaa6e0515fa8bf15d4d5e42128424c1464115ae7712378a805d8f2aff',
-        'sha1:7da291e153292f9731b4709c9405f7b4f84a37ed'
+      'NotMatveevKondratyev_Libinotify', '0.1.20260719215723', {
+        'blake2b-256:474237410d48fc835e9844fae253f3226a966130c7d885b0ce9146731266185d',
+        'sha256:fb8fdd1de5dd4f6b277936e6402d44d61e3fb4855d36bf64f636d13787e49866',
+        'sha1:75e16ef4d6cfa0544f66544f46f9475693129f57'
       } },
     {
-      'NotMatveevKondratyev_Libinotify', '0.1.20260718222245', {
-        'blake2b-256:9272080cd9c0fc052b0d774f2123415b766ab94a35a7a36b9132fd4491436650',
-        'sha256:4a0f77eb3fcb7adb03b7eb9dc0ca3fac42ff3c614092c87831ba44809ea3e5c5',
-        'sha1:2b1ec76d900083ae344b815e26ce5d737ffa57a2'
+      'NotMitEdu_Kerberos', '0.1.20260719215757', {
+        'blake2b-256:16fa87793bdbf4cd1699b8e6253f6ed80a7073da85388d3dec419e3b66cd78b8',
+        'sha256:2ed8ffd2fdfa5ecf3514989213dce6833ffc428d4796519d67e8d586c5028abc',
+        'sha1:68e10bb20587e2d12d30334f6e7865afc7ee7423'
       } },
     {
-      'NotMitEdu_Kerberos', '0.1.20260711141417', {
-        'blake2b-256:9b48c31336f0be8445fb2a1be10b318cef0a86515eeeca1aacaf0f0781ee736b',
-        'sha256:766287755a596cda859b12cee44abd8b41fc084fe714c3fee78306413469f583',
-        'sha1:383b00e16e7f4f3621632575965c619b67e34f02'
-      } },
-    {
-      'NotMitEdu_Kerberos', '0.1.20260715082003', {
-        'blake2b-256:bca438d74189e9bc7202e8ac487c95fab0180a69dae8888b78dcb2e9683738d5',
-        'sha256:ab36f5fbe90a8ed85bc031affe6036d538c57e62695b803bd07b1f68256b9038',
-        'sha1:d354eef61301866d18d0347c71947d763213d390'
-      } },
-    {
-      'NotMitEdu_Kerberos', '0.1.20260718222437', {
-        'blake2b-256:ee38da684eeaae5057260b910bcffb389e3067dd67a9b00e45cc027e96e74769',
-        'sha256:b7c5b92793f0c30a42ef859c0467f29c86e885cb9643e04962f0228a45027800',
-        'sha1:da5836e91e1be4f4054b851a0e03f1060ed7afbc'
+      'NotMitEdu_Kerberos', '0.1.20260722181247', {
+        'blake2b-256:c80ccb4fa78a8ef41915abe8145a47b6a77ec738607b04180d8c0aa6e128ad82',
+        'sha256:f43c2a4762aaee8cdd33aab08c32c8b343d2df1b13a4568d4ad6c1dae341844e',
+        'sha1:debda8cbe9258bcf893f9006fdfc7aecf36033dd'
       } } }
 
 -- Assets for the per-package dk0 build: the MSVC build activator
@@ -446,3 +224,167 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'asset'
   '2085'
   'sha256:d00d5ed777c36759d2191d00ae8498d519a61ff37e4c5f03cf7856dfd32b4556'
+
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260722233246"  }
+  'import'
+  'github-l2'
+  { {
+      'CommonsLang_OCaml', '0.1.20260722233246', {
+        'blake2b-256:2a48669ca934e301aebed9d1644ab1870786d45debc8d54b662f73b40a05711d',
+        'sha256:afd12ece0b50bfbe78c2b78771e72da49cc6a98fb513058d0480148cb942a853',
+        'sha1:8d964ebade60d17ab340ed547f1ac8cb85be91cc'
+      } },
+    {
+      'CommonsBase_Build', '0.1.20260718232516', {
+        'blake2b-256:cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0',
+        'sha256:f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec',
+        'sha1:abd205268d9a7ca456f22b3425404e0f8ea06dff'
+      } },
+    {
+      'CommonsBase_FileMagic', '0.1.20260719031456', {
+        'blake2b-256:5fc9c1b7431555288fe31edcf94de1e2022c83b6010eacd9d261b6d0c806745a',
+        'sha256:06d9c857523253a0fa33e0ae72b4dba6e7ff608a37d11422d06b9f5c3df3f8db',
+        'sha1:9a593ba68f0e5742cf91068445ec4d2e964e94b5'
+      } },
+    {
+      'CommonsBase_GNU', '0.1.20260719171222', {
+        'blake2b-256:abf795c109059d779194c585e7b2b49582acd5e088574b4ecdc37a47738e4cae',
+        'sha256:12b6fb27bb5a1d45ee9d76217e6e96e80b529e5b73d45e97548abe88b0db6ca0',
+        'sha1:dcd6683faba0666c628ab6223a66528393c0498d'
+      } },
+    {
+      'CommonsBase_LLVM', '0.1.20260719021059', {
+        'blake2b-256:ab9dd1f316d99aab1f17e02cc2ec2cb9b1f345eb3faf5f19829d1a6a93390ee3',
+        'sha256:862111ad69907bffb543015d237fe52670e026700e1502e855f23488afb0dc44',
+        'sha1:d2c2058826f9afe71749408731172e95369aae9b'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260718222208', {
+        'blake2b-256:d28c9e22c422e6c8ab4083eb1be597292dec46276de308106f0798633b82fc20',
+        'sha256:ec03493d6f73aa962b9df0be8ccf19be607c7cd28bb89aa2d1de3a882ad33024',
+        'sha1:c6eef19dd6c1fdd133c4e4ced6c545e08af628f4'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260719050058', {
+        'blake2b-256:b4887b451b4450013df5c28117c1a21c3a339d5e2816c1b18165ea63d2d57ce0',
+        'sha256:41c855f506cb00226675fe47f285596105683c013898c8a17d6529c55a2e9f42',
+        'sha1:f2fcc5a02f2e8f4a68bd5c4808f3518f61c1e489'
+      } },
+    {
+      'CommonsBase_Win32', '0.1.20260720170430', {
+        'blake2b-256:6b32755e07ae4ca1782257f0cbf1ebe415643560b4906c74e464215c7305e8a9',
+        'sha256:82665762f663fab6e5adbe08027167abd81ce5b5b5b2cca83b9c2329d73c3064',
+        'sha1:950914e8ce82ee4af0555a73c9d9850fff5dd835'
+      } },
+    {
+      'NotMatveevKondratyev_Libinotify', '0.1.20260719215723', {
+        'blake2b-256:474237410d48fc835e9844fae253f3226a966130c7d885b0ce9146731266185d',
+        'sha256:fb8fdd1de5dd4f6b277936e6402d44d61e3fb4855d36bf64f636d13787e49866',
+        'sha1:75e16ef4d6cfa0544f66544f46f9475693129f57'
+      } },
+    {
+      'NotMitEdu_Kerberos', '0.1.20260719215757', {
+        'blake2b-256:16fa87793bdbf4cd1699b8e6253f6ed80a7073da85388d3dec419e3b66cd78b8',
+        'sha256:2ed8ffd2fdfa5ecf3514989213dce6833ffc428d4796519d67e8d586c5028abc',
+        'sha1:68e10bb20587e2d12d30334f6e7865afc7ee7423'
+      } },
+    {
+      'NotMitEdu_Kerberos', '0.1.20260722181247', {
+        'blake2b-256:c80ccb4fa78a8ef41915abe8145a47b6a77ec738607b04180d8c0aa6e128ad82',
+        'sha256:f43c2a4762aaee8cdd33aab08c32c8b343d2df1b13a4568d4ad6c1dae341844e',
+        'sha1:debda8cbe9258bcf893f9006fdfc7aecf36033dd'
+      } } }
+
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260723152049"  }
+  'import'
+  'github-l2'
+  { {
+      'CommonsLang_OCaml', '0.1.20260723152049', {
+        'blake2b-256:013f1676da47275bbf9977203b0451006076c46cb575d37be0aa857a4f08760a', 'sha256:69c0040cccd32eeb9d80baf7919f651323551cf94ac33d2165547c8a217ad6d0',
+        'sha1:02c91348149d85317f189074942be2f9649d3686'
+      } },
+    {
+      'CommonsBase_Build', '0.1.20260718232516', {
+        'blake2b-256:cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0', 'sha256:f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec',
+        'sha1:abd205268d9a7ca456f22b3425404e0f8ea06dff'
+      } },
+    {
+      'CommonsBase_FileMagic', '0.1.20260719031456', {
+        'blake2b-256:5fc9c1b7431555288fe31edcf94de1e2022c83b6010eacd9d261b6d0c806745a', 'sha256:06d9c857523253a0fa33e0ae72b4dba6e7ff608a37d11422d06b9f5c3df3f8db',
+        'sha1:9a593ba68f0e5742cf91068445ec4d2e964e94b5'
+      } },
+    {
+      'CommonsBase_FileMagic', '0.1.20260723064047', {
+        'blake2b-256:d730843f830dad46227b8163adc400dc84327e502e9ed5bbb8b36c780b4b5d6c', 'sha256:db96de9d371ce0514963d41f31756884826998efdaa2c17497486ea8c57106ad',
+        'sha1:ad4eeb33893e59edd043ff5fe6d631a7ca01b598'
+      } },
+    {
+      'CommonsBase_GNU', '0.1.20260719171222', {
+        'blake2b-256:abf795c109059d779194c585e7b2b49582acd5e088574b4ecdc37a47738e4cae', 'sha256:12b6fb27bb5a1d45ee9d76217e6e96e80b529e5b73d45e97548abe88b0db6ca0',
+        'sha1:dcd6683faba0666c628ab6223a66528393c0498d'
+      } },
+    {
+      'CommonsBase_GNU', '0.1.20260723070124', {
+        'blake2b-256:cf0c4d46a0473ece8027662d2731c81601f164687bbf9b302ea17dd003d5fcdc', 'sha256:53ac93e0238e270828f751287e047373171708e0aa9fc430111bf8437d4c2283',
+        'sha1:06a7e9944c9ac602549947a7c1792589814664ee'
+      } },
+    {
+      'CommonsBase_LLVM', '0.1.20260719021059', {
+        'blake2b-256:ab9dd1f316d99aab1f17e02cc2ec2cb9b1f345eb3faf5f19829d1a6a93390ee3', 'sha256:862111ad69907bffb543015d237fe52670e026700e1502e855f23488afb0dc44',
+        'sha1:d2c2058826f9afe71749408731172e95369aae9b'
+      } },
+    {
+      'CommonsBase_LLVM', '0.1.20260723061853', {
+        'blake2b-256:2add42b9202f0ecbaa1253326b2bbc6d182a3434f375d1548b1a58164b7ddac9', 'sha256:bc04736f7a5897fa598b8a8d8988835814b2ad009e75a01f04ebbcc34c3b820b',
+        'sha1:4bdb5076dbbf032a569f262d16327473cbfdc3a1'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260718222208', {
+        'blake2b-256:d28c9e22c422e6c8ab4083eb1be597292dec46276de308106f0798633b82fc20', 'sha256:ec03493d6f73aa962b9df0be8ccf19be607c7cd28bb89aa2d1de3a882ad33024',
+        'sha1:c6eef19dd6c1fdd133c4e4ced6c545e08af628f4'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260719050058', {
+        'blake2b-256:b4887b451b4450013df5c28117c1a21c3a339d5e2816c1b18165ea63d2d57ce0', 'sha256:41c855f506cb00226675fe47f285596105683c013898c8a17d6529c55a2e9f42',
+        'sha1:f2fcc5a02f2e8f4a68bd5c4808f3518f61c1e489'
+      } },
+    {
+      'CommonsBase_Std', '2.6.20260723055125', {
+        'blake2b-256:e98f3024a71bc5b6b22ca624a2c0b0a8dff5c8346d2e1396c137f2a380505285', 'sha256:972d2bf05f2a369731458c78f692eb0763d872a10718ebfc3cc28de53be6bf60',
+        'sha1:7b7908b4a94dadf04d4b85b5223ea660370fd9ec'
+      } },
+    {
+      'CommonsBase_Win32', '0.1.20260720170430', {
+        'blake2b-256:6b32755e07ae4ca1782257f0cbf1ebe415643560b4906c74e464215c7305e8a9', 'sha256:82665762f663fab6e5adbe08027167abd81ce5b5b5b2cca83b9c2329d73c3064',
+        'sha1:950914e8ce82ee4af0555a73c9d9850fff5dd835'
+      } },
+    {
+      'CommonsLang_OCaml', '0.1.20260722233246', {
+        'blake2b-256:2a48669ca934e301aebed9d1644ab1870786d45debc8d54b662f73b40a05711d', 'sha256:afd12ece0b50bfbe78c2b78771e72da49cc6a98fb513058d0480148cb942a853',
+        'sha1:8d964ebade60d17ab340ed547f1ac8cb85be91cc'
+      } },
+    {
+      'CommonsLang_OCaml', '0.1.20260723013956', {
+        'blake2b-256:c7bce90e4e4020497033c8cf97b05725681f6cc083311dd65e637b8d4fa09759', 'sha256:1596bf9ca3c7294c63934a0cef975b619b94ce8be8b8528abdc63c01512a2c97',
+        'sha1:5da5fe949232d266f4fa4249443f9d7ebfa394c4'
+      } },
+    {
+      'CommonsLang_OCaml', '0.1.20260723080146', {
+        'blake2b-256:80b17aabb437ed95504d51ad61d8ae134659b4d55c5354f86d0ed9eb570cad32', 'sha256:649a45ff8cdf08f90da802a08ea52973c5aa70c13c0b1a2e7acb572c21233974',
+        'sha1:6ff4d12b46f9acc54397ceafa7cb23ee88933e3d'
+      } },
+    {
+      'NotMatveevKondratyev_Libinotify', '0.1.20260719215723', {
+        'blake2b-256:474237410d48fc835e9844fae253f3226a966130c7d885b0ce9146731266185d', 'sha256:fb8fdd1de5dd4f6b277936e6402d44d61e3fb4855d36bf64f636d13787e49866',
+        'sha1:75e16ef4d6cfa0544f66544f46f9475693129f57'
+      } },
+    {
+      'NotMitEdu_Kerberos', '0.1.20260719215757', {
+        'blake2b-256:16fa87793bdbf4cd1699b8e6253f6ed80a7073da85388d3dec419e3b66cd78b8', 'sha256:2ed8ffd2fdfa5ecf3514989213dce6833ffc428d4796519d67e8d586c5028abc',
+        'sha1:68e10bb20587e2d12d30334f6e7865afc7ee7423'
+      } },
+    {
+      'NotMitEdu_Kerberos', '0.1.20260722181247', {
+        'blake2b-256:c80ccb4fa78a8ef41915abe8145a47b6a77ec738607b04180d8c0aa6e128ad82', 'sha256:f43c2a4762aaee8cdd33aab08c32c8b343d2df1b13a4568d4ad6c1dae341844e',
+        'sha1:debda8cbe9258bcf893f9006fdfc7aecf36033dd'
+      } } }
