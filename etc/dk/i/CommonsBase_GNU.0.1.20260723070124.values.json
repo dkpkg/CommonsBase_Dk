@@ -1,0 +1,796 @@
+{
+  "bundles": [
+    {
+      "assets": [
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_arm64.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "ff7bfadbcbe79ca07a0fd27466cb23e5846985b39527362d50ae03dbbda55156"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92227,
+                "central_size": 3303,
+                "checksum": {
+                  "blake2b256": "db5a9417692e606d2afd1eb0194924fbac03afcb44c90d0f96f2659e505008da"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_arm64.distmeta.manifest.zip",
+          "size": 95530
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_arm64.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "79f890b07dbbea7a3fd2c3fa04085819f1fc78763dbc65951157e3a3fe21334c"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_arm64.package.cts.1.tracestore",
+          "size": 71308
+        },
+        {
+          "checksum": {
+            "blake2b256": "5bf7a67438fa0cb00182dccfce820bdfbd8f581c37f0680830366aaa85d02617"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 111016019,
+                "central_size": 10073,
+                "checksum": {
+                  "blake2b256": "85c4fdfd68e5fcd7904ff855d0d9bb77d617eb0659a379ab625f064c74d90a2c"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_arm64.package.valuestore.zip",
+          "size": 111026092
+        },
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "23532338d3807ed5eac6e9aea6efea990bda6556fcc070a2f0119de0d3f14c7c"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92235,
+                "central_size": 3304,
+                "checksum": {
+                  "blake2b256": "ba33a421b29912cd7f6e0dce94c03d7ef82f0fcefe2bae8b5bad1bfe48321fcc"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.distmeta.manifest.zip",
+          "size": 95539
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "be0af48212a075351c4caebe60f1dbfa55f45cda807da8efd4c11b407ed7cae6"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.package.cts.1.tracestore",
+          "size": 75985
+        },
+        {
+          "checksum": {
+            "blake2b256": "be5b17d773519d402d2efef3f8954017029fb0a442fcc64c64fc57a037f49586"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 113794963,
+                "central_size": 10493,
+                "checksum": {
+                  "blake2b256": "a3b71fcade6677144a43a6ca7b6f00ef3915c1c526a1913c7f0f8ced0fbe9dd3"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.package.valuestore.zip",
+          "size": 113805456
+        },
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86-Linux_x86.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "785bdb5e5a1c94b6df0c3e33859c65a6ff313d931d590ad687afe0e9759a9e90"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92295,
+                "central_size": 3300,
+                "checksum": {
+                  "blake2b256": "2ff19b170b27e3761e0ba32c60e5872c1e6866d4519be96ad529352d3f6705f9"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86-Linux_x86.distmeta.manifest.zip",
+          "size": 95595
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86-Linux_x86.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "409272cf877ec5d42267bf0993e6e3df2fd574fb4f5875c78e25d6065dcc5f6a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86-Linux_x86.package.cts.1.tracestore",
+          "size": 78110
+        },
+        {
+          "checksum": {
+            "blake2b256": "1c2f97bea9efecc0d9428581396e88289bfa14c80d8fc1852aa9833c5756996b"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 154961516,
+                "central_size": 10493,
+                "checksum": {
+                  "blake2b256": "ceee189ab604df5eb232ad4f7621b82e11b6520f6fc4e3a30c62a403aebb76dc"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86-Linux_x86.package.valuestore.zip",
+          "size": 154972009
+        },
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "f5347e48e597c69d59c762c0e11e24ba78a2e924567485bcf1bb6c04f300dfb8"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92278,
+                "central_size": 3303,
+                "checksum": {
+                  "blake2b256": "570b421f9dc4d9d953868d0d2820edc54aca4c0b90de9481fd502037c2b06ef1"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.distmeta.manifest.zip",
+          "size": 95581
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "3962be24744f2f50f3f122fd832ba965dda68cd3cd2c18b0de9ab8c78ca20a76"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.package.cts.1.tracestore",
+          "size": 72924
+        },
+        {
+          "checksum": {
+            "blake2b256": "95e6767069ac07227ab489cc23569c94ef574c2a6955c2a21e01910ee52a17a3"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 155837968,
+                "central_size": 10073,
+                "checksum": {
+                  "blake2b256": "11c3a540ed820b29d5f9894468110c7e4f2afb1ac14eec020fc900c9a7fb9714"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.package.valuestore.zip",
+          "size": 155848041
+        },
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "a0421e6e847a0e3c3bc67a089e3bd8a5fc28bc4a453c56bd3be921abdb067c7e"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92938,
+                "central_size": 3304,
+                "checksum": {
+                  "blake2b256": "f29ac4a5b0dd2b05a96079d9a2aea16a02ff8cc6c5d02cd141476b72b2d8a740"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.distmeta.manifest.zip",
+          "size": 96242
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "0d9816ad86000d27bbdf2b1f05b9d2151d290f4a2d3d1cf2dd2bd710ab60bc46"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.package.cts.1.tracestore",
+          "size": 174643
+        },
+        {
+          "checksum": {
+            "blake2b256": "98af5ddb124b1ac53cc2486d5022bdf7ed377433ffe967916815219bd57fd126"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 289721601,
+                "central_size": 11228,
+                "checksum": {
+                  "blake2b256": "4b80c8c713f6ad34203e2b1a49fdd55c2a596ac28947f4c0244b0dc2e09d65ff"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.package.valuestore.zip",
+          "size": 289732829
+        },
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86-Windows_x86.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "9ee2da02962b18728509183c1f234dfe5517d2475526480d41dc3ee3fa9a3487"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92976,
+                "central_size": 3302,
+                "checksum": {
+                  "blake2b256": "587727feb6bd0d7f4ac48265b08aa1fa8c04587733e97acee1a6d67985a29d2f"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86-Windows_x86.distmeta.manifest.zip",
+          "size": 96278
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86-Windows_x86.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "e3abb9ac66d25b963b4318e5a1ebb4197e0cdc74d8f5aa76266a3ccb245f4933"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86-Windows_x86.package.cts.1.tracestore",
+          "size": 174427
+        },
+        {
+          "checksum": {
+            "blake2b256": "e21f8a4f29cf1958733fb12d7bcf093737a179b90692a2e9898b924992540715"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 382056781,
+                "central_size": 11333,
+                "checksum": {
+                  "blake2b256": "46fb204731509196ef85898668ad3530eaca57f7c3c36fc2e7020f2f9c665910"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86-Windows_x86.package.valuestore.zip",
+          "size": 382068114
+        },
+        {
+          "checksum": {
+            "blake2b256": "e4ed46a7ad516401916214ace9e1789a813ec0fe29f4383168134cff1dfeec8a"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86_64.distmeta.cts.1.tracestore",
+          "size": 123517
+        },
+        {
+          "checksum": {
+            "blake2b256": "c2b9457ed053e1734e77e219f36679e368daa0aab086d8fe5c5622154d6d9db2"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 92867,
+                "central_size": 3305,
+                "checksum": {
+                  "blake2b256": "1429d33209127a88f366ea34fad42f84d000363a0b9787920022f0b01b014b9a"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86_64.distmeta.manifest.zip",
+          "size": 96172
+        },
+        {
+          "checksum": {
+            "blake2b256": "149a6b50e19d6a7abfe7e9bacb1dad433529a0d78eb07f6fac4617dd8c8fe1fc"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 54893,
+                "central_size": 623,
+                "checksum": {
+                  "blake2b256": "046a5fbdc1101f13dd148d66c69651ef27feaaa79a1579c69c8195a72b7518bd"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86_64.distmeta.valuestore.zip",
+          "size": 55516
+        },
+        {
+          "checksum": {
+            "blake2b256": "44be68a6e538575185ea836d1f97cf2a53386d96cb57d4e02fe6b8bdfa4cbc02"
+          },
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86_64.package.cts.1.tracestore",
+          "size": 152230
+        },
+        {
+          "checksum": {
+            "blake2b256": "e9eedc7db590759ecaf207f58cfbde7f16665a16fbe66af6637498b956868aa1"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 345823550,
+                "central_size": 10598,
+                "checksum": {
+                  "blake2b256": "06d855164384dd2362bbda91971045bf40d2ebf7cb05a36e92c2cde90ab42513"
+                }
+              }
+            }
+          ],
+          "origin": "CommonsBase_GNU",
+          "path": "CommonsBase_GNU-Windows_x86_64.package.valuestore.zip",
+          "size": 345834148
+        }
+      ],
+      "id": "CommonsBase_GNU.Distribution@0.1.20260723070124",
+      "listing": {
+        "origins": [
+          {
+            "name": "CommonsBase_GNU",
+            "mirrors": [
+              "https://github.com/dkpkg/CommonsBase_GNU/releases/download/0.1.20260723070124"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "distributions": [
+    {
+      "build": {
+        "attestation": {
+          "github_slsa_v1_l2": {
+            "docs": [
+              {"mediaType":"application/vnd.dev.sigstore.bundle.v0.3+json","verificationMaterial":{"certificate":{"rawBytes":"MIIHfDCCBwGgAwIBAgIUXRmeJmudKOuTqCi/7jDYi9epSlkwCgYIKoZIzj0EAwMwNzEVMBMGA1UEChMMc2lnc3RvcmUuZGV2MR4wHAYDVQQDExVzaWdzdG9yZS1pbnRlcm1lZGlhdGUwHhcNMjYwNzIzMDc0ODMxWhcNMjYwNzIzMDc1ODMxWjAAMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvfhCmXNBOM7ivC4cHkiup0aPD3SBxBw75GeYEU+D/yEAfnujpgaEbax0+y2hIYA8jhShAIfwQc1YwJbmg8tApqOCBiAwggYcMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcDAzAdBgNVHQ4EFgQUdZAr4eRbkhGqV36OWlGZ8o5NGswwHwYDVR0jBBgwFoAU39Ppz1YkEZb5qNjpKFWixi4YZD8weAYDVR0RAQH/BG4wbIZqaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL0NvbW1vbnNCYXNlX0dOVS8uZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWxAcmVmcy90YWdzLzAuMS4yMDI2MDcyMzA3MDEyNDA5BgorBgEEAYO/MAEBBCtodHRwczovL3Rva2VuLmFjdGlvbnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tMBIGCisGAQQBg78wAQIEBHB1c2gwNgYKKwYBBAGDvzABAwQoNDgzODg0OGQ0OTYzZjVjM2M4ZDJhNDEyYzljZjIzNmVkYzE2MDI2NjAyBgorBgEEAYO/MAEEBCQuZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWwwIwYKKwYBBAGDvzABBQQVZGtwa2cvQ29tbW9uc0Jhc2VfR05VMCoGCisGAQQBg78wAQYEHHJlZnMvdGFncy8wLjEuMjAyNjA3MjMwNzAxMjQwOwYKKwYBBAGDvzABCAQtDCtodHRwczovL3Rva2VuLmFjdGlvbnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tMHoGCisGAQQBg78wAQkEbAxqaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL0NvbW1vbnNCYXNlX0dOVS8uZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWxAcmVmcy90YWdzLzAuMS4yMDI2MDcyMzA3MDEyNDA4BgorBgEEAYO/MAEKBCoMKDQ4Mzg4NDhkNDk2M2Y1YzNjOGQyYTQxMmM5Y2YyMzZlZGMxNjAyNjYwHQYKKwYBBAGDvzABCwQPDA1naXRodWItaG9zdGVkMDgGCisGAQQBg78wAQwEKgwoaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL0NvbW1vbnNCYXNlX0dOVTA4BgorBgEEAYO/MAENBCoMKDQ4Mzg4NDhkNDk2M2Y1YzNjOGQyYTQxMmM5Y2YyMzZlZGMxNjAyNjYwLAYKKwYBBAGDvzABDgQeDBxyZWZzL3RhZ3MvMC4xLjIwMjYwNzIzMDcwMTI0MBoGCisGAQQBg78wAQ8EDAwKMTIyMjg3NDAzNzAoBgorBgEEAYO/MAEQBBoMGGh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZzAZBgorBgEEAYO/MAERBAsMCTI3ODkxMzUwMDB6BgorBgEEAYO/MAESBGwMamh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Db21tb25zQmFzZV9HTlUvLmdpdGh1Yi93b3JrZmxvd3MvZGlzdHJpYnV0ZS0wLjEueW1sQHJlZnMvdGFncy8wLjEuMjAyNjA3MjMwNzAxMjQwOAYKKwYBBAGDvzABEwQqDCg0ODM4ODQ4ZDQ5NjNmNWMzYzhkMmE0MTJjOWNmMjM2ZWRjMTYwMjY2MBQGCisGAQQBg78wARQEBgwEcHVzaDBcBgorBgEEAYO/MAEVBE4MTGh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Db21tb25zQmFzZV9HTlUvYWN0aW9ucy9ydW5zLzI5OTg2OTY2MzI3L2F0dGVtcHRzLzEwFgYKKwYBBAGDvzABFgQIDAZwdWJsaWMwSwYKKwYBBAGDvzABGAQ9DDtyZXBvOmRrcGtnL0NvbW1vbnNCYXNlX0dOVTpyZWY6cmVmcy90YWdzLzAuMS4yMDI2MDcyMzA3MDEyNDCBigYKKwYBBAHWeQIEAgR8BHoAeAB2AN09MGrGxxEyYxkeHJlnNwKiSl643jyt/4eKcoAvKe6OAAABn43yjNwAAAQDAEcwRQIhANJjPY047berwWPnt9tHtyhRMLgdsrEPlwzZ/JZKwHjqAiBUuQZ6tcJb9wcWnNU14e1LzLwpYx/ljR3aqi4sabaPmzAKBggqhkjOPQQDAwNpADBmAjEA6NxEBzcxeT3Z34Kr0insmZkfwLKfmZYw8XGEJFd/NWGQ59Z5NZZZDJV0FvNzBc/rAjEAtspkQ96c/hSbyV5FEXjTBswjmf3Jj1kxPSiH3SnEqC07VVwMyF2xTsOoKn8vPQYt"},"tlogEntries":[{"logIndex":"2223726485","logId":{"keyId":"wNI9atQGlz+VWfO6LRygH4QUfY/8W4RFwiT5i5WRgB0="},"kindVersion":{"kind":"dsse","version":"0.0.1"},"integratedTime":"1784792912","inclusionPromise":{"signedEntryTimestamp":"MEUCIH8krqRzmS0aEQJEBwgtrMFSChiU3UGFjd7wbcC8nJyEAiEA2L0GhLUedgI2uAVQR9u2V+WJIZBSLYRNpU91IDJSg1A="},"inclusionProof":{"logIndex":"2101822223","rootHash":"UphXHTHY6d+vLuO8bG8hGY5ODLveNzO0W9vprfWuCbk=","treeSize":"2101822405","hashes":["7uJlkoqTfo6VXhlHlNJVHUisqPZWxY5XKPLOFcSlC3M=","J9grtIFO4DovWygjbUeu5ZNYPkqoA0KYU+qwnTOtHig=","95SzWFXPrEKoa3OqA3jPm+/zKCmiwXTUhv/uOgToNFU=","TeBpXJOsCVAURKLA1jq90Y4swnMMCHLVBerJlW1qUaU=","NfqrpdK5U/bSZwfHeN88PXVj4IMCD+KUKWxebLlnpRE=","u/R6uvfGVrdlQQfgWlTJtYBtt6MVRsSJvJUJIZMn5UQ=","Sjs8obbhQnKMgTto9JqPe4Tr8FjCOOwJESuo0U+HTug=","uBBc7NqOb4gktUXEL2Kc5pCHnX0gZOK6rJnEbCXoMmI=","kPcOZ+xLVs8euT5hr/InO7FA3uajonf7Ob3G7mdHK1M=","R44W9T0rwKdCI2qj+6XkZ83S6NOpeGHV51fLzLCmmE4=","F+NNmPcstjKrM41unlPolep7xNoSR/yECaPsgp8i3YE=","BI2iswSn/lyY3B5ylaVS6FH8k2FFabem5/sFPM9p4l8=","5xYVIbTmdf/Jx5MBpCBSmKgqF0g+OsTH/TC/BZwYG3o=","r+wZ4jTbU50WoaN9ixvFpOoZsPuLIG0M/9gvpb/xb1s=","fEeV8Bqor89rSrIrJm5Mjeh6Z4uVWtmeCDx9CT04x2A=","n3FrhrLV+aX3gf/a4yempn9Y+XjQCkkJAiMuDNnVN1k=","GxT6+CEXxY8Ak/besnRW/IK3DhneHQ5X5rIcw8L01DQ=","Rq/A2aTC9e54ldNjcpsJ26rX/h8JlN6ZHxgw7yEa6C0=","+/VZ56MsIPxMiyLAodzKXo5TEWdQp36z89qLhpzloAo=","daxmZaajRpZV+JxHiOYZhJBiSKN5ucqjh2WnGbHhirw=","DOCeoSMovIvLExkhIvisow9AuNXgeWs4ECkyR6EcqYU="],"checkpoint":{"envelope":"rekor.sigstore.dev - 1193050959916656506\n2101822405\nUphXHTHY6d+vLuO8bG8hGY5ODLveNzO0W9vprfWuCbk=\n\n— rekor.sigstore.dev wNI9ajBFAiEAph/u2AHTU9H36J1wpCdd+KYVDk6Wd4B14BtdbTQCPjsCIFYucsRMPPIVzMG3FkIrALn1JRcq5iOS9UEAQCOoyoXC\n"}},"canonicalizedBody":"eyJhcGlWZXJzaW9uIjoiMC4wLjEiLCJraW5kIjoiZHNzZSIsInNwZWMiOnsiZW52ZWxvcGVIYXNoIjp7ImFsZ29yaXRobSI6InNoYTI1NiIsInZhbHVlIjoiYjcyNDAwOGY5ZDc3MzM4MWFmZmJjYmU2M2M3MmMzZjk4ODM0OTVhZDk0ZTE1NzczMTA5NGYwZTU2NzBjNWZjNiJ9LCJwYXlsb2FkSGFzaCI6eyJhbGdvcml0aG0iOiJzaGEyNTYiLCJ2YWx1ZSI6Ijc2NjZlZDM5ODEzMzcyYWI0MTUwNzBmMWVlM2NkM2Q0MzIwM2VjMDRkOWYzM2NiMWU5OTc3NzhlZjdkMDQzZTIifSwic2lnbmF0dXJlcyI6W3sic2lnbmF0dXJlIjoiTUVVQ0lRRE1jZTEzUlNJRVRZenRMbmhKejJrUGFBNXlKTHRyWEJHUzVNS1pIOEp3OGdJZ1IvZzVJN1dmcDlDWWJ1T2JJK3hOSk12TGlwYmppM2dhalFrR0RoK1ZBcUk9IiwidmVyaWZpZXIiOiJMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VobVJFTkRRbmRIWjBGM1NVSkJaMGxWV0ZKdFpVcHRkV1JMVDNWVWNVTnBMemRxUkZscE9XVndVMnhyZDBObldVbExiMXBKZW1vd1JVRjNUWGNLVG5wRlZrMUNUVWRCTVZWRlEyaE5UV015Ykc1ak0xSjJZMjFWZFZwSFZqSk5ValIzU0VGWlJGWlJVVVJGZUZaNllWZGtlbVJIT1hsYVV6RndZbTVTYkFwamJURnNXa2RzYUdSSFZYZElhR05PVFdwWmQwNTZTWHBOUkdNd1QwUk5lRmRvWTA1TmFsbDNUbnBKZWsxRVl6RlBSRTE0VjJwQlFVMUdhM2RGZDFsSUNrdHZXa2w2YWpCRFFWRlpTVXR2V2tsNmFqQkVRVkZqUkZGblFVVjJabWhEYlZoT1FrOU5OMmwyUXpSalNHdHBkWEF3WVZCRU0xTkNlRUozTnpWSFpWa0tSVlVyUkM5NVJVRm1iblZxY0dkaFJXSmhlREFyZVRKb1NWbEJPR3BvVTJoQlNXWjNVV014V1hkS1ltMW5PSFJCY0hGUFEwSnBRWGRuWjFsalRVRTBSd3BCTVZWa1JIZEZRaTkzVVVWQmQwbElaMFJCVkVKblRsWklVMVZGUkVSQlMwSm5aM0pDWjBWR1FsRmpSRUY2UVdSQ1owNVdTRkUwUlVablVWVmtXa0Z5Q2pSbFVtSnJhRWR4VmpNMlQxZHNSMW80YnpWT1IzTjNkMGgzV1VSV1VqQnFRa0puZDBadlFWVXpPVkJ3ZWpGWmEwVmFZalZ4VG1wd1MwWlhhWGhwTkZrS1drUTRkMlZCV1VSV1VqQlNRVkZJTDBKSE5IZGlTVnB4WVVoU01HTklUVFpNZVRsdVlWaFNiMlJYU1hWWk1qbDBUREpTY21OSGRHNU1NRTUyWWxjeGRncGliazVEV1ZoT2JGZ3daRTlXVXpoMVdqSnNNR0ZJVm1sTU0yUjJZMjEwYldKSE9UTmplVGxyWVZoT01HTnRiR2xrV0ZKc1RGUkJkVTFUTlRWaVYzaEJDbU50Vm0xamVUa3dXVmRrZWt4NlFYVk5VelI1VFVSSk1rMUVZM2xOZWtFelRVUkZlVTVFUVRWQ1oyOXlRbWRGUlVGWlR5OU5RVVZDUWtOMGIyUklVbmNLWTNwdmRrd3pVblpoTWxaMVRHMUdhbVJIYkhaaWJrMTFXakpzTUdGSVZtbGtXRTVzWTIxT2RtSnVVbXhpYmxGMVdUSTVkRTFDU1VkRGFYTkhRVkZSUWdwbk56aDNRVkZKUlVKSVFqRmpNbWQzVG1kWlMwdDNXVUpDUVVkRWRucEJRa0YzVVc5T1JHZDZUMFJuTUU5SFVUQlBWRmw2V21wV2FrMHlUVFJhUkVwb0NrNUVSWGxaZW14cVdtcEplazV0Vm10WmVrVXlUVVJKTWs1cVFYbENaMjl5UW1kRlJVRlpUeTlOUVVWRlFrTlJkVm95YkRCaFNGWnBURE5rZG1OdGRHMEtZa2M1TTJONU9XdGhXRTR3WTIxc2FXUllVbXhNVkVGMVRWTTFOV0pYZDNkSmQxbExTM2RaUWtKQlIwUjJla0ZDUWxGUlZscEhkSGRoTW1OMlVUSTVkQXBpVnpsMVl6QkthR015Vm1aU01EVldUVU52UjBOcGMwZEJVVkZDWnpjNGQwRlJXVVZJU0Vwc1dtNU5kbVJIUm01amVUaDNUR3BGZFUxcVFYbE9ha0V6Q2sxcVRYZE9la0Y0VFdwUmQwOTNXVXRMZDFsQ1FrRkhSSFo2UVVKRFFWRjBSRU4wYjJSSVVuZGplbTkyVEROU2RtRXlWblZNYlVacVpFZHNkbUp1VFhVS1dqSnNNR0ZJVm1sa1dFNXNZMjFPZG1KdVVteGlibEYxV1RJNWRFMUliMGREYVhOSFFWRlJRbWMzT0hkQlVXdEZZa0Y0Y1dGSVVqQmpTRTAyVEhrNWJncGhXRkp2WkZkSmRWa3lPWFJNTWxKeVkwZDBia3d3VG5aaVZ6RjJZbTVPUTFsWVRteFlNR1JQVmxNNGRWb3liREJoU0ZacFRETmtkbU50ZEcxaVJ6a3pDbU41T1d0aFdFNHdZMjFzYVdSWVVteE1WRUYxVFZNMU5XSlhlRUZqYlZadFkzazVNRmxYWkhwTWVrRjFUVk0wZVUxRVNUSk5SR041VFhwQk0wMUVSWGtLVGtSQk5FSm5iM0pDWjBWRlFWbFBMMDFCUlV0Q1EyOU5TMFJSTkUxNlp6Uk9SR2hyVGtSck1rMHlXVEZaZWs1cVQwZFJlVmxVVVhoTmJVMDFXVEpaZVFwTmVscHNXa2ROZUU1cVFYbE9hbGwzU0ZGWlMwdDNXVUpDUVVkRWRucEJRa04zVVZCRVFURnVZVmhTYjJSWFNYUmhSemw2WkVkV2EwMUVaMGREYVhOSENrRlJVVUpuTnpoM1FWRjNSVXRuZDI5aFNGSXdZMGhOTmt4NU9XNWhXRkp2WkZkSmRWa3lPWFJNTWxKeVkwZDBia3d3VG5aaVZ6RjJZbTVPUTFsWVRtd0tXREJrVDFaVVFUUkNaMjl5UW1kRlJVRlpUeTlOUVVWT1FrTnZUVXRFVVRSTmVtYzBUa1JvYTA1RWF6Sk5NbGt4V1hwT2FrOUhVWGxaVkZGNFRXMU5OUXBaTWxsNVRYcGFiRnBIVFhoT2FrRjVUbXBaZDB4QldVdExkMWxDUWtGSFJIWjZRVUpFWjFGbFJFSjRlVnBYV25wTU0xSm9Xak5OZGsxRE5IaE1ha2wzQ2sxcVdYZE9la2w2VFVSamQwMVVTVEJOUW05SFEybHpSMEZSVVVKbk56aDNRVkU0UlVSQmQwdE5WRWw1VFdwbk0wNUVRWHBPZWtGdlFtZHZja0puUlVVS1FWbFBMMDFCUlZGQ1FtOU5SMGRvTUdSSVFucFBhVGgyV2pKc01HRklWbWxNYlU1MllsTTVhMkV6UW5KYWVrRmFRbWR2Y2tKblJVVkJXVTh2VFVGRlVncENRWE5OUTFSSk0wOUVhM2hOZWxWM1RVUkNOa0puYjNKQ1owVkZRVmxQTDAxQlJWTkNSM2ROWVcxb01HUklRbnBQYVRoMldqSnNNR0ZJVm1sTWJVNTJDbUpUT1d0aE0wSnlXbms1UkdJeU1YUmlNalY2VVcxR2VscFdPVWhVYkZWMlRHMWtjR1JIYURGWmFUa3pZak5LY2xwdGVIWmtNMDEyV2tkc2VtUklTbkFLV1c1V01GcFRNSGRNYWtWMVpWY3hjMUZJU214YWJrMTJaRWRHYm1ONU9IZE1ha1YxVFdwQmVVNXFRVE5OYWsxM1RucEJlRTFxVVhkUFFWbExTM2RaUWdwQ1FVZEVkbnBCUWtWM1VYRkVRMmN3VDBSTk5FOUVVVFJhUkZFMVRtcE9iVTVYVFhwWmVtaHJUVzFGTUUxVVNtcFBWMDV0VFdwTk1scFhVbXBOVkZsM0NrMXFXVEpOUWxGSFEybHpSMEZSVVVKbk56aDNRVkpSUlVKbmQwVmpTRlo2WVVSQ1kwSm5iM0pDWjBWRlFWbFBMMDFCUlZaQ1JUUk5WRWRvTUdSSVFub0tUMms0ZGxveWJEQmhTRlpwVEcxT2RtSlRPV3RoTTBKeVduazVSR0l5TVhSaU1qVjZVVzFHZWxwV09VaFViRlYyV1ZkT01HRlhPWFZqZVRsNVpGYzFlZ3BNZWtrMVQxUm5NazlVV1RKTmVra3pUREpHTUdSSFZuUmpTRko2VEhwRmQwWm5XVXRMZDFsQ1FrRkhSSFo2UVVKR1oxRkpSRUZhZDJSWFNuTmhWMDEzQ2xOM1dVdExkMWxDUWtGSFJIWjZRVUpIUVZFNVJFUjBlVnBZUW5aUGJWSnlZMGQwYmt3d1RuWmlWekYyWW01T1ExbFlUbXhZTUdSUFZsUndlVnBYV1RZS1kyMVdiV041T1RCWlYyUjZUSHBCZFUxVE5IbE5SRWt5VFVSamVVMTZRVE5OUkVWNVRrUkRRbWxuV1V0TGQxbENRa0ZJVjJWUlNVVkJaMUk0UWtodlFRcGxRVUl5UVU0d09VMUhja2Q0ZUVWNVdYaHJaVWhLYkc1T2QwdHBVMncyTkROcWVYUXZOR1ZMWTI5QmRrdGxOazlCUVVGQ2JqUXplV3BPZDBGQlFWRkVDa0ZGWTNkU1VVbG9RVTVLYWxCWk1EUTNZbVZ5ZDFkUWJuUTVkRWgwZVdoU1RVeG5aSE55UlZCc2QzcGFMMHBhUzNkSWFuRkJhVUpWZFZGYU5uUmpTbUlLT1hkalYyNU9WVEUwWlRGTWVreDNjRmw0TDJ4cVVqTmhjV2swYzJGaVlWQnRla0ZMUW1kbmNXaHJhazlRVVZGRVFYZE9jRUZFUW0xQmFrVkJOazU0UlFwQ2VtTjRaVlF6V2pNMFMzSXdhVzV6YlZwclpuZE1TMlp0V2xsM09GaEhSVXBHWkM5T1YwZFJOVGxhTlU1YVdscEVTbFl3Um5aT2VrSmpMM0pCYWtWQkNuUnpjR3RST1RaakwyaFRZbmxXTlVaRldHcFVRbk4zYW0xbU0wcHFNV3Q0VUZOcFNETlRia1Z4UXpBM1ZsWjNUWGxHTW5oVWMwOXZTMjQ0ZGxCUldYUUtMUzB0TFMxRlRrUWdRMFZTVkVsR1NVTkJWRVV0TFMwdExRbz0ifV19fQ=="}],"timestampVerificationData":{}},"dsseEnvelope":{"payload":"eyJfdHlwZSI6Imh0dHBzOi8vaW4tdG90by5pby9TdGF0ZW1lbnQvdjEiLCJzdWJqZWN0IjpbeyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLURhcndpbl9hcm02NC5kaXN0bWV0YS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6ImQwMGM5ZGNhYTg4ZWRmODhkNjBiYWYyZmE3YzhjMjI5M2NmNTZhZTYxNGMxZWMxY2ZlYWE1NzQwN2MxYWRhYjIifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLURhcndpbl9hcm02NC5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiNWYyMjAzOWI1ZmI0MTRkZWQ3N2I1OWRjNWYyMmNlMzEwYWJjMGQ4NDdlYjY5ZTljZWJiOWQzMTg0OWRlNzE2ZSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtRGFyd2luX2FybTY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuaW5kZXgiLCJkaWdlc3QiOnsic2hhMjU2IjoiZTNiNjRmMzRiYzYwNDE4NWJjMGM1Yzc4MjhkOWFhODFlMDZmZjlhYTQ4ZjA0YWI2YjY2ZmYxNDBjODZjYjE0NCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtRGFyd2luX2FybTY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjVlYjNjN2ViYjdmYTFjZjU2ZWExMDcxYzFmMTBjODQ3ODc4NWZmOTdmZDczZGVhMjdlODM4M2EwNWQzN2ZkNDAifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLURhcndpbl9hcm02NC5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiYjM2NDI4M2JmMjVlMzI2MDUxOWRjZmJlNTlkYWMzMjBkNTUyZDg0OTQ5ZTc4MzkwZGY5ODZmMTBkYjhlNTJmMSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtRGFyd2luX2FybTY0LnBhY2thZ2UudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiIzNzNiMTBkNmE4OTRlN2QyZDg4Y2Y1YmQ0MmVlZGI5ZjlmOTI5OWJmYTU0YTViZTg2Mjk4MDBhMDhiYjRjNzE4In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1EYXJ3aW5fYXJtNjQucGFja2FnZS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJhNGZhNzg1ZGE2MjYwOGM0N2FiNDQzNDJmZTU3MWQ3Njc1YWE5OGVhNjFmZWQ3NjJlODc1OTlkYzBmYzM3NzI3In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1EYXJ3aW5fYXJtNjQudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiYmQxMjY1YWZjMzlkZjg5YjVkODNiMmUzNGUxM2JhYmEwODZlOWY0OGI5MGQxZDM5ZTc3MjExODkwNDRhOTVlZSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtRGFyd2luX3g4Nl82NC1EYXJ3aW5feDg2XzY0LmRpc3RtZXRhLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiZDAwYzlkY2FhODhlZGY4OGQ2MGJhZjJmYTdjOGMyMjkzY2Y1NmFlNjE0YzFlYzFjZmVhYTU3NDA3YzFhZGFiMiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtRGFyd2luX3g4Nl82NC1EYXJ3aW5feDg2XzY0LmRpc3RtZXRhLm1hbmlmZXN0LnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI4ODc2MjY4NzgwMTBlMjRkMWNiY2UyYjIxNmIwNTg4OGI5NzI4ZDkyOTJlNzk2YzI5MjVhNmYxOTc4OTMxOGQzIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1EYXJ3aW5feDg2XzY0LURhcndpbl94ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJlM2I2NGYzNGJjNjA0MTg1YmMwYzVjNzgyOGQ5YWE4MWUwNmZmOWFhNDhmMDRhYjZiNjZmZjE0MGM4NmNiMTQ0In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1EYXJ3aW5feDg2XzY0LURhcndpbl94ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiNWViM2M3ZWJiN2ZhMWNmNTZlYTEwNzFjMWYxMGM4NDc4Nzg1ZmY5N2ZkNzNkZWEyN2U4MzgzYTA1ZDM3ZmQ0MCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtRGFyd2luX3g4Nl82NC1EYXJ3aW5feDg2XzY0LnBhY2thZ2UuY3RzLjEudHJhY2VzdG9yZSIsImRpZ2VzdCI6eyJzaGEyNTYiOiJmZGNhZmIxYTdiMjVlM2U5YTdhYTZkNjAxMjM5MWViYmFmNTJmNWIzOWIyM2Q5ZjE4ZDFlMDgzZDUwZTY0NTBlIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1EYXJ3aW5feDg2XzY0LURhcndpbl94ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6ImJiNmI1NmJhYzQ1YjA3YzczOGY0YzlmZWM3ZTRlYzMwNzAwODE3OWMyOTRhOGExMDA4OGMxZWNiNGRiNTk5NjUifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLURhcndpbl94ODZfNjQtRGFyd2luX3g4Nl82NC5wYWNrYWdlLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjNiOTEzYjYxYzNjMDU0NWNkYzAxOTJjZDdiYzE0ZDZiMTk5NzgxNGVjYjFmMDA3N2YwODU0M2E0YzE0NDk3OTcifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLURhcndpbl94ODZfNjQtRGFyd2luX3g4Nl82NC52YWx1ZXMuanNvbiIsImRpZ2VzdCI6eyJzaGEyNTYiOiIzNmY2YjMwNTViOGNjMjg1Njk1MDI3ZjE2M2Q3OGJmZjhkNGIyNTkzMmYwNTljMjdhMDk1NTRjZjk1MjE3Y2M1In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1MaW51eF94ODYtTGludXhfeDg2LmRpc3RtZXRhLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiZDAwYzlkY2FhODhlZGY4OGQ2MGJhZjJmYTdjOGMyMjkzY2Y1NmFlNjE0YzFlYzFjZmVhYTU3NDA3YzFhZGFiMiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtTGludXhfeDg2LUxpbnV4X3g4Ni5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiMjM4NmQ2YWVlZWRmMWQ0ZmU0MWM4NjIzNDQxZTRlNTM5ZjljMjdlZjllN2QzMGE2NWExYTU0YmU2YTA0NGY0ZiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtTGludXhfeDg2LUxpbnV4X3g4Ni5kaXN0bWV0YS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6ImUzYjY0ZjM0YmM2MDQxODViYzBjNWM3ODI4ZDlhYTgxZTA2ZmY5YWE0OGYwNGFiNmI2NmZmMTQwYzg2Y2IxNDQifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Ni1MaW51eF94ODYuZGlzdG1ldGEudmFsdWVzdG9yZS56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiNWViM2M3ZWJiN2ZhMWNmNTZlYTEwNzFjMWYxMGM4NDc4Nzg1ZmY5N2ZkNzNkZWEyN2U4MzgzYTA1ZDM3ZmQ0MCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtTGludXhfeDg2LUxpbnV4X3g4Ni5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiYjYyMmE1ZDkwMmI5OTA0ZmI3ODdkYzQ3YzFjMmRjMGY1MzI0MTQ1YWIzODI4NmI1NzkwZTRkYjNkNGJmNzczZiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtTGludXhfeDg2LUxpbnV4X3g4Ni5wYWNrYWdlLnZhbHVlc3RvcmUuaW5kZXgiLCJkaWdlc3QiOnsic2hhMjU2IjoiMjVlOWU2ZjBjY2EwOTZhM2YzODIwMTUxMTU0ZmQwMjgwMTI5MzM4ZjRlZWI4ODg2MWVkYWNlMWIzNWYxZDhjNSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtTGludXhfeDg2LUxpbnV4X3g4Ni5wYWNrYWdlLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjUwYTY2ZmY0MjVmNDUyMGMzYTQyZjQ5YTFhYzNjZTFmYzgwZWQ4NGZkNzRiZWYxYzI1YjNhNGIzZGVkMjA1ODEifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Ni1MaW51eF94ODYudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiZTVkZTVjOTY2MjJkYjQzNDAzNTdkZDNjMmY4MGJjODkyY2RkNzg3MWUyMjQ5ODQ4ZTdiZGI1MDk5YTMyN2U5MSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtTGludXhfeDg2XzY0LUxpbnV4X3g4Nl82NC5kaXN0bWV0YS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6ImQwMGM5ZGNhYTg4ZWRmODhkNjBiYWYyZmE3YzhjMjI5M2NmNTZhZTYxNGMxZWMxY2ZlYWE1NzQwN2MxYWRhYjIifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQuZGlzdG1ldGEubWFuaWZlc3QuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6Ijk4YmQ4ODUzMmE1YTQ4ZDYwNDMxZjlkOTkzY2YxMmIwZmI1NGU1ZWQ3NzcyM2I0NGFiNzRhZDVjMWM1Yzc2MzUifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJlM2I2NGYzNGJjNjA0MTg1YmMwYzVjNzgyOGQ5YWE4MWUwNmZmOWFhNDhmMDRhYjZiNjZmZjE0MGM4NmNiMTQ0In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1MaW51eF94ODZfNjQtTGludXhfeDg2XzY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjVlYjNjN2ViYjdmYTFjZjU2ZWExMDcxYzFmMTBjODQ3ODc4NWZmOTdmZDczZGVhMjdlODM4M2EwNWQzN2ZkNDAifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQucGFja2FnZS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjU2ZDZjMmNkY2VlNjY1YjRmM2ViMDIxZjU5YWU2Y2YzMDc4ZmU2MjRmOTJkNmQxOTAzYjUwMTMzNTY4OWY4NWYifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6IjVmNmNiZWIwZjdjMDY0ODgzMGMzMzkyOWFmOTRmZWI3YzA5NjVhZDI4NzdmY2MzOTU2YTUzMGFhMjc2NDEyMjQifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJkZjQ4MTQ4MTM3MzgxMDkxZWRiZGVkY2M0MTQ5NzhkMTA1YjdmNDY2ZDY0N2Q5M2JjM2FiYWRjMWNmNjgzODI2In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1MaW51eF94ODZfNjQtTGludXhfeDg2XzY0LnZhbHVlcy5qc29uIiwiZGlnZXN0Ijp7InNoYTI1NiI6ImQwY2UyZGQ2OGU3Nzk4ODYzYzk4YWYzMjM1YzNkNTViOTVmMjA2ZjUyNzMxNTJjNDYwN2ZkODQyNjMxMWYyZjYifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLVdpbmRvd3NfYXJtNjQtV2luZG93c19hcm02NC5kaXN0bWV0YS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6ImQwMGM5ZGNhYTg4ZWRmODhkNjBiYWYyZmE3YzhjMjI5M2NmNTZhZTYxNGMxZWMxY2ZlYWE1NzQwN2MxYWRhYjIifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLVdpbmRvd3NfYXJtNjQtV2luZG93c19hcm02NC5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiODgzZTFhMjgwMmU1NGZhYzkzYTMzNTg0NjVhN2Q5ZWZkMTkxNDMyYTYxMWZmMzhkNGQwN2I5ZmRhZjVkNDMxZiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c19hcm02NC1XaW5kb3dzX2FybTY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuaW5kZXgiLCJkaWdlc3QiOnsic2hhMjU2IjoiZTNiNjRmMzRiYzYwNDE4NWJjMGM1Yzc4MjhkOWFhODFlMDZmZjlhYTQ4ZjA0YWI2YjY2ZmYxNDBjODZjYjE0NCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c19hcm02NC1XaW5kb3dzX2FybTY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjVlYjNjN2ViYjdmYTFjZjU2ZWExMDcxYzFmMTBjODQ3ODc4NWZmOTdmZDczZGVhMjdlODM4M2EwNWQzN2ZkNDAifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLVdpbmRvd3NfYXJtNjQtV2luZG93c19hcm02NC5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiZDgyNDI1OGU3OGRjOTM3NTFjYTFjMTNjYzViMWI4YzkyZTAzNzFlODEyMGY1NGExYmUwODY4MTljMjM3YzI0YiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c19hcm02NC1XaW5kb3dzX2FybTY0LnBhY2thZ2UudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI2NGQwOTNhZWU2YWIwOTliMjE1OWEwNTIxMmY5ZTk0ZWVhNDg2ZjRhMWVkZGQxZmQ5Yjg0ZThiMTZlNWJhMDlmIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX2FybTY0LVdpbmRvd3NfYXJtNjQucGFja2FnZS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI1MWE1MjljODkwOTJmYzI2NzQxYWQ0MTg0M2ZiNTJlMDgzYjE5M2I2ZDZhNDI0MWZhYzVmZDlkODFjZjM3YTY5In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX2FybTY0LVdpbmRvd3NfYXJtNjQudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiNmZhNTE3ZDdhNTc5YjczNDI4Zjg2ZTU5ZmVkYTI4ZmVjY2M4MTQxODNiYzZlYTg0ODc0ZGY2MzIzZjJmNDkzNiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODYtV2luZG93c194ODYuZGlzdG1ldGEuY3RzLjEudHJhY2VzdG9yZSIsImRpZ2VzdCI6eyJzaGEyNTYiOiJkMDBjOWRjYWE4OGVkZjg4ZDYwYmFmMmZhN2M4YzIyOTNjZjU2YWU2MTRjMWVjMWNmZWFhNTc0MDdjMWFkYWIyIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX3g4Ni1XaW5kb3dzX3g4Ni5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiNzhhNTBlZTgwOTRkMzE3ODMyM2U5MDA0NmExOGRhNzhmNDY3YzE3Y2JhNTcyMTQ5MzJlYTI2N2ZlYWU5ODJmOSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODYtV2luZG93c194ODYuZGlzdG1ldGEudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJlM2I2NGYzNGJjNjA0MTg1YmMwYzVjNzgyOGQ5YWE4MWUwNmZmOWFhNDhmMDRhYjZiNjZmZjE0MGM4NmNiMTQ0In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX3g4Ni1XaW5kb3dzX3g4Ni5kaXN0bWV0YS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI1ZWIzYzdlYmI3ZmExY2Y1NmVhMTA3MWMxZjEwYzg0Nzg3ODVmZjk3ZmQ3M2RlYTI3ZTgzODNhMDVkMzdmZDQwIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX3g4Ni1XaW5kb3dzX3g4Ni5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiYjc5MjRhOGEwYTRhNzVhYWRiZmRkZTE0MTMyMDNhMjBjMGEzMjdlOWViMjAwNGQxYzE4NDAyMjY1NjNjZjFhYyJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODYtV2luZG93c194ODYucGFja2FnZS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6ImUzNmY3NTg5OTcxNGVhNDZiMGE0NWE2ZDg5OWRlOWZmY2Q4Y2U4MTFhNDg3MjdmZTgxNzBmY2E0ODM4YzNjYTcifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLVdpbmRvd3NfeDg2LVdpbmRvd3NfeDg2LnBhY2thZ2UudmFsdWVzdG9yZS56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiYWQwYjUwNDE1Y2FiYmIyNjE3MGUxYmE4NzQ4MjdhOWRiNGQ0N2RhNzc4YjdmY2RkZWRhZDNmMTU2MDUzMzg1NCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODYtV2luZG93c194ODYudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiZjIzZjY3MDYyMDM1MTNmYmQ5ZmU4NDI0YmZlMjk2NzcwMTY4NDYwZDNiNjVhMTZhY2Y4MDVlMDU5NDcwYzNkNCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODZfNjQuZGlzdG1ldGEuY3RzLjEudHJhY2VzdG9yZSIsImRpZ2VzdCI6eyJzaGEyNTYiOiJkMDBjOWRjYWE4OGVkZjg4ZDYwYmFmMmZhN2M4YzIyOTNjZjU2YWU2MTRjMWVjMWNmZWFhNTc0MDdjMWFkYWIyIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX3g4Nl82NC5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiZDc2NWM3NDRjZjM1YzNlMDhiMDE1NWMyZjJlZGYzZmVmZWJjOGE2NmEyMWVlYzM2ZGU1MmIzY2JkZWE3YmY1OCJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJlM2I2NGYzNGJjNjA0MTg1YmMwYzVjNzgyOGQ5YWE4MWUwNmZmOWFhNDhmMDRhYjZiNjZmZjE0MGM4NmNiMTQ0In19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX3g4Nl82NC5kaXN0bWV0YS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI1ZWIzYzdlYmI3ZmExY2Y1NmVhMTA3MWMxZjEwYzg0Nzg3ODVmZjk3ZmQ3M2RlYTI3ZTgzODNhMDVkMzdmZDQwIn19LHsibmFtZSI6IkNvbW1vbnNCYXNlX0dOVS1XaW5kb3dzX3g4Nl82NC5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiMDZmOTVmM2U3YTE5MTNiODdkODM5MDU0MGYyZWZlMTg3NDU2ODBlNzg5YjBhYzU4ZGQxNTc0ZjllMzM2ZTYxOSJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6ImE5MjEzMjgxNTFhNzgzNzcwYmZlZmEzNjI4YWQxZDc3ZDdlMDhmNjFkNjQyYTFhOTYyZGNiMzc3NmZiOTcyOTYifX0seyJuYW1lIjoiQ29tbW9uc0Jhc2VfR05VLVdpbmRvd3NfeDg2XzY0LnBhY2thZ2UudmFsdWVzdG9yZS56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiYWZmMGQwNTA5NGUwOTNiZGFkOTFhN2U1ZTcyNjFlNDViMzAzMTZlNzgwMDI0MWYzMTZlYzFlOWE5YjA0MTFkNiJ9fSx7Im5hbWUiOiJDb21tb25zQmFzZV9HTlUtV2luZG93c194ODZfNjQudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiYjk5MzYzYmMxNDE0MzhhZDg4M2Q5MWRhOWJiMmUwYTI3MmYzZTA2MjVjZDM2YTNlYTgzMmE4OTBiZGI5MmEzOSJ9fSx7Im5hbWUiOiJ2YWx1ZXMuanNvbiIsImRpZ2VzdCI6eyJzaGEyNTYiOiI0MjJkZjBjMzMxZmJhMzE4OWY2MGFlODY2ZThhYjRkODExZjE0OGRhZGM4ZjQwODg3YzQ0Yjc5NThhZjBlMjc4In19XSwicHJlZGljYXRlVHlwZSI6Imh0dHBzOi8vc2xzYS5kZXYvcHJvdmVuYW5jZS92MSIsInByZWRpY2F0ZSI6eyJidWlsZERlZmluaXRpb24iOnsiYnVpbGRUeXBlIjoiaHR0cHM6Ly9hY3Rpb25zLmdpdGh1Yi5pby9idWlsZHR5cGVzL3dvcmtmbG93L3YxIiwiZXh0ZXJuYWxQYXJhbWV0ZXJzIjp7IndvcmtmbG93Ijp7InJlZiI6InJlZnMvdGFncy8wLjEuMjAyNjA3MjMwNzAxMjQiLCJyZXBvc2l0b3J5IjoiaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL0NvbW1vbnNCYXNlX0dOVSIsInBhdGgiOiIuZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWwifX0sImludGVybmFsUGFyYW1ldGVycyI6eyJnaXRodWIiOnsiZXZlbnRfbmFtZSI6InB1c2giLCJyZXBvc2l0b3J5X2lkIjoiMTIyMjg3NDAzNyIsInJlcG9zaXRvcnlfb3duZXJfaWQiOiIyNzg5MTM1MDAiLCJydW5uZXJfZW52aXJvbm1lbnQiOiJnaXRodWItaG9zdGVkIn19LCJyZXNvbHZlZERlcGVuZGVuY2llcyI6W3sidXJpIjoiZ2l0K2h0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Db21tb25zQmFzZV9HTlVAcmVmcy90YWdzLzAuMS4yMDI2MDcyMzA3MDEyNCIsImRpZ2VzdCI6eyJnaXRDb21taXQiOiI0ODM4ODQ4ZDQ5NjNmNWMzYzhkMmE0MTJjOWNmMjM2ZWRjMTYwMjY2In19XX0sInJ1bkRldGFpbHMiOnsiYnVpbGRlciI6eyJpZCI6Imh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Db21tb25zQmFzZV9HTlUvLmdpdGh1Yi93b3JrZmxvd3MvZGlzdHJpYnV0ZS0wLjEueW1sQHJlZnMvdGFncy8wLjEuMjAyNjA3MjMwNzAxMjQifSwibWV0YWRhdGEiOnsiaW52b2NhdGlvbklkIjoiaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL0NvbW1vbnNCYXNlX0dOVS9hY3Rpb25zL3J1bnMvMjk5ODY5NjYzMjcvYXR0ZW1wdHMvMSJ9fX19","payloadType":"application/vnd.in-toto+json","signatures":[{"sig":"MEUCIQDMce13RSIETYztLnhJz2kPaA5yJLtrXBGS5MKZH8Jw8gIgR/g5I7Wfp9CYbuObI+xNJMvLipbji3gajQkGDh+VAqI="}]}}
+            ] },
+          "github_slsa_v1_l3": {},
+          "openbsd_signify": {}
+        },
+        "build_to_sign": {
+          "bundle_canonical": "998b8decf74ad00d2c79080e39c2397523c292b22ef9fbf79624a0df34bf4ca7",
+          "bundle_modver": "CommonsBase_GNU.Distribution@0.1.20260723070124",
+          "modules": [
+            "CommonsBase_GNU.Awk@5.3.1", "CommonsBase_GNU.Bash@5.2.37",
+            "CommonsBase_GNU.Bison@3.8.2",
+            "CommonsBase_GNU.Distribution@0.1.20260723070124",
+            "CommonsBase_GNU.GMP@6.3.0",
+            "CommonsBase_GNU.Grep@2.5.4+gnuwin32-20090213",
+            "CommonsBase_GNU.Grep@3.12.0", "CommonsBase_GNU.M4@1.4.20",
+            "CommonsBase_GNU.Make@4.4.1", "CommonsBase_GNU.Nettle@3.10.2",
+            "CommonsBase_GNU.Sed@4.2.1+gnuwin32-20101228",
+            "CommonsBase_GNU.Sed@4.9.0", "CommonsBase_GNU.Sh@0.1.0",
+            "CommonsBase_GNU.TLS@3.8.12",
+            "CommonsBase_GNU.UnixEssentials@0.1.0",
+            "CommonsBase_GNU.Awk.Bundle@5.3.1",
+            "CommonsBase_GNU.Awk.Unix@5.3.1",
+            "CommonsBase_GNU.Awk.Win32@5.3.1",
+            "CommonsBase_GNU.Awk.Zip@5.3.1",
+            "CommonsBase_GNU.Awk.Apparatus.LlvmMingwPatch@5.3.1",
+            "CommonsBase_GNU.Awk.Apparatus.MingwHostTriplet@5.3.1",
+            "CommonsBase_GNU.Bash.Bundle@5.2.37",
+            "CommonsBase_GNU.Bash.Zip@5.2.37",
+            "CommonsBase_GNU.Bison.Bundle@3.8.2",
+            "CommonsBase_GNU.Bison.Unix@3.8.2",
+            "CommonsBase_GNU.Bison.Win32@3.8.2",
+            "CommonsBase_GNU.Bison.Zip@3.8.2",
+            "CommonsBase_GNU.Build.Apparatus.BisonDisablePerlDocs@1.0.0",
+            "CommonsBase_GNU.Build.Apparatus.BisonYaccCmd@1.0.0",
+            "CommonsBase_GNU.Build.Apparatus.FixConfigurePrefix@1.0.0",
+            "CommonsBase_GNU.Build.Apparatus.LibtoolOldPostinstall@1.0.0",
+            "CommonsBase_GNU.GMP.Bundle@6.3.0",
+            "CommonsBase_GNU.GMP.Unix@6.3.0",
+            "CommonsBase_GNU.GMP.Win32@6.3.0",
+            "CommonsBase_GNU.GMP.Zip@6.3.0",
+            "CommonsBase_GNU.Grep.Bundle@2.5.4+gnuwin32-20090213",
+            "CommonsBase_GNU.Grep.Bundle@3.12.0",
+            "CommonsBase_GNU.Grep.Unix@3.12.0",
+            "CommonsBase_GNU.Grep.Win32@3.12.0",
+            "CommonsBase_GNU.Grep.Zip@3.12.0",
+            "CommonsBase_GNU.M4.Bundle@1.4.20",
+            "CommonsBase_GNU.Make.Autoconf@4.4.1",
+            "CommonsBase_GNU.Make.Bundle@4.4.1",
+            "CommonsBase_GNU.Make.Win32@4.4.1",
+            "CommonsBase_GNU.Make.Apparatus.BuildW32Bat@4.4.1",
+            "CommonsBase_GNU.Make.Apparatus.ConfigHW32Sed@4.4.1",
+            "CommonsBase_GNU.Make.Autoconf.Zip@4.4.1",
+            "CommonsBase_GNU.Make.Win32.Zip@4.4.1",
+            "CommonsBase_GNU.Nettle.Bundle@3.10.2",
+            "CommonsBase_GNU.Nettle.Unix@3.10.2",
+            "CommonsBase_GNU.Nettle.Win32@3.10.2",
+            "CommonsBase_GNU.Nettle.Zip@3.10.2",
+            "CommonsBase_GNU.Sed.Bundle@4.2.1+gnuwin32-20101228",
+            "CommonsBase_GNU.Sed.Bundle@4.9.0",
+            "CommonsBase_GNU.Sed.Unix@4.9.0",
+            "CommonsBase_GNU.Sed.Win32@4.9.0",
+            "CommonsBase_GNU.Sh.Unix@5.2.37",
+            "CommonsBase_GNU.Sh.Win32@2.5.0",
+            "CommonsBase_GNU.TLS.Bundle@3.8.12",
+            "CommonsBase_GNU.TLS.Unix@3.8.12",
+            "CommonsBase_GNU.TLS.Win32@3.8.12",
+            "CommonsBase_GNU.TLS.Zip@3.8.12",
+            "CommonsBase_GNU.Toolchain.W64dev@2.5.0",
+            "CommonsBase_GNU.Toolchain.W64devkit.Bundle@2.5.0"
+          ],
+          "producer_accepts": [],
+          "distmeta": {
+            "traces": [
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Darwin_arm64.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Linux_x86-Linux_x86.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Windows_x86-Windows_x86.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Windows_x86_64.distmeta.cts.1.tracestore"
+              }
+            ],
+            "values": [
+              {
+                "path": "CommonsBase_GNU-Darwin_arm64.distmeta.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.distmeta.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Linux_x86-Linux_x86.distmeta.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.distmeta.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.distmeta.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Windows_x86-Windows_x86.distmeta.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Windows_x86_64.distmeta.valuestore.zip"
+              }
+            ]
+          },
+          "package": {
+            "traces": [
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Darwin_arm64.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Linux_x86-Linux_x86.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Windows_x86-Windows_x86.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "CommonsBase_GNU-Windows_x86_64.package.cts.1.tracestore"
+              }
+            ],
+            "values": [
+              {
+                "path": "CommonsBase_GNU-Darwin_arm64.package.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Darwin_x86_64-Darwin_x86_64.package.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Linux_x86-Linux_x86.package.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Linux_x86_64-Linux_x86_64.package.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Windows_arm64-Windows_arm64.package.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Windows_x86-Windows_x86.package.valuestore.zip"
+              },
+              {
+                "path": "CommonsBase_GNU-Windows_x86_64.package.valuestore.zip"
+              }
+            ]
+          }
+        }
+      },
+      "continuations": {
+        "attestation": {
+          "openbsd_signify": {
+            "signature": "untrusted comment: signed by key ceb2c32a218fbc59\nRWTOssMqIY+8WRaCrZZQTNWI6z4BbKfh2bWqx42Ao/cM7xVYHxyXl8iIqNwL8q+MMtw1p3yb7E2Io+JsqgzPhMUQ9tblBvI8nAU=\n"
+          }
+        },
+        "continuations_to_sign": {
+          "0.2": {
+            "application": { "name": "dk0", "version": "2.4.2+rev-249" },
+            "openbsd_signify": {
+              "public_key": "untrusted comment: CommonsBase_GNU-0.2\nRWQgtC6vDodCyVJdzS5GzUTxLZ6YWzNE3l4++NdOGG9JTzquXfEbqNVu\n"
+            }
+          },
+          "1.0": {
+            "application": { "name": "dk0", "version": "2.4.2+rev-249" },
+            "openbsd_signify": {
+              "public_key": "untrusted comment: CommonsBase_GNU-1.0\nRWRDk4W+/9wP2rxcwsjA0OFJYFrqJkwmMjbXnFgvKoxYmS74OL0UU+h9\n"
+            }
+          }
+        }
+      },
+      "id": "CommonsBase_GNU@0.1.20260723070124",
+      "license": { "spdx": "Apache-2.0" },
+      "producer": {
+        "application": { "name": "dk0", "version": "2.4.2+rev-289" },
+        "github_slsa_v1_l2": { "repository": "dkpkg/CommonsBase_GNU" },
+        "openbsd_signify": {
+          "public_key": "untrusted comment: CommonsBase_GNU-0.1\nRWTOssMqIY+8Weugov2Iu48lx6q76RiWDIC5vw8jkdfpGNEkUb6SwLpK\n"
+        }
+      },
+      "min_dk_version": "2.4.2.213"
+    }
+  ],
+  "forms": [],
+  "schema_version": { "major": 1, "minor": 0 }
+}

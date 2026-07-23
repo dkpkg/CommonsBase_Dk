@@ -1,0 +1,464 @@
+{
+  "bundles": [
+    {
+      "assets": [
+        {
+          "checksum": {
+            "blake2b256": "5db6db7aa78c15fbf19c17ebc9d46be2e10a945e2c3d8c1e1d7e585f6a9ffe68"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_arm64.distmeta.cts.1.tracestore",
+          "size": 162645
+        },
+        {
+          "checksum": {
+            "blake2b256": "4f01c917f745dacaf3789750276d2a7d05ab174b5e5e771c433899aaadfd4360"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 7538,
+                "central_size": 533,
+                "checksum": {
+                  "blake2b256": "c911eeed03863aea60bfa04cf63c22c30aa5b5b2bd0974d233c000764ffed3a4"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_arm64.distmeta.manifest.zip",
+          "size": 8071
+        },
+        {
+          "checksum": {
+            "blake2b256": "6b0601b863f420daf8e278827e3d7baa5128cbf561d57dddaf41e13cedf639a6"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 68888,
+                "central_size": 728,
+                "checksum": {
+                  "blake2b256": "b219fe68a51ecc356fc2cb7acdbffc6efdba40b542c6d17c97e2b291467742c4"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_arm64.distmeta.valuestore.zip",
+          "size": 69616
+        },
+        {
+          "checksum": {
+            "blake2b256": "d863346e15f12cbb1c17226f261f6ccb9b1beb7576170f0722a6ef3e156bb85c"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_arm64.package.cts.1.tracestore",
+          "size": 9403
+        },
+        {
+          "checksum": {
+            "blake2b256": "fe7ec4ba871b6e130366c042b9871b3e8c952ca7f5e454b015feab139f6fa430"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 25791791,
+                "central_size": 1358,
+                "checksum": {
+                  "blake2b256": "2af9ca60d6b0aa69a33e36b9364ab0cef5434b04d4e61437a8e4d58521abd0b4"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_arm64.package.valuestore.zip",
+          "size": 25793149
+        },
+        {
+          "checksum": {
+            "blake2b256": "5db6db7aa78c15fbf19c17ebc9d46be2e10a945e2c3d8c1e1d7e585f6a9ffe68"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.distmeta.cts.1.tracestore",
+          "size": 162645
+        },
+        {
+          "checksum": {
+            "blake2b256": "9b043d7be8bc73548343e8c22bfd2e22e0cfc41055fbf5a48f1ba70af27b8e47"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 7542,
+                "central_size": 534,
+                "checksum": {
+                  "blake2b256": "7818a994a43b80b1434709af547dd9240e41e842c9dbabfd78e1f8b43e7c507b"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.distmeta.manifest.zip",
+          "size": 8076
+        },
+        {
+          "checksum": {
+            "blake2b256": "6b0601b863f420daf8e278827e3d7baa5128cbf561d57dddaf41e13cedf639a6"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 68888,
+                "central_size": 728,
+                "checksum": {
+                  "blake2b256": "b219fe68a51ecc356fc2cb7acdbffc6efdba40b542c6d17c97e2b291467742c4"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.distmeta.valuestore.zip",
+          "size": 69616
+        },
+        {
+          "checksum": {
+            "blake2b256": "917b4e1b5aa560dc40b0abd6185c76f456d5d5250565797459a3130021215ec1"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.package.cts.1.tracestore",
+          "size": 9409
+        },
+        {
+          "checksum": {
+            "blake2b256": "18420b93334f53d39fe669b30f55070714a57629279aa6e92058567d6f2b931c"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 26044637,
+                "central_size": 1358,
+                "checksum": {
+                  "blake2b256": "07f04c4454332a60e88225b5e33137e2510c1996cf1e8aa876ae7b04c5aeb863"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.package.valuestore.zip",
+          "size": 26045995
+        },
+        {
+          "checksum": {
+            "blake2b256": "5db6db7aa78c15fbf19c17ebc9d46be2e10a945e2c3d8c1e1d7e585f6a9ffe68"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.distmeta.cts.1.tracestore",
+          "size": 162645
+        },
+        {
+          "checksum": {
+            "blake2b256": "edb8a5718740e702b51f0dee553a7f610196d99c6ff14e908a1a58145006eb61"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 7521,
+                "central_size": 530,
+                "checksum": {
+                  "blake2b256": "36c5cedb299a5997549dc907d5aaedc67218e0c9b9e426ac8bd40b5123a0e84a"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.distmeta.manifest.zip",
+          "size": 8051
+        },
+        {
+          "checksum": {
+            "blake2b256": "6b0601b863f420daf8e278827e3d7baa5128cbf561d57dddaf41e13cedf639a6"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 68888,
+                "central_size": 728,
+                "checksum": {
+                  "blake2b256": "b219fe68a51ecc356fc2cb7acdbffc6efdba40b542c6d17c97e2b291467742c4"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.distmeta.valuestore.zip",
+          "size": 69616
+        },
+        {
+          "checksum": {
+            "blake2b256": "3a07d1d80e5ca0e021161475e788363390e2805ec3a2b65adaadcd568babaa62"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.package.cts.1.tracestore",
+          "size": 9587
+        },
+        {
+          "checksum": {
+            "blake2b256": "2f3851a413f61e1a10555aaedd5d9f45dd07aa144ca4597cb6f12564d3078a07"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 43201935,
+                "central_size": 1358,
+                "checksum": {
+                  "blake2b256": "e51552590b0d41846f53d9ba54567e92f2ea0bd7d60274bafe12b04ce42aedb5"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.package.valuestore.zip",
+          "size": 43203293
+        },
+        {
+          "checksum": {
+            "blake2b256": "5db6db7aa78c15fbf19c17ebc9d46be2e10a945e2c3d8c1e1d7e585f6a9ffe68"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.distmeta.cts.1.tracestore",
+          "size": 162645
+        },
+        {
+          "checksum": {
+            "blake2b256": "d4bee8d58e039e0b45d55bf1f06c95bcdbd2b4b465c8a8f1456b4074921ec9db"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 7524,
+                "central_size": 533,
+                "checksum": {
+                  "blake2b256": "8f4bb5732d62475a74fd4932a4cad454ab573ff75f178cb82b5e6193ab1f4c3a"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.distmeta.manifest.zip",
+          "size": 8057
+        },
+        {
+          "checksum": {
+            "blake2b256": "6b0601b863f420daf8e278827e3d7baa5128cbf561d57dddaf41e13cedf639a6"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 68888,
+                "central_size": 728,
+                "checksum": {
+                  "blake2b256": "b219fe68a51ecc356fc2cb7acdbffc6efdba40b542c6d17c97e2b291467742c4"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.distmeta.valuestore.zip",
+          "size": 69616
+        },
+        {
+          "checksum": {
+            "blake2b256": "71977f41ea82b88bebac21e72cbe92bf29d7044f3adba48e019852a28af1e17d"
+          },
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.package.cts.1.tracestore",
+          "size": 9605
+        },
+        {
+          "checksum": {
+            "blake2b256": "6d752ad045f2af83c69d669f58c8eb5f8467eb370a6de53f01e0b0ebba912b18"
+          },
+          "indexes": [
+            {
+              "type": "zip",
+              "zip": {
+                "local_offset": 0,
+                "central_offset": 45135427,
+                "central_size": 1358,
+                "checksum": {
+                  "blake2b256": "4105d44a3e01971b4d4e4dba80b0e610fb2f8039f397e23eee4b00e62f4737b7"
+                }
+              }
+            }
+          ],
+          "origin": "NotMitEdu_Kerberos",
+          "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.package.valuestore.zip",
+          "size": 45136785
+        }
+      ],
+      "id": "NotMitEdu_Kerberos.Distribution@0.1.20260719215757",
+      "listing": {
+        "origins": [
+          {
+            "name": "NotMitEdu_Kerberos",
+            "mirrors": [
+              "https://github.com/dkpkg/NotMitEdu_Kerberos/releases/download/0.1.20260719215757"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "distributions": [
+    {
+      "build": {
+        "attestation": {
+          "github_slsa_v1_l2": {
+            "docs": [
+              {"mediaType":"application/vnd.dev.sigstore.bundle.v0.3+json","verificationMaterial":{"certificate":{"rawBytes":"MIIHkjCCBxegAwIBAgIUWdoao1eVq/zSCc0jdr3GuuzhUYIwCgYIKoZIzj0EAwMwNzEVMBMGA1UEChMMc2lnc3RvcmUuZGV2MR4wHAYDVQQDExVzaWdzdG9yZS1pbnRlcm1lZGlhdGUwHhcNMjYwNzE5MjIwMjI4WhcNMjYwNzE5MjIxMjI4WjAAMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFPiBCf3KUAb5OCng1mKNAxz7SmXYstbGRRzQNy3ivGLORdjWgOm8tzanrhvPRvknI6vVOncne7drDVP5/b2406OCBjYwggYyMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcDAzAdBgNVHQ4EFgQUZr90hGzNT4Ok7Uxasdu5+xdw7ucwHwYDVR0jBBgwFoAU39Ppz1YkEZb5qNjpKFWixi4YZD8wewYDVR0RAQH/BHEwb4ZtaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL05vdE1pdEVkdV9LZXJiZXJvcy8uZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWxAcmVmcy90YWdzLzAuMS4yMDI2MDcxOTIxNTc1NzA5BgorBgEEAYO/MAEBBCtodHRwczovL3Rva2VuLmFjdGlvbnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tMBIGCisGAQQBg78wAQIEBHB1c2gwNgYKKwYBBAGDvzABAwQoYWUxNjRhZTA1OWQzMTcxN2VlYjQxMWFlYTg5NGMxYzQ3NzY4ZDM3NzAyBgorBgEEAYO/MAEEBCQuZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWwwJgYKKwYBBAGDvzABBQQYZGtwa2cvTm90TWl0RWR1X0tlcmJlcm9zMCoGCisGAQQBg78wAQYEHHJlZnMvdGFncy8wLjEuMjAyNjA3MTkyMTU3NTcwOwYKKwYBBAGDvzABCAQtDCtodHRwczovL3Rva2VuLmFjdGlvbnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tMH0GCisGAQQBg78wAQkEbwxtaHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL05vdE1pdEVkdV9LZXJiZXJvcy8uZ2l0aHViL3dvcmtmbG93cy9kaXN0cmlidXRlLTAuMS55bWxAcmVmcy90YWdzLzAuMS4yMDI2MDcxOTIxNTc1NzA4BgorBgEEAYO/MAEKBCoMKGFlMTY0YWUwNTlkMzE3MTdlZWI0MTFhZWE4OTRjMWM0Nzc2OGQzNzcwHQYKKwYBBAGDvzABCwQPDA1naXRodWItaG9zdGVkMDsGCisGAQQBg78wAQwELQwraHR0cHM6Ly9naXRodWIuY29tL2RrcGtnL05vdE1pdEVkdV9LZXJiZXJvczA4BgorBgEEAYO/MAENBCoMKGFlMTY0YWUwNTlkMzE3MTdlZWI0MTFhZWE4OTRjMWM0Nzc2OGQzNzcwLAYKKwYBBAGDvzABDgQeDBxyZWZzL3RhZ3MvMC4xLjIwMjYwNzE5MjE1NzU3MBoGCisGAQQBg78wAQ8EDAwKMTIyMjg3NDExMjAoBgorBgEEAYO/MAEQBBoMGGh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZzAZBgorBgEEAYO/MAERBAsMCTI3ODkxMzUwMDB9BgorBgEEAYO/MAESBG8MbWh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Ob3RNaXRFZHVfS2VyYmVyb3MvLmdpdGh1Yi93b3JrZmxvd3MvZGlzdHJpYnV0ZS0wLjEueW1sQHJlZnMvdGFncy8wLjEuMjAyNjA3MTkyMTU3NTcwOAYKKwYBBAGDvzABEwQqDChhZTE2NGFlMDU5ZDMxNzE3ZWViNDExYWVhODk0YzFjNDc3NjhkMzc3MBQGCisGAQQBg78wARQEBgwEcHVzaDBfBgorBgEEAYO/MAEVBFEMT2h0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Ob3RNaXRFZHVfS2VyYmVyb3MvYWN0aW9ucy9ydW5zLzI5NzA1Mjk4MTg3L2F0dGVtcHRzLzEwFgYKKwYBBAGDvzABFgQIDAZwdWJsaWMwTgYKKwYBBAGDvzABGARADD5yZXBvOmRrcGtnL05vdE1pdEVkdV9LZXJiZXJvczpyZWY6cmVmcy90YWdzLzAuMS4yMDI2MDcxOTIxNTc1NzCBiwYKKwYBBAHWeQIEAgR9BHsAeQB3AN09MGrGxxEyYxkeHJlnNwKiSl643jyt/4eKcoAvKe6OAAABn3xm7YUAAAQDAEgwRgIhAMuKlOOZk1kehdvebrDXyD8hDUz8OEp9LScBzapJG4LvAiEA1CP15Vt3UVtqFXlTU89njvpRHNkc8otcZn4sKacNhzgwCgYIKoZIzj0EAwMDaQAwZgIxAJ75OJdUk5M4FLmwZaGkLy3uEjgwRtxQiSfi+tZB614JddUVa6KY3uGqBmb8f46lzgIxALaBSxZSad4gXB8+iP1GChryEtRywanYPc5O7K9d1EUIfae4v2MkuL1w7LrwwFD0iQ=="},"tlogEntries":[{"logIndex":"2203763269","logId":{"keyId":"wNI9atQGlz+VWfO6LRygH4QUfY/8W4RFwiT5i5WRgB0="},"kindVersion":{"kind":"dsse","version":"0.0.1"},"integratedTime":"1784498548","inclusionPromise":{"signedEntryTimestamp":"MEUCIF2g9yLtdvZewEwbjedVB6eSnxXQ52GEUsn7W8iZpeZgAiEAic47RrJDNg86zI0k4c2F9YGJBlFcbj88cJD++/2Ctyc="},"inclusionProof":{"logIndex":"2081859007","rootHash":"bwCdae5eGrCRY4bHLc2J3PqWiV+qvm5FiHcJJ5CusxY=","treeSize":"2081859020","hashes":["IKFMRWxoPjxhEnNWIa2xWV8uiJepvVMGvdKuKZDy4/Y=","0niJNZxFxmXdgRjFmnMyMteuvljzSUNa9rlBoVMGeWQ=","PS0dnoUC16E1PS3gebSdmTvA/8vR7wo36/noSxg7x7s=","z3Sr7agPjh6mbvgyTJnuotUA8QbstmNh7LSfiJlWtqk=","HCkUA8DuyTSxMUY3HenFxFzhYuA1vFKZp9ZJLK0n6KM=","jePE6jrTquY9WHbtCAQr+N4De7gPee4YjzBwrxyIu/c=","eNLRFxd3IXtZpEtvCD7QPgNxDUVMWRjWw/eHsQ24a70=","lw5gp6itXGi0LzKf+GLf1q5kfIz0QwlqkJ2SB7WNbEo=","p73l4Fh1920MfuwsDDRipI3itwMcMfAGOqhRPrK5FpU=","RV+QCqflAWmteNyK8fpCbVVUrwzqDpUmcMgRl9B28TA=","4SKf+H8YDBx5p8m7gtqUZT1ka/YReRu3mRS20I7fWvI=","O5mShW3qwR2VcjjvY7l57UoMw52j6oJQUOa/JMKzK30=","XUFNO2m609w5edbJjzi1m1skOJshZOsxRH9q3l38uJ4=","7Sy9j7FYOhY8hQkP1s/Uw9L9WJEIl+z0W8nJEkJqnTw=","wzZ4A7jLrgMNppF4E3hmOMhjkv49i7ouLW6h4a1Eln4=","GxT6+CEXxY8Ak/besnRW/IK3DhneHQ5X5rIcw8L01DQ=","Rq/A2aTC9e54ldNjcpsJ26rX/h8JlN6ZHxgw7yEa6C0=","+/VZ56MsIPxMiyLAodzKXo5TEWdQp36z89qLhpzloAo=","daxmZaajRpZV+JxHiOYZhJBiSKN5ucqjh2WnGbHhirw=","DOCeoSMovIvLExkhIvisow9AuNXgeWs4ECkyR6EcqYU="],"checkpoint":{"envelope":"rekor.sigstore.dev - 1193050959916656506\n2081859020\nbwCdae5eGrCRY4bHLc2J3PqWiV+qvm5FiHcJJ5CusxY=\n\n— rekor.sigstore.dev wNI9ajBEAiATJ0h9ZbTwFCZ0daSQ2NIA3MaNuULXR/uIqztUuHzbpAIgTn7VkEInWPfkQLLyaddxFAA4rd32ZorFGDBQuUDF44E=\n"}},"canonicalizedBody":"eyJhcGlWZXJzaW9uIjoiMC4wLjEiLCJraW5kIjoiZHNzZSIsInNwZWMiOnsiZW52ZWxvcGVIYXNoIjp7ImFsZ29yaXRobSI6InNoYTI1NiIsInZhbHVlIjoiZDVjNTBlNmMxMzAxMWIxNDNkZDIwY2QxNTkyNThiNjI2NDJjMzgzMzczNWNhMTlmMjU3ZDI2MjNkODc5NzhmNiJ9LCJwYXlsb2FkSGFzaCI6eyJhbGdvcml0aG0iOiJzaGEyNTYiLCJ2YWx1ZSI6IjI3NzMyYzkwZGRiNWNmNDFhYmRjMmRhYjI2OWI0NWIwNmU3MzQwODc5ZGMwMjAxMWE5MWZkYjNkZDRhNDRjZTQifSwic2lnbmF0dXJlcyI6W3sic2lnbmF0dXJlIjoiTUVVQ0lDZktjdjZsK25Fa0RScXhrRndYb1p3Q2ZaRm1RMWRFa0ZyVmF6RjE1RUlmQWlFQWttYm9QU1ROYldTWVVJQy93VGVBTzRMMWF1Yit0andjMGVCMWFROE5EMzQ9IiwidmVyaWZpZXIiOiJMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VocmFrTkRRbmhsWjBGM1NVSkJaMGxWVjJSdllXOHhaVlp4TDNwVFEyTXdhbVJ5TTBkMWRYcG9WVmxKZDBObldVbExiMXBKZW1vd1JVRjNUWGNLVG5wRlZrMUNUVWRCTVZWRlEyaE5UV015Ykc1ak0xSjJZMjFWZFZwSFZqSk5ValIzU0VGWlJGWlJVVVJGZUZaNllWZGtlbVJIT1hsYVV6RndZbTVTYkFwamJURnNXa2RzYUdSSFZYZElhR05PVFdwWmQwNTZSVFZOYWtsM1RXcEpORmRvWTA1TmFsbDNUbnBGTlUxcVNYaE5ha2swVjJwQlFVMUdhM2RGZDFsSUNrdHZXa2w2YWpCRFFWRlpTVXR2V2tsNmFqQkVRVkZqUkZGblFVVkdVR2xDUTJZelMxVkJZalZQUTI1bk1XMUxUa0Y0ZWpkVGJWaFpjM1JpUjFKU2VsRUtUbmt6YVhaSFRFOVNaR3BYWjA5dE9IUjZZVzV5YUhaUVVuWnJia2syZGxaUGJtTnVaVGRrY2tSV1VEVXZZakkwTURaUFEwSnFXWGRuWjFsNVRVRTBSd3BCTVZWa1JIZEZRaTkzVVVWQmQwbElaMFJCVkVKblRsWklVMVZGUkVSQlMwSm5aM0pDWjBWR1FsRmpSRUY2UVdSQ1owNVdTRkUwUlVablVWVmFjamt3Q21oSGVrNVVORTlyTjFWNFlYTmtkVFVyZUdSM04zVmpkMGgzV1VSV1VqQnFRa0puZDBadlFWVXpPVkJ3ZWpGWmEwVmFZalZ4VG1wd1MwWlhhWGhwTkZrS1drUTRkMlYzV1VSV1VqQlNRVkZJTDBKSVJYZGlORnAwWVVoU01HTklUVFpNZVRsdVlWaFNiMlJYU1hWWk1qbDBUREpTY21OSGRHNU1NRFYyWkVVeGNBcGtSVlpyWkZZNVRGcFlTbWxhV0VwMlkzazRkVm95YkRCaFNGWnBURE5rZG1OdGRHMWlSemt6WTNrNWEyRllUakJqYld4cFpGaFNiRXhVUVhWTlV6VTFDbUpYZUVGamJWWnRZM2s1TUZsWFpIcE1la0YxVFZNMGVVMUVTVEpOUkdONFQxUkplRTVVWXpGT2VrRTFRbWR2Y2tKblJVVkJXVTh2VFVGRlFrSkRkRzhLWkVoU2QyTjZiM1pNTTFKMllUSldkVXh0Um1wa1IyeDJZbTVOZFZveWJEQmhTRlpwWkZoT2JHTnRUblppYmxKc1ltNVJkVmt5T1hSTlFrbEhRMmx6UndwQlVWRkNaemM0ZDBGUlNVVkNTRUl4WXpKbmQwNW5XVXRMZDFsQ1FrRkhSSFo2UVVKQmQxRnZXVmRWZUU1cVVtaGFWRUV4VDFkUmVrMVVZM2hPTWxac0NsbHFVWGhOVjBac1dWUm5OVTVIVFhoWmVsRXpUbnBaTkZwRVRUTk9la0Y1UW1kdmNrSm5SVVZCV1U4dlRVRkZSVUpEVVhWYU1td3dZVWhXYVV3elpIWUtZMjEwYldKSE9UTmplVGxyWVZoT01HTnRiR2xrV0ZKc1RGUkJkVTFUTlRWaVYzZDNTbWRaUzB0M1dVSkNRVWRFZG5wQlFrSlJVVmxhUjNSM1lUSmpkZ3BVYlRrd1ZGZHNNRkpYVWpGWU1IUnNZMjFLYkdOdE9YcE5RMjlIUTJselIwRlJVVUpuTnpoM1FWRlpSVWhJU214YWJrMTJaRWRHYm1ONU9IZE1ha1YxQ2sxcVFYbE9ha0V6VFZScmVVMVVWVE5PVkdOM1QzZFpTMHQzV1VKQ1FVZEVkbnBCUWtOQlVYUkVRM1J2WkVoU2QyTjZiM1pNTTFKMllUSldkVXh0Um1vS1pFZHNkbUp1VFhWYU1td3dZVWhXYVdSWVRteGpiVTUyWW01U2JHSnVVWFZaTWpsMFRVZ3dSME5wYzBkQlVWRkNaemM0ZDBGUmEwVmlkM2gwWVVoU01BcGpTRTAyVEhrNWJtRllVbTlrVjBsMVdUSTVkRXd5VW5KalIzUnVUREExZG1SRk1YQmtSVlpyWkZZNVRGcFlTbWxhV0VwMlkzazRkVm95YkRCaFNGWnBDa3d6WkhaamJYUnRZa2M1TTJONU9XdGhXRTR3WTIxc2FXUllVbXhNVkVGMVRWTTFOV0pYZUVGamJWWnRZM2s1TUZsWFpIcE1la0YxVFZNMGVVMUVTVElLVFVSamVFOVVTWGhPVkdNeFRucEJORUpuYjNKQ1owVkZRVmxQTDAxQlJVdENRMjlOUzBkR2JFMVVXVEJaVjFWM1RsUnNhMDE2UlROTlZHUnNXbGRKTUFwTlZFWm9XbGRGTkU5VVVtcE5WMDB3VG5wak1rOUhVWHBPZW1OM1NGRlpTMHQzV1VKQ1FVZEVkbnBCUWtOM1VWQkVRVEZ1WVZoU2IyUlhTWFJoUnpsNkNtUkhWbXROUkhOSFEybHpSMEZSVVVKbk56aDNRVkYzUlV4UmQzSmhTRkl3WTBoTk5reDVPVzVoV0ZKdlpGZEpkVmt5T1hSTU1sSnlZMGQwYmt3d05YWUtaRVV4Y0dSRlZtdGtWamxNV2xoS2FWcFlTblpqZWtFMFFtZHZja0puUlVWQldVOHZUVUZGVGtKRGIwMUxSMFpzVFZSWk1GbFhWWGRPVkd4clRYcEZNd3BOVkdSc1dsZEpNRTFVUm1oYVYwVTBUMVJTYWsxWFRUQk9lbU15VDBkUmVrNTZZM2RNUVZsTFMzZFpRa0pCUjBSMmVrRkNSR2RSWlVSQ2VIbGFWMXA2Q2t3elVtaGFNMDEyVFVNMGVFeHFTWGROYWxsM1RucEZOVTFxUlRGT2VsVXpUVUp2UjBOcGMwZEJVVkZDWnpjNGQwRlJPRVZFUVhkTFRWUkplVTFxWnpNS1RrUkZlRTFxUVc5Q1oyOXlRbWRGUlVGWlR5OU5RVVZSUWtKdlRVZEhhREJrU0VKNlQyazRkbG95YkRCaFNGWnBURzFPZG1KVE9XdGhNMEp5V25wQldncENaMjl5UW1kRlJVRlpUeTlOUVVWU1FrRnpUVU5VU1ROUFJHdDRUWHBWZDAxRVFqbENaMjl5UW1kRlJVRlpUeTlOUVVWVFFrYzRUV0pYYURCa1NFSjZDazlwT0haYU1td3dZVWhXYVV4dFRuWmlVemxyWVROQ2NscDVPVTlpTTFKT1lWaFNSbHBJVm1aVE1sWjVXVzFXZVdJelRYWk1iV1J3WkVkb01WbHBPVE1LWWpOS2NscHRlSFprTTAxMldrZHNlbVJJU25CWmJsWXdXbE13ZDB4cVJYVmxWekZ6VVVoS2JGcHVUWFprUjBadVkzazRkMHhxUlhWTmFrRjVUbXBCTXdwTlZHdDVUVlJWTTA1VVkzZFBRVmxMUzNkWlFrSkJSMFIyZWtGQ1JYZFJjVVJEYUdoYVZFVXlUa2RHYkUxRVZUVmFSRTE0VG5wRk0xcFhWbWxPUkVWNENsbFhWbWhQUkdzd1dYcEdhazVFWXpOT2FtaHJUWHBqTTAxQ1VVZERhWE5IUVZGUlFtYzNPSGRCVWxGRlFtZDNSV05JVm5waFJFSm1RbWR2Y2tKblJVVUtRVmxQTDAxQlJWWkNSa1ZOVkRKb01HUklRbnBQYVRoMldqSnNNR0ZJVm1sTWJVNTJZbE01YTJFelFuSmFlVGxQWWpOU1RtRllVa1phU0ZabVV6SldlUXBaYlZaNVlqTk5kbGxYVGpCaFZ6bDFZM2s1ZVdSWE5YcE1la2sxVG5wQk1VMXFhelJOVkdjelRESkdNR1JIVm5SalNGSjZUSHBGZDBabldVdExkMWxDQ2tKQlIwUjJla0ZDUm1kUlNVUkJXbmRrVjBwellWZE5kMVJuV1V0TGQxbENRa0ZIUkhaNlFVSkhRVkpCUkVRMWVWcFlRblpQYlZKeVkwZDBia3d3TlhZS1pFVXhjR1JGVm10a1ZqbE1XbGhLYVZwWVNuWmplbkI1V2xkWk5tTnRWbTFqZVRrd1dWZGtla3g2UVhWTlV6UjVUVVJKTWsxRVkzaFBWRWw0VGxSak1RcE9la05DYVhkWlMwdDNXVUpDUVVoWFpWRkpSVUZuVWpsQ1NITkJaVkZDTTBGT01EbE5SM0pIZUhoRmVWbDRhMlZJU214dVRuZExhVk5zTmpRemFubDBDaTgwWlV0amIwRjJTMlUyVDBGQlFVSnVNM2h0TjFsVlFVRkJVVVJCUldkM1VtZEphRUZOZFV0c1QwOWFhekZyWldoa2RtVmlja1JZZVVRNGFFUlZlamdLVDBWd09VeFRZMEo2WVhCS1J6Uk1ka0ZwUlVFeFExQXhOVlowTTFWV2RIRkdXR3hVVlRnNWJtcDJjRkpJVG10ak9HOTBZMXB1TkhOTFlXTk9hSHBuZHdwRFoxbEpTMjlhU1hwcU1FVkJkMDFFWVZGQmQxcG5TWGhCU2pjMVQwcGtWV3MxVFRSR1RHMTNXbUZIYTB4NU0zVkZhbWQzVW5SNFVXbFRabWtyZEZwQ0NqWXhORXBrWkZWV1lUWkxXVE4xUjNGQ2JXSTRaalEyYkhwblNYaEJUR0ZDVTNoYVUyRmtOR2RZUWpncmFWQXhSME5vY25sRmRGSjVkMkZ1V1ZCak5VOEtOMHM1WkRGRlZVbG1ZV1UwZGpKTmEzVk1NWGMzVEhKM2QwWkVNR2xSUFQwS0xTMHRMUzFGVGtRZ1EwVlNWRWxHU1VOQlZFVXRMUzB0TFFvPSJ9XX19"}],"timestampVerificationData":{}},"dsseEnvelope":{"payload":"eyJfdHlwZSI6Imh0dHBzOi8vaW4tdG90by5pby9TdGF0ZW1lbnQvdjEiLCJzdWJqZWN0IjpbeyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLURhcndpbl9hcm02NC5kaXN0bWV0YS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6Ijc5YzcwN2RmNTgxZjc5NDIzMTNhN2MzNWQ1YWNkOTEyOTljNjM3MTUzZDBmNjExODc3YjA3ZjEzNmZkMjc0ZTEifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLURhcndpbl9hcm02NC5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiYzQzNDIxYzkxYmY1NTBlOTgyODA5YmJjMTlhYjk4MDg4NGQ3OGY0OTcxMDczMWNkZjUwMGEwYzAxOGIxZmY5MiJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtRGFyd2luX2FybTY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuaW5kZXgiLCJkaWdlc3QiOnsic2hhMjU2IjoiOTU4ZTI3MTljNDI0OTA1ODJlMjcyODljYjhkZWZhNTI1ZTg1OTk3NmI4OTBmNTg4NmNmYWQ2YTRhZDczOGE4MiJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtRGFyd2luX2FybTY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6Ijc3ZDA0MWZkNDEyMjFhNDAyMDcyZTU3NTNkZmQ2ODkxNjExNjRkZWRhZjMwYTNhMWI5M2M3NjM0MzEzZjIwYTcifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLURhcndpbl9hcm02NC5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiNDRmNmM0MjI1MTkxZjg4Zjk4YjA4YmJmZDFjNDQyNzI0MjgxZjQzMDU0NzlmNzAyZWY4Y2VjMjEwY2VkZTY5NiJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtRGFyd2luX2FybTY0LnBhY2thZ2UudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJkMGY0ZTg4OTZlM2E4OWZlZDljY2JiMzBhNjE5YTk0Mjk5ZjYwYzZhNjQ5NjExOTRiNmU5NDNkMmU4OWE0YjJiIn19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1EYXJ3aW5fYXJtNjQucGFja2FnZS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJhMmE3YjdiM2VhN2QzMWRjZTIwMmQ3ZTU3YTQ4ZjA3MDA4ODFlNjAzM2E4ZDI2MTc3NDllZGU3ZWNlN2Q5ZDU2In19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1EYXJ3aW5fYXJtNjQudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiYTllOTc5Mzc4YmYxYzVkMGM4YWY0YjljNmZkMjU4OGI4MTViMTY5YTMyOTBjZWQ3NWE1ZjA3MDU5ZjJiNWQyOCJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtRGFyd2luX3g4Nl82NC1EYXJ3aW5feDg2XzY0LmRpc3RtZXRhLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiNzljNzA3ZGY1ODFmNzk0MjMxM2E3YzM1ZDVhY2Q5MTI5OWM2MzcxNTNkMGY2MTE4NzdiMDdmMTM2ZmQyNzRlMSJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtRGFyd2luX3g4Nl82NC1EYXJ3aW5feDg2XzY0LmRpc3RtZXRhLm1hbmlmZXN0LnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI0YzFkZTNiMzA0YjMwMWYzMjJjY2Y0NDhiNmQzNTc4NzU4Nzk2ZTBjNGE2ZTJhMzllMDNmZDVlNWE2YWU3MzhkIn19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1EYXJ3aW5feDg2XzY0LURhcndpbl94ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI5NThlMjcxOWM0MjQ5MDU4MmUyNzI4OWNiOGRlZmE1MjVlODU5OTc2Yjg5MGY1ODg2Y2ZhZDZhNGFkNzM4YTgyIn19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1EYXJ3aW5feDg2XzY0LURhcndpbl94ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiNzdkMDQxZmQ0MTIyMWE0MDIwNzJlNTc1M2RmZDY4OTE2MTE2NGRlZGFmMzBhM2ExYjkzYzc2MzQzMTNmMjBhNyJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtRGFyd2luX3g4Nl82NC1EYXJ3aW5feDg2XzY0LnBhY2thZ2UuY3RzLjEudHJhY2VzdG9yZSIsImRpZ2VzdCI6eyJzaGEyNTYiOiJiYzljZWZiMWQxNWQwOTAxOTUzMDJhNjYzN2Y1YjY1YTlmM2JhMGU0YjljZjMxNDlkYWFkYzQwMDlkYzhiNmVhIn19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1EYXJ3aW5feDg2XzY0LURhcndpbl94ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6IjA1YjNlY2ZmYzRhOTdiMDg3NzgzYmQ3YTBhMzgwNjc0Y2MzNmUwOTE3ZDZkOWI2YTQ3NDhmNDAwMTAzMTAwMDAifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLURhcndpbl94ODZfNjQtRGFyd2luX3g4Nl82NC5wYWNrYWdlLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjBkZmM1NjRkZjg4MTA0NzQwMTkwOGFmMWQxYjY0NjgyOWRlZWFmOTc4NDEyNmQ1YzJiMmZiMGQ0MjllNTkyY2IifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLURhcndpbl94ODZfNjQtRGFyd2luX3g4Nl82NC52YWx1ZXMuanNvbiIsImRpZ2VzdCI6eyJzaGEyNTYiOiJkYTNjNjk3ODcxMjkyODAxYzEzZjkyOWZiNmQ1ZTliMWJkNmQwMzk5MzU3YmU4NGQyNTkxZTJhZTFmNGI3YjE2In19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1MaW51eF94ODYtTGludXhfeDg2LmRpc3RtZXRhLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiNzljNzA3ZGY1ODFmNzk0MjMxM2E3YzM1ZDVhY2Q5MTI5OWM2MzcxNTNkMGY2MTE4NzdiMDdmMTM2ZmQyNzRlMSJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtTGludXhfeDg2LUxpbnV4X3g4Ni5kaXN0bWV0YS5tYW5pZmVzdC56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiMjFiZjdlZDNkMTE5YWZlNzkzYTkyYzM0ZTk0ZjhjMDI0YWM0NmJmOTFmZDcyNTdlMjliZDgwYzI4ZDAwNDM1NSJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtTGludXhfeDg2LUxpbnV4X3g4Ni5kaXN0bWV0YS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6Ijk1OGUyNzE5YzQyNDkwNTgyZTI3Mjg5Y2I4ZGVmYTUyNWU4NTk5NzZiODkwZjU4ODZjZmFkNmE0YWQ3MzhhODIifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Ni1MaW51eF94ODYuZGlzdG1ldGEudmFsdWVzdG9yZS56aXAiLCJkaWdlc3QiOnsic2hhMjU2IjoiNzdkMDQxZmQ0MTIyMWE0MDIwNzJlNTc1M2RmZDY4OTE2MTE2NGRlZGFmMzBhM2ExYjkzYzc2MzQzMTNmMjBhNyJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtTGludXhfeDg2LUxpbnV4X3g4Ni5wYWNrYWdlLmN0cy4xLnRyYWNlc3RvcmUiLCJkaWdlc3QiOnsic2hhMjU2IjoiNzQ3MGQ4MzQwNWI5NWY3ZjViNjIxZjFlODk4OWRiMzEwNTZjNmNhZTg0ZjMwM2RhYzk5MTcwMGFmZmM4YmE0YSJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtTGludXhfeDg2LUxpbnV4X3g4Ni5wYWNrYWdlLnZhbHVlc3RvcmUuaW5kZXgiLCJkaWdlc3QiOnsic2hhMjU2IjoiYzEwMDY5MjdlOWQ1ZmQ4MzBiMWM0YTY4NGFlODk2NTM0MjY3MjY0YzdmNGNlYzNmNzJhYTcyZDg0NWY0MmI1OCJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtTGludXhfeDg2LUxpbnV4X3g4Ni5wYWNrYWdlLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjJjODMyMTA1OWVlNWU3OWZlOGQ2NTc3YTUxNWNkODZhMGViMzNmNjg1ZDQ0ZjNhNWI2ZDgxZmFhODkwNDA5MGUifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Ni1MaW51eF94ODYudmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiYmE0YjRlM2U2YmYzNTQyNDNhNjExNjJkYTY0Y2E1NGVjYWI5YTc0MmM2MDY4YTNhYmJmOGE1NmQ1Nzg0MzMxYiJ9fSx7Im5hbWUiOiJOb3RNaXRFZHVfS2VyYmVyb3MtTGludXhfeDg2XzY0LUxpbnV4X3g4Nl82NC5kaXN0bWV0YS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6Ijc5YzcwN2RmNTgxZjc5NDIzMTNhN2MzNWQ1YWNkOTEyOTljNjM3MTUzZDBmNjExODc3YjA3ZjEzNmZkMjc0ZTEifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQuZGlzdG1ldGEubWFuaWZlc3QuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjQyNjk3YTczNzQxZjJhZjQ4ZjYxZjI2OGZhOThmM2JiMjY0ODZjMGI0YjM1YTEwMDYyZTFmYzA4NDIyNGUxNDkifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQuZGlzdG1ldGEudmFsdWVzdG9yZS5pbmRleCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI5NThlMjcxOWM0MjQ5MDU4MmUyNzI4OWNiOGRlZmE1MjVlODU5OTc2Yjg5MGY1ODg2Y2ZhZDZhNGFkNzM4YTgyIn19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1MaW51eF94ODZfNjQtTGludXhfeDg2XzY0LmRpc3RtZXRhLnZhbHVlc3RvcmUuemlwIiwiZGlnZXN0Ijp7InNoYTI1NiI6Ijc3ZDA0MWZkNDEyMjFhNDAyMDcyZTU3NTNkZmQ2ODkxNjExNjRkZWRhZjMwYTNhMWI5M2M3NjM0MzEzZjIwYTcifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQucGFja2FnZS5jdHMuMS50cmFjZXN0b3JlIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjZlNDBlZjAzY2E3Y2RkOThkNzAzMGQ2NjRmNmVhZWRmNWFkM2NhYzkxZGJmOTczNjg5ZjQzOTVjOTBkYmNjM2UifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLmluZGV4IiwiZGlnZXN0Ijp7InNoYTI1NiI6IjIwMmQ3NzRmMTJkM2U5YjUwNGVlMThjMWQ3MDA5ZDIxYTFmY2ZiNDAxYjEwYjU0ZDJmMTBmZDU0ZTZhNzRkNzAifX0seyJuYW1lIjoiTm90TWl0RWR1X0tlcmJlcm9zLUxpbnV4X3g4Nl82NC1MaW51eF94ODZfNjQucGFja2FnZS52YWx1ZXN0b3JlLnppcCIsImRpZ2VzdCI6eyJzaGEyNTYiOiIzZTc4NDQzMjhmZjJlNTJkNTcyNTIyNTJiZTZlYzcyMDQ4MDBlYTQxNGY0NTY2ZWM0ZDNmNGNiMjNhNTRjYzU1In19LHsibmFtZSI6Ik5vdE1pdEVkdV9LZXJiZXJvcy1MaW51eF94ODZfNjQtTGludXhfeDg2XzY0LnZhbHVlcy5qc29uIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjZkNTUxZTM1YjA3YTlhNWNkNTUxMTU3NDAyMjRiOTgzYjc4ZjlhNTAxMjk0YjM2ZWYyYTVmODg0OWIyNDY4MWEifX0seyJuYW1lIjoidmFsdWVzLmpzb24iLCJkaWdlc3QiOnsic2hhMjU2IjoiNDc4MDRiMmE5OTVlYzJhYmZjYjViNzkyNWE3OTNkZWE3M2JhMDIyMzZiNjJkYWNkMmQ1OGUwMzQxYTZlMjU3OSJ9fV0sInByZWRpY2F0ZVR5cGUiOiJodHRwczovL3Nsc2EuZGV2L3Byb3ZlbmFuY2UvdjEiLCJwcmVkaWNhdGUiOnsiYnVpbGREZWZpbml0aW9uIjp7ImJ1aWxkVHlwZSI6Imh0dHBzOi8vYWN0aW9ucy5naXRodWIuaW8vYnVpbGR0eXBlcy93b3JrZmxvdy92MSIsImV4dGVybmFsUGFyYW1ldGVycyI6eyJ3b3JrZmxvdyI6eyJyZWYiOiJyZWZzL3RhZ3MvMC4xLjIwMjYwNzE5MjE1NzU3IiwicmVwb3NpdG9yeSI6Imh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Ob3RNaXRFZHVfS2VyYmVyb3MiLCJwYXRoIjoiLmdpdGh1Yi93b3JrZmxvd3MvZGlzdHJpYnV0ZS0wLjEueW1sIn19LCJpbnRlcm5hbFBhcmFtZXRlcnMiOnsiZ2l0aHViIjp7ImV2ZW50X25hbWUiOiJwdXNoIiwicmVwb3NpdG9yeV9pZCI6IjEyMjI4NzQxMTIiLCJyZXBvc2l0b3J5X293bmVyX2lkIjoiMjc4OTEzNTAwIiwicnVubmVyX2Vudmlyb25tZW50IjoiZ2l0aHViLWhvc3RlZCJ9fSwicmVzb2x2ZWREZXBlbmRlbmNpZXMiOlt7InVyaSI6ImdpdCtodHRwczovL2dpdGh1Yi5jb20vZGtwa2cvTm90TWl0RWR1X0tlcmJlcm9zQHJlZnMvdGFncy8wLjEuMjAyNjA3MTkyMTU3NTciLCJkaWdlc3QiOnsiZ2l0Q29tbWl0IjoiYWUxNjRhZTA1OWQzMTcxN2VlYjQxMWFlYTg5NGMxYzQ3NzY4ZDM3NyJ9fV19LCJydW5EZXRhaWxzIjp7ImJ1aWxkZXIiOnsiaWQiOiJodHRwczovL2dpdGh1Yi5jb20vZGtwa2cvTm90TWl0RWR1X0tlcmJlcm9zLy5naXRodWIvd29ya2Zsb3dzL2Rpc3RyaWJ1dGUtMC4xLnltbEByZWZzL3RhZ3MvMC4xLjIwMjYwNzE5MjE1NzU3In0sIm1ldGFkYXRhIjp7Imludm9jYXRpb25JZCI6Imh0dHBzOi8vZ2l0aHViLmNvbS9ka3BrZy9Ob3RNaXRFZHVfS2VyYmVyb3MvYWN0aW9ucy9ydW5zLzI5NzA1Mjk4MTg3L2F0dGVtcHRzLzEifX19fQ==","payloadType":"application/vnd.in-toto+json","signatures":[{"sig":"MEUCICfKcv6l+nEkDRqxkFwXoZwCfZFmQ1dEkFrVazF15EIfAiEAkmboPSTNbWSYUIC/wTeAO4L1aub+tjwc0eB1aQ8ND34="}]}}
+            ] },
+          "github_slsa_v1_l3": {},
+          "openbsd_signify": {}
+        },
+        "build_to_sign": {
+          "bundle_canonical": "2ba29a4167c0301bb08b09db4e6b7d32688c6a4cb906ec4baa3cacee37ad5304",
+          "bundle_modver": "NotMitEdu_Kerberos.Distribution@0.1.20260719215757",
+          "modules": [
+            "NotMitEdu_Kerberos.Distribution@0.1.20260719215757",
+            "NotMitEdu_Kerberos.Lookup@1.0.0",
+            "NotMitEdu_Kerberos.V5@1.22.2",
+            "NotMitEdu_Kerberos.Lookup.Apparatus.Krb5Config@1.0.0",
+            "NotMitEdu_Kerberos.V5.Bundle@1.22.2",
+            "NotMitEdu_Kerberos.V5.Unix@1.22.2",
+            "NotMitEdu_Kerberos.V5.Zip@1.22.2"
+          ],
+          "producer_accepts": [],
+          "distmeta": {
+            "traces": [
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Darwin_arm64.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.distmeta.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.distmeta.cts.1.tracestore"
+              }
+            ],
+            "values": [
+              {
+                "path": "NotMitEdu_Kerberos-Darwin_arm64.distmeta.valuestore.zip"
+              },
+              {
+                "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.distmeta.valuestore.zip"
+              },
+              {
+                "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.distmeta.valuestore.zip"
+              },
+              {
+                "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.distmeta.valuestore.zip"
+              }
+            ]
+          },
+          "package": {
+            "traces": [
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Darwin_arm64.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.package.cts.1.tracestore"
+              },
+              {
+                "tag": "cts.1",
+                "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.package.cts.1.tracestore"
+              }
+            ],
+            "values": [
+              {
+                "path": "NotMitEdu_Kerberos-Darwin_arm64.package.valuestore.zip"
+              },
+              {
+                "path": "NotMitEdu_Kerberos-Darwin_x86_64-Darwin_x86_64.package.valuestore.zip"
+              },
+              {
+                "path": "NotMitEdu_Kerberos-Linux_x86-Linux_x86.package.valuestore.zip"
+              },
+              {
+                "path": "NotMitEdu_Kerberos-Linux_x86_64-Linux_x86_64.package.valuestore.zip"
+              }
+            ]
+          }
+        }
+      },
+      "continuations": {
+        "attestation": {
+          "openbsd_signify": {
+            "signature": "untrusted comment: signed by key d1d582038a8d2bfd\nRWTR1YIDio0r/YHWAKIVVXE5YuBxyytqPViBolm2A4KNK5a2XVm9xLW/ze0DZFWTkWdGKT9Vis+OTOU0gNtnJ5SOX7eRq+UNVgs=\n"
+          }
+        },
+        "continuations_to_sign": {
+          "0.2": {
+            "application": { "name": "dk0", "version": "2.4.2+rev-253" },
+            "openbsd_signify": {
+              "public_key": "untrusted comment: NotMitEdu_Kerberos-0.2\nRWQCgN5IJ8NAqWCF8WKWBE64PPXUQw3fPO7IXuzf/fD/0I1ZXJE9dyoH\n"
+            }
+          },
+          "1.0": {
+            "application": { "name": "dk0", "version": "2.4.2+rev-253" },
+            "openbsd_signify": {
+              "public_key": "untrusted comment: NotMitEdu_Kerberos-1.0\nRWSex7P1GrTr3KSXlllPGOd0OKj8kJmTeKwT7QaWHNBp6T0ZZKYPD/vA\n"
+            }
+          }
+        }
+      },
+      "id": "NotMitEdu_Kerberos@0.1.20260719215757",
+      "license": { "spdx": "Apache-2.0" },
+      "producer": {
+        "application": { "name": "dk0", "version": "2.4.2+rev-279" },
+        "github_slsa_v1_l2": { "repository": "dkpkg/NotMitEdu_Kerberos" },
+        "openbsd_signify": {
+          "public_key": "untrusted comment: NotMitEdu_Kerberos-0.1\nRWTR1YIDio0r/fZB7fyhjfkigCKAudKoN+aRmE1XffQINteJWO8H9XfT\n"
+        }
+      },
+      "min_dk_version": "2.4.2.212"
+    }
+  ],
+  "forms": [],
+  "schema_version": { "major": 1, "minor": 0 }
+}
