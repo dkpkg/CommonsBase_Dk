@@ -1,9 +1,11 @@
 # Distribution for CommonsBase_Dk (Windows_arm64)
 
-The executable CommonsBase_Dk.Dk0@2.4.2 slice is still Windows x86_64 only.
+Windows_arm64 has no DkML toolchain slice, so it ships no dk0/dk1 executable
+and stays cache-only: this slot republishes the Dune cache alone until an
+arm64 toolchain lands.
 
 ## Dk0 Dune Cache
 
   $ get-object CommonsBase_Dk.Dk0.DuneCache@2.4.2 -s Release.Windows_arm64 -f ${RUNTIME}/Windows_arm64-Dk0.DuneCache-2.4.2.zip
   \test(pass)
-  \dk.object(abi: "Release.Windows_arm64", value-id: "os2xhxsjnukj3clcffdtoi3mht2zmpjclwt37cuv4j26hjgurvxha")\;
+  \dk.object(abi: "Release.Windows_arm64", value-id: "oswreb5xr75zg3e7q7pqegda3bbqgsnkdfir2muqnh53xut6je5sa")\;
