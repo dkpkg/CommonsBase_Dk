@@ -14,9 +14,6 @@ as `bin/dk0.exe`. The shared MlFront source is fetched from a URL bundle and
 localized into `Dk0.MlFrontSource` (opam/dune metadata regenerated). `Dk1` is
 wired to build the multi-threaded `DkOne_Exec` (dk1) the same way.
 
-(The legacy `Dk0.Bundle`/`Dk0.DuneCache` source-cache slice is retained only
-until the distribution is migrated off it; it is not part of the build above.)
-
 ## License
 
 Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0

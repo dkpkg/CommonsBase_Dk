@@ -1,14 +1,16 @@
-## CommonsBase_Dk bootstrap handoff
+## CommonsBase_Dk distribution
 
-This repository now pins the latest MlFront release tarball and starts the
-real Dk0 packaging split:
+`CommonsBase_Dk` ships the `dk0` (MlFront `DkZero_Exec`) and `dk1` (`DkOne_Exec`)
+build-system executables. Each is built from source as a per-package,
+content-addressed opam closure (`CommonsBase_Dk.Dk0.Closure` /
+`CommonsBase_Dk.Dk1.Closure`) and republished as a single native executable per
+slot:
 
-- `CommonsBase_Dk.Dk0.Bundle@2.4.2` tracks the upstream source tarball from the
-  MlFront `2.4.2.173` release
-- `CommonsBase_Dk.Dk0.DuneCache@2.4.2` repackages that tarball into a cacheable zip
-  for all supported slots
-- `CommonsBase_Dk.Dk0@2.4.2` emits `bin/dk0.exe` only for Windows x86_64; the other
-  executable slots remain out of scope until the toolchain is broadened
+- `CommonsBase_Dk.Dk0@2.4.2` -> `bin/dk0.exe`
+- `CommonsBase_Dk.Dk1@2.4.2` -> `bin/dk1.exe`
 
-The current bootstrap path is intentionally explicit so the executable slice can
-be widened later without changing the public package layout again.
+The executable slots are `Linux_x86_64`, `Linux_x86`, `Darwin_x86_64`,
+`Darwin_arm64`, `Windows_x86_64`, and `Windows_x86`. Each slot's distribution
+script (`dist/<slot>.u`) `get-object`s the `bin/dk0.exe` and `bin/dk1.exe`
+members for that slot. `Windows_arm64` is not shipped: there is no DkML arm64
+toolchain slice yet.
