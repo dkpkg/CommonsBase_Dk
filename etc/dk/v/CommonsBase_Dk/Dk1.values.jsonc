@@ -17,10 +17,10 @@
 // Windows and bin/dk1 on Unix; each slot copies its variant to the uniform output
 // path bin/dk1.exe.
 //
-// Validated: Release.Windows_x86_64 builds the full 69-package closure (dk0's
-// closure plus DkZero_ExecCore / DkOne_RuntimeC / DkOne_Exec, added by the
-// source bump to 2.4.2.287 and the re-solved lock) and this form yields a
-// bin/dk1.exe that reports `--version` 2.4.2+rev-287.
+// Release.Windows_x86_64 builds the full 69-package closure (dk0's closure plus
+// DkZero_ExecCore / DkOne_RuntimeC / DkOne_Exec) from the pinned MlFront source
+// and yields a bin/dk1.exe whose `--version` tracks that source: 2.4.2+rev-291
+// for the current 2.4.2.291 pin.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
