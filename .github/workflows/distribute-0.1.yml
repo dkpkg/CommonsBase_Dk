@@ -78,14 +78,15 @@ jobs:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             options: -nosysinc
-            # Incremental builds off the last release's value/trace stores
-            # (dk0 restore github-l2): the first Dk0/Dk1 release built the whole
-            # per-package opam closure, so subsequent releases restore it and
-            # rebuild only objects that actually changed. The bootstrap release
-            # used store: cache, but the whole per-slot t/ build tree is several
-            # GB and the ~10GB Actions cache LRU-evicts it before it can be
-            # reused, so a durable GitHub release is the working steady state.
-            store: release
+            # store: none forces a full clean rebuild. store: release restores
+            # the last release's objects by value-id, but the Dk0/Dk1/Pkg
+            # value-ids are declaration-based and do NOT change on a MlFront
+            # *source* bump, so a restore cache-hits and republishes stale
+            # binaries (a 2.4.2.291 source bump republished rev-287). Until the
+            # value-ids track the source (see the value-id-tracks-source design
+            # task), a source-bump release must build clean. Restore store:
+            # release for incremental non-source-bump releases.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
