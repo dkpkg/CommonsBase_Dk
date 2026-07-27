@@ -91,9 +91,22 @@ jobs:
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
             experimental-mlfront-ref: ${{ github.ref_type != 'tag' && 'HEAD' }}
+            # Also publish the runnable dk0/dk1 as flat, whole-file assets (extracted
+            # from the just-built objects) so the installer can curl them directly.
+            # The action derives the slot from distscript and stages
+            # dk-dist/dk{0,1}-<abi>[.exe]; combine then signs + attests + releases them.
+            publish-objects: |
+              CommonsBase_Dk.Dk0@2.4.2|./bin/dk0.exe|dk0
+              CommonsBase_Dk.Dk1@2.4.2|./bin/dk1.exe|dk1
 
   combine:
     needs: distribute
+    # Same protected environment as `distribute`. It supplies the Azure Trusted
+    # Signing app ids (Windows Authenticode via GitHub OIDC federation -- no stored
+    # secret) and the Apple Developer ID + notary secrets (macOS). The GitHub OIDC
+    # subject is repo:dkpkg/CommonsBase_Dk:environment:dk-distribution; a federated
+    # credential on the sp-diskuv-signing-ci Entra app must authorize that subject.
+    environment: dk-distribution
     permissions:
       contents: write # for action-gh-release
       id-token: write # for actions/attest-build-provenance
@@ -111,6 +124,86 @@ jobs:
 
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
+
+      # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
+      # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
+      # Sign ONLY those flat executables here -- the value-store assets are left
+      # untouched -- so the attested, released, and later signify-manifest-hashed
+      # bytes are the signed bytes (served == attested == signed).
+
+      # Windows: Authenticode via Azure Trusted Signing, authenticated by exchanging
+      # the GitHub Actions OIDC token for an Azure federated token (no stored
+      # secret). Mirrors MlFront's ci/codesign-windows.ps1 (same `sign` CLI + Azure
+      # Artifact Signing endpoint/account/profile), just fed a GitHub OIDC token.
+      - name: Set up .NET (for the `sign` CLI)
+        if: ${{ hashFiles('dk-dist/dk0-windows_x86_64.exe') != '' }}
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with: { dotnet-version: '8.0.x' }
+      - name: Authenticode-sign Windows binaries
+        if: ${{ hashFiles('dk-dist/dk0-windows_x86_64.exe') != '' }}
+        env:
+          AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }} # Entra tenant id
+          AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }} # sp-diskuv-signing-ci app id
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Exchange the GitHub OIDC token (id-token: write) for an Azure federated
+          # token file; DefaultAzureCredential -> WorkloadIdentityCredential then uses
+          # it with AZURE_TENANT_ID + AZURE_CLIENT_ID (same flow as codesign-windows.ps1).
+          tok=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api%3A%2F%2FAzureADTokenExchange" | jq -r '.value')
+          printf '%s' "$tok" > "$RUNNER_TEMP/oidc-token"
+          export AZURE_FEDERATED_TOKEN_FILE="$RUNNER_TEMP/oidc-token"
+          dotnet tool install --tool-path "$RUNNER_TEMP/signtool" --version 0.9.1-beta.26330.1 \
+            --add-source 'https://api.nuget.org/v3/index.json' --ignore-failed-sources sign
+          "$RUNNER_TEMP/signtool/sign" code artifact-signing \
+            --verbosity information \
+            --timestamp-url 'http://timestamp.acs.microsoft.com/' \
+            --artifact-signing-endpoint 'https://wus2.codesigning.azure.net/' \
+            --artifact-signing-account diskuv-signing \
+            --artifact-signing-certificate-profile diskuv-public-trust \
+            dk-dist/dk0-windows_x86_64.exe dk-dist/dk1-windows_x86_64.exe
+
+      # macOS: Developer ID signature (+ best-effort notarization) via rcodesign,
+      # which signs/notarizes Mach-O cross-platform from this Linux runner. A bare
+      # Mach-O executable cannot have a notarization ticket stapled, so notarization
+      # is best-effort; the Developer ID signature is the gate the installer's
+      # `codesign --verify` and the GitLab import's `rcodesign verify` both check.
+      - name: Developer-ID sign + notarize macOS binaries
+        if: ${{ hashFiles('dk-dist/dk0-darwin_arm64') != '' || hashFiles('dk-dist/dk0-darwin_x86_64') != '' }}
+        env:
+          RCODESIGN_VERSION: '0.29.0' # indygreg/apple-platform-rs apple-codesign release (match MlFront metadata-release)
+          RCODESIGN_SHA256: 'dbe85cedd8ee4217b64e9a0e4c2aef92ab8bcaaa41f20bde99781ff02e600002' # of apple-codesign-0.29.0-x86_64-unknown-linux-musl.tar.gz
+          # Same values as the MlFront GitLab macOS-signing variables (see
+          # dksdk-coder/docs/signing/macos.md): the Developer ID p12 + the three
+          # App Store Connect API key components. rcodesign encodes the unified
+          # notary key JSON from them at runtime, so no pre-encoded secret is needed.
+          APPLE_DEVELOPER_ID_P12_BASE64: ${{ secrets.APPLE_DEVELOPER_ID_P12_BASE64 }}
+          APPLE_DEVELOPER_ID_P12_PASSWORD: ${{ secrets.APPLE_DEVELOPER_ID_P12_PASSWORD }}
+          APPLE_ASC_API_KEY_BASE64: ${{ secrets.APPLE_ASC_API_KEY_BASE64 }}
+          APPLE_ASC_KEY_ID: ${{ secrets.APPLE_ASC_KEY_ID }}
+          APPLE_ASC_ISSUER_ID: ${{ secrets.APPLE_ASC_ISSUER_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://github.com/indygreg/apple-platform-rs/releases/download/apple-codesign%2F${RCODESIGN_VERSION}/apple-codesign-${RCODESIGN_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+          curl -fsSL "$url" -o "$RUNNER_TEMP/rcodesign.tgz"
+          echo "${RCODESIGN_SHA256}  $RUNNER_TEMP/rcodesign.tgz" | sha256sum -c -
+          tar -xz --strip-components=1 -C "$RUNNER_TEMP" --wildcards -f "$RUNNER_TEMP/rcodesign.tgz" '*/rcodesign'
+          rc="$RUNNER_TEMP/rcodesign"
+          printf '%s' "$APPLE_DEVELOPER_ID_P12_BASE64" | base64 -d > "$RUNNER_TEMP/devid.p12"
+          printf '%s' "$APPLE_ASC_API_KEY_BASE64" | base64 -d > "$RUNNER_TEMP/authkey.p8"
+          "$rc" encode-app-store-connect-api-key -o "$RUNNER_TEMP/notary.json" \
+            "$APPLE_ASC_ISSUER_ID" "$APPLE_ASC_KEY_ID" "$RUNNER_TEMP/authkey.p8"
+          for f in dk-dist/dk0-darwin_arm64 dk-dist/dk1-darwin_arm64 dk-dist/dk0-darwin_x86_64 dk-dist/dk1-darwin_x86_64; do
+            [ -f "$f" ] || continue
+            "$rc" sign --p12-file "$RUNNER_TEMP/devid.p12" --p12-password "$APPLE_DEVELOPER_ID_P12_PASSWORD" \
+              --code-signature-flags runtime "$f"
+            ( cd dk-dist && zip -q "$RUNNER_TEMP/$(basename "$f").zip" "$(basename "$f")" )
+            "$rc" notary-submit --api-key-file "$RUNNER_TEMP/notary.json" --wait \
+              "$RUNNER_TEMP/$(basename "$f").zip" || echo "::warning::notarization best-effort failed for $f"
+          done
+          rm -f "$RUNNER_TEMP/devid.p12" "$RUNNER_TEMP/authkey.p8" "$RUNNER_TEMP/notary.json"
 
       - name: Attest
         id: attest
