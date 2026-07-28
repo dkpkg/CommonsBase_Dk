@@ -170,6 +170,7 @@ jobs:
               --keystore 'https://wus2.codesigning.azure.net' \
               --storepass "$az_tok" \
               --alias 'diskuv-signing/diskuv-public-trust' \
+              --tsmode RFC3161 \
               --tsaurl 'http://timestamp.acs.microsoft.com/' \
               "$f"
           done
