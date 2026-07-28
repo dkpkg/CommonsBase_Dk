@@ -204,14 +204,15 @@ jobs:
           tar -xz --strip-components=1 -C "$RUNNER_TEMP" --wildcards -f "$RUNNER_TEMP/rcodesign.tgz" '*/rcodesign'
           rc="$RUNNER_TEMP/rcodesign"
           printf '%s' "$APPLE_DEVELOPER_ID_P12_BASE64" | base64 -d > "$RUNNER_TEMP/devid.p12"
-          # rcodesign auto-merges an rcodesign.toml from the CWD and from
-          # $XDG_CONFIG/rcodesign/. The build tree drops one (written by a newer
-          # rcodesign, with a 'sha256' field) that aborts this pinned 0.29.0. Run from
-          # the clean $RUNNER_TEMP with an empty XDG config so no ambient config is
-          # read, and sign via absolute paths.
-          mkdir -p "$RUNNER_TEMP/xdg"
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/xdg"
-          cd "$RUNNER_TEMP"
+          # rcodesign auto-merges rcodesign.toml from $CWD and from the user config
+          # dir ($XDG_CONFIG_HOME or $HOME/.config)/rcodesign/. The build drops one
+          # (newer schema, field 'sha256') that this pinned 0.29.0 refuses to parse.
+          # Point ALL of $CWD, $HOME, and $XDG_CONFIG_HOME at fresh empty dirs so no
+          # ambient config is ever read; sign via absolute paths (distdir set above).
+          echo "diag: ambient rcodesign.toml -> $(find "$HOME/.config" "$GITHUB_WORKSPACE" "$RUNNER_TEMP" -maxdepth 4 -name rcodesign.toml 2>/dev/null | tr '\n' ' ')"
+          export HOME="$RUNNER_TEMP/rcs-home"; export XDG_CONFIG_HOME="$HOME/.config"
+          mkdir -p "$XDG_CONFIG_HOME" "$RUNNER_TEMP/rcs-cwd"
+          cd "$RUNNER_TEMP/rcs-cwd"
           # Notarization (and its API key) is best-effort -- a bare Mach-O cannot be
           # stapled anyway, and the Developer ID signature below is the hard gate the
           # installer verifies. So a bad/absent notary key must not fail the release.
