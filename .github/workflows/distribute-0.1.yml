@@ -131,10 +131,12 @@ jobs:
       # guarded INSIDE the run: scripts, never with hashFiles() in an if: --
       # hashFiles is invalid in an if: and makes the whole run fail at startup.
 
-      # Windows: Authenticode via Azure Trusted Signing, authenticated by exchanging
-      # the GitHub Actions OIDC token for an Azure federated token (no stored
-      # secret). Mirrors MlFront's ci/codesign-windows.ps1 (same `sign` CLI + Azure
-      # Artifact Signing endpoint/account/profile), just fed a GitHub OIDC token.
+      # Windows: Authenticode via Azure Trusted Signing. The official dotnet `sign`
+      # CLI is Windows-only (it p/invokes kernel32 and aborts on this Linux runner),
+      # so sign with jsign -- a cross-platform (Java) Authenticode signer with native
+      # Trusted Signing support. Auth is keyless: exchange the GitHub Actions OIDC
+      # token for an Entra access token via the federated credential on
+      # sp-diskuv-signing-ci (subject repo:dkpkg/CommonsBase_Dk:environment:dk-distribution).
       - name: Authenticode-sign Windows binaries
         env:
           AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }} # Entra tenant id
@@ -143,28 +145,34 @@ jobs:
         run: |
           set -euo pipefail
           [ -f dk-dist/dk0-windows_x86_64.exe ] || { echo "no windows binary in dk-dist; skipping Authenticode"; exit 0; }
-          # .NET SDK: actions/setup-dotnet is not on this repo's allowed-actions
-          # list, so fetch the SDK with Microsoft's official install script instead
-          # (the `sign` global tool targets net8.0).
-          export DOTNET_ROOT="$RUNNER_TEMP/dotnet"
-          curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 --install-dir "$DOTNET_ROOT"
-          export PATH="$DOTNET_ROOT:$PATH"
-          # Exchange the GitHub OIDC token (id-token: write) for an Azure federated
-          # token file; DefaultAzureCredential -> WorkloadIdentityCredential then uses
-          # it with AZURE_TENANT_ID + AZURE_CLIENT_ID (same flow as codesign-windows.ps1).
-          tok=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+          # 1) GitHub OIDC token for the Entra token-exchange audience.
+          gh_tok=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api%3A%2F%2FAzureADTokenExchange" | jq -r '.value')
-          printf '%s' "$tok" > "$RUNNER_TEMP/oidc-token"
-          export AZURE_FEDERATED_TOKEN_FILE="$RUNNER_TEMP/oidc-token"
-          dotnet tool install --tool-path "$RUNNER_TEMP/signtool" --version 0.9.1-beta.26330.1 \
-            --add-source 'https://api.nuget.org/v3/index.json' --ignore-failed-sources sign
-          "$RUNNER_TEMP/signtool/sign" code artifact-signing \
-            --verbosity information \
-            --timestamp-url 'http://timestamp.acs.microsoft.com/' \
-            --artifact-signing-endpoint 'https://wus2.codesigning.azure.net/' \
-            --artifact-signing-account diskuv-signing \
-            --artifact-signing-certificate-profile diskuv-public-trust \
-            dk-dist/dk0-windows_x86_64.exe dk-dist/dk1-windows_x86_64.exe
+          [ -n "$gh_tok" ] && [ "$gh_tok" != null ] || { echo "FATAL: no GitHub OIDC token"; exit 1; }
+          # 2) Federated client-credentials exchange -> Trusted Signing access token
+          #    (resource https://codesigning.azure.net).
+          az_tok=$(curl -fsSL -X POST \
+            "https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token" \
+            -d 'grant_type=client_credentials' \
+            -d "client_id=${AZURE_CLIENT_ID}" \
+            -d 'scope=https://codesigning.azure.net/.default' \
+            -d 'client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer' \
+            --data-urlencode "client_assertion=${gh_tok}" | jq -r '.access_token')
+          [ -n "$az_tok" ] && [ "$az_tok" != null ] || { echo "FATAL: could not obtain Entra code-signing access token"; exit 1; }
+          # 3) jsign (Java preinstalled on ubuntu-latest). Same Trusted Signing
+          #    endpoint / account / certificate profile MlFront's sign CLI used.
+          curl -fsSL -o "$RUNNER_TEMP/jsign.jar" \
+            https://github.com/ebourg/jsign/releases/download/7.5/jsign-7.5.jar
+          for f in dk-dist/dk0-windows_x86_64.exe dk-dist/dk1-windows_x86_64.exe; do
+            [ -f "$f" ] || continue
+            java -jar "$RUNNER_TEMP/jsign.jar" \
+              --storetype TRUSTEDSIGNING \
+              --keystore 'https://wus2.codesigning.azure.net' \
+              --storepass "$az_tok" \
+              --alias 'diskuv-signing/diskuv-public-trust' \
+              --tsaurl 'http://timestamp.acs.microsoft.com/' \
+              "$f"
+          done
 
       # macOS: Developer ID signature (+ best-effort notarization) via rcodesign,
       # which signs/notarizes Mach-O cross-platform from this Linux runner. A bare
