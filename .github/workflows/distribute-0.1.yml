@@ -111,8 +111,6 @@ jobs:
       contents: write # for action-gh-release
       id-token: write # for actions/attest-build-provenance
       attestations: write # for actions/attest-build-provenance
-      #   required but does not work in `act`! bug: https://github.com/nektos/act/issues/6025
-      artifact-metadata: write # for actions/attest-build-provenance
 
     runs-on: ubuntu-latest
     steps:
@@ -129,24 +127,28 @@ jobs:
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
       # Sign ONLY those flat executables here -- the value-store assets are left
       # untouched -- so the attested, released, and later signify-manifest-hashed
-      # bytes are the signed bytes (served == attested == signed).
+      # bytes are the signed bytes (served == attested == signed). File-existence is
+      # guarded INSIDE the run: scripts, never with hashFiles() in an if: --
+      # hashFiles is invalid in an if: and makes the whole run fail at startup.
 
       # Windows: Authenticode via Azure Trusted Signing, authenticated by exchanging
       # the GitHub Actions OIDC token for an Azure federated token (no stored
       # secret). Mirrors MlFront's ci/codesign-windows.ps1 (same `sign` CLI + Azure
       # Artifact Signing endpoint/account/profile), just fed a GitHub OIDC token.
-      - name: Set up .NET (for the `sign` CLI)
-        if: ${{ hashFiles('dk-dist/dk0-windows_x86_64.exe') != '' }}
-        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
-        with: { dotnet-version: '8.0.x' }
       - name: Authenticode-sign Windows binaries
-        if: ${{ hashFiles('dk-dist/dk0-windows_x86_64.exe') != '' }}
         env:
           AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }} # Entra tenant id
           AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }} # sp-diskuv-signing-ci app id
         shell: bash
         run: |
           set -euo pipefail
+          [ -f dk-dist/dk0-windows_x86_64.exe ] || { echo "no windows binary in dk-dist; skipping Authenticode"; exit 0; }
+          # .NET SDK: actions/setup-dotnet is not on this repo's allowed-actions
+          # list, so fetch the SDK with Microsoft's official install script instead
+          # (the `sign` global tool targets net8.0).
+          export DOTNET_ROOT="$RUNNER_TEMP/dotnet"
+          curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 --install-dir "$DOTNET_ROOT"
+          export PATH="$DOTNET_ROOT:$PATH"
           # Exchange the GitHub OIDC token (id-token: write) for an Azure federated
           # token file; DefaultAzureCredential -> WorkloadIdentityCredential then uses
           # it with AZURE_TENANT_ID + AZURE_CLIENT_ID (same flow as codesign-windows.ps1).
@@ -170,7 +172,6 @@ jobs:
       # is best-effort; the Developer ID signature is the gate the installer's
       # `codesign --verify` and the GitLab import's `rcodesign verify` both check.
       - name: Developer-ID sign + notarize macOS binaries
-        if: ${{ hashFiles('dk-dist/dk0-darwin_arm64') != '' || hashFiles('dk-dist/dk0-darwin_x86_64') != '' }}
         env:
           RCODESIGN_VERSION: '0.29.0' # indygreg/apple-platform-rs apple-codesign release (match MlFront metadata-release)
           RCODESIGN_SHA256: 'dbe85cedd8ee4217b64e9a0e4c2aef92ab8bcaaa41f20bde99781ff02e600002' # of apple-codesign-0.29.0-x86_64-unknown-linux-musl.tar.gz
@@ -186,6 +187,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          [ -f dk-dist/dk0-darwin_arm64 ] || [ -f dk-dist/dk0-darwin_x86_64 ] || { echo "no macos binary in dk-dist; skipping"; exit 0; }
           url="https://github.com/indygreg/apple-platform-rs/releases/download/apple-codesign%2F${RCODESIGN_VERSION}/apple-codesign-${RCODESIGN_VERSION}-x86_64-unknown-linux-musl.tar.gz"
           curl -fsSL "$url" -o "$RUNNER_TEMP/rcodesign.tgz"
           echo "${RCODESIGN_SHA256}  $RUNNER_TEMP/rcodesign.tgz" | sha256sum -c -
