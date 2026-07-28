@@ -78,15 +78,16 @@ jobs:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             options: -nosysinc
-            # store: none forces a full clean rebuild. store: release restores
-            # the last release's objects by value-id, but the Dk0/Dk1/Pkg
-            # value-ids are declaration-based and do NOT change on a MlFront
-            # *source* bump, so a restore cache-hits and republishes stale
-            # binaries (a 2.4.2.291 source bump republished rev-287). Until the
-            # value-ids track the source (see the value-id-tracks-source design
-            # task), a source-bump release must build clean. Restore store:
-            # release for incremental non-source-bump releases.
-            store: none
+            # store: release restores the last release's value/trace stores for
+            # incremental builds. A MlFront *source* bump previously shipped stale
+            # binaries here -- declaration-based value-ids do not change on a
+            # source bump, so a restore cache-hit republished rev-287 for a
+            # 2.4.2.291 bump. Fixed upstream: dk0's restore now re-verifies each
+            # restored lazy value against its dependency content (MlFront
+            # "Verify a restored lazy value against its dependency content",
+            # a1cd60a6c, in 2.4.2.295+), so a source bump rebuilds only the
+            # affected objects. Requires the CI dk0 to be >= 2.4.2.295.
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
