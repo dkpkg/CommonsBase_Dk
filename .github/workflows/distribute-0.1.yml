@@ -197,22 +197,41 @@ jobs:
         run: |
           set -euo pipefail
           [ -f dk-dist/dk0-darwin_arm64 ] || [ -f dk-dist/dk0-darwin_x86_64 ] || { echo "no macos binary in dk-dist; skipping"; exit 0; }
+          distdir="$PWD/dk-dist"
           url="https://github.com/indygreg/apple-platform-rs/releases/download/apple-codesign%2F${RCODESIGN_VERSION}/apple-codesign-${RCODESIGN_VERSION}-x86_64-unknown-linux-musl.tar.gz"
           curl -fsSL "$url" -o "$RUNNER_TEMP/rcodesign.tgz"
           echo "${RCODESIGN_SHA256}  $RUNNER_TEMP/rcodesign.tgz" | sha256sum -c -
           tar -xz --strip-components=1 -C "$RUNNER_TEMP" --wildcards -f "$RUNNER_TEMP/rcodesign.tgz" '*/rcodesign'
           rc="$RUNNER_TEMP/rcodesign"
           printf '%s' "$APPLE_DEVELOPER_ID_P12_BASE64" | base64 -d > "$RUNNER_TEMP/devid.p12"
-          printf '%s' "$APPLE_ASC_API_KEY_BASE64" | base64 -d > "$RUNNER_TEMP/authkey.p8"
-          "$rc" encode-app-store-connect-api-key -o "$RUNNER_TEMP/notary.json" \
-            "$APPLE_ASC_ISSUER_ID" "$APPLE_ASC_KEY_ID" "$RUNNER_TEMP/authkey.p8"
-          for f in dk-dist/dk0-darwin_arm64 dk-dist/dk1-darwin_arm64 dk-dist/dk0-darwin_x86_64 dk-dist/dk1-darwin_x86_64; do
+          # rcodesign auto-merges an rcodesign.toml from the CWD and from
+          # $XDG_CONFIG/rcodesign/. The build tree drops one (written by a newer
+          # rcodesign, with a 'sha256' field) that aborts this pinned 0.29.0. Run from
+          # the clean $RUNNER_TEMP with an empty XDG config so no ambient config is
+          # read, and sign via absolute paths.
+          mkdir -p "$RUNNER_TEMP/xdg"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/xdg"
+          cd "$RUNNER_TEMP"
+          # Notarization (and its API key) is best-effort -- a bare Mach-O cannot be
+          # stapled anyway, and the Developer ID signature below is the hard gate the
+          # installer verifies. So a bad/absent notary key must not fail the release.
+          notary_key=""
+          if printf '%s' "$APPLE_ASC_API_KEY_BASE64" | base64 -d > "$RUNNER_TEMP/authkey.p8" 2>/dev/null \
+             && "$rc" encode-app-store-connect-api-key -o "$RUNNER_TEMP/notary.json" \
+                  "$APPLE_ASC_ISSUER_ID" "$APPLE_ASC_KEY_ID" "$RUNNER_TEMP/authkey.p8"; then
+            notary_key="$RUNNER_TEMP/notary.json"
+          else
+            echo "::warning::could not build notary key; skipping notarization (Developer ID signing still enforced)"
+          fi
+          for f in "$distdir"/dk0-darwin_arm64 "$distdir"/dk1-darwin_arm64 "$distdir"/dk0-darwin_x86_64 "$distdir"/dk1-darwin_x86_64; do
             [ -f "$f" ] || continue
             "$rc" sign --p12-file "$RUNNER_TEMP/devid.p12" --p12-password "$APPLE_DEVELOPER_ID_P12_PASSWORD" \
               --code-signature-flags runtime "$f"
-            ( cd dk-dist && zip -q "$RUNNER_TEMP/$(basename "$f").zip" "$(basename "$f")" )
-            "$rc" notary-submit --api-key-file "$RUNNER_TEMP/notary.json" --wait \
-              "$RUNNER_TEMP/$(basename "$f").zip" || echo "::warning::notarization best-effort failed for $f"
+            if [ -n "$notary_key" ]; then
+              zip -qj "$RUNNER_TEMP/$(basename "$f").zip" "$f"
+              "$rc" notary-submit --api-key-file "$notary_key" --wait \
+                "$RUNNER_TEMP/$(basename "$f").zip" || echo "::warning::notarization best-effort failed for $f"
+            fi
           done
           rm -f "$RUNNER_TEMP/devid.p12" "$RUNNER_TEMP/authkey.p8" "$RUNNER_TEMP/notary.json"
 
