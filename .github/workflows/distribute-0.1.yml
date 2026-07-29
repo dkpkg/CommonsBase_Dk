@@ -87,19 +87,19 @@ jobs:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             options: -nosysinc
-            # store: none forces a full clean rebuild (no value/trace store
-            # restore) so a MlFront *source* bump always ships correct binaries.
-            # Why not store: release: declaration-based value-ids do not change on a
-            # source-only bump, so a restore cache-hits the whole chain and
-            # republishes a STALE rev (observed: rev-287 for a 2.4.2.291 bump;
-            # rev-295 for a 2.4.2.296 bump -- a 6.5-min build). The restore-
-            # invalidation fix (dk0 re-verifies each restored lazy value against its
-            # dependency content -- MlFront a1cd60a6c, "Verify a restored lazy value
-            # against its dependency content", in 2.4.2.295+) makes store: release
-            # safe, but ONLY once the CI dk0 that dk-distribute@v3 itself ships is
-            # >= 2.4.2.295. It is not yet, so store: none until then. (Cost: ~1 h
-            # full 6-slot rebuild; see rotary-phone/prompts/value-id-tracks-source.md.)
-            store: none
+            # store: release restores the previous release's value/trace store and
+            # rebuilds only what changed, so an incremental source bump takes minutes
+            # instead of a full clean 6-slot rebuild. Declaration-based value-ids do
+            # not move on a source-only bump, so this relies on the restore-
+            # invalidation fix: dk0 re-verifies each restored lazy value against its
+            # dependency content (MlFront a1cd60a6c, "Verify a restored lazy value
+            # against its dependency content", in 2.4.2.295+). That fix runs in the CI
+            # driver dk0, which dk-distribute@v3 resolves via the diskuv/dk launcher
+            # (its own dksrc/dk.u carries no pin) to the LATEST signed-manifest version
+            # -- 2.4.2.296 today, which carries the fix. There is no per-repo driver
+            # pin: CommonsBase_Dk/dk.u actual_version governs only a local ./dk0, not
+            # this CI driver. See rotary-phone/prompts/value-id-tracks-source.md.
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
