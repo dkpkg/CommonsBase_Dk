@@ -29,6 +29,15 @@ jobs:
             image: quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5
             distscript: dist/Linux_x86_64.u
             target-abi: Linux_x86_64
+          # The fully static musl build for musl distros such as alpine. It
+          # builds on the same glibc manylinux container: the execution ABI
+          # stays Linux_x86_64 and the target slot's DkML toolchain (a pinned
+          # x86_64-linux-musl cross gcc from CommonsLang_OCaml.MuslCC.Bundle)
+          # does the rest.
+          - runs-on: ubuntu-latest
+            image: quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5
+            distscript: dist/Linux_x86_64_musl.u
+            target-abi: Linux_x86_64_musl
           # Re-enable Linux arm64 only when every distribution job uses the same
           # experimental-mlfront-ref setting. Mixing bootstrap paths changes the
           # producer application version and causes `combine` to fail.

@@ -95,7 +95,7 @@
           ]
         ]
       },
-      "outputs": { "assets": [ { "slots": ["Release.Windows_x86_64", "Release.Windows_x86", "Release.Linux_x86_64", "Release.Linux_x86", "Release.Linux_arm64", "Release.Darwin_x86_64", "Release.Darwin_arm64"], "paths": ["install.zip"] } ] }
+      "outputs": { "assets": [ { "slots": ["Release.Windows_x86_64", "Release.Windows_x86", "Release.Linux_x86_64", "Release.Linux_x86_64_musl", "Release.Linux_x86", "Release.Linux_arm64", "Release.Darwin_x86_64", "Release.Darwin_arm64"], "paths": ["install.zip"] } ] }
     }
   ]
 }

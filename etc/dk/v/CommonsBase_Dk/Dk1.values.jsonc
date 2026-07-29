@@ -65,6 +65,12 @@
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "env", "-u", "${SLOT.Release.Linux_x86_64_musl}", "--",
+            "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86}", "--",
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "cp", "ip/bin/dk1", "${SLOT.request}/bin/dk1.exe"
@@ -94,6 +100,7 @@
           { "slots": ["Release.Windows_x86_64"], "paths": ["bin/dk1.exe"] },
           { "slots": ["Release.Windows_x86"], "paths": ["bin/dk1.exe"] },
           { "slots": ["Release.Linux_x86_64"], "paths": ["bin/dk1.exe"] },
+          { "slots": ["Release.Linux_x86_64_musl"], "paths": ["bin/dk1.exe"] },
           { "slots": ["Release.Linux_x86"], "paths": ["bin/dk1.exe"] },
           { "slots": ["Release.Linux_arm64"], "paths": ["bin/dk1.exe"] },
           { "slots": ["Release.Darwin_x86_64"], "paths": ["bin/dk1.exe"] },

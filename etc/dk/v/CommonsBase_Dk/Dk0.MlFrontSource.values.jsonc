@@ -67,6 +67,12 @@
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "env", "-u", "${SLOT.Release.Linux_x86_64_musl}", "--",
+            "/bin/sh",
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+          ],
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86}", "--",
             "/bin/sh",
             "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
@@ -110,7 +116,8 @@
           {
             "slots": [
               "Release.Windows_x86_64", "Release.Windows_x86",
-              "Release.Linux_x86_64", "Release.Linux_x86", "Release.Linux_arm64",
+              "Release.Linux_x86_64", "Release.Linux_x86_64_musl",
+              "Release.Linux_x86", "Release.Linux_arm64",
               "Release.Darwin_x86_64", "Release.Darwin_arm64"
             ],
             "paths": [ "output.zip", "dk-opam-lock.jsonc" ]
