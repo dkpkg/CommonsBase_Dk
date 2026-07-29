@@ -87,19 +87,17 @@ jobs:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             options: -nosysinc
-            # store: release restores the previous release's value/trace store and
-            # rebuilds only what changed, so an incremental source bump takes minutes
-            # instead of a full clean 6-slot rebuild. Declaration-based value-ids do
-            # not move on a source-only bump, so this relies on the restore-
-            # invalidation fix: dk0 re-verifies each restored lazy value against its
-            # dependency content (MlFront a1cd60a6c, "Verify a restored lazy value
-            # against its dependency content", in 2.4.2.295+). That fix runs in the CI
-            # driver dk0, which dk-distribute@v3 resolves via the diskuv/dk launcher
-            # (its own dksrc/dk.u carries no pin) to the LATEST signed-manifest version
-            # -- 2.4.2.296 today, which carries the fix. There is no per-repo driver
-            # pin: CommonsBase_Dk/dk.u actual_version governs only a local ./dk0, not
-            # this CI driver. See rotary-phone/prompts/value-id-tracks-source.md.
-            store: release
+            # TEMPORARILY store: none for the 2.4.2.297 bootstrap release. store:
+            # release restores the previous release's value/trace store and rebuilds
+            # only the changed objects, but its restore range-fetches run in the CI
+            # driver dk0, and the current latest driver (2.4.2.296) hangs on a stalled
+            # range-fetch (the download curl had no stall timeout) until the 6h job
+            # timeout. 2.4.2.297 ships that fix (ShellCore.ml --connect-timeout plus
+            # --speed-limit/--speed-time), but it must itself be built by the 2.4.2.296
+            # driver, so THIS release uses store: none (no restore, no hang, ~44 min
+            # clean). Once 2.4.2.297 is the latest signed-manifest driver, flip this
+            # back to store: release. See rotary-phone/prompts/value-id-tracks-source.md.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
