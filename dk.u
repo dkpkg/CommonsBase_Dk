@@ -19,7 +19,7 @@ wired to build the multi-threaded `DkOne_Exec` (dk1) the same way.
 Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 
 ## workspace
-  %% actual_version("2.4.2.282")
+  %% actual_version("2.4.2.296")
   'actual_version'
   '2.4.2.282'
 
