@@ -86,7 +86,12 @@ jobs:
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            options: -nosysinc
+            # --integrity existence forces dk0 to verify each referenced value is
+            # present in the local value store and, when it is not, fetch it from the
+            # remote (imported) value store. Without it the 2.4.2.296 driver errored
+            # on a not-yet-materialized imported value (CommonsLang_OCaml.Dune@3.23.1),
+            # which is exactly what dk0's own hint recommends rerunning with.
+            options: -nosysinc --integrity existence
             # TEMPORARILY store: none for the 2.4.2.297 bootstrap release. store:
             # release restores the previous release's value/trace store and rebuilds
             # only the changed objects, but its restore range-fetches run in the CI
