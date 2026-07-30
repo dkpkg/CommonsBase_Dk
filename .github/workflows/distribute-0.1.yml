@@ -85,39 +85,38 @@ jobs:
         uses: diskuv/dk-distribute@v3
         env:
             # PERMANENT explicit driver pin -- determinism over auto-updates.
-            # Without it the CI driver dk0 floats on the LATEST signed manifest
-            # (diskuv.com/dk), and a newly published driver silently changes
-            # every subsequent build: the 2.4.2.296 driver's github-l2 import
-            # regression broke every run here for days the moment its manifest
-            # became latest. Bump the version deliberately, as a reviewed
-            # commit, when adopting a new driver release. The pinned manifest
-            # is signify-verified by the launcher exactly like the floating one.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.300
+            # (Without it dk0 floats on the LATEST signed manifest, and the
+            # 2.4.2.296 driver's github-l2 import regression silently broke
+            # every build here the moment its manifest became latest.)
+            #
+            # Pinned to 2.4.2.291, the newest driver that builds this whole
+            # closure green. It PREDATES shallow github-l2 import (2056f3165),
+            # so it materializes every dependency eagerly. The shallow-import
+            # drivers (2.4.2.295..300) instead defer transitive values and, when
+            # this build imports a previous CommonsBase_Dk release via
+            # `restore github-l2 --tag-before` (which runs even under
+            # store: none), hit "Could not find cached value ... not present in
+            # the value store" for a transitive value (ex.
+            # CommonsLang_OCaml.Dune@3.23.1). That is a DISTINCT bug from the
+            # re-download idempotency regression fixed in 2.4.2.299/300 ("Reuse a
+            # finalized lazy value ..."); it blocks adopting a shallow-import
+            # driver here until it is fixed. See
+            # rotary-phone/prompts/import-regression-checkpoint.md.
+            #
+            # Value-ids: the 2.4.2.291 driver derives different dist/*.u ids
+            # than the 295-family, so the assertions below carry 291-derived
+            # ids. Re-harvest them when the pin moves.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            # --integrity existence is required by the shallow github-l2 import
-            # model (2056f3165+): an `add`/`restore` materializes only the direct
-            # release and defers each transitive distribution's values, so a
-            # build that references a not-yet-local value (ex.
-            # CommonsLang_OCaml.Dune@3.23.1) must be told to fetch it from the
-            # remote value store on demand instead of erroring "not present in
-            # the value store". The 2.4.2.291 bridge driver predates shallow
-            # import (it materialized everything eagerly) so it did not need
-            # this; the pinned 2.4.2.300 driver does. This is orthogonal to the
-            # 2.4.2.296 import idempotency regression, which the 300 driver
-            # fixes at the root ("Reuse a finalized lazy value ...").
-            options: -nosysinc --integrity existence
-            # store: none for THIS release -- the first under the newly pinned
-            # 2.4.2.300 driver. store: release would restore the previous
-            # release's value/trace store, but the previous releases were built
-            # by the 2.4.2.291 bridge driver, whose value-ids differ; the 300
-            # driver then hits a restored trace referencing a value-id absent
-            # from that store (`otuqre2y...`) and errors rather than rebuilding.
-            # Once this release publishes a 2.4.2.300-driver store, flip back to
-            # store: release: a same-driver restore is consistent, and a1cd60a6c
-            # + the import idempotency fix make it safe.
-            # See rotary-phone/prompts/value-id-tracks-source.md.
+            # Plain -nosysinc: the 2.4.2.291 driver predates shallow import, so
+            # it needs no --integrity existence to fetch deferred values.
+            options: -nosysinc
+            # store: none forces a full clean rebuild (no value/trace store
+            # restore) so a MlFront *source* bump always ships correct binaries.
+            # store: release is deferred until a shallow-import driver can build
+            # this closure (see the DK0_BASE_URL note).
             store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
@@ -155,9 +154,10 @@ jobs:
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
         env:
-            # Same permanent driver pin as the distribute jobs above; bump both
-            # together when adopting a new driver release.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.300
+            # Same permanent 2.4.2.291 driver pin as the distribute jobs above;
+            # bump both together when a shallow-import driver can build this
+            # closure (see the DK0_BASE_URL note there).
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
