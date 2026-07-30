@@ -77,7 +77,10 @@ jobs:
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            options: -nosysinc
+            # --integrity existence makes dk0 fetch a referenced value from the
+            # remote (imported) value store when it is missing locally, instead of
+            # erroring on a not-yet-materialized imported value.
+            options: -nosysinc --integrity existence
             # store: none forces a full clean rebuild (no value/trace store
             # restore) so a MlFront *source* bump always ships correct binaries.
             # Why not store: release: declaration-based value-ids do not change on a

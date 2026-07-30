@@ -1,6 +1,6 @@
-// The raw (un-localized) MlFront source for tag 2.4.2.296, fetched at build time
+// The raw (un-localized) MlFront source for tag 2.4.2.297, fetched at build time
 // from its deterministic publish-source zip -- the GitLab generic package
-// mlfront-source/2.4.2.296/MlFront-2.4.2.296.zip built by ci/publish-source-zip.sh,
+// mlfront-source/2.4.2.297/MlFront-2.4.2.297.zip built by ci/publish-source-zip.sh,
 // not the git-archive endpoint whose byte output is not guaranteed stable.
 // Dk0Localize.F_LocalizeSource fetches this bundle (get-asset), runs
 // ci/localize-pristine.sh over it, and emits the localized tree as the
@@ -18,7 +18,7 @@
           {
             "name": "mlfront-gitlab",
             "mirrors": [
-              "https://gitlab.com/api/v4/projects/60486861/packages/generic/mlfront-source/2.4.2.296"
+              "https://gitlab.com/api/v4/projects/60486861/packages/generic/mlfront-source/2.4.2.297"
             ]
           }
         ]
@@ -26,11 +26,11 @@
       "assets": [
         {
           "origin": "mlfront-gitlab",
-          "path": "MlFront-2.4.2.296.zip",
+          "path": "MlFront-2.4.2.297.zip",
           "checksum": {
-            "sha256": "5e38beedef4bde1201a9d146491c1b1722e36101719b0753313eabd1ce7a1c0a"
+            "sha256": "7d3e1fb4bea9efa836b81d3a48e205a2959066ad203d5b316f2682006c2892b3"
           },
-          "size": 5427245
+          "size": 5427520
         }
       ]
     }
