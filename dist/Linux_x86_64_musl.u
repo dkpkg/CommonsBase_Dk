@@ -12,10 +12,10 @@ The value-ids below are harvested from the first CI run (the DkML pattern).
 
   $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Linux_x86_64_musl -m ./bin/dk0.exe -f ${RUNTIME}/Linux_x86_64_musl-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64_musl", value-id: "onus22clw2edgmzbzne4wd4ue6gaitf7zpkkmmuwsaiqndstiw4vq")\;
+  \dk.object(abi: "Release.Linux_x86_64_musl", value-id: "oqgmnirgqspcstizwvtw7sssu3lnae46kud6tkoafwshfaadkygwa")\;
 
 ## Dk1 executable
 
   $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Linux_x86_64_musl -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86_64_musl-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64_musl", value-id: "ora3kz52qynklcgwz2ctthvjavyxtc7pfbgmkwhxhpqy5fs7iw2da")\;
+  \dk.object(abi: "Release.Linux_x86_64_musl", value-id: "o3hh7ymm3un4i77njsgohdh4u73wkbmutla7qhtm32gqnlr4a2msq")\;
