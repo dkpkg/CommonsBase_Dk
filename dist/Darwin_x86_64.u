@@ -8,10 +8,10 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Darwin_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Darwin_x86_64-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ods3iu6rxzwukb742vffj4ezvitnilv75hnt74n6iarr23wdg6rxq")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "opuhiyqk7pldho245lt673vm6mjhzts27neku5tfia6cpfq3vif7q")\;
 
 ## Dk1 executable
 
   $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Darwin_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Darwin_x86_64-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "om63a5rtp5e2tw7664l2axgadggob7lfmpzwtmgfgv3u5nj4jsnoq")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "og7fhndqrm3vo7ahdyqknvbddoigcnklmyqimrerdzshqef6ftqxq")\;
