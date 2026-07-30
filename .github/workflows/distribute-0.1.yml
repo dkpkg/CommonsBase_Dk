@@ -87,36 +87,32 @@ jobs:
             # PERMANENT explicit driver pin -- determinism over auto-updates.
             # (Without it dk0 floats on the LATEST signed manifest, and the
             # 2.4.2.296 driver's github-l2 import regression silently broke
-            # every build here the moment its manifest became latest.)
+            # every build here the moment its manifest became latest.) Bump the
+            # version deliberately, as a reviewed commit, when adopting a new
+            # driver release; the pinned manifest is signify-verified by the
+            # launcher exactly like the floating one.
             #
-            # Pinned to 2.4.2.291, the newest driver that builds this whole
-            # closure green. It PREDATES shallow github-l2 import (2056f3165),
-            # so it materializes every dependency eagerly. The shallow-import
-            # drivers (2.4.2.295..300) instead defer transitive values and, when
-            # this build imports a previous CommonsBase_Dk release via
-            # `restore github-l2 --tag-before` (which runs even under
-            # store: none), hit "Could not find cached value ... not present in
-            # the value store" for a transitive value (ex.
-            # CommonsLang_OCaml.Dune@3.23.1). That is a DISTINCT bug from the
-            # re-download idempotency regression fixed in 2.4.2.299/300 ("Reuse a
-            # finalized lazy value ..."); it blocks adopting a shallow-import
-            # driver here until it is fixed. See
+            # 2.4.2.301 is the first shallow-import driver that can build this
+            # closure: it carries both the import idempotency fix ("Reuse a
+            # finalized lazy value instead of re-downloading it") and the
+            # strict materialized-only trace import ("Import a distribution
+            # trace only when its value is materialized"), which together make
+            # deferred transitive values fetch on demand instead of erroring
+            # "not present in the value store". History in
             # rotary-phone/prompts/import-regression-checkpoint.md.
-            #
-            # Value-ids: the 2.4.2.291 driver derives different dist/*.u ids
-            # than the 295-family, so the assertions below carry 291-derived
-            # ids. Re-harvest them when the pin moves.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            # Plain -nosysinc: the 2.4.2.291 driver predates shallow import, so
-            # it needs no --integrity existence to fetch deferred values.
+            # Plain -nosysinc: under the fixed shallow-import driver, deferred
+            # transitive values fetch on demand through the lazy force; no
+            # --integrity flag is needed (verified locally end to end).
             options: -nosysinc
-            # store: none forces a full clean rebuild (no value/trace store
-            # restore) so a MlFront *source* bump always ships correct binaries.
-            # store: release is deferred until a shallow-import driver can build
-            # this closure (see the DK0_BASE_URL note).
+            # store: none for THIS release: the first under the 2.4.2.301
+            # driver has only 2.4.2.291-driver previous stores, and a
+            # cross-driver store: release restore errors on mismatched
+            # value-ids. Flip to store: release on the NEXT release, when the
+            # previous store is same-driver.
             store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
@@ -154,10 +150,9 @@ jobs:
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
         env:
-            # Same permanent 2.4.2.291 driver pin as the distribute jobs above;
-            # bump both together when a shallow-import driver can build this
-            # closure (see the DK0_BASE_URL note there).
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
+            # Same permanent driver pin as the distribute jobs above; bump
+            # both together when adopting a new driver release.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
