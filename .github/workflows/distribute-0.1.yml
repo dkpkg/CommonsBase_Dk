@@ -84,37 +84,32 @@ jobs:
       - name: Distribute Modules
         uses: diskuv/dk-distribute@v3
         env:
-            # TEMPORARY driver pin to break the release bootstrap loop. The CI
-            # driver dk0 resolves the LATEST signed manifest (diskuv.com/dk), which
-            # is 2.4.2.296 -- the driver whose github-l2 import regression fails
-            # every build here since 07-29 (proven: the same tree is green under
-            # the 2.4.2.291 driver and fails under 2.4.2.296). The fixed engine
-            # (2.4.2.299, "Reuse a finalized lazy value instead of re-downloading
-            # it") cannot become the latest manifest until one green build of THIS
-            # repo publishes the binaries its manifest points at. Bridge: pin the
-            # driver to 2.4.2.291 -- the newest driver that clears the import
-            # (2.4.2.295 and 2.4.2.296 both fail it against today's upstream
-            # release state; 295's 07-28 green run predated that state). The 291
-            # driver derives different value-ids than the 295-era ones the
-            # dist/*.u assertions were harvested under, so the assertions are
-            # TEMPORARILY flipped to the 291-derived ids in the same commit.
-            # REMOVE this env, restore the dist/*.u value-ids, and re-raise
-            # options/store once the 2.4.2.299 manifest is the latest served one.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
+            # PERMANENT explicit driver pin -- determinism over auto-updates.
+            # Without it the CI driver dk0 floats on the LATEST signed manifest
+            # (diskuv.com/dk), and a newly published driver silently changes
+            # every subsequent build: the 2.4.2.296 driver's github-l2 import
+            # regression broke every run here for days the moment its manifest
+            # became latest. Bump the version deliberately, as a reviewed
+            # commit, when adopting a new driver release. The pinned manifest
+            # is signify-verified by the launcher exactly like the floating one.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.300
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            # Plain -nosysinc: the last green run used exactly this. The
-            # "--integrity existence" mitigation targeted the 2.4.2.296 driver's
-            # import regression; the pinned 2.4.2.291 driver predates both the
-            # regression and that flag.
+            # Plain -nosysinc: the "--integrity existence" mitigation targeted
+            # the 2.4.2.296 driver's import regression, which the pinned
+            # 2.4.2.300 driver fixes at the root ("Reuse a finalized lazy value
+            # instead of re-downloading it").
             options: -nosysinc
-            # store: none forces a full clean rebuild (no value/trace store
-            # restore) so a MlFront *source* bump always ships correct binaries.
-            # Flip to store: release only after the 2.4.2.299+ driver (restore
-            # invalidation a1cd60a6c + the import idempotency fix) is the latest
-            # signed manifest. See rotary-phone/prompts/value-id-tracks-source.md.
-            store: none
+            # store: release restores the previous release's value/trace store
+            # and rebuilds only what changed. Safe under the pinned 2.4.2.300
+            # driver: a1cd60a6c re-verifies each restored lazy value against its
+            # dependency content (so a source bump rebuilds instead of shipping
+            # a stale rev), and the import idempotency fix keeps restored lazy
+            # values from re-downloading. A missing or mismatched previous store
+            # (ex. the 2.4.2.291-driver bridge releases' value-ids) falls back
+            # to a clean build. See rotary-phone/prompts/value-id-tracks-source.md.
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -151,9 +146,9 @@ jobs:
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
         env:
-            # Same temporary 2.4.2.291 driver pin as the distribute jobs above;
-            # remove together with it.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
+            # Same permanent driver pin as the distribute jobs above; bump both
+            # together when adopting a new driver release.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.300
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].

@@ -8,10 +8,10 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Linux_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Linux_x86-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86", value-id: "ojwkvwzp7b4tfaks6mihcz5ztyled4rvb5xlezjoeoibh6gkjgo7q")\;
+  \dk.object(abi: "Release.Linux_x86", value-id: "o4h5jggmqq3mtlijgd2lwskjph5r54l7ovncykeysmc3uy5taueaa")\;
 
 ## Dk1 executable
 
   $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Linux_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86", value-id: "ogfgbyjziz6c52kgrktgma2yr364kzrl4pjtk6ptoljcrpgo5frwa")\;
+  \dk.object(abi: "Release.Linux_x86", value-id: "onky6wzcltkcvg3pplzpopxn6imh4z6gs7zpoq4bxyjupxh5sqtrq")\;
