@@ -108,12 +108,17 @@ jobs:
             # transitive values fetch on demand through the lazy force; no
             # --integrity flag is needed (verified locally end to end).
             options: -nosysinc
-            # store: none for THIS release: the first under the 2.4.2.301
-            # driver has only 2.4.2.291-driver previous stores, and a
-            # cross-driver store: release restore errors on mismatched
-            # value-ids. Flip to store: release on the NEXT release, when the
-            # previous store is same-driver.
-            store: none
+            # store: release restores the previous release's value/trace store
+            # and rebuilds only what changed (minutes instead of a ~45 min
+            # clean 7-slot rebuild). Safe under the pinned 2.4.2.301 driver:
+            # the previous store is same-driver (0.1.20260730225558), restored
+            # lazy values are re-verified against their dependency content
+            # (a1cd60a6c) so a source bump rebuilds instead of shipping a stale
+            # rev, and the import idempotency fix keeps restored values from
+            # re-downloading. A missing or cross-driver previous store requires
+            # a one-release fallback to store: none (dk-distribute errors, not
+            # falls back, on a mismatched restore).
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
