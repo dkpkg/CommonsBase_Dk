@@ -96,11 +96,18 @@ jobs:
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            # Plain -nosysinc: the "--integrity existence" mitigation targeted
-            # the 2.4.2.296 driver's import regression, which the pinned
-            # 2.4.2.300 driver fixes at the root ("Reuse a finalized lazy value
-            # instead of re-downloading it").
-            options: -nosysinc
+            # --integrity existence is required by the shallow github-l2 import
+            # model (2056f3165+): an `add`/`restore` materializes only the direct
+            # release and defers each transitive distribution's values, so a
+            # build that references a not-yet-local value (ex.
+            # CommonsLang_OCaml.Dune@3.23.1) must be told to fetch it from the
+            # remote value store on demand instead of erroring "not present in
+            # the value store". The 2.4.2.291 bridge driver predates shallow
+            # import (it materialized everything eagerly) so it did not need
+            # this; the pinned 2.4.2.300 driver does. This is orthogonal to the
+            # 2.4.2.296 import idempotency regression, which the 300 driver
+            # fixes at the root ("Reuse a finalized lazy value ...").
+            options: -nosysinc --integrity existence
             # store: none for THIS release -- the first under the newly pinned
             # 2.4.2.300 driver. store: release would restore the previous
             # release's value/trace store, but the previous releases were built
