@@ -101,15 +101,17 @@ jobs:
             # 2.4.2.300 driver fixes at the root ("Reuse a finalized lazy value
             # instead of re-downloading it").
             options: -nosysinc
-            # store: release restores the previous release's value/trace store
-            # and rebuilds only what changed. Safe under the pinned 2.4.2.300
-            # driver: a1cd60a6c re-verifies each restored lazy value against its
-            # dependency content (so a source bump rebuilds instead of shipping
-            # a stale rev), and the import idempotency fix keeps restored lazy
-            # values from re-downloading. A missing or mismatched previous store
-            # (ex. the 2.4.2.291-driver bridge releases' value-ids) falls back
-            # to a clean build. See rotary-phone/prompts/value-id-tracks-source.md.
-            store: release
+            # store: none for THIS release -- the first under the newly pinned
+            # 2.4.2.300 driver. store: release would restore the previous
+            # release's value/trace store, but the previous releases were built
+            # by the 2.4.2.291 bridge driver, whose value-ids differ; the 300
+            # driver then hits a restored trace referencing a value-id absent
+            # from that store (`otuqre2y...`) and errors rather than rebuilding.
+            # Once this release publishes a 2.4.2.300-driver store, flip back to
+            # store: release: a same-driver restore is consistent, and a1cd60a6c
+            # + the import idempotency fix make it safe.
+            # See rotary-phone/prompts/value-id-tracks-source.md.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
