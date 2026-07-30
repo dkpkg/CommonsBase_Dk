@@ -83,25 +83,32 @@ jobs:
 
       - name: Distribute Modules
         uses: diskuv/dk-distribute@v3
+        env:
+            # TEMPORARY driver pin to break the release bootstrap loop. The CI
+            # driver dk0 resolves the LATEST signed manifest (diskuv.com/dk), which
+            # is 2.4.2.296 -- the driver whose github-l2 import regression fails
+            # every build here since 07-29 (proven: the same tree is green under
+            # the 2.4.2.291 driver and fails under 2.4.2.296). The fixed engine
+            # (2.4.2.299, "Reuse a finalized lazy value instead of re-downloading
+            # it") cannot become the latest manifest until one green build of THIS
+            # repo publishes the binaries its manifest points at. Bridge: pin the
+            # driver to the last-good 2.4.2.291 signed manifest. REMOVE this env
+            # (and re-raise options/store) once the 2.4.2.299 manifest is the
+            # latest served one.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
-            # --integrity existence forces dk0 to verify each referenced value is
-            # present in the local value store and, when it is not, fetch it from the
-            # remote (imported) value store. Without it the 2.4.2.296 driver errored
-            # on a not-yet-materialized imported value (CommonsLang_OCaml.Dune@3.23.1),
-            # which is exactly what dk0's own hint recommends rerunning with.
-            options: -nosysinc --integrity existence
-            # TEMPORARILY store: none for the 2.4.2.297 bootstrap release. store:
-            # release restores the previous release's value/trace store and rebuilds
-            # only the changed objects, but its restore range-fetches run in the CI
-            # driver dk0, and the current latest driver (2.4.2.296) hangs on a stalled
-            # range-fetch (the download curl had no stall timeout) until the 6h job
-            # timeout. 2.4.2.297 ships that fix (ShellCore.ml --connect-timeout plus
-            # --speed-limit/--speed-time), but it must itself be built by the 2.4.2.296
-            # driver, so THIS release uses store: none (no restore, no hang, ~44 min
-            # clean). Once 2.4.2.297 is the latest signed-manifest driver, flip this
-            # back to store: release. See rotary-phone/prompts/value-id-tracks-source.md.
+            # Plain -nosysinc: the last green run used exactly this. The
+            # "--integrity existence" mitigation targeted the 2.4.2.296 driver's
+            # import regression; the pinned 2.4.2.291 driver predates both the
+            # regression and that flag.
+            options: -nosysinc
+            # store: none forces a full clean rebuild (no value/trace store
+            # restore) so a MlFront *source* bump always ships correct binaries.
+            # Flip to store: release only after the 2.4.2.299+ driver (restore
+            # invalidation a1cd60a6c + the import idempotency fix) is the latest
+            # signed manifest. See rotary-phone/prompts/value-id-tracks-source.md.
             store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
@@ -138,6 +145,10 @@ jobs:
 
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
+        env:
+            # Same temporary 2.4.2.291 driver pin as the distribute jobs above;
+            # remove together with it.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.291
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
