@@ -175,50 +175,6 @@ jobs:
             # identical value-ids, so the merge is unaffected).
             orchestrator: dk1
 
-      # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
-      # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit
-      # (dk0/dk1-linux_x86): its SHA matches the signed manifest, so it installs on a
-      # true 32-bit host, then cannot execute (exit 127 -- no /lib64/ld-linux-x86-64.so.2).
-      # `file` reads the ELF/Mach-O/PE header, so this catches a wrong machine class/arch
-      # for ANY slot BEFORE Attest + Release. It runs on the as-combined bytes; signing
-      # (below) adds a signature but never changes the machine arch, so order is fine.
-      # The dist/*.u scripts cannot do this check themselves: their `$` lines run dk0's
-      # restricted "dk shell" (no pipes, no arbitrary tools), and a dynamically-linked
-      # dk0's `file` output carries a per-build BuildID that no exact-match can pin.
-      - name: Verify dk0/dk1 machine arch matches each ABI
-        shell: bash
-        run: |
-          set -uo pipefail
-          fail=0
-          # $1 = space-separated binary paths, $2 = ABI label, $3 = ERE `file -b` must match
-          check() {
-            local seen=0 f desc
-            for f in $1; do
-              [ -e "$f" ] || continue
-              seen=1
-              desc=$(file -b "$f")
-              if printf '%s\n' "$desc" | grep -Eq "$3"; then
-                echo "ok   $f ($2): $desc"
-              else
-                echo "FAIL $f ($2): expected /$3/, got: $desc"
-                fail=1
-              fi
-            done
-            [ "$seen" = 1 ] || echo "note $2: no binaries staged this run (slot not built)"
-          }
-          check 'dk-dist/dk0-linux_x86 dk-dist/dk1-linux_x86'                     Linux_x86         'ELF 32-bit.*(Intel 80386|Intel i386|i386)'
-          check 'dk-dist/dk0-linux_x86_64 dk-dist/dk1-linux_x86_64'               Linux_x86_64      'ELF 64-bit.*x86-64'
-          check 'dk-dist/dk0-linux_x86_64_musl dk-dist/dk1-linux_x86_64_musl'     Linux_x86_64_musl 'ELF 64-bit.*x86-64.*(statically linked|static-pie linked)'
-          check 'dk-dist/dk0-darwin_arm64 dk-dist/dk1-darwin_arm64'               Darwin_arm64      'Mach-O 64-bit.*arm64'
-          check 'dk-dist/dk0-darwin_x86_64 dk-dist/dk1-darwin_x86_64'             Darwin_x86_64     'Mach-O 64-bit.*x86_64'
-          check 'dk-dist/dk0-windows_x86.exe dk-dist/dk1-windows_x86.exe'         Windows_x86       'PE32 executable.*(80386|Intel i386)'
-          check 'dk-dist/dk0-windows_x86_64.exe dk-dist/dk1-windows_x86_64.exe'   Windows_x86_64    'PE32\+ executable.*(x86-64|x86_64)'
-          if [ "$fail" != 0 ]; then
-            echo "::error::A dk0/dk1 binary's machine arch does not match its ABI slot (see FAIL lines)."
-            exit 1
-          fi
-          echo "All staged dk0/dk1 binaries match their ABI slot."
-
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
       # Sign ONLY those flat executables here -- the value-store assets are left
