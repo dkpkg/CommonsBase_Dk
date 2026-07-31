@@ -118,7 +118,11 @@ jobs:
             # re-downloading. A missing or cross-driver previous store requires
             # a one-release fallback to store: none (dk-distribute errors, not
             # falls back, on a mismatched restore).
-            store: release
+            # TEMPORARY store: none for ONE release to build-validate the
+            # concurrent per-package dispatch from scratch and measure the
+            # parallel clean-build wall-clock vs the ~45 min sequential clean.
+            # Restore store: release immediately after.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
