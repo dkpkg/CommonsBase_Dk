@@ -100,8 +100,14 @@ jobs:
             # deferred transitive values fetch on demand instead of erroring
             # "not present in the value store". History in
             # rotary-phone/prompts/import-regression-checkpoint.md.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            # dk1 orchestrator reads DK1_BASE_URL (the dk1 launcher's base-url env);
+            # same signed manifest as dk0-dist, which carries the dk1 binaries too.
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
         with:
+            # Orchestrate the build with dk1 (multi-threaded). Validation run: this
+            # first dk1-orchestrated build stays on the SEQUENTIAL Closure drivers
+            # to prove dk1 orchestrates correctly before parallel is re-enabled.
+            orchestrator: dk1
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             # Plain -nosysinc: under the fixed shallow-import driver, deferred
@@ -118,7 +124,12 @@ jobs:
             # re-downloading. A missing or cross-driver previous store requires
             # a one-release fallback to store: none (dk-distribute errors, not
             # falls back, on a mismatched restore).
-            store: release
+            #
+            # store: none for this dk1-orchestrator interlude: the previous
+            # releases were built by dk0, and dk-distribute errors (does not fall
+            # back) on a cross-engine restore, so the first dk1 build is clean.
+            # Restore returns to store: release once a dk1-built release exists.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -156,8 +167,57 @@ jobs:
         uses: diskuv/dk-distribute/combine@v3
         env:
             # Same permanent driver pin as the distribute jobs above; bump
-            # both together when adopting a new driver release.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            # both together when adopting a new driver release. dk1 orchestrator
+            # reads DK1_BASE_URL.
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+        with:
+            # Combine with dk1 to match the distribute jobs (both engines produce
+            # identical value-ids, so the merge is unaffected).
+            orchestrator: dk1
+
+      # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
+      # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit
+      # (dk0/dk1-linux_x86): its SHA matches the signed manifest, so it installs on a
+      # true 32-bit host, then cannot execute (exit 127 -- no /lib64/ld-linux-x86-64.so.2).
+      # `file` reads the ELF/Mach-O/PE header, so this catches a wrong machine class/arch
+      # for ANY slot BEFORE Attest + Release. It runs on the as-combined bytes; signing
+      # (below) adds a signature but never changes the machine arch, so order is fine.
+      # The dist/*.u scripts cannot do this check themselves: their `$` lines run dk0's
+      # restricted "dk shell" (no pipes, no arbitrary tools), and a dynamically-linked
+      # dk0's `file` output carries a per-build BuildID that no exact-match can pin.
+      - name: Verify dk0/dk1 machine arch matches each ABI
+        shell: bash
+        run: |
+          set -uo pipefail
+          fail=0
+          # $1 = space-separated binary paths, $2 = ABI label, $3 = ERE `file -b` must match
+          check() {
+            local seen=0 f desc
+            for f in $1; do
+              [ -e "$f" ] || continue
+              seen=1
+              desc=$(file -b "$f")
+              if printf '%s\n' "$desc" | grep -Eq "$3"; then
+                echo "ok   $f ($2): $desc"
+              else
+                echo "FAIL $f ($2): expected /$3/, got: $desc"
+                fail=1
+              fi
+            done
+            [ "$seen" = 1 ] || echo "note $2: no binaries staged this run (slot not built)"
+          }
+          check 'dk-dist/dk0-linux_x86 dk-dist/dk1-linux_x86'                     Linux_x86         'ELF 32-bit.*(Intel 80386|Intel i386|i386)'
+          check 'dk-dist/dk0-linux_x86_64 dk-dist/dk1-linux_x86_64'               Linux_x86_64      'ELF 64-bit.*x86-64'
+          check 'dk-dist/dk0-linux_x86_64_musl dk-dist/dk1-linux_x86_64_musl'     Linux_x86_64_musl 'ELF 64-bit.*x86-64.*(statically linked|static-pie linked)'
+          check 'dk-dist/dk0-darwin_arm64 dk-dist/dk1-darwin_arm64'               Darwin_arm64      'Mach-O 64-bit.*arm64'
+          check 'dk-dist/dk0-darwin_x86_64 dk-dist/dk1-darwin_x86_64'             Darwin_x86_64     'Mach-O 64-bit.*x86_64'
+          check 'dk-dist/dk0-windows_x86.exe dk-dist/dk1-windows_x86.exe'         Windows_x86       'PE32 executable.*(80386|Intel i386)'
+          check 'dk-dist/dk0-windows_x86_64.exe dk-dist/dk1-windows_x86_64.exe'   Windows_x86_64    'PE32\+ executable.*(x86-64|x86_64)'
+          if [ "$fail" != 0 ]; then
+            echo "::error::A dk0/dk1 binary's machine arch does not match its ABI slot (see FAIL lines)."
+            exit 1
+          fi
+          echo "All staged dk0/dk1 binaries match their ABI slot."
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
