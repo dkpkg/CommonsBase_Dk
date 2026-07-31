@@ -118,7 +118,13 @@ jobs:
             # re-downloading. A missing or cross-driver previous store requires
             # a one-release fallback to store: none (dk-distribute errors, not
             # falls back, on a mismatched restore).
-            store: release
+            #
+            # store: none for this MlFront-source repin (301 -> 306): the root
+            # Dk0/Dk1@2.4.2 value-ids are declaration-stable across a source
+            # bump, so the previous 301-source release holds 301-rev content
+            # under the SAME ids; restoring it would ship the stale rev.
+            # Returns to store: release once a 306-source release exists.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
