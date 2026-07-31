@@ -133,7 +133,7 @@ jobs:
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
-            experimental-mlfront-ref: 25022183b65ed1dc1aadbb293d4275fc9bfb3e74
+            experimental-mlfront-ref: b725d3bea0ec592cc538c32ab859df5700f26ed9
             # Also publish the runnable dk0/dk1 as flat, whole-file assets (extracted
             # from the just-built objects) so the installer can curl them directly.
             # The action derives the slot from distscript and stages
@@ -174,7 +174,7 @@ jobs:
             # Combine with dk1 to match the distribute jobs (both engines produce
             # identical value-ids, so the merge is unaffected).
             orchestrator: dk1
-            experimental-mlfront-ref: 25022183b65ed1dc1aadbb293d4275fc9bfb3e74
+            experimental-mlfront-ref: b725d3bea0ec592cc538c32ab859df5700f26ed9
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
