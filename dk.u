@@ -57,10 +57,10 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801200506', {
-        'blake2b-256:62e4ba10f75912d45548da5e6cc9ceaa829932b70af4b780b023c1c1a5b3a3dd',
-        'sha256:cfac9e2b987d786c1bc932e7a021d18c5234d0c4fd01a5429b0a72bfed5e9a4d',
-        'sha1:d72f6cbd9003c46a5710ce67f222a55c37970bac'
+      'CommonsLang_OCaml', '0.1.20260801215548', {
+        'blake2b-256:3d1228c88de57a0d0df9c823cc18bbe3046804333d1502328021f88ee34d355b',
+        'sha256:bc29ed91533c012a2674f15b9bdb50c75f596553cb117ba1dab5b3a0d94eaf1a',
+        'sha1:5d879fafbf3399b7a7043cf8ff558e58feae3b97'
       } } }
 
 -- Assets for the per-package dk0 build: the MSVC build activator
@@ -84,22 +84,22 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   '2394'
   'sha256:28c08d1e989ccaaa02220caa82c53d4c8a69ba7bf50ac3970e69206440f9c37c'
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801200506"  }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801215548"  }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801200506', {
-        'blake2b-256:62e4ba10f75912d45548da5e6cc9ceaa829932b70af4b780b023c1c1a5b3a3dd',
-        'sha256:cfac9e2b987d786c1bc932e7a021d18c5234d0c4fd01a5429b0a72bfed5e9a4d',
-        'sha1:d72f6cbd9003c46a5710ce67f222a55c37970bac'
+      'CommonsLang_OCaml', '0.1.20260801215548', {
+        'blake2b-256:3d1228c88de57a0d0df9c823cc18bbe3046804333d1502328021f88ee34d355b',
+        'sha256:bc29ed91533c012a2674f15b9bdb50c75f596553cb117ba1dab5b3a0d94eaf1a',
+        'sha1:5d879fafbf3399b7a7043cf8ff558e58feae3b97'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801200506"  }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801215548"  }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801200506', {
-        'blake2b-256:62e4ba10f75912d45548da5e6cc9ceaa829932b70af4b780b023c1c1a5b3a3dd',
-        'sha256:cfac9e2b987d786c1bc932e7a021d18c5234d0c4fd01a5429b0a72bfed5e9a4d',
-        'sha1:d72f6cbd9003c46a5710ce67f222a55c37970bac'
+      'CommonsLang_OCaml', '0.1.20260801215548', {
+        'blake2b-256:3d1228c88de57a0d0df9c823cc18bbe3046804333d1502328021f88ee34d355b',
+        'sha256:bc29ed91533c012a2674f15b9bdb50c75f596553cb117ba1dab5b3a0d94eaf1a',
+        'sha1:5d879fafbf3399b7a7043cf8ff558e58feae3b97'
       } } }
