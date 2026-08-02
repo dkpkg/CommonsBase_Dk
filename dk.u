@@ -57,10 +57,10 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801231124', {
-        'blake2b-256:52bfe6f41ed47ca74dd9a953514ec7a4ec67c9803b08491a32ff07fe1b1962e9',
-        'sha256:8b4490ac5326021a9a617966f574e99b1282574ad0ebf8cc2923a254b34ad02f',
-        'sha1:e1593f0c6254e5511229e50715499fe87a24d5ba'
+      'CommonsLang_OCaml', '0.1.20260802003448', {
+        'blake2b-256:b8d947c39b4445612e8fc205d29647ec66685e75522b6e347a50a2607f1cec3f',
+        'sha256:133f6978a91f5b16a1098edf71d0f19d03ea231b4d2d13be3db932754c0203a4',
+        'sha1:68763e55deb3a60ed150ff91ffb736251dfd7906'
       } } }
 
 -- Assets for the per-package dk0 build: the MSVC build activator
@@ -88,18 +88,18 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801231124', {
-        'blake2b-256:52bfe6f41ed47ca74dd9a953514ec7a4ec67c9803b08491a32ff07fe1b1962e9',
-        'sha256:8b4490ac5326021a9a617966f574e99b1282574ad0ebf8cc2923a254b34ad02f',
-        'sha1:e1593f0c6254e5511229e50715499fe87a24d5ba'
+      'CommonsLang_OCaml', '0.1.20260802003448', {
+        'blake2b-256:b8d947c39b4445612e8fc205d29647ec66685e75522b6e347a50a2607f1cec3f',
+        'sha256:133f6978a91f5b16a1098edf71d0f19d03ea231b4d2d13be3db932754c0203a4',
+        'sha1:68763e55deb3a60ed150ff91ffb736251dfd7906'
       } } }
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802003448"  }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801231124', {
-        'blake2b-256:52bfe6f41ed47ca74dd9a953514ec7a4ec67c9803b08491a32ff07fe1b1962e9',
-        'sha256:8b4490ac5326021a9a617966f574e99b1282574ad0ebf8cc2923a254b34ad02f',
-        'sha1:e1593f0c6254e5511229e50715499fe87a24d5ba'
+      'CommonsLang_OCaml', '0.1.20260802003448', {
+        'blake2b-256:b8d947c39b4445612e8fc205d29647ec66685e75522b6e347a50a2607f1cec3f',
+        'sha256:133f6978a91f5b16a1098edf71d0f19d03ea231b4d2d13be3db932754c0203a4',
+        'sha1:68763e55deb3a60ed150ff91ffb736251dfd7906'
       } } }
