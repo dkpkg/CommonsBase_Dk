@@ -53,14 +53,14 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:06a7e9944c9ac602549947a7c1792589814664ee'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802023543" }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260801202602', {
-        'blake2b-256:23e755e373dd236d5fe115bc3b53c673e3e6587b73abaae2adf18cbb3ce912ee',
-        'sha256:ecc9694a73fde242ade3d653abd0fedd2b4244a27bf30322c7eee9b8c316fc18',
-        'sha1:f22b33315df95f15e8184e05101ed2d787d559e6'
+      'CommonsLang_OCaml', '0.1.20260802023543', {
+        'blake2b-256:94c77bf63ac6ecb7341ec40c7eee38d325d3d44d254d22e0bf565df6fd03d6ab',
+        'sha256:14a3c394885300e56cb74292e6ff8c0682d5a48617bdf7083bc1ad5365223956',
+        'sha1:71f8d9b09061dceebbae5e4f6c9659bd6cf076bd'
       } } }
 
 -- Assets for the per-package dk0 build: the MSVC build activator
@@ -112,4 +112,24 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'blake2b-256:23e755e373dd236d5fe115bc3b53c673e3e6587b73abaae2adf18cbb3ce912ee',
         'sha256:ecc9694a73fde242ade3d653abd0fedd2b4244a27bf30322c7eee9b8c316fc18',
         'sha1:f22b33315df95f15e8184e05101ed2d787d559e6'
+      } } }
+
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802002222"  }
+  'import'
+  'github-l2'
+  { {
+      'CommonsLang_OCaml', '0.1.20260802002222', {
+        'blake2b-256:d078e41a0dc41f06f776ae951536e38fa96cfff95ae947ca505287b086227fc9',
+        'sha256:1da88abedfa71df2846a13268e9dc19c14a184207b781a9752a144249d8ab71e',
+        'sha1:652ece79a730b6d092a9c52e1deb713d96f91502'
+      } } }
+
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802023543"  }
+  'import'
+  'github-l2'
+  { {
+      'CommonsLang_OCaml', '0.1.20260802023543', {
+        'blake2b-256:94c77bf63ac6ecb7341ec40c7eee38d325d3d44d254d22e0bf565df6fd03d6ab',
+        'sha256:14a3c394885300e56cb74292e6ff8c0682d5a48617bdf7083bc1ad5365223956',
+        'sha1:71f8d9b09061dceebbae5e4f6c9659bd6cf076bd'
       } } }
