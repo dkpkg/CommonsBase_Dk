@@ -84,7 +84,7 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   '2394'
   'sha256:28c08d1e989ccaaa02220caa82c53d4c8a69ba7bf50ac3970e69206440f9c37c'
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801231124"  }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802003448"  }
   'import'
   'github-l2'
   { {
@@ -94,7 +94,7 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:e1593f0c6254e5511229e50715499fe87a24d5ba'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801231124"  }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802003448"  }
   'import'
   'github-l2'
   { {
