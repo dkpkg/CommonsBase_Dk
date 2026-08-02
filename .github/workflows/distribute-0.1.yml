@@ -100,8 +100,12 @@ jobs:
             # deferred transitive values fetch on demand instead of erroring
             # "not present in the value store". History in
             # rotary-phone/prompts/import-regression-checkpoint.md.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            # dk1 orchestrator reads DK1_BASE_URL (the dk1 launcher's base-url env);
+            # same signed manifest as dk0-dist, which carries the dk1 binaries too.
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
         with:
+            # Differential: orchestrate with dk1 + the parallel Closure drivers.
+            orchestrator: dk1
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
             # Plain -nosysinc: under the fixed shallow-import driver, deferred
@@ -118,11 +122,14 @@ jobs:
             # re-downloading. A missing or cross-driver previous store requires
             # a one-release fallback to store: none (dk-distribute errors, not
             # falls back, on a mismatched restore).
-            store: release
+            # store: none for the differential: the previous releases were built
+            # by dk0, and dk-distribute errors (does not fall back) on a
+            # cross-engine restore, so the dk1 differential builds clean.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
-            experimental-mlfront-ref: ${{ github.ref_type != 'tag' && 'HEAD' }}
+            experimental-mlfront-ref: 68e2e927ea734d4b19169a9aa428cb54a84b6fc4
             # Also publish the runnable dk0/dk1 as flat, whole-file assets (extracted
             # from the just-built objects) so the installer can curl them directly.
             # The action derives the slot from distscript and stages
@@ -156,8 +163,14 @@ jobs:
         uses: diskuv/dk-distribute/combine@v3
         env:
             # Same permanent driver pin as the distribute jobs above; bump
-            # both together when adopting a new driver release.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            # both together when adopting a new driver release. dk1 orchestrator
+            # reads DK1_BASE_URL.
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+        with:
+            # Combine with dk1 to match the distribute jobs (both engines produce
+            # identical value-ids, so the merge is unaffected).
+            orchestrator: dk1
+            experimental-mlfront-ref: 68e2e927ea734d4b19169a9aa428cb54a84b6fc4
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
