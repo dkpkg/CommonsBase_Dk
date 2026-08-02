@@ -122,6 +122,15 @@ jobs:
             # "not present in the value store". History in
             # rotary-phone/prompts/import-regression-checkpoint.md.
             DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            # The musl job's loader step creates /lib/ld-musl-x86_64.so.1 (the
+            # ELF interpreter of the imported musl-dynamic ocamlopt), but the
+            # dksrc launcher's host probe reads that file's existence as "musl
+            # host" and then fails: the pinned 2.4.2.301 manifest carries no
+            # musl dk0 build. The build host genuinely is glibc (the execution
+            # ABI stays Linux_x86_64), so pin the launcher's host identity for
+            # the musl job. The launcher treats an empty value as unset (normal
+            # autodetection), so every other matrix job is unaffected.
+            DKML_HOST_ABI: ${{ matrix.distscript == 'dist/Linux_x86_64_musl.u' && 'linux_x86_64' || '' }}
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
