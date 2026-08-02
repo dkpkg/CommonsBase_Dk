@@ -266,11 +266,9 @@ jobs:
           done
           rm -f "$RUNNER_TEMP/devid.p12" "$RUNNER_TEMP/authkey.p8" "$RUNNER_TEMP/notary.json"
 
-      - name: Attest
-        id: attest
-        uses: actions/attest-build-provenance@v3
-        with: { subject-path: dk-dist/* }
-
-      - name: Release ${{ github.job }}
-        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1. Mar 15, 2026
-        with: { files: dk-dist/*, body_path: ".dist-CHANGELOG.txt" }
+      # Attests the distribution, publishes the sigstore bundle for values.json
+      # as a release asset, and creates the release. A consumer then fetches
+      # that bundle beside values.json with a plain download, so importing this
+      # release needs no GitHub API token.
+      - name: Attest and Release
+        uses: diskuv/dk-distribute/attest-release@v3
