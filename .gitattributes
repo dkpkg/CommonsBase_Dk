@@ -1,5 +1,6 @@
 dk.u text eol=lf
 dk0 text eol=lf
+dk1 text eol=lf
 *.c text eol=lf
 *.cpp text eol=lf
 *.h text eol=lf
