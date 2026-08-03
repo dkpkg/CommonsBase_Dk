@@ -152,12 +152,12 @@ jobs:
             # fallback to store: none (dk-distribute errors, not falls back,
             # on a mismatched restore).
             #
-            # store: none for the first release under the 2.4.2.308 driver
-            # pin: every prior release's store was produced under the
-            # 2.4.2.301 driver, so this release is the documented one-release
-            # cross-driver fallback. Flip to store: release once a
-            # 308-driver-built release exists.
-            store: none
+            # store: release is safe again: 0.1.20260803031118 was built
+            # under the pinned 2.4.2.309 driver (same driver as this run) and
+            # published the package value/trace stores, so the one-release
+            # store: none fallback that covered the 301 -> 309 driver change
+            # is complete.
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
