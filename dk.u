@@ -21,47 +21,35 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 ## workspace
   %% actual_version("2.4.2.308")
   'actual_version'
-  '2.4.2.296'
+  '2.4.2.308'
 
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
-  'import'
-  'github-l2'
-  { {
-      'CommonsBase_Std', '2.6.20260723055125', {
-        'blake2b-256:e98f3024a71bc5b6b22ca624a2c0b0a8dff5c8346d2e1396c137f2a380505285',
-        'sha256:972d2bf05f2a369731458c78f692eb0763d872a10718ebfc3cc28de53be6bf60',
-        'sha1:7b7908b4a94dadf04d4b85b5223ea660370fd9ec'
-      } } }
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_Std", tag="2.6.20260723055125" }
+  \dk.import(type: "github-l2", library: "CommonsBase_Std",
+    version: "2.6.20260723055125",
+    checksum: (blake2b-256: "e98f3024a71bc5b6b22ca624a2c0b0a8dff5c8346d2e1396c137f2a380505285",
+      sha256: "972d2bf05f2a369731458c78f692eb0763d872a10718ebfc3cc28de53be6bf60",
+      sha1: "7b7908b4a94dadf04d4b85b5223ea660370fd9ec"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
-  'import'
-  'github-l2'
-  { {
-      'CommonsBase_Build', '0.1.20260718232516', {
-        'blake2b-256:cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0',
-        'sha256:f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec',
-        'sha1:abd205268d9a7ca456f22b3425404e0f8ea06dff'
-      } } }
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_Build", tag="0.1.20260718232516" }
+  \dk.import(type: "github-l2", library: "CommonsBase_Build",
+    version: "0.1.20260718232516",
+    checksum: (blake2b-256: "cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0",
+      sha256: "f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec",
+      sha1: "abd205268d9a7ca456f22b3425404e0f8ea06dff"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
-  'import'
-  'github-l2'
-  { {
-      'CommonsBase_GNU', '0.1.20260723070124', {
-        'blake2b-256:cf0c4d46a0473ece8027662d2731c81601f164687bbf9b302ea17dd003d5fcdc',
-        'sha256:53ac93e0238e270828f751287e047373171708e0aa9fc430111bf8437d4c2283',
-        'sha1:06a7e9944c9ac602549947a7c1792589814664ee'
-      } } }
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260723070124" }
+  \dk.import(type: "github-l2", library: "CommonsBase_GNU",
+    version: "0.1.20260723070124",
+    checksum: (blake2b-256: "cf0c4d46a0473ece8027662d2731c81601f164687bbf9b302ea17dd003d5fcdc",
+      sha256: "53ac93e0238e270828f751287e047373171708e0aa9fc430111bf8437d4c2283",
+      sha1: "06a7e9944c9ac602549947a7c1792589814664ee"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802153935" }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260802153935', {
-        'blake2b-256:583f5425841e68c5b02d6fb1d01891f84763d3fc0cb4358faa96c9253c9ddc54',
-        'sha256:5895df127412194e408100bcdf262631e1a948ee41db8cef653e9ab4f7a35bec',
-        'sha1:3a47c44c526641a0c2c29700ee578b56a01357e9'
-      } } }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260803004612" }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260803004612",
+    checksum: (blake2b-256: "5acc97f20c09dd19fd67cebd9fe191065d56f5ebf454e8d180f6ab27b20232a0",
+      sha256: "0221a57edc9462b27ca37be281ff7b4034e2f7d9ecba4cfa8453f893260a726d",
+      sha1: "380d3e8339f96e7d4c8137f3c88d9ca167b50e71"))\;
 
 -- Assets for the per-package dk0 build: the MSVC build activator
 -- (Apparatus.Dk0BuildWin) and the MlFront localize wrapper (Dk0Localize.Script).
@@ -73,83 +61,58 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 ### CommonsBase_Dk.Apparatus@1.0.0
 
   % unified.asset { name="Dk0BuildWin", file="assets/dk0/dk0-build-win.bat" }
-  'asset'
-  '793'
-  'sha256:01498036219d67f5f28855cad32ead976d3161f33595af7e8538fa3d5b50ef15'
+  \dk.asset(byteSize: "793", checksum: (sha256: "01498036219d67f5f28855cad32ead976d3161f33595af7e8538fa3d5b50ef15"))\;
 
 ### CommonsBase_Dk.Dk0Localize@2.4.2
 
   % unified.asset { name="Script", file="assets/dk0/localize.sh" }
-  'asset'
-  '2394'
-  'sha256:28c08d1e989ccaaa02220caa82c53d4c8a69ba7bf50ac3970e69206440f9c37c'
+  \dk.asset(byteSize: "2394", checksum: (sha256: "28c08d1e989ccaaa02220caa82c53d4c8a69ba7bf50ac3970e69206440f9c37c"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260722233246"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260722233246', {
-        'blake2b-256:2a48669ca934e301aebed9d1644ab1870786d45debc8d54b662f73b40a05711d',
-        'sha256:afd12ece0b50bfbe78c2b78771e72da49cc6a98fb513058d0480148cb942a853',
-        'sha1:8d964ebade60d17ab340ed547f1ac8cb85be91cc'
-      } } }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260722233246",
+    checksum: (blake2b-256: "2a48669ca934e301aebed9d1644ab1870786d45debc8d54b662f73b40a05711d",
+      sha256: "afd12ece0b50bfbe78c2b78771e72da49cc6a98fb513058d0480148cb942a853",
+      sha1: "8d964ebade60d17ab340ed547f1ac8cb85be91cc"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260723152049"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260723152049', {
-        'blake2b-256:013f1676da47275bbf9977203b0451006076c46cb575d37be0aa857a4f08760a',
-        'sha256:69c0040cccd32eeb9d80baf7919f651323551cf94ac33d2165547c8a217ad6d0',
-        'sha1:02c91348149d85317f189074942be2f9649d3686'
-      } } }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260723152049",
+    checksum: (blake2b-256: "013f1676da47275bbf9977203b0451006076c46cb575d37be0aa857a4f08760a",
+      sha256: "69c0040cccd32eeb9d80baf7919f651323551cf94ac33d2165547c8a217ad6d0",
+      sha1: "02c91348149d85317f189074942be2f9649d3686"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260801202602"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260801202602', {
-        'blake2b-256:23e755e373dd236d5fe115bc3b53c673e3e6587b73abaae2adf18cbb3ce912ee',
-        'sha256:ecc9694a73fde242ade3d653abd0fedd2b4244a27bf30322c7eee9b8c316fc18',
-        'sha1:f22b33315df95f15e8184e05101ed2d787d559e6'
-      } } }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260801202602",
+    checksum: (blake2b-256: "23e755e373dd236d5fe115bc3b53c673e3e6587b73abaae2adf18cbb3ce912ee",
+      sha256: "ecc9694a73fde242ade3d653abd0fedd2b4244a27bf30322c7eee9b8c316fc18",
+      sha1: "f22b33315df95f15e8184e05101ed2d787d559e6"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802002222"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260802002222', {
-        'blake2b-256:d078e41a0dc41f06f776ae951536e38fa96cfff95ae947ca505287b086227fc9',
-        'sha256:1da88abedfa71df2846a13268e9dc19c14a184207b781a9752a144249d8ab71e',
-        'sha1:652ece79a730b6d092a9c52e1deb713d96f91502'
-      } } }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260802002222",
+    checksum: (blake2b-256: "d078e41a0dc41f06f776ae951536e38fa96cfff95ae947ca505287b086227fc9",
+      sha256: "1da88abedfa71df2846a13268e9dc19c14a184207b781a9752a144249d8ab71e",
+      sha1: "652ece79a730b6d092a9c52e1deb713d96f91502"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802023543"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260802023543', {
-        'blake2b-256:94c77bf63ac6ecb7341ec40c7eee38d325d3d44d254d22e0bf565df6fd03d6ab',
-        'sha256:14a3c394885300e56cb74292e6ff8c0682d5a48617bdf7083bc1ad5365223956',
-        'sha1:71f8d9b09061dceebbae5e4f6c9659bd6cf076bd'
-      } } }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260802023543",
+    checksum: (blake2b-256: "94c77bf63ac6ecb7341ec40c7eee38d325d3d44d254d22e0bf565df6fd03d6ab",
+      sha256: "14a3c394885300e56cb74292e6ff8c0682d5a48617bdf7083bc1ad5365223956",
+      sha1: "71f8d9b09061dceebbae5e4f6c9659bd6cf076bd"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802045523"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260802045523', {
-        'blake2b-256:8f37e0b56b913933aa96ea76ba77b7535b1a9b7f971ab99155cdadafa78d9ca7',
-        'sha256:eba56de1e64bba8a765f39f3a8b944c4582f74174cba6215e87e4733aa01aeb3',
-        'sha1:4fda929dfb9d86ee6f549aecaf17b30fd917e7bd'
-      } } }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260802045523",
+    checksum: (blake2b-256: "8f37e0b56b913933aa96ea76ba77b7535b1a9b7f971ab99155cdadafa78d9ca7",
+      sha256: "eba56de1e64bba8a765f39f3a8b944c4582f74174cba6215e87e4733aa01aeb3",
+      sha1: "4fda929dfb9d86ee6f549aecaf17b30fd917e7bd"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802153935"  }
-  'import'
-  'github-l2'
-  { {
-      'CommonsLang_OCaml', '0.1.20260802153935', {
-        'blake2b-256:583f5425841e68c5b02d6fb1d01891f84763d3fc0cb4358faa96c9253c9ddc54',
-        'sha256:5895df127412194e408100bcdf262631e1a948ee41db8cef653e9ab4f7a35bec',
-        'sha1:3a47c44c526641a0c2c29700ee578b56a01357e9'
-      } } }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260803004612"  }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260803004612",
+    checksum: (blake2b-256: "5acc97f20c09dd19fd67cebd9fe191065d56f5ebf454e8d180f6ab27b20232a0",
+      sha256: "0221a57edc9462b27ca37be281ff7b4034e2f7d9ecba4cfa8453f893260a726d",
+      sha1: "380d3e8339f96e7d4c8137f3c88d9ca167b50e71"))\;
