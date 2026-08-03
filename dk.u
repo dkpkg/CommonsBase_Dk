@@ -23,7 +23,7 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   'actual_version'
   '2.4.2.296'
 
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_Std", tag="2.6.20260723055125" }
   'import'
   'github-l2'
   { {
@@ -33,7 +33,7 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:7b7908b4a94dadf04d4b85b5223ea660370fd9ec'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_Build", tag="0.1.20260718232516" }
   'import'
   'github-l2'
   { {
@@ -43,7 +43,7 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:abd205268d9a7ca456f22b3425404e0f8ea06dff'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260723070124" }
   'import'
   'github-l2'
   { {
