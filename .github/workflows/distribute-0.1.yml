@@ -142,6 +142,14 @@ jobs:
             # transitive values fetch on demand through the lazy force; no
             # --integrity flag is needed (verified locally end to end).
             options: -nosysinc
+            # dk1 orchestrator: dispatch the per-package Closure builds
+            # concurrently (the parallel drivers emit sequential:false + deps[]
+            # edges). Validated green on all 7 slots + combine under a clean
+            # store:none build (run 30791036901, ~25-37% faster per heavy slot);
+            # the materialization-race fix is in the pinned 2.4.2.309 dk1 engine
+            # (DK1_BASE_URL above). Concurrency applies when packages actually
+            # rebuild; store: release restores unchanged ones as before.
+            orchestrator: dk1
             # store: release restores the previous release's value/trace store
             # and rebuilds only what changed (minutes instead of a ~45 min
             # clean 7-slot rebuild): restored lazy values are re-verified
@@ -193,6 +201,10 @@ jobs:
 
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
+        with:
+            # Match the distribute jobs' orchestrator so combine resolves the
+            # dk1-built distribution with the same engine.
+            orchestrator: dk1
         env:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
