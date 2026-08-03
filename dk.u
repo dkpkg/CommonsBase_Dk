@@ -53,14 +53,14 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:06a7e9944c9ac602549947a7c1792589814664ee'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802153935" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260803004612" }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260802153935', {
-        'blake2b-256:583f5425841e68c5b02d6fb1d01891f84763d3fc0cb4358faa96c9253c9ddc54',
-        'sha256:5895df127412194e408100bcdf262631e1a948ee41db8cef653e9ab4f7a35bec',
-        'sha1:3a47c44c526641a0c2c29700ee578b56a01357e9'
+      'CommonsLang_OCaml', '0.1.20260803004612', {
+        'blake2b-256:5acc97f20c09dd19fd67cebd9fe191065d56f5ebf454e8d180f6ab27b20232a0',
+        'sha256:0221a57edc9462b27ca37be281ff7b4034e2f7d9ecba4cfa8453f893260a726d',
+        'sha1:380d3e8339f96e7d4c8137f3c88d9ca167b50e71'
       } } }
 
 -- Assets for the per-package dk0 build: the MSVC build activator
@@ -144,12 +144,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
         'sha1:4fda929dfb9d86ee6f549aecaf17b30fd917e7bd'
       } } }
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802153935"  }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260803004612"  }
   'import'
   'github-l2'
   { {
-      'CommonsLang_OCaml', '0.1.20260802153935', {
-        'blake2b-256:583f5425841e68c5b02d6fb1d01891f84763d3fc0cb4358faa96c9253c9ddc54',
-        'sha256:5895df127412194e408100bcdf262631e1a948ee41db8cef653e9ab4f7a35bec',
-        'sha1:3a47c44c526641a0c2c29700ee578b56a01357e9'
+      'CommonsLang_OCaml', '0.1.20260803004612', {
+        'blake2b-256:5acc97f20c09dd19fd67cebd9fe191065d56f5ebf454e8d180f6ab27b20232a0',
+        'sha256:0221a57edc9462b27ca37be281ff7b4034e2f7d9ecba4cfa8453f893260a726d',
+        'sha1:380d3e8339f96e7d4c8137f3c88d9ca167b50e71'
       } } }
