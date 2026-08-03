@@ -113,23 +113,23 @@ jobs:
             # driver release; the pinned manifest is signify-verified by the
             # launcher exactly like the floating one.
             #
-            # 2.4.2.301 is the first shallow-import driver that can build this
-            # closure: it carries both the import idempotency fix ("Reuse a
-            # finalized lazy value instead of re-downloading it") and the
-            # strict materialized-only trace import ("Import a distribution
-            # trace only when its value is materialized"), which together make
-            # deferred transitive values fetch on demand instead of erroring
-            # "not present in the value store". History in
-            # rotary-phone/prompts/import-regression-checkpoint.md.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            # 2.4.2.308 is the first driver manifest that carries a
+            # dk0_linux_x86_64_musl build, so a musl-detecting launcher can
+            # resolve every ABI from it. It succeeds 2.4.2.301, the first
+            # shallow-import driver that could build this closure (import
+            # idempotency fix + strict materialized-only trace import; history
+            # in rotary-phone/prompts/import-regression-checkpoint.md).
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.308
             # The musl job's loader step creates /lib/ld-musl-x86_64.so.1 (the
-            # ELF interpreter of the imported musl-dynamic ocamlopt), but the
+            # ELF interpreter of the imported musl-dynamic ocamlopt), and the
             # dksrc launcher's host probe reads that file's existence as "musl
-            # host" and then fails: the pinned 2.4.2.301 manifest carries no
-            # musl dk0 build. The build host genuinely is glibc (the execution
-            # ABI stays Linux_x86_64), so pin the launcher's host identity for
-            # the musl job. The launcher treats an empty value as unset (normal
-            # autodetection), so every other matrix job is unaffected.
+            # host". The build host genuinely is glibc (the execution ABI stays
+            # Linux_x86_64), so pin the launcher's host identity for the musl
+            # job; under the musl-less 2.4.2.301 pin this was load-bearing
+            # (FATAL: no musl dk0 build), under 2.4.2.308 it keeps the driver
+            # download the honest glibc one. The launcher treats an empty value
+            # as unset (normal autodetection), so every other matrix job is
+            # unaffected.
             DKML_HOST_ABI: ${{ matrix.distscript == 'dist/Linux_x86_64_musl.u' && 'linux_x86_64' || '' }}
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
@@ -140,21 +140,19 @@ jobs:
             options: -nosysinc
             # store: release restores the previous release's value/trace store
             # and rebuilds only what changed (minutes instead of a ~45 min
-            # clean 7-slot rebuild). Safe under the pinned 2.4.2.301 driver:
-            # the previous store is same-driver (0.1.20260730225558), restored
-            # lazy values are re-verified against their dependency content
-            # (a1cd60a6c) so a source bump rebuilds instead of shipping a stale
-            # rev, and the import idempotency fix keeps restored values from
-            # re-downloading. A missing or cross-driver previous store requires
-            # a one-release fallback to store: none (dk-distribute errors, not
-            # falls back, on a mismatched restore).
+            # clean 7-slot rebuild): restored lazy values are re-verified
+            # against their dependency content (a1cd60a6c) so a source bump
+            # rebuilds instead of shipping a stale rev, and the import
+            # idempotency fix keeps restored values from re-downloading. A
+            # missing or cross-driver previous store requires a one-release
+            # fallback to store: none (dk-distribute errors, not falls back,
+            # on a mismatched restore).
             #
-            # store: none for this musl-introducing release: the new
-            # Release.Linux_x86_64_musl slot has no objects in any prior store, and
-            # dk-distribute errors (does not fall back) on a store that cannot
-            # satisfy a requested slot -- so the release that first ships musl
-            # builds clean. Restore returns to store: release once a musl-carrying
-            # release exists.
+            # store: none for the first release under the 2.4.2.308 driver
+            # pin: every prior release's store was produced under the
+            # 2.4.2.301 driver, so this release is the documented one-release
+            # cross-driver fallback. Flip to store: release once a
+            # 308-driver-built release exists.
             store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
@@ -194,7 +192,7 @@ jobs:
         env:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.301
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk0-dist/2.4.2.308
 
       # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
       # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit
