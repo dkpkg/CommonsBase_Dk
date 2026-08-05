@@ -150,22 +150,20 @@ jobs:
             # (DK1_BASE_URL above). Concurrency applies when packages actually
             # rebuild; store: release restores unchanged ones as before.
             orchestrator: dk1
-            # store: release restores the previous release's value/trace store
-            # and rebuilds only what changed (minutes instead of a ~45 min
-            # clean 7-slot rebuild): restored lazy values are re-verified
-            # against their dependency content (a1cd60a6c) so a source bump
-            # rebuilds instead of shipping a stale rev, and the import
-            # idempotency fix keeps restored values from re-downloading. A
-            # missing or cross-driver previous store requires a one-release
-            # fallback to store: none (dk-distribute errors, not falls back,
-            # on a mismatched restore).
-            #
-            # store: release is safe again: 0.1.20260803031118 was built
-            # under the pinned 2.4.2.309 driver (same driver as this run) and
-            # published the package value/trace stores, so the one-release
-            # store: none fallback that covered the 301 -> 309 driver change
-            # is complete.
-            store: release
+            # store: none until the restore re-verification regression is
+            # fixed: the 0.1.20260805120333 release restored the previous
+            # release's binaries BYTE-IDENTICALLY despite the 2.4.2.310 source
+            # repin -- the RawSrc/MlFrontSource form change did not invalidate
+            # the downstream Pkg/Dk0 traces (the a1cd60a6c dependency-content
+            # re-verification did not fire for this shape), so the 2.4.2.310
+            # manifest shipped binaries whose `--version` is 2.4.2+rev-309.
+            # Every id in this pipeline is the version-invariant @2.4.2, so the
+            # store cannot tell a 309-source object from a 310-source one on
+            # its own; do NOT flip back to store: release until the engine
+            # re-verification is fixed + cram-guarded in MlFront (tracked in
+            # rotary-phone/prompts/mlfront-tests-gate.md, M-V), or the ids
+            # carry the 4-part source version.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
