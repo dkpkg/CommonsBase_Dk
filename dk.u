@@ -123,3 +123,46 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
     checksum: (blake2b-256: "bd175f8a384eb81f3a9dce85bc5248af1d0a62c8b927001385870f246bdc2ff7",
       sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
+
+## Data flow
+
+How a released dk0/dk1 is built, from an MlFront tag to a user's install. Every
+node names the file that implements it. `V4` is the 4-part MlFront source
+version (for example `2.4.2.310`); `DRV` is the pinned driver version -- the
+*previous* release's dk0/dk1 that runs this build.
+
+```mermaid
+flowchart TB
+  subgraph GL["MlFront GitLab (dkml/build-tools/MlFront tag pipeline)"]
+    T["git tag V4, gitsign-signed"] --> PS["publish-source: gitsign verify, then ci/publish-source-zip.sh"]
+    PS --> Z[("mlfront-source/V4/MlFront-V4.zip -- V4 encoded in the top directory name")]
+  end
+  subgraph CB["CommonsBase_Dk (this repo; GitHub Actions on tag 0.1.TS)"]
+    Z -- "url+sha256 pin: etc/dk/v/CommonsBase_Dk/Dk0Localize.RawSrc.values.jsonc" --> RS["Dk0Localize.RawSrc@2.4.2"]
+    RS --> MS["Dk0.MlFrontSource@2.4.2: assets/dk0/localize.sh derives V4 from the directory name, stamps ci/version.source.sh + dune-project.template, runs localize-pristine; emits the mlfront/ tree + dk-opam-lock.jsonc"]
+    MS --> CL["Dk0.Closure@2.4.2 / Dk1.Closure@2.4.2: one CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage run per locked package; toolchain objects DkML, Dune, MSYS2, VSWhere; the binary's --version constant is baked here when dune builds DkZero_Exec/DkOne_Exec from the stamped tree"]
+    CL --> D0["Dk0@2.4.2 / Dk1@2.4.2: extract the root package install.zip, republish bin/dk0.exe per slot"]
+    D0 --> M["distribute matrix: .github/workflows/distribute-0.1.yml, one dist/&lt;slot&gt;.u per ABI; driver pinned by DK0_BASE_URL/DK1_BASE_URL = dk-dist/DRV"]
+    M --> A["distribution-&lt;part&gt; artifacts + flat dk-dist/dk{0,1}-&lt;abi&gt; staged by publish-objects"]
+    A --> C["combine job: jsign Authenticode (Windows), rcodesign Developer ID (macOS), SLSA attest, gh-release under tag 0.1.TS"]
+  end
+  subgraph MR["MlFront metadata-release (manual pipeline, DK_GH_TAG)"]
+    C --> VF["ci/verify-github-release.sh: SLSA attestation + OS code signatures + gitsign source signature, fail-closed"]
+    VF --> MAN["ci/gen-manifest.sh: version=V4, dk0_url_template to the 0.1.TS release, per-ABI sha256; ci/sign-release.sh signify-signs"]
+    MAN --> DKD[("dk-dist/V4 generic package: manifest.txt + .sig + signed install.ps1/vendor.ps1")]
+  end
+  DKD --> VI["verify-install:&lt;abi&gt; smoke jobs: install and assert dk0 --version == 2.4.2+rev-N"]
+  VI --> L["launchers + install.sh/install.ps1: signify-verify the manifest, fetch by dk0_url_template"] --> U["users"]
+  DKD -. "the dk-dist/V4 manifest becomes the NEXT release's DK0_BASE_URL driver pin: driver version N-1 builds product version N" .-> M
+  M -. "HAZARD: every pipeline id above is the version-invariant @2.4.2, so a store: release restore can serve the PREVIOUS release's objects after a source repin (0.1.20260805120333 shipped rev-309 bytes under the 2.4.2.310 manifest); store: none until the restore re-verification is fixed" .-> D0
+```
+
+Version overlay: `V4` rides the git tag, then the zip's top directory name, then
+the RawSrc pin, then the localize stamp, then the manifest `version=` line. The
+binary's `--version` output is a compile-time constant generated once, inside
+the closure build, by MlFront's getver reading the stamped
+`dune-project.template` -- nothing after that step can change it. `DRV` appears
+only in the `DK0_BASE_URL`/`DK1_BASE_URL` driver pins and in the
+`producer.application` provenance metadata of the published stores: that
+metadata names the dk0 that RAN the build (by design), so a `rev-<N-1>` there is
+correct provenance, not the product version.

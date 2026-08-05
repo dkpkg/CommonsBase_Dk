@@ -2,11 +2,13 @@
 // from its deterministic publish-source zip -- the GitLab generic package
 // mlfront-source/2.4.2.310/MlFront-2.4.2.310.zip built by ci/publish-source-zip.sh,
 // not the git-archive endpoint whose byte output is not guaranteed stable.
-// Dk0Localize.F_LocalizeSource fetches this bundle (get-asset), runs
-// ci/localize-pristine.sh over it, and emits the localized tree as the
-// CommonsBase_Dk.Dk0.MlFrontSource object; localize stamps the base version 2.4.2
-// into the generated opam files. The zip is a build-job artifact, so the pinned
-// sha256 is stable.
+// Dk0Localize.F_LocalizeSource fetches this bundle (get-asset), runs the
+// localize wrapper over it, and emits the localized tree as the
+// CommonsBase_Dk.Dk0.MlFrontSource object. localize.sh derives the FULL 4-part
+// version from the zip's MlFront-<version>/ directory name and stamps it into
+// ci/version.source.sh and dune-project.template before running
+// ci/localize-pristine.sh, so the built binaries self-report 2.4.2.N as
+// 2.4.2+rev-N. The zip is a build-job artifact, so the pinned sha256 is stable.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
