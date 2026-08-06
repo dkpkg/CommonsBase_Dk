@@ -1,14 +1,12 @@
-// The raw (un-localized) MlFront source for tag 2.4.2.310, fetched at build time
+// The raw (un-localized) MlFront source for tag 2.4.2.311, fetched at build time
 // from its deterministic publish-source zip -- the GitLab generic package
-// mlfront-source/2.4.2.310/MlFront-2.4.2.310.zip built by ci/publish-source-zip.sh,
+// mlfront-source/2.4.2.311/MlFront-2.4.2.311.zip built by ci/publish-source-zip.sh,
 // not the git-archive endpoint whose byte output is not guaranteed stable.
-// Dk0Localize.F_LocalizeSource fetches this bundle (get-asset), runs the
-// localize wrapper over it, and emits the localized tree as the
-// CommonsBase_Dk.Dk0.MlFrontSource object. localize.sh derives the FULL 4-part
-// version from the zip's MlFront-<version>/ directory name and stamps it into
-// ci/version.source.sh and dune-project.template before running
-// ci/localize-pristine.sh, so the built binaries self-report 2.4.2.N as
-// 2.4.2+rev-N. The zip is a build-job artifact, so the pinned sha256 is stable.
+// Dk0Localize.F_LocalizeSource fetches this bundle (get-asset), runs
+// ci/localize-pristine.sh over it, and emits the localized tree as the
+// CommonsBase_Dk.Dk0.MlFrontSource object; localize stamps the base version 2.4.2
+// into the generated opam files. The zip is a build-job artifact, so the pinned
+// sha256 is stable.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
@@ -20,7 +18,7 @@
           {
             "name": "mlfront-gitlab",
             "mirrors": [
-              "https://gitlab.com/api/v4/projects/60486861/packages/generic/mlfront-source/2.4.2.310"
+              "https://gitlab.com/api/v4/projects/60486861/packages/generic/mlfront-source/2.4.2.311"
             ]
           }
         ]
@@ -28,11 +26,11 @@
       "assets": [
         {
           "origin": "mlfront-gitlab",
-          "path": "MlFront-2.4.2.310.zip",
+          "path": "MlFront-2.4.2.311.zip",
           "checksum": {
-            "sha256": "75022ccb143c7ac316f8de9837e881d5a1c6565992a69ac5df920e51e6833cc7"
+            "sha256": "f4c2c8394f2e81373b6af2336d56b648b803b22d7bc616f7a33518a40124c4fc"
           },
-          "size": 5617033
+          "size": 5632487
         }
       ]
     }
