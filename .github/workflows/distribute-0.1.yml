@@ -119,11 +119,11 @@ jobs:
             # shallow-import driver that could build this closure (import
             # idempotency fix + strict materialized-only trace import; history
             # in rotary-phone/prompts/import-regression-checkpoint.md).
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.309
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.309
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
             # The musl job's loader step creates /lib/ld-musl-x86_64.so.1 (the
             # ELF interpreter of the imported musl-dynamic ocamlopt), and the
             # dksrc launcher's host probe reads that file's existence as "musl
@@ -146,24 +146,25 @@ jobs:
             # concurrently (the parallel drivers emit sequential:false + deps[]
             # edges). Validated green on all 7 slots + combine under a clean
             # store:none build (run 30791036901, ~25-37% faster per heavy slot);
-            # the materialization-race fix is in the pinned 2.4.2.309 dk1 engine
+            # the materialization-race fix is in the pinned 2.4.2.312 dk1 engine
             # (DK1_BASE_URL above). Concurrency applies when packages actually
             # rebuild; store: release restores unchanged ones as before.
             orchestrator: dk1
-            # store: none until the restore re-verification regression is
-            # fixed: the 0.1.20260805120333 release restored the previous
-            # release's binaries BYTE-IDENTICALLY despite the 2.4.2.310 source
-            # repin -- the RawSrc/MlFrontSource form change did not invalidate
-            # the downstream Pkg/Dk0 traces (the a1cd60a6c dependency-content
-            # re-verification did not fire for this shape), so the 2.4.2.310
-            # manifest shipped binaries whose `--version` is 2.4.2+rev-309.
-            # Every id in this pipeline is the version-invariant @2.4.2, so the
-            # store cannot tell a 309-source object from a 310-source one on
-            # its own; do NOT flip back to store: release until the engine
-            # re-verification is fixed + cram-guarded in MlFront (tracked in
-            # rotary-phone/prompts/mlfront-tests-gate.md, M-V), or the ids
-            # carry the 4-part source version.
-            store: none
+            # store: release RESTORED (2026-08-07). The regression that shipped
+            # byte-identical rev-309 binaries under the 2.4.2.310 manifest
+            # (0.1.20260805120333) -- a source repin whose RawSrc/MlFrontSource
+            # form change did not invalidate the downstream version-invariant
+            # @2.4.2 Pkg/Dk0 traces, so the store could not tell a 309-source
+            # object from a 310-source one -- is now fixed and cram-guarded in
+            # MlFront: `Gate restored values on the current declaration's value
+            # id` (dksdk-coder 7a4d2ea2a; test
+            # ext/MlFront/tests/DkZero_Exec/distribute-restore-repin.t), released
+            # in MlFront 2.4.2.312. Both the source repin (above) and the driver
+            # pins (DK0/DK1_BASE_URL = 2.4.2.312, above) now carry the fix, so the
+            # driver running this restore invalidates a repinned chain instead of
+            # serving stale content. (History + rationale:
+            # rotary-phone/prompts/mlfront-tests-gate.md, M-V.)
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -207,8 +208,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.309
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.309
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
 
       # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
       # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit
