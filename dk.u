@@ -131,7 +131,7 @@ node names the file that implements it. `V4` is the 4-part MlFront source
 version (for example `2.4.2.310`); `DRV` is the pinned driver version -- the
 *previous* release's dk0/dk1 that runs this build.
 
-```mermaid
+{% mermaid %}
 flowchart TB
   subgraph GL["MlFront GitLab (dkml/build-tools/MlFront tag pipeline)"]
     T["git tag V4, gitsign-signed"] --> PS["publish-source: gitsign verify, then ci/publish-source-zip.sh"]
@@ -155,7 +155,7 @@ flowchart TB
   VI --> L["launchers + install.sh/install.ps1: signify-verify the manifest, fetch by dk0_url_template"] --> U["users"]
   DKD -. "the dk-dist/V4 manifest becomes the NEXT release's DK0_BASE_URL driver pin: driver version N-1 builds product version N" .-> M
   M -. "HAZARD: every pipeline id above is the version-invariant @2.4.2, so a store: release restore can serve the PREVIOUS release's objects after a source repin (0.1.20260805120333 shipped rev-309 bytes under the 2.4.2.310 manifest); store: none until the restore re-verification is fixed" .-> D0
-```
+{% /mermaid %}
 
 Version overlay: `V4` rides the git tag, then the zip's top directory name, then
 the RawSrc pin, then the localize stamp, then the manifest `version=` line. The
