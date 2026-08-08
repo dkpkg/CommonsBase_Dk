@@ -32,7 +32,7 @@
       // the fixed dir mlfront/.
       "precommands": {
         "private": [
-          "get-asset CommonsBase_Dk.Dk0Localize.RawSrc@2.4.2 -p MlFront-2.4.2.315.zip -d src"
+          "get-asset CommonsBase_Dk.Dk0Localize.RawSrc@2.4.2 -p MlFront-2.4.2.316.zip -d src"
         ]
       },
       "function": {
