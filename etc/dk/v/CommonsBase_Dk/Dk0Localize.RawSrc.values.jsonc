@@ -28,9 +28,9 @@
           "origin": "mlfront-gitlab",
           "path": "MlFront-2.4.2.313.zip",
           "checksum": {
-            "sha256": "fa6f60ab228ff6e4ca300e5d2aaf29690af8db8ba094f931c2c5710dd5642c56"
+            "sha256": "de9f361b7742c7ade73983884f84a07159213833ba77248aea0f5ce0d7c042ed"
           },
-          "size": 5639111
+          "size": 5640140
         }
       ]
     }
