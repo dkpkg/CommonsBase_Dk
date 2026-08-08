@@ -147,14 +147,14 @@ flowchart TB
     A --> C["combine job: jsign Authenticode (Windows), rcodesign Developer ID (macOS), SLSA attest, gh-release under tag 0.1.TS"]
   end
   subgraph MR["MlFront metadata-release (manual pipeline, DK_GH_TAG)"]
-    C --> VF["ci/verify-github-release.sh: SLSA attestation + OS code signatures + gitsign source signature + dk0 --version == V4 rev, fail-closed BEFORE signing"]
+    C --> VF["ci/verify-github-release.sh: SLSA attestation + OS code signatures + gitsign source signature, fail-closed"]
     VF --> MAN["ci/gen-manifest.sh: version=V4, dk0_url_template to the 0.1.TS release, per-ABI sha256; ci/sign-release.sh signify-signs"]
     MAN --> DKD[("dk-dist/V4 generic package: manifest.txt + .sig + signed install.ps1/vendor.ps1")]
   end
   DKD --> VI["verify-install:&lt;abi&gt; smoke jobs: install and assert dk0 --version == 2.4.2+rev-N"]
   VI --> L["launchers + install.sh/install.ps1: signify-verify the manifest, fetch by dk0_url_template"] --> U["users"]
   DKD -. "the dk-dist/V4 manifest becomes the NEXT release's DK0_BASE_URL driver pin: driver version N-1 builds product version N" .-> M
-  M -. "RESOLVED: every pipeline id above is the version-invariant @2.4.2, so a store: release restore once served the PREVIOUS release's objects after a source repin (rev-309-under-2.4.2.310, rev-312-under-2.4.2.313). MlFront 2.4.2.315 persists lazy-dependency evidence (LazyDepsKind traces) that survives the restore/distribute process boundary and covers the rule-produced Pkg.* tier, so verify_lazy_trace_value cascades a rebuild up Pkg.* -> Closure -> Dk0; store: release re-enabled with the driver pinned to 2.4.2.315" .-> D0
+  M -. "HAZARD: every pipeline id above is the version-invariant @2.4.2, so a store: release restore can serve the PREVIOUS release's objects after a source repin (0.1.20260805120333 shipped rev-309 bytes under the 2.4.2.310 manifest); store: none until the restore re-verification is fixed" .-> D0
 {% /mermaid %}
 
 Version overlay: `V4` rides the git tag, then the zip's top directory name, then
