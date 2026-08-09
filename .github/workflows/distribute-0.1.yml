@@ -119,11 +119,11 @@ jobs:
             # shallow-import driver that could build this closure (import
             # idempotency fix + strict materialized-only trace import; history
             # in rotary-phone/prompts/import-regression-checkpoint.md).
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
             # The musl job's loader step creates /lib/ld-musl-x86_64.so.1 (the
             # ELF interpreter of the imported musl-dynamic ocamlopt), and the
             # dksrc launcher's host probe reads that file's existence as "musl
@@ -150,19 +150,27 @@ jobs:
             # (DK1_BASE_URL above). Concurrency applies when packages actually
             # rebuild; store: release restores unchanged ones as before.
             orchestrator: dk1
-            # store: NONE (2026-08-07, reverted). The 2026-08-07 store:release
-            # re-enablement -- trusting MlFront 7a4d2ea2a "Gate restored values on
-            # the current declaration's value id" (test distribute-restore-repin.t),
-            # driver-pinned at 2.4.2.312 -- DID NOT hold. Releasing MlFront 2.4.2.313
-            # restored the previous release's rev-312 binaries under a 2.4.2.313
-            # manifest (0.1.20260807195005, run 31213210316: a 7.1-min restore; every
-            # dk0 --version = rev-312) -- the same repin-invalidation hole as the
-            # rev-309-under-2.4.2.310 incident. The gate does not invalidate a source
-            # repin that changes only the transitive RawSrc content while the
-            # downstream Pkg/Dk0 objects stay version-invariant @2.4.2. Keep store:none
-            # until that is genuinely fixed and reproduced by a test; see
+            # store: RELEASE (2026-08-09, re-enabled on the fixed engine). Two
+            # earlier re-enablements shipped a prior release's binaries after a
+            # source repin (rev-309-under-2.4.2.310, rev-312-under-2.4.2.313):
+            # the transitive RawSrc content changed while the downstream Pkg/Dk0
+            # objects stay version-invariant @2.4.2, and neither the
+            # declaration-value-id gate nor its in-memory side table invalidated
+            # them across the restore/distribute process boundary or for the
+            # rule-produced Pkg.* tier. MlFront 2.4.2.315 fixed that (persisted
+            # lazy-dependency evidence under a LazyDepsKind key; cram
+            # distribute-restore-repin-rule.t). The FIRST store:release proof on
+            # that engine (2.4.2.316) then failed CLOSED on every slot with
+            # error 8ad85363: an invalidated Dk0.Closure (an internal, never-
+            # sealed module) routed to the distribution resolver instead of a
+            # local rebuild. MlFront 2.4.2.317 fixes THAT (BuildTaskUnresolved
+            # D3 locality escape; cram distribute-restore-nonsealed.t). Both
+            # fixes are in the pinned 2.4.2.317 driver above. Defence in depth:
+            # MlFront's release pipeline now fails closed before signing if
+            # dk0 --version does not report the release rev
+            # (ci/verify-github-release.sh + verify-install asserts). History in
             # rotary-phone/prompts/fix-store-release-repin-invalidation.md.
-            store: none
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -206,8 +214,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
 
       # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
       # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit

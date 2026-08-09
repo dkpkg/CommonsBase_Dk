@@ -154,7 +154,7 @@ flowchart TB
   DKD --> VI["verify-install:&lt;abi&gt; smoke jobs: install and assert dk0 --version == 2.4.2+rev-N"]
   VI --> L["launchers + install.sh/install.ps1: signify-verify the manifest, fetch by dk0_url_template"] --> U["users"]
   DKD -. "the dk-dist/V4 manifest becomes the NEXT release's DK0_BASE_URL driver pin: driver version N-1 builds product version N" .-> M
-  M -. "HAZARD: every pipeline id above is the version-invariant @2.4.2, so a store: release restore can serve the PREVIOUS release's objects after a source repin (0.1.20260805120333 shipped rev-309 bytes under the 2.4.2.310 manifest); store: none until the restore re-verification is fixed" .-> D0
+  M -. "RESOLVED (MlFront 2.4.2.317): every pipeline id above is the version-invariant @2.4.2, so a store: release restore once served the PREVIOUS release's objects after a source repin (rev-309-under-2.4.2.310, rev-312-under-2.4.2.313). 2.4.2.315 persists lazy-dependency evidence so a repin invalidates the whole @2.4.2 closure across the restore/distribute boundary; 2.4.2.317 lets an invalidated internal non-sealed object (Dk0.Closure) rebuild locally instead of erroring 8ad85363. store: release re-enabled with the driver pinned to 2.4.2.317" .-> D0
 {% /mermaid %}
 
 Version overlay: `V4` rides the git tag, then the zip's top directory name, then
