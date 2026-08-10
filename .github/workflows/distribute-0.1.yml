@@ -142,14 +142,16 @@ jobs:
             # transitive values fetch on demand through the lazy force; no
             # --integrity flag is needed (verified locally end to end).
             options: -nosysinc
-            # dk1 orchestrator: dispatch the per-package Closure builds
-            # concurrently (the parallel drivers emit sequential:false + deps[]
-            # edges). Validated green on all 7 slots + combine under a clean
-            # store:none build (run 30791036901, ~25-37% faster per heavy slot);
-            # the materialization-race fix is in the pinned 2.4.2.312 dk1 engine
-            # (DK1_BASE_URL above). Concurrency applies when packages actually
-            # rebuild; store: release restores unchanged ones as before.
-            orchestrator: dk1
+            # orchestrator dk0 (single-threaded): the dk1 concurrent engine on
+            # the pinned 2.4.2.317 driver deadlocks on the shared get-object
+            # CommonsLang_OCaml.DkML@4.14.3 cache-directory lock under a
+            # full-closure rebuild (300s timeout, run 31356764525 on 2.4.2.319).
+            # Single-threaded dispatch removes the concurrent lock contention.
+            # Restore dk1 once a driver carrying the re-entrant same-key fetch
+            # fix (MlFront c68af5f25) is pinned in DK{0,1}_BASE_URL below. The
+            # prior dk1 run was validated green on run 30791036901 (~25-37%
+            # faster per heavy slot) via the 2.4.2.312 materialization-race fix.
+            orchestrator: dk0
             # store: NONE (2026-08-09). store: release is now CORRECT on the
             # pinned 2.4.2.317 driver -- MlFront 2.4.2.315 (persisted
             # lazy-dependency evidence; a source repin invalidates the whole
@@ -208,9 +210,9 @@ jobs:
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v3
         with:
-            # Match the distribute jobs' orchestrator so combine resolves the
-            # dk1-built distribution with the same engine.
-            orchestrator: dk1
+            # Match the distribute jobs' orchestrator (dk0, single-threaded) so
+            # combine resolves the distribution with the same engine.
+            orchestrator: dk0
         env:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
