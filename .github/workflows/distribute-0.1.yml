@@ -119,11 +119,26 @@ jobs:
             # shallow-import driver that could build this closure (import
             # idempotency fix + strict materialized-only trace import; history
             # in rotary-phone/prompts/import-regression-checkpoint.md).
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
+            #
+            # DOWNGRADED 2.4.2.317 -> 2.4.2.312 (2026-08-10). The 2.4.2.315+
+            # drivers fail this distribute at the DkML compiler staging with
+            # "[917b6e5f] Could not get object because it does not exist" (and a
+            # second consumer then times out 300s on the same subshell,
+            # ade9ce98) whenever the MlFront source being built is not the
+            # driver's own version: cold container bisects show drv 317 builds
+            # 317 source but fails byte-identical 318 and 319 source, and drv
+            # 315 fails even 317 source, while drv 312 (which predates the
+            # 2.4.2.315 persisted lazy-dependency-evidence machinery) cold-builds
+            # 317 AND 319 source to completion. The imported lazy values
+            # (CommonsLang_OCaml.DkML et al) appear to be invalidated by that
+            # evidence check on a source repin and an import cannot be rebuilt
+            # locally. Restore a 2.4.2.320+ pin once the lazy-import evidence
+            # regression is fixed in MlFront.
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
             # The musl job's loader step creates /lib/ld-musl-x86_64.so.1 (the
             # ELF interpreter of the imported musl-dynamic ocamlopt), and the
             # dksrc launcher's host probe reads that file's existence as "musl
@@ -217,8 +232,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.317
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.312
 
       # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
       # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit
