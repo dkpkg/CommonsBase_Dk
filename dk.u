@@ -44,12 +44,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260802153935" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260810032410" }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260802153935",
-    checksum: (blake2b-256: "583f5425841e68c5b02d6fb1d01891f84763d3fc0cb4358faa96c9253c9ddc54",
-      sha256: "5895df127412194e408100bcdf262631e1a948ee41db8cef653e9ab4f7a35bec",
-      sha1: "3a47c44c526641a0c2c29700ee578b56a01357e9"))\;
+    version: "0.1.20260810032410",
+    checksum: (blake2b-256: "4f1e03b148e1745e4b10c69125b0a4b777a02cdbdf626afdd29e131f8fbf0063",
+      sha256: "b6d1bb14c1ded2c266952876d21b0b0c7a12fbce2aada7a7f195e9e50578acf8",
+      sha1: "c016a0fa667290747fb5eaa9aaa93edde7954d16"))\;
 
 -- Assets for the per-package dk0 build: the MSVC build activator
 -- (Apparatus.Dk0BuildWin) and the MlFront localize wrapper (Dk0Localize.Script).
