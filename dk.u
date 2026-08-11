@@ -44,12 +44,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260810205509" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260810231059" }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260810205509",
-    checksum: (blake2b-256: "a320cdf47faeaf6e10b7c8b37254f532e9aa644bbecf7ba9f15ce524f2bd77d6",
-      sha256: "3ef3b7e4b57d3e231fc587b5cf6152b9b7b63156a426959b745aafbe654ab0a5",
-      sha1: "ebf0d231c25f620139588aab5d0bd7fb4236aaa6"))\;
+    version: "0.1.20260810231059",
+    checksum: (blake2b-256: "7549128dd734659a517ce610621ae8546aa61f43593d5462442518d399549e3b",
+      sha256: "e6a6ef8ba4ecc876d7e86670c30c82079dc086aa45de369f263ebf482cb8d190",
+      sha1: "e8ff65ae801cfcbd6aaf87d4b49b75f5df16ebb3"))\;
 
 -- Assets for the per-package dk0 build: the MSVC build activator
 -- (Apparatus.Dk0BuildWin) and the MlFront localize wrapper (Dk0Localize.Script).
@@ -185,7 +185,7 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
       out=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc
       formid=CommonsBase_Dk.Dk0.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk0.Pkg
       version=2.4.2
-      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.8
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.9
       localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkZero_Exec
 
@@ -194,12 +194,12 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
       out=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc
       formid=CommonsBase_Dk.Dk1.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk1.Pkg
       version=2.4.2
-      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.8
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.9
       localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkOne_Exec
 
 `rulefn` is the only field that moves when the per-package build rule is bumped
-(F_BuildLockedPackage@1.0.0 to @1.0.8 carried the Windows .exe install fix). For
+(F_BuildLockedPackage@1.0.0 to @1.0.9 carried the Windows .exe install fix). For
 a rule-version-only bump the regenerated output differs from the committed driver
 in exactly that string, so a targeted `rulefn` replacement equals a full
 regeneration and avoids reformatting drift from a newer GenerateDriver.
