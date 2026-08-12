@@ -9,10 +9,11 @@ slot:
 - `CommonsBase_Dk.Dk0@2.4.2` -> `bin/dk0.exe`
 - `CommonsBase_Dk.Dk1@2.4.2` -> `bin/dk1.exe`
 
-The executable slots are `Linux_x86_64`, `Linux_x86_64_musl`, `Linux_x86`,
-`Darwin_x86_64`, `Darwin_arm64`, `Windows_x86_64`, and `Windows_x86`. Each
-slot's distribution script (`dist/<slot>.u`) `get-object`s the `bin/dk0.exe`
-and `bin/dk1.exe` members for that slot. `Linux_x86_64_musl` is the fully
-static musl build that runs on musl distros such as alpine as well as every
-glibc distro. `Windows_arm64` is not shipped: there is no DkML arm64
-toolchain slice yet.
+The executable slots are `Linux_x86_64`, `Linux_x86`, `Darwin_x86_64`,
+`Darwin_arm64`, `Windows_x86_64`, and `Windows_x86`. Each slot's distribution
+script (`dist/<slot>.u`) `get-object`s the `bin/dk0.exe` and `bin/dk1.exe`
+members for that slot. `Linux_x86_64_musl` was retired (2026-08-12): its
+musl-linked host tools collided with the glibc `Linux_x86_64` slot at combine,
+and proper musl support is blocked on CommonsLang_OCaml issues #2/#3; Linux
+consumers use the manylinux (glibc) container until then. `Windows_arm64` is
+not shipped: there is no DkML arm64 toolchain slice yet.
