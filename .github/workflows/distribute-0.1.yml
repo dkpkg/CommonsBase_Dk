@@ -104,11 +104,11 @@ jobs:
             # Assumptions.a_lazy_value_invalidation_requires_a_local_rebuild_path).
             # Drivers 2.4.2.315-2.4.2.319 fail this distribute on any such
             # version skew and must not be pinned here.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.322
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.322
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
@@ -126,18 +126,15 @@ jobs:
             # prior dk1 run was validated green on run 30791036901 (~25-37%
             # faster per heavy slot) via the 2.4.2.312 materialization-race fix.
             orchestrator: dk0
-            # store: NONE (cold build). store:release was re-enabled on the
-            # 2.4.2.321 driver, but its first real source-repin cut (2.4.2.322)
-            # failed: the store:release rebuild of the locked topkg package dies
-            # with "Cannot find file topfind" -- the findlib toplevel loader is
-            # not staged into the restored toolchain the way a cold build stages
-            # it (ocamlfind is restored as a content object without re-staging
-            # topfind/ocamlbuild into the OCaml lib dir). A store:none cold build
-            # stages ocamlfind -> topfind -> topkg in dependency order and builds
-            # cleanly (proven by the 2.4.2.321 cold release). Keep store:none
-            # until the store:release ocamlfind/topfind restore-staging gap is
-            # fixed on the CommonsLang_OCaml OpamBuild side.
-            store: none
+            # store: release. The earlier store:release source-repin cut failed
+            # with "Cannot find file topfind" -- a restored ocamlfind is a content
+            # object, so topfind lived only at p/lib/findlib/topfind, and the
+            # OpamBuild v4 wrapper set OCAML_TOPLEVEL_PATH but not the
+            # OCAMLTOP_INCLUDE_PATH that OCaml >= 4.13 searches for `#use
+            # "topfind"`. Fixed by the v5 build wrapper (OpamBuildWrapper@1.0.7,
+            # wired by F_BuildLockedPackage@1.0.11): the closures now run
+            # @1.0.11, so a restored-toolchain topkg rebuild resolves topfind.
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -181,8 +178,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.322
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.322
 
       # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
       # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit

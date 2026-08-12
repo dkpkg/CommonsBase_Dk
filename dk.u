@@ -25,10 +25,10 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
   \dk.import(type: "github-l2", library: "CommonsBase_Std",
-    version: "2.6.20260803060538",
-    checksum: (blake2b-256: "f2cffa358bab1491ea232494567e1cd0a26b804687e8bfbd2196630dae4fe9a4",
-      sha256: "3018dacfa833d268d19a14b6b97a631c1a8b3ca55e67b2267aa03fd036d3aaa8",
-      sha1: "dc8d80b2b2b567452678df84a5f038828ee3fcbb"))\;
+    version: "2.6.20260806174029",
+    checksum: (blake2b-256: "50f55e0ecf3dd9c091a6b76e4d4fe28270217928258fe731547e1ea8991a1b53",
+      sha256: "f01e05a412ee63e3e2838b45489c01d27e3f8a890c5f1ce8e75ba2fb9793b181",
+      sha1: "b5b53d1c18c295b27b4abfe39ef244009dc41c22"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
   \dk.import(type: "github-l2", library: "CommonsBase_Build",
@@ -124,6 +124,13 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
 
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260811203546"  }
+  \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
+    version: "0.1.20260811203546",
+    checksum: (blake2b-256: "53f569198acf018b51605b9caa54ca1d89c6b555fccc7c6196a0e9ddbf395e54",
+      sha256: "6a2575d3f65de78851709b07cfe84d4ff3e72ecf1dadc33c336b03ce6d1d4785",
+      sha1: "13b6f7c92320f3f958a323976751f01b14d161db"))\;
+
 ## Data flow
 
 How a released dk0/dk1 is built, from an MlFront tag to a user's install. Every
@@ -185,7 +192,7 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
       out=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc
       formid=CommonsBase_Dk.Dk0.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk0.Pkg
       version=2.4.2
-      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.10
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.11
       localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkZero_Exec
 
@@ -194,7 +201,7 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
       out=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc
       formid=CommonsBase_Dk.Dk1.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk1.Pkg
       version=2.4.2
-      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.10
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.11
       localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkOne_Exec
 
