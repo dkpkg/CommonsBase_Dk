@@ -160,23 +160,18 @@ jobs:
             # prior dk1 run was validated green on run 30791036901 (~25-37%
             # faster per heavy slot) via the 2.4.2.312 materialization-race fix.
             orchestrator: dk0
-            # store: RELEASE, re-enabled on the 2.4.2.321 driver (2026-08-12).
-            # The earlier "not viable on performance" verdict was wrong. The
-            # source-repin over-invalidation it blamed was already gone on the
-            # 2.4.2.320 driver, whose lazy-force keys invalidation on local
-            # accountability: a store:release source-repin restore completes in
-            # ~18 min with the external Dk0.Pkg.* RESTORED (range-fetched), not
-            # rebuilt -- faster than a ~35 min store:none cold build. The one
-            # real blocker was a TRANSIENT macOS TLS self-signed-certificate
-            # glitch (curl exit 60) on ~1 of the 100+ per-slot release-valuestore
-            # range-fetches: curl does not retry certificate errors, so a single
-            # glitch failed the whole distribute (a random macOS slot each run).
-            # The 2.4.2.321 driver retries transport-level failures (a curl
-            # failure with no HTTP response) up to 3x, while never retrying an
-            # HTTP answer such as the 404 the attestation probe expects. With
-            # that, store:release restores from the previous release and rebuilds
-            # only what changed.
-            store: release
+            # store: NONE (cold build). store:release was re-enabled on the
+            # 2.4.2.321 driver, but its first real source-repin cut (2.4.2.322)
+            # failed: the store:release rebuild of the locked topkg package dies
+            # with "Cannot find file topfind" -- the findlib toplevel loader is
+            # not staged into the restored toolchain the way a cold build stages
+            # it (ocamlfind is restored as a content object without re-staging
+            # topfind/ocamlbuild into the OCaml lib dir). A store:none cold build
+            # stages ocamlfind -> topfind -> topkg in dependency order and builds
+            # cleanly (proven by the 2.4.2.321 cold release). Keep store:none
+            # until the store:release ocamlfind/topfind restore-staging gap is
+            # fixed on the CommonsLang_OCaml OpamBuild side.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
