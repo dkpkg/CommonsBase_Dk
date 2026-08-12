@@ -127,11 +127,11 @@ jobs:
             # Assumptions.a_lazy_value_invalidation_requires_a_local_rebuild_path).
             # Drivers 2.4.2.315-2.4.2.319 fail this distribute on any such
             # version skew and must not be pinned here.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.320
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.320
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
             # The musl job's loader step creates /lib/ld-musl-x86_64.so.1 (the
             # ELF interpreter of the imported musl-dynamic ocamlopt), and the
             # dksrc launcher's host probe reads that file's existence as "musl
@@ -160,28 +160,23 @@ jobs:
             # prior dk1 run was validated green on run 30791036901 (~25-37%
             # faster per heavy slot) via the 2.4.2.312 materialization-race fix.
             orchestrator: dk0
-            # store: NONE (2026-08-09). store: release is now CORRECT on the
-            # pinned 2.4.2.317 driver -- MlFront 2.4.2.315 (persisted
-            # lazy-dependency evidence; a source repin invalidates the whole
-            # @2.4.2 closure across the restore/distribute boundary) and
-            # 2.4.2.317 (BuildTaskUnresolved D3 locality escape; an invalidated
-            # internal non-sealed Dk0.Closure rebuilds locally instead of
-            # erroring 8ad85363). But it is NOT VIABLE here on performance: the
-            # 2.4.2.318 store:release proof (run 31293654616) ran the full
-            # GitHub 6h job limit on every slot WITHOUT finishing, versus ~35
-            # min for a store:none cold build (the 2.4.2.317 build,
-            # 0.1.20260809031052). A source-version repin changes the universal
-            # Dk0.MlFrontSource, invalidating the entire closure, so store:release
-            # rebuilds ~everything anyway AND pays a per-object restore +
-            # lazy-force + evidence-walk overhead across the whole closure -- a
-            # ~10x+ slowdown, so it cannot complete. (The old "7-min store:release"
-            # was the BUG restoring everything stale and rebuilding nothing.)
-            # Keep store:none until the store:release restore/lazy-force path is
-            # made performant for a full-closure invalidation; the correctness
-            # fixes + the fail-closed pre-sign version gate remain in place.
-            # History in
-            # rotary-phone/prompts/fix-store-release-repin-invalidation.md.
-            store: none
+            # store: RELEASE, re-enabled on the 2.4.2.321 driver (2026-08-12).
+            # The earlier "not viable on performance" verdict was wrong. The
+            # source-repin over-invalidation it blamed was already gone on the
+            # 2.4.2.320 driver, whose lazy-force keys invalidation on local
+            # accountability: a store:release source-repin restore completes in
+            # ~18 min with the external Dk0.Pkg.* RESTORED (range-fetched), not
+            # rebuilt -- faster than a ~35 min store:none cold build. The one
+            # real blocker was a TRANSIENT macOS TLS self-signed-certificate
+            # glitch (curl exit 60) on ~1 of the 100+ per-slot release-valuestore
+            # range-fetches: curl does not retry certificate errors, so a single
+            # glitch failed the whole distribute (a random macOS slot each run).
+            # The 2.4.2.321 driver retries transport-level failures (a curl
+            # failure with no HTTP response) up to 3x, while never retrying an
+            # HTTP answer such as the 404 the attestation probe expects. With
+            # that, store:release restores from the previous release and rebuilds
+            # only what changed.
+            store: release
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
@@ -225,8 +220,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.320
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.320
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.321
 
       # ---- Guard: every flat dk0/dk1 binary's machine arch must match its ABI slot ----
       # Release.Linux_x86 shipped a 64-bit x86-64 binary mislabeled as 32-bit
