@@ -126,15 +126,23 @@ jobs:
             # prior dk1 run was validated green on run 30791036901 (~25-37%
             # faster per heavy slot) via the 2.4.2.312 materialization-race fix.
             orchestrator: dk0
-            # store: release. The earlier store:release source-repin cut failed
-            # with "Cannot find file topfind" -- a restored ocamlfind is a content
-            # object, so topfind lived only at p/lib/findlib/topfind, and the
-            # OpamBuild v4 wrapper set OCAML_TOPLEVEL_PATH but not the
-            # OCAMLTOP_INCLUDE_PATH that OCaml >= 4.13 searches for `#use
-            # "topfind"`. Fixed by the v5 build wrapper (OpamBuildWrapper@1.0.7,
-            # wired by F_BuildLockedPackage@1.0.11): the closures now run
-            # @1.0.11, so a restored-toolchain topkg rebuild resolves topfind.
-            store: release
+            # store: none for this cut. The closures move to F_BuildLockedPackage
+            # @1.0.15 (v6 wrapper) to fix the imported ppxlib compiler-libs skew:
+            # under the v5 wrapper (@1.0.11) ppxlib's astlib.cmxa recorded a foreign
+            # compiler-libs Location implementation CRC (f7facf49) instead of the
+            # shipped one (0a03b0f1), so no consumer's locally-built ppx.exe could
+            # relink it. A package object's value id does NOT vary with the build
+            # rule version, so a store:release restore would serve the previous
+            # release's v5-built objects (the broken ppxlib among them) and silently
+            # no-op the rule bump; a full-closure invalidation under store:release
+            # also pays the per-object restore/lazy-force overhead that ran past the
+            # 6h job limit (the 2.4.2.318 proof). store:none rebuilds the whole
+            # closure cold under @1.0.15 (~35min) so the fix actually lands. The
+            # earlier store:release topfind failure ("Cannot find file topfind", a
+            # restored ocamlfind content object) only bites on restore, so it cannot
+            # occur on a cold build; restore store:release once its full-closure
+            # restore path is made performant.
+            store: none
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
