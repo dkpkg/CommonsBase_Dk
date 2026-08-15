@@ -131,12 +131,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "c522c345c33bdf7c9441dfde51710017cd4fadffbf3e7b34099ff190017fb1fa",
       sha1: "f8aee213d0e94f6b8724bc78c3cc3255d4a764d3"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260814174527"  }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260814191743"  }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260814174527",
-    checksum: (blake2b-256: "65a10c2488945665421812bf5c98444e4ee9f5a11bdf95d04f04b0bf356e7c49",
-      sha256: "591dd54cedf35d4d0e8339a00f9178e6900f3aa56f7b39b84b9c5599d227632d",
-      sha1: "23ee8c27c938949b35fc596339b965e6a4e3264d"))\;
+    version: "0.1.20260814191743",
+    checksum: (blake2b-256: "89893b8d5ad65ea38ca1005abab5b3934b1490f060a3beb71016dc308d1c19c1",
+      sha256: "387d94d96e5f626c3ccf085ec39f42086411ca1332d1be70d24e7aaf793e1e20",
+      sha1: "674a82fbc095f17ab00ae6849ec532fe49308b03"))\;
 
 ## Data flow
 
@@ -199,7 +199,7 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
       out=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc
       formid=CommonsBase_Dk.Dk0.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk0.Pkg
       version=2.4.2
-      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.16
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.17
       localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkZero_Exec
 
@@ -208,7 +208,7 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
       out=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc
       formid=CommonsBase_Dk.Dk1.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk1.Pkg
       version=2.4.2
-      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.16
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.17
       localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkOne_Exec
 
