@@ -142,7 +142,20 @@ jobs:
             # restored ocamlfind content object) only bites on restore, so it cannot
             # occur on a cold build; restore store:release once its full-closure
             # restore path is made performant.
-            store: none
+            #
+            # CROSS-SLOT INVARIANT (independent of the toggle above): the three
+            # cross slots (Linux_x86, Windows_x86, Darwin_x86_64, where
+            # execution-abi != target-abi) must NEVER use store: release. Since
+            # dk0 2.4.2.323 a cross-built object's value-id includes the resolved
+            # target ABI, so a restore from a pre-2.4.2.323 (unsuffixed) release
+            # is partially rejected mid-build and contaminates the closure with
+            # host-ABI content -- the mechanism that shipped mislabeled 64-bit
+            # binaries in ocamlearlybird 1.3.202608152325's Linux_x86/Windows_x86
+            # stores. The expression forces those three to none structurally, so
+            # setting DK_STORE=release (to speed up native slots later) cannot
+            # accidentally un-pin them. Revert only when the dk engine cross-id
+            # plumbing is unified and a clean suffixed CBD release exists.
+            store: ${{ (matrix.distscript == 'dist/Linux_x86.u' || matrix.distscript == 'dist/Windows_x86.u' || matrix.distscript == 'dist/Darwin_x86_64.u') && 'none' || vars.DK_STORE || 'none' }}
             distscript: ${{ matrix.distscript }}
             execution-abi: ${{ matrix.execution-abi }}
             target-abi: ${{ matrix.target-abi }}
