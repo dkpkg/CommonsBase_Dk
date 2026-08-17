@@ -79,9 +79,51 @@ jobs:
         if: ${{ matrix.distscript == 'dist/Linux_x86.u' }}
         run: dnf install -y glibc-devel.i686 libgcc.i686 libstdc++.i686 gcc-toolset-14-libstdc++-devel.i686
 
+      # Derive the `sbom self` build identity for the flat dk0/dk1 from the same
+      # pinned MlFront source this job builds. The repin step is the single
+      # source of truth, so these track it with no separate value to keep in
+      # sync: DK_SBOM_GITREF and DK_SBOM_SOURCE_SHA256 come straight out of the
+      # RawSrc pin file, and DK_SBOM_SLOT is the slot this leg targets (the
+      # distscript basename). MlFront's SbomEmbedded dune rule reads these, so a
+      # released binary's `sbom self` shows the real gitref, source digest and
+      # slot instead of the dev placeholders. bash is available on every runner
+      # (the manylinux container, macOS, and Git bash on windows-latest).
+      - name: Derive SBOM build identity
+        shell: bash
+        run: |
+          set -eu
+          f=etc/dk/v/CommonsBase_Dk/Dk0Localize.RawSrc.values.jsonc
+          gitref=$(grep -oE 'MlFront-[0-9][0-9.]*\.zip' "$f" | head -1 | sed -E 's/^MlFront-//; s/\.zip$//')
+          sha=$(grep -oiE '"sha256"[[:space:]]*:[[:space:]]*"[0-9a-f]{64}"' "$f" | head -1 | grep -oiE '[0-9a-f]{64}')
+          slot="Release.$(basename '${{ matrix.distscript }}' .u)"
+          if [ -z "$gitref" ] || [ -z "$sha" ]; then
+            echo "::error::Could not derive DK_SBOM_GITREF/DK_SBOM_SOURCE_SHA256 from $f"; exit 1
+          fi
+          {
+            echo "DK_SBOM_GITREF=$gitref"
+            echo "DK_SBOM_SOURCE_SHA256=$sha"
+            echo "DK_SBOM_SLOT=$slot"
+          } >> "$GITHUB_ENV"
+          echo "sbom identity: gitref=$gitref slot=$slot sha256=$sha"
+
       - name: Distribute Modules
         uses: diskuv/dk-distribute@v3
         env:
+            # `sbom self` build identity, derived by the previous step from the
+            # pinned MlFront source. Passed through here (the proven channel, the
+            # same way DK0_BASE_URL reaches the build) so MlFront's SbomEmbedded
+            # dune rule sees them when it compiles the flat dk0/dk1.
+            DK_SBOM_GITREF: ${{ env.DK_SBOM_GITREF }}
+            DK_SBOM_SOURCE_SHA256: ${{ env.DK_SBOM_SOURCE_SHA256 }}
+            DK_SBOM_SLOT: ${{ env.DK_SBOM_SLOT }}
+            # TODO(sbom): DK_SBOM_TOOLCHAIN_OCAMLCOMMON_SHA256 -- sha256 of the
+            # staged DkML compiler's lib/ocaml/compiler-libs/ocamlcommon.cmxa.
+            # That file only exists inside the diskuv/dk-distribute sandbox
+            # (a content-addressed member of the imported CommonsLang_OCaml.DkML
+            # object), so it needs a compute-and-export step inside the build
+            # rather than a literal here. Left unset for now: MlFront omits the
+            # toolchain fingerprint property when the value is empty, so the rest
+            # of the SBOM is unaffected until this is wired.
             # PERMANENT explicit driver pin -- determinism over auto-updates.
             # (Without it dk0 floats on the LATEST signed manifest, and the
             # 2.4.2.296 driver's github-l2 import regression silently broke
