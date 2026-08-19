@@ -163,3 +163,29 @@ TestDeps). `<DRIVER_VER>` is the `GenerateDriver` version from the pinned
 a rule-version-only bump the regenerated output differs from the committed driver
 in exactly that string, so a targeted `rulefn` replacement equals a full
 regeneration and avoids reformatting drift from a newer GenerateDriver.
+
+## Regenerating the TestPkg closure
+
+`TestPkg.Closure` builds the MlFront `--with-test` external closure (the test-only
+opam packages: astring, tezt, crowbar, sedlex, ...) as one merged-prefix object
+`CommonsBase_Dk.TestPkg@2.4.2`, so the MlFront test gate imports it instead of
+building that closure cold on every run. Unlike `Dk0.Closure` it uses the TEST
+lock (`dk-opam-lock-test.jsonc`, carried by `Dk0.MlFrontSource`), an import
+partition against `Dk0.Pkg` (so the runtime externals are imported, not rebuilt),
+`skiplocal=t` (MlFront's own packages build in the gate, not here), and
+`mergedprefix=t` (multi-root closures require it). Regenerate with:
+
+    dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@<DRIVER_VER>
+      lock=<dk-opam-lock-test.jsonc from Dk0.MlFrontSource>
+      out=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc
+      skiplocal=t mergedprefix=t
+      formid=CommonsBase_Dk.TestPkg@2.4.2 pkgpath=CommonsBase_Dk.TestPkg.Pkg
+      version=2.4.2
+      rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.18
+      localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock-test.jsonc
+      implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=2.4.2 impsrclock[]=dk.opam-lock.jsonc
+      roots[]=DkZero_Exec roots[]=DkOne_Exec ... (the same roots as the gate's TestDeps)
+
+`dist/Linux_x86_64.u` and `dist/Windows_x86_64.u` `get-object` the TestPkg object
+so it is built and published for the gate to import (Darwin slots pending the M4
+macOS gate).

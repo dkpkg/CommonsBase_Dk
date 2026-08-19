@@ -15,3 +15,9 @@ republished as a single native executable.
   $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Linux_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86_64-dk1.exe
   \test(pass)
   \dk.object(abi: "Release.Linux_x86_64", value-id: "ocugsqb254bl2dshjuw4wikomf2lypacjjyv4luqtjscpoyxrhm4a")\;
+
+## TestPkg (with-test external closure, imported by the MlFront test gate)
+
+  $ get-object CommonsBase_Dk.TestPkg@2.4.2 -s Release.Linux_x86_64
+  \test(pass)
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")\;
