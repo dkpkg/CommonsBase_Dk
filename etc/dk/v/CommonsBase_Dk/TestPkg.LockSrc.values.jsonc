@@ -1,0 +1,62 @@
+// CommonsBase_Dk.TestPkg.LockSrc@2.4.2 -- the with-test opam lock as a standalone
+// content-addressed object, used as the TestPkg closure's OpamBuild localsrc=.
+//
+// The TestPkg closure builds only EXTERNAL opam packages (it was generated
+// skiplocal=t), so -- unlike the Dk0/Dk1 runtime closures, which build in-tree
+// dk0 packages and therefore need MlFrontSource's output.zip -- it consumes its
+// localsrc ONLY for the lock file (OpamBuild reads output.zip from localsrc just
+// `if is_local`; every external package fetches its own source from the lock's
+// URLs). So this object exposes only the lock.
+//
+// The with-test lock ships inside the MlFront source at mlfront/dk.opam-lock-test.jsonc
+// (MlFrontSource's output.zip); this extracts it and republishes it as the
+// top-level dk-opam-lock-test.jsonc member (dash form, mirroring how MlFrontSource
+// copies out dk-opam-lock.jsonc). Deriving from MlFrontSource -- instead of adding
+// the member to MlFrontSource itself -- keeps the Dk0/Dk1 value-ids (which descend
+// from MlFrontSource) unperturbed: a test-only closure must not re-address the
+// shipping runtime binaries. Extraction is pure archive I/O, so output is
+// host-independent and each slot produces it identically.
+{
+  "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
+  "schema_version": { "major": 1, "minor": 0 },
+  "forms": [
+    {
+      "id": "CommonsBase_Dk.TestPkg.LockSrc@2.4.2",
+      "function": {
+        "commands": [
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "mkdir", "-p", "${SLOT.request}"
+          ],
+          // Extract the with-test lock (flat, to the CWD) from MlFrontSource's
+          // output.zip. `7zz e` drops the archive path, yielding ./dk.opam-lock-test.jsonc.
+          [
+            "$(get-object CommonsBase_Std.S7z@25.1.0 -s Release.execution_abi -e '*' -d :)/7zz.exe",
+            "e", "-y",
+            "$(get-object CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 -s ${SLOTNAME.request} -m ./output.zip -f mlfront-output.zip)",
+            "mlfront/dk.opam-lock-test.jsonc"
+          ],
+          // Publish it under the top-level dash-form member name the TestPkg closure
+          // reads via locksrcpath=./dk-opam-lock-test.jsonc.
+          [
+            "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
+            "cp", "dk.opam-lock-test.jsonc", "${SLOT.request}/dk-opam-lock-test.jsonc"
+          ]
+        ]
+      },
+      "outputs": {
+        "assets": [
+          {
+            "slots": [
+              "Release.Windows_x86_64", "Release.Windows_x86",
+              "Release.Linux_x86_64", "Release.Linux_x86_64_musl",
+              "Release.Linux_x86", "Release.Linux_arm64",
+              "Release.Darwin_x86_64", "Release.Darwin_arm64"
+            ],
+            "paths": [ "dk-opam-lock-test.jsonc" ]
+          }
+        ]
+      }
+    }
+  ]
+}
