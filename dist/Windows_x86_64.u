@@ -20,4 +20,4 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg@2.4.2 -s Release.Windows_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86_64", value-id: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")\;
+  \dk.object(abi: "Release.Windows_x86_64", value-id: "o6x543fsnoaechmldejlzv6trawtj47lmjcp7egkoxmi4cmksvrsq")\;
