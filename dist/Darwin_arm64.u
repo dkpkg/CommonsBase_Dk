@@ -20,4 +20,4 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg@2.4.2 -s Release.Darwin_arm64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Darwin_arm64", value-id: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")\;
+  \dk.object(abi: "Release.Darwin_arm64", value-id: "ovoqeizl3j5mkt2yav2dmor7anankbjg6astvqizcjtbundx5ufja")\;
