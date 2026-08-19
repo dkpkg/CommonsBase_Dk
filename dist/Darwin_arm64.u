@@ -15,3 +15,9 @@ republished as a single native executable.
   $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Darwin_arm64 -m ./bin/dk1.exe -f ${RUNTIME}/Darwin_arm64-dk1.exe
   \test(pass)
   \dk.object(abi: "Release.Darwin_arm64", value-id: "ospnonf7b7n2dqd6ul7fcr6ktfl55n5tlvivpkmrkgtdzxtr3uqqq")\;
+
+## TestPkg (with-test external closure, imported by the MlFront test gate)
+
+  $ get-object CommonsBase_Dk.TestPkg@2.4.2 -s Release.Darwin_arm64 -m ./prefix.zip -d ./testpkg
+  \test(pass)
+  \dk.object(abi: "Release.Darwin_arm64", value-id: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")\;
