@@ -5,7 +5,27 @@ on:
   workflow_dispatch: # allow manual triggering from GitHub page
 
 jobs:
+  # Fail fast if a checked-in closure driver drifted from the imported
+  # CommonsLang_OCaml rule versions (the 2026-08-20 stale-driver incident):
+  # catch it in seconds here instead of hours into the per-package build.
+  refresh-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        with: { egress-policy: audit }
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Check opam driver freshness
+        run: |
+          ./dk0 --dangerously-trust-all dialog \
+            CommonsLang_OCaml.Dk.OpamLock.Refresh@1.1.8 mode=check \
+            'drivers[]=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc' \
+            'drivers[]=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc' \
+            'drivers[]=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc'
+
   distribute:
+    needs: refresh-check
     # The secrets created by `./dk0 prepare-version --ci github VERSION`
     # are tied to this environment only.
     environment: dk-distribution

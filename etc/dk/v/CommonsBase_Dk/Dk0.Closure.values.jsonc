@@ -10,6 +10,13 @@
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
+  "generated": {
+    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.8",
+    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.18",
+    "lock": "dk-opam-lock.jsonc",
+    "localsrc": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.2",
+    "locksrcpath": "./dk-opam-lock.jsonc"
+  },
   "forms": [
     {
       "id": "CommonsBase_Dk.Dk0.Closure@2.4.2",
