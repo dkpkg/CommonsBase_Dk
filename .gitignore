@@ -13,3 +13,5 @@ t/xr/
 t-tmp/
 /target/
 /build/
+t/xs/
+etc/dk/t/
