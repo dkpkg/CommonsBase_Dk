@@ -185,16 +185,6 @@ jobs:
             # key here so CI accepts it (CI has no terminal to accept unknown
             # producer keys).
             trust-packages: 'CommonsBase_FileMagic'
-            # orchestrator dk0 (single-threaded): the dk1 concurrent engine on
-            # the pinned 2.4.2.317 driver deadlocks on the shared get-object
-            # CommonsLang_OCaml.DkML@4.14.3 cache-directory lock under a
-            # full-closure rebuild (300s timeout, run 31356764525 on 2.4.2.319).
-            # Single-threaded dispatch removes the concurrent lock contention.
-            # Restore dk1 once a driver carrying the re-entrant same-key fetch
-            # fix (MlFront c68af5f25) is pinned in DK{0,1}_BASE_URL below. The
-            # prior dk1 run was validated green on run 30791036901 (~25-37%
-            # faster per heavy slot) via the 2.4.2.312 materialization-race fix.
-            orchestrator: dk0
             # store: none for this cut. The closures move to F_BuildLockedPackage
             # @1.0.15 (v6 wrapper) to fix the imported ppxlib compiler-libs skew:
             # under the v5 wrapper (@1.0.11) ppxlib's astlib.cmxa recorded a foreign
@@ -260,10 +250,6 @@ jobs:
 
       - name: Combine Modules
         uses: diskuv/dk-distribute/combine@v4
-        with:
-            # Match the distribute jobs' orchestrator (dk0, single-threaded) so
-            # combine resolves the distribution with the same engine.
-            orchestrator: dk0
         env:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
