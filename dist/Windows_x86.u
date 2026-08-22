@@ -12,6 +12,9 @@ republished as a single native executable.
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
+  \test(pass)
+  \dk.target(abi: "Windows_x86")[PE32 executable for MS Windows 6.00 (console),, 5 sections
+  ]\;
 
 ## Dk1 executable
 
@@ -21,3 +24,6 @@ republished as a single native executable.
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
+  \test(pass)
+  \dk.target(abi: "Windows_x86")[PE32 executable for MS Windows 6.00 (console),, 5 sections
+  ]\;
