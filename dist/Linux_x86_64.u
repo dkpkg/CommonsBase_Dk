@@ -10,11 +10,17 @@ republished as a single native executable.
   \test(pass)
   \dk.object(abi: "Release.Linux_x86_64", value-id: "ojnw46bilxdfbbay4x4f6wbe4md55sfj5vrg7ssk25y722n7tjapq")\;
 
+  $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
+  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
+
 ## Dk1 executable
 
   $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Linux_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86_64-dk1.exe
   \test(pass)
   \dk.object(abi: "Release.Linux_x86_64", value-id: "ocugsqb254bl2dshjuw4wikomf2lypacjjyv4luqtjscpoyxrhm4a")\;
+
+  $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
+  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
 
 ## TestPkg (with-test external closure, imported by the MlFront test gate)
 
