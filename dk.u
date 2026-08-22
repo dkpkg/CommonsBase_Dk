@@ -33,9 +33,9 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
   \dk.import(type: "github-l2", library: "CommonsBase_Build",
     version: "0.1.20260718232516",
-    checksum: (blake2b-256: "cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0",
-      sha256: "f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec",
-      sha1: "abd205268d9a7ca456f22b3425404e0f8ea06dff"))\;
+    checksum: (blake2b-256: "df2dc776f330194cadec351ca2c073839c9be760161864c0e9c0220e7268d95d",
+      sha256: "b894642bd11e8571f980c7300d818216e1461245503798d6ce836fe53c7633de",
+      sha1: "4c6eb4b12e6b3d6a6dffdfd3bb51f796b403d418"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",
@@ -83,6 +83,13 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
 
 
+
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_FileMagic" }
+  \dk.import(type: "github-l2", library: "CommonsBase_FileMagic",
+    version: "0.1.20260820155756",
+    checksum: (blake2b-256: "2c5654de7480b5223aafd1381ffd551f1458905b806b0d968d150e0335ae32a3",
+      sha256: "b4b75a98463ac565675ec3a8d3e7190210e900f848da81177067a36e809f5473",
+      sha1: "f3bd2340e6e6e4e60212c58f1f9d6ba1053de04b"))\;
 
 ## Data flow
 
