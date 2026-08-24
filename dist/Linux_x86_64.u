@@ -32,4 +32,4 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg@2.4.2 -s Release.Linux_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64", value-id: "ovkwj67odprf3yfjc4ap4pqr4vls3li6pv3w5gl5onjowuqbdl3yq")\;
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")\;
