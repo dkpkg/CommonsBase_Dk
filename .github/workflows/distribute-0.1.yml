@@ -323,7 +323,8 @@ jobs:
       - name: Re-run failed jobs (current attempt ${{ github.run_attempt }})
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run rerun ${{ github.run_id }} --failed
+        # -R: no checkout in this job, so gh cannot infer the repository.
+        run: gh run rerun ${{ github.run_id }} --failed -R ${{ github.repository }}
 
   combine:
     needs: distribute
