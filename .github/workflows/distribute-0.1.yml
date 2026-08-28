@@ -1,3 +1,8 @@
+# The explicit name is REQUIRED: distribute-0.1-auto-rerun.yml matches this
+# workflow by name to auto-retry nondeterministic failures (the macOS
+# clang/linker SIGSEGV class). Keep the two in sync if renaming.
+name: distribute-0.1
+
 on:
   push:
     tags:
@@ -298,33 +303,12 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
-  # Bounded automatic retry for the nondeterministic macOS clang/linker
-  # segfault (and any other transient distribute failure). GitHub Actions has
-  # no native job retry; this job asks GitHub to start a new attempt of only
-  # the FAILED jobs (successful legs' artifacts persist across attempts, so
-  # `combine` on the new attempt still sees the full set). Hard-bounded:
-  # run_attempt < 3 means at most 3 attempts total, then humans take over.
-  # Deliberately NOT in the dk-distribution environment (needs no secrets;
-  # scoped to actions:write only, so it cannot touch signing or releases).
-  auto-rerun:
-    needs: distribute
-    # failure() means needs.distribute.result == 'failure': true when ANY
-    # matrix leg failed (fail-fast is false), false when distribute was
-    # skipped (refresh-check failed -- deterministic, don't retry) or
-    # cancelled. github.run_attempt is a string: fromJSON() it.
-    if: ${{ failure() && fromJSON(github.run_attempt) < 3 }}
-    permissions:
-      actions: write # POST .../actions/runs/<id>/rerun-failed-jobs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
-        with: { egress-policy: audit }
-      - name: Re-run failed jobs (current attempt ${{ github.run_attempt }})
-        env:
-          GH_TOKEN: ${{ github.token }}
-        # -R: no checkout in this job, so gh cannot infer the repository.
-        run: gh run rerun ${{ github.run_id }} --failed -R ${{ github.repository }}
+  # NOTE: automatic retry of failed jobs lives in a COMPANION workflow,
+  # distribute-0.1-auto-rerun.yml (on: workflow_run). It cannot be a job in
+  # this workflow: GitHub rejects `gh run rerun` while the run is still in
+  # progress, and any job of this run keeps the run in progress (proven by
+  # smoke run 33191566554: "cannot be rerun; This workflow is already
+  # running").
 
   combine:
     needs: distribute

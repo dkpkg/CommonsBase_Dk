@@ -1,0 +1,48 @@
+# Bounded automatic retry for nondeterministic distribute failures -- the
+# recurring Apple clang/linker SIGSEGV on the macOS legs (run 33178191072;
+# same signature as rust-lang/rust#158787 and spiceai/spiceai#13614: a
+# spurious ld-prime crash class on GitHub's macOS runners with no fix
+# upstream, where the accepted mitigation is retry).
+#
+# This must be a companion workflow, not a job inside distribute-0.1:
+# GitHub rejects a rerun while the run is in progress, and any in-run job
+# keeps the run in progress (smoke run 33191566554 proved it: "cannot be
+# rerun; This workflow is already running"). workflow_run fires after the
+# watched run completes, when a rerun is accepted (the 2026-08-28 manual
+# `gh run rerun --failed` of run 33178191072 proved that path).
+#
+# Bounds and safety:
+# - run_attempt < 3 => at most 3 attempts total, then humans take over. A
+#   failed rerun attempt re-fires this workflow with run_attempt bumped, so
+#   the loop converges; success/cancelled/skipped conclusions never retry.
+# - `gh run rerun --failed` restarts only failed jobs; successful matrix
+#   legs keep their artifacts, and the skipped `combine` re-runs as their
+#   dependent on the new attempt.
+# - No dk-distribution environment, no secrets, actions:write only: this
+#   workflow cannot touch signing or releases.
+name: distribute-0.1-auto-rerun
+
+on:
+  workflow_run:
+    # TEMPORARY second entry: tmp-rerun-smoke is the branch-only smoke test
+    # for this companion; remove it (and tmp-rerun-smoke.yml) once verified.
+    workflows: [distribute-0.1, tmp-rerun-smoke]
+    types: [completed]
+
+jobs:
+  rerun-failed:
+    if: >-
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.run_attempt < 3
+    permissions:
+      actions: write # POST .../actions/runs/<id>/rerun-failed-jobs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        with: { egress-policy: audit }
+      - name: Re-run failed jobs of ${{ github.event.workflow_run.name }} run ${{ github.event.workflow_run.id }} (completed attempt ${{ github.event.workflow_run.run_attempt }})
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # -R: no checkout in this job, so gh cannot infer the repository.
+        run: gh run rerun ${{ github.event.workflow_run.id }} --failed -R ${{ github.repository }}

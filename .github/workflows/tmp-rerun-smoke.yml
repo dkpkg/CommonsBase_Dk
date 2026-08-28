@@ -1,10 +1,11 @@
-# TEMPORARY smoke test for the auto-rerun job added to distribute-0.1.yml.
-# Verifies, in seconds instead of a 55-minute macOS build: (1) an in-run
-# `gh run rerun --failed` with the default token + actions:write does not 403
-# while the run is still in progress; (2) the attempt bound stops the loop;
-# (3) a rerun re-executes dependent jobs (fake-combine) that were skipped on
-# the failed attempt. Lives only on the ci/darwin-x8664-crashdiag branch --
-# DELETE BEFORE MERGING to main.
+# TEMPORARY smoke test for distribute-0.1-auto-rerun.yml (the workflow_run
+# companion). fake-distribute fails on attempts 1-2 and succeeds on attempt
+# 3: if the companion works, a push to the branch below ends, after two
+# automatic reruns, as a green run with 3 attempts and fake-combine executed
+# on the final attempt. Lives only on the ci/darwin-x8664-crashdiag branch
+# (but the COMPANION must be on the default branch to fire) -- DELETE this
+# file and the companion's tmp-rerun-smoke workflows: entry after
+# verification.
 name: tmp-rerun-smoke
 on:
   push:
@@ -22,19 +23,6 @@ jobs:
             exit 1
           fi
           echo "simulating success"
-
-  auto-rerun:
-    needs: fake-distribute
-    if: ${{ failure() && fromJSON(github.run_attempt) < 3 }}
-    permissions:
-      actions: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Re-run failed jobs (current attempt ${{ github.run_attempt }})
-        env:
-          GH_TOKEN: ${{ github.token }}
-        # -R: no checkout in this job, so gh cannot infer the repository.
-        run: gh run rerun ${{ github.run_id }} --failed -R ${{ github.repository }}
 
   fake-combine:
     needs: fake-distribute
