@@ -24,9 +24,7 @@ name: distribute-0.1-auto-rerun
 
 on:
   workflow_run:
-    # TEMPORARY second entry: tmp-rerun-smoke is the branch-only smoke test
-    # for this companion; remove it (and tmp-rerun-smoke.yml) once verified.
-    workflows: [distribute-0.1, tmp-rerun-smoke]
+    workflows: [distribute-0.1]
     types: [completed]
 
 jobs:
