@@ -1,0 +1,43 @@
+# TEMPORARY smoke test for the auto-rerun job added to distribute-0.1.yml.
+# Verifies, in seconds instead of a 55-minute macOS build: (1) an in-run
+# `gh run rerun --failed` with the default token + actions:write does not 403
+# while the run is still in progress; (2) the attempt bound stops the loop;
+# (3) a rerun re-executes dependent jobs (fake-combine) that were skipped on
+# the failed attempt. Lives only on the ci/darwin-x8664-crashdiag branch --
+# DELETE BEFORE MERGING to main.
+name: tmp-rerun-smoke
+on:
+  push:
+    branches: [ci/darwin-x8664-crashdiag]
+
+jobs:
+  fake-distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail on attempts 1-2, succeed on attempt 3
+        run: |
+          echo "attempt=$GITHUB_RUN_ATTEMPT"
+          if [ "$GITHUB_RUN_ATTEMPT" -lt 3 ]; then
+            echo "simulating nondeterministic failure"
+            exit 1
+          fi
+          echo "simulating success"
+
+  auto-rerun:
+    needs: fake-distribute
+    if: ${{ failure() && fromJSON(github.run_attempt) < 3 }}
+    permissions:
+      actions: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Re-run failed jobs (attempt ${{ github.run_attempt }} -> ${{ fromJSON(github.run_attempt) + 1 }})
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run rerun ${{ github.run_id }} --failed
+
+  fake-combine:
+    needs: fake-distribute
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prove dependents re-run on the retried attempt
+        run: echo "combine ran on attempt $GITHUB_RUN_ATTEMPT"
