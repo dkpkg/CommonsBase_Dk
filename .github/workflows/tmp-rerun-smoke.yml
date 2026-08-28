@@ -30,7 +30,7 @@ jobs:
       actions: write
     runs-on: ubuntu-latest
     steps:
-      - name: Re-run failed jobs (attempt ${{ github.run_attempt }} -> ${{ fromJSON(github.run_attempt) + 1 }})
+      - name: Re-run failed jobs (current attempt ${{ github.run_attempt }})
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh run rerun ${{ github.run_id }} --failed
