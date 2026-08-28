@@ -1,3 +1,8 @@
+# The explicit name is REQUIRED: distribute-0.1-auto-rerun.yml matches this
+# workflow by name to auto-retry nondeterministic failures (the macOS
+# clang/linker SIGSEGV class). Keep the two in sync if renaming.
+name: distribute-0.1
+
 on:
   push:
     tags:
@@ -129,6 +134,17 @@ jobs:
       - name: Distribute Modules
         uses: diskuv/dk-distribute@v4
         env:
+            # Xcode pin FALLBACK for the nondeterministic clang/linker SIGSEGV
+            # on the Darwin_x86_64 cross slot (run 33178191072: two attempts,
+            # `clang: error: unable to execute command: Segmentation fault: 11`
+            # while linking -arch x86_64 output on the arm64 runner). Evidence
+            # shows Xcode 26.6 both passing and crashing on the same image, so
+            # this ships COMMENTED. Flip it only if crashdiag-* rate data
+            # implicates a specific Xcode; pick the value from the Xcode
+            # inventory recorded in any crashdiag-* artifact's env.txt.
+            # Harmless on Linux/Windows legs (nothing reads it).
+            # DEVELOPER_DIR: /Applications/Xcode_26.5.app/Contents/Developer
+            #
             # `sbom self` build identity, derived by the previous step from the
             # pinned MlFront source. Passed through here (the proven channel, the
             # same way DK0_BASE_URL reaches the build) so MlFront's SbomEmbedded
@@ -226,6 +242,73 @@ jobs:
             publish-objects: |
               CommonsBase_Dk.Dk0@2.4.2|./bin/dk0.exe|dk0
               CommonsBase_Dk.Dk1@2.4.2|./bin/dk1.exe|dk1
+
+      # ---- macOS crash diagnostics (nondeterministic clang/linker SIGSEGV on
+      # the Darwin_x86_64 cross slot; see run 33178191072). Runs on every macOS
+      # leg (always(), not failure()) because dk1 may retry a crashed task
+      # in-place and turn the leg green while a linker-crash snapshot is left
+      # behind in TMPDIR -- so this artifact doubles as the ongoing crash-rate
+      # measurement, and its env.txt records the image's Xcode inventory (the
+      # data source for the DEVELOPER_DIR pin above). Must never be able to
+      # fail a release leg: continue-on-error on both steps.
+      - name: Collect macOS crash diagnostics
+        if: ${{ always() && runner.os == 'macOS' }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -u
+          staging="$RUNNER_TEMP/crashdiag"
+          mkdir -p "$staging"
+          {
+            echo "image=${ImageVersion:-unknown} os=${ImageOS:-unknown} attempt=${GITHUB_RUN_ATTEMPT:-?}"
+            echo "TMPDIR=${TMPDIR:-unset}"
+            ls -d /Applications/Xcode*.app 2>/dev/null
+            xcodebuild -version 2>/dev/null
+            xcode-select -p 2>/dev/null
+          } > "$staging/env.txt" || true
+          # Apple crash reports for any crashed clang/ld child (small, safe).
+          mkdir -p "$staging/DiagnosticReports"
+          cp -R "$HOME/Library/Logs/DiagnosticReports/." "$staging/DiagnosticReports/" 2>/dev/null || true
+          # Linker crash snapshots + dune temp dirs. Search both this step's
+          # $TMPDIR and all of /var/folders (the build may run under a
+          # different per-sandbox TMPDIR; the observed snapshot was
+          # /var/folders/.../T/build_XXXXXX_dune/linker-crash-XXXXXX).
+          i=0
+          sudo -n find "${TMPDIR:-/tmp}" /var/folders \
+              -type d \( -name 'linker-crash-*' -o -name 'build_*_dune' \) \
+              -print 2>/dev/null | sort -u | while IFS= read -r d; do
+            sz=$(sudo -n du -sm "$d" 2>/dev/null | cut -f1)
+            if [ "${sz:-0}" -gt 1024 ]; then
+              echo "SKIPPED (>1GiB): $d (${sz} MiB)" >> "$staging/env.txt"
+              continue
+            fi
+            i=$((i+1))
+            dest="$staging/$(printf '%02d' "$i")-$(basename "$d")"
+            sudo -n cp -R "$d" "$dest" 2>/dev/null || true
+            echo "captured: $d (${sz:-?} MiB)" >> "$staging/env.txt"
+          done
+          sudo -n chown -R "$(id -u):$(id -g)" "$staging" || true
+          du -sh "$staging" || true
+      - name: Upload macOS crash diagnostics
+        if: ${{ always() && runner.os == 'macOS' }}
+        continue-on-error: true
+        # Same pin as dk-distribute's own uploads (v7 == v7.0.1).
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          # Attempt-suffixed so an auto-rerun can never clobber an earlier
+          # attempt's evidence; leg-disambiguated because both macOS legs run
+          # this (the Darwin_arm64 leg has no target-abi).
+          name: crashdiag-${{ matrix.target-abi || matrix.execution-abi }}-attempt-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/crashdiag
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # NOTE: automatic retry of failed jobs lives in a COMPANION workflow,
+  # distribute-0.1-auto-rerun.yml (on: workflow_run). It cannot be a job in
+  # this workflow: GitHub rejects `gh run rerun` while the run is still in
+  # progress, and any job of this run keeps the run in progress (proven by
+  # smoke run 33191566554: "cannot be rerun; This workflow is already
+  # running").
 
   combine:
     needs: distribute

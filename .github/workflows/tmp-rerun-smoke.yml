@@ -1,0 +1,32 @@
+# TEMPORARY smoke test for distribute-0.1-auto-rerun.yml (the workflow_run
+# companion). fake-distribute fails on attempts 1-2 and succeeds on attempt
+# 3: if the companion works, a push to the branch below ends, after two
+# automatic reruns, as a green run with 3 attempts and fake-combine executed
+# on the final attempt. Lives only on the ci/darwin-x8664-crashdiag branch
+# (but the COMPANION must be on the default branch to fire) -- DELETE this
+# file and the companion's tmp-rerun-smoke workflows: entry after
+# verification.
+name: tmp-rerun-smoke
+on:
+  push:
+    branches: [ci/darwin-x8664-crashdiag]
+
+jobs:
+  fake-distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail on attempts 1-2, succeed on attempt 3
+        run: |
+          echo "attempt=$GITHUB_RUN_ATTEMPT"
+          if [ "$GITHUB_RUN_ATTEMPT" -lt 3 ]; then
+            echo "simulating nondeterministic failure"
+            exit 1
+          fi
+          echo "simulating success"
+
+  fake-combine:
+    needs: fake-distribute
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prove dependents re-run on the retried attempt
+        run: echo "combine ran on attempt $GITHUB_RUN_ATTEMPT"
