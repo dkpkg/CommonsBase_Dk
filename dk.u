@@ -146,7 +146,7 @@ each driver's stamped rule versions against the pinned `CommonsLang_OCaml` impor
 and fails with the fix command when one is stale; it runs in `distribute-0.1.yml`
 before the build:
 
-    dk0 dialog CommonsLang_OCaml.Dk.OpamLock.Refresh@1.1.8 mode=check
+    dk0 dialog CommonsLang_OCaml.Dk.OpamLock.Refresh@1.1.16 mode=check
       drivers[]=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc
       drivers[]=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc
       drivers[]=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc
