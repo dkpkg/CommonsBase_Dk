@@ -178,7 +178,7 @@ instead of building that closure cold. It uses the test lock, `skiplocal=t`,
       lock=<dk-opam-lock-test.jsonc from Dk0.MlFrontSource>
       out=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc
       skiplocal=t mergedprefix=t
-      formid=CommonsBase_Dk.TestPkg@2.4.3 pkgpath=CommonsBase_Dk.TestPkg.Pkg
+      formid=CommonsBase_Dk.TestPkg.Closure@2.4.3 pkgpath=CommonsBase_Dk.TestPkg.Pkg
       version=2.4.3
       rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.18
       localsrc=CommonsBase_Dk.TestPkg.LockSrc@2.4.3 locksrcpath=./dk-opam-lock-test.jsonc
