@@ -56,7 +56,7 @@ Instead, the operation is a single pure resolution:
 
 That is logically a function of `KEY` alone. Whether the asset was already
 present or had to be built is an engine-internal optimization the values layer
-never observes. This is dk0's existing content-addressed object cache, extended
+never observes. This is dk0's existing object cache, extended
 to a **key computed at runtime** (from the opam solve) rather than one derived
 statically from the values graph. "Dynamic identity, populate-on-miss" is the
 one genuinely new capability required.
@@ -78,9 +78,9 @@ Keying only by `name@version` would silently reuse a stale binary when a
 transitive dependency changes. The Merkle key gives correct invalidation, and
 it is what lets sub-closures be shared safely.
 
-## Engine primitive (lives in dksdk-coder/ext/MlFront)
+## Engine primitive
 
-The new dk0/VSL primitive is a **parameterized cache subshell keyed by the
+The dk0/VSL primitive is a **parameterized cache subshell keyed by the
 cache key**:
 
 ```

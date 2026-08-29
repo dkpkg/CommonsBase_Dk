@@ -1,5 +1,5 @@
 // CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 -- the localized MlFront source as one
-// content-addressed output.zip object, which the generic OpamBuild rule stages
+// output.zip object, which the generic OpamBuild rule stages
 // (get-object, via its localsrc= parameter) as the source for every local
 // (in-tree) dk0 package.
 //
@@ -14,8 +14,8 @@
 // It is a PLAIN form, not a post-object rule, on purpose: the raw source is a
 // URL-fetched bundle, and get-asset of a bundle must run at form top level
 // (execution phase). Nesting it inside a post-object rule's synthesized form
-// trips an engine promise-resolution bug ("missed promise resolution"); see
-// rotary-phone/missedpromise.md. Localize is pure text substitution (sh +
+// trips an engine promise-resolution bug ("missed promise resolution"), so the
+// fetch stays at top level. Localize is pure text substitution (sh +
 // awk/sed, no OCaml toolchain), so output.zip is host-independent; each slot
 // rebuilds it identically (fast, and acceptable for a text-substitution step).
 {

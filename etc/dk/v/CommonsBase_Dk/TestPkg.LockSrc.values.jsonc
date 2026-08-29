@@ -1,5 +1,5 @@
 // CommonsBase_Dk.TestPkg.LockSrc@2.4.3 -- the with-test opam lock as a standalone
-// content-addressed object, used as the TestPkg closure's OpamBuild localsrc=.
+// object, used as the TestPkg closure's OpamBuild localsrc=.
 //
 // The TestPkg closure builds only EXTERNAL opam packages (it was generated
 // skiplocal=t), so -- unlike the Dk0/Dk1 runtime closures, which build in-tree

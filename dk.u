@@ -4,15 +4,10 @@
 
 Packages the dk0 reference build system and dk1 multithreaded build system.
 
-`CommonsBase_Dk` builds dk0 (MlFront's `DkZero_Exec`) as a per-package,
-content-addressed, resumable closure. A checked-in opam lock drives
-`Dk0.Closure`, which run-functions the generic `CommonsLang_OCaml.Dk.OpamBuild`
-rule for every package in `DkZero_Exec`'s dependency closure so each package is
-its own cached dk object; an interrupted build resumes from the completed
-objects. The thin `Dk0` recipe then republishes `DkZero_Exec`'s install prefix
-as `bin/dk0.exe`. The shared MlFront source is fetched from a URL bundle and
-localized into `Dk0.MlFrontSource` (opam/dune metadata regenerated). `Dk1` is
-wired to build the multi-threaded `DkOne_Exec` (dk1) the same way.
+`Dk0` builds MlFront's `DkZero_Exec` and its transitive dependencies from the
+opam lock, one resumable build per package, and republishes `DkZero_Exec`'s
+install prefix as `bin/dk0.exe`. `Dk1` is wired to build the multi-threaded
+`DkOne_Exec` (dk1) the same way.
 
 ## License
 
@@ -51,12 +46,14 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "a2ed4152d89205059819efd3090509f1d2322552305baf9092b68629dbb6bffd",
       sha1: "5831f4db6062ce052518e4fb218f61dbeb988a5d"))\;
 
+## Assets
+
 -- Assets for the per-package dk0 build: the MSVC build activator
 -- (Apparatus.Dk0BuildWin) and the MlFront localize wrapper (Dk0Localize.Script).
 -- Dk0.Closure drives the per-package build and the Dk0 recipe republishes
 -- bin/dk0.exe. The opam lock is consumed straight from the localized MlFront
--- source (mlfront/dk.opam-lock.jsonc via Dk0.MlFrontSource), so it never
--- drifts from what the archive actually ships.
+-- source (mlfront/dk.opam-lock.jsonc via Dk0.MlFrontSource), so it matches
+-- what the archive ships.
 
 ### CommonsBase_Dk.Apparatus@1.0.0
 
@@ -91,12 +88,11 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "b4b75a98463ac565675ec3a8d3e7190210e900f848da81177067a36e809f5473",
       sha1: "f3bd2340e6e6e4e60212c58f1f9d6ba1053de04b"))\;
 
-## Data flow
+## Data flow for building dk0/dk1 from source
 
-How a released dk0/dk1 is built, from an MlFront tag to a user's install. Every
-node names the file that implements it. `V4` is the 4-part MlFront source
-version (for example `2.4.2.310`); `DRV` is the pinned driver version: the
-*previous* release's dk0/dk1 that runs this build.
+Every node names the file that implements it. `V4` is the 4-part MlFront
+source version (for example `2.4.2.310`); `DRV` is the pinned driver version:
+a *previous* release of dk0/dk1 that runs this build.
 
 {% mermaid %}
 flowchart TB
@@ -107,7 +103,7 @@ flowchart TB
   subgraph CB["CommonsBase_Dk (this repo; GitHub Actions on tag 0.1.TS)"]
     Z -- "url+sha256 pin: etc/dk/v/CommonsBase_Dk/Dk0Localize.RawSrc.values.jsonc" --> RS["Dk0Localize.RawSrc@2.4.3"]
     RS --> MS["Dk0.MlFrontSource@2.4.3: assets/dk0/localize.sh derives V4 from the directory name, stamps ci/version.source.sh + dune-project.template, runs localize-pristine; emits the mlfront/ tree + dk-opam-lock.jsonc"]
-    MS --> CL["Dk0.Closure@2.4.3 / Dk1.Closure@2.4.3: one CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage run per locked package; toolchain objects DkML, Dune, MSYS2, VSWhere; the binary's --version constant is baked here when dune builds DkZero_Exec/DkOne_Exec from the stamped tree"]
+    MS --> CL["Dk0.Closure@2.4.3 / Dk1.Closure@2.4.3: one CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure run reads the lock and builds each locked package as its own object; toolchain objects DkML, Dune, MSYS2, VSWhere; the binary's --version constant is baked here when dune builds DkZero_Exec/DkOne_Exec from the stamped tree"]
     CL --> D0["Dk0@2.4.3 / Dk1@2.4.3: extract the root package install.zip, republish bin/dk0.exe per slot"]
     D0 --> M["distribute matrix: .github/workflows/distribute-0.1.yml, one dist/&lt;slot&gt;.u per ABI; driver pinned by DK0_BASE_URL/DK1_BASE_URL = dk-dist/DRV"]
     M --> A["distribution-&lt;part&gt; artifacts + flat dk-dist/dk{0,1}-&lt;abi&gt; staged by publish-objects"]
@@ -121,42 +117,63 @@ flowchart TB
   DKD --> VI["verify-install:&lt;abi&gt; smoke jobs: install and assert dk0 --version == 2.4.3+rev-N"]
   VI --> L["launchers + install.sh/install.ps1: signify-verify the manifest, fetch by dk0_url_template"] --> U["users"]
   DKD -. "the dk-dist/V4 manifest becomes the NEXT release's DK0_BASE_URL driver pin: driver version N-1 builds product version N" .-> M
-  M -. "store: none. The repin-invalidation hole (a store: release restore served the PREVIOUS release's objects after a source repin: rev-309-under-2.4.2.310, rev-312-under-2.4.2.313) is FIXED in the 2.4.2.317 driver (2.4.2.315 lazy-dependency evidence + 2.4.2.317 D3 locality escape). But store: release is NOT VIABLE here on performance: a source-version repin changes the universal Dk0.MlFrontSource, invalidating the whole @2.4.3 closure, so a correct store: release rebuilds ~everything AND pays per-object restore/lazy-force overhead. The 2.4.2.318 proof ran the full 6h job limit without finishing vs ~35min for a store: none cold build. Keep store: none until the restore path is made performant for a full-closure invalidation" .-> D0
+  M -. "store: none. A source-version repin changes the universal Dk0.MlFrontSource and invalidates every per-package build, so a store: release restore rebuilds ~everything and pays per-object restore overhead on top (hours vs ~35min for a store: none cold build). Keep store: none until the restore path is performant for a full invalidation" .-> D0
 {% /mermaid %}
 
-Version overlay: `V4` rides the git tag, then the zip's top directory name, then
-the RawSrc pin, then the localize stamp, then the manifest `version=` line. The
-binary's `--version` output is a compile-time constant generated once, inside
-the closure build, by MlFront's getver reading the stamped
-`dune-project.template`. Nothing after that step can change it. `DRV` appears
-only in the `DK0_BASE_URL`/`DK1_BASE_URL` driver pins and in the
+`V4` has one source and is embedded in files and executables:
+
+    V4    = the 4-part version in the MlFront git tag
+    DIR   = MlFront-<V4>: the source zip's top directory name
+            (ci/publish-source-zip.sh keeps the tag in the directory name)
+    PIN   = MlFront-<V4>.zip: the RawSrc url and filename pin
+            (etc/dk/v/CommonsBase_Dk/Dk0Localize.RawSrc.values.jsonc)
+    STAMP = <V4> written into ci/version.source.sh and dune-project.template
+            (assets/dk0/localize.sh parses <V4> out of DIR)
+    BIN   = the dk0/dk1 --version compile-time constant (MlFront's getver
+            reads STAMP's dune-project.template inside the Dk0.Closure /
+            Dk1.Closure builds; nothing after this step can change it)
+    MAN   = the version=<V4> line of the dk-dist manifest
+            (ci/gen-manifest.sh)
+
+`DRV` appears only in the `DK0_BASE_URL`/`DK1_BASE_URL` driver pins and in the
 `producer.application` provenance metadata of the published stores: that
 metadata names the dk0 that RAN the build (by design), so a `rev-<N-1>` there is
 correct provenance.
 
 ## Regenerating the Closure drivers
 
-**A regeneration with a NEWER GenerateDriver version is a module change that
-needs the maintainer's PATCH-vs-MINOR decision BEFORE you run it**
-(`docs/agents/dk0-authoring.md` in dksdk-coder, the generated-module bullet).
-The generator's version is part of the drivers' behavior: a newer generator can
-change the emitted build mechanism and the per-package object namespace
-(`modver = pkgpath + ".Pkg." + package`, so the `pkgpath=` values below are
-generator-version-specific: @1.1.16 wants `CommonsBase_Dk.Dk0`, where the
-@1.1.9-era doc said `CommonsBase_Dk.Dk0.Pkg`; the wrong one silently renames
-every package object and breaks the TestPkg partition import with
-`[917b6e5f] ... does not exist`). A rule-version-only Refresh with the SAME
-generator is routine; a generator jump needs the decision above.
-
 `Dk0.Closure`, `Dk1.Closure`, and `TestPkg.Closure` (plus the final-exe
 pair-files `Dk0.values.jsonc`/`Dk1.values.jsonc`) are GENERATED from the opam
 lock that `Dk0.MlFrontSource` carries (`mlfront/dk.opam-lock.jsonc`, and the
-with-test `dk-opam-lock-test.jsonc`). Since `Dk.OpamLock@1.1.8` each driver
-stamps its full parameter set into a top-level `generated` member, so
-**regeneration is a `Refresh` that reads those stamps back**. A hand-typed
-`GenerateDriver` invocation is how the `pkgpath` doubling above happened.
-`Refresh` takes the rule family and `pkgpath` from the stamp, so they cannot be
-transcribed wrong.
+with-test `dk-opam-lock-test.jsonc`). Each driver stamps its full parameter
+set into a top-level `generated` member.
+
+Each driver invokes `CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure`:
+one `run-function` precommand reads the lock once and registers every
+per-package form (`CommonsBase_Dk.Dk0.Pkg.<Pkg>@<VER>`) plus the aggregate
+`.Built` output, and the merged prefix is archived deterministically with the
+in-process `--zip` INSIDE the rule (so the form shows a `cp built/prefix.zip`
+line). `TestPkg.Closure` builds MlFront's `--with-test` external transitive
+dependencies (astring, tezt, crowbar, sedlex, ...) as one merged-prefix
+object so the gate imports it and skips their cold build; it reuses Dk0's
+packages via
+`impdep_<Pkg>=CommonsBase_Dk.Dk0.Pkg.<Pkg>@<VER>`
+(`skiplocal=t`/`mergedprefix=t`/`implib[]=CommonsBase_Dk.Dk0.Pkg`), so those
+ids MUST match what `Dk0.Closure` exposes.
+
+**First-time generation** (a brand-new driver, no stamp to adopt) uses
+`GenerateDriver` directly: `pkgpath=CommonsBase_Dk.Dk0` for Dk0 (the generator
+appends `.Pkg.<Pkg>`); `Dk1` differs only in
+`out`/`formid`/`pkgpath`/`roots[]=DkOne_Exec`; `TestPkg` adds `skiplocal=t
+mergedprefix=t implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=<new>
+impsrclock[]=dk.opam-lock.jsonc` and `roots[]` = the gate's TestDeps.
+
+For an existing driver, **regeneration is a `Refresh` that reads the stamps
+back**: `Refresh` takes the rule family and `pkgpath` from the stamp.
+**Regenerating with a newer GenerateDriver version is a module change and
+needs the maintainer's version decision first**: the generator's version is
+part of the drivers' behavior, including the emitted build mechanism and the
+per-package object namespace.
 
 `mode=check` compares each driver's stamped rule versions against the pinned
 `CommonsLang_OCaml` import and fails with the fix command when one is stale; it
@@ -167,18 +184,17 @@ runs in `distribute-0.1.yml` before the build:
       drivers[]=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc
       drivers[]=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc
 
-**Rule-version-only bump** (same generator, newer `rulefn`): drop `mode=check`.
-`Refresh` rewrites in place from the stamp, with no lock on disk needed and no
-reformatting drift.
+`mode=check` does not catch an `impdep` id mismatch; the CI TestPkg build
+fails on one with `[917b6e5f] ... does not exist`.
 
-**Lock-content change** (a source repin, i.e. every release): materialize the
+**Lock content change** (a source repin, i.e. every release): materialize the
 lock from its source object, then `Refresh` with `version=<new>` and the lock on
 disk. Build `Dk0.MlFrontSource@<new>` (`get-object ... -d out`) for
 `dk-opam-lock.jsonc`; the with-test `dk-opam-lock-test.jsonc` is inside that
 `output.zip` at `mlfront/dk.opam-lock-test.jsonc`. `Refresh` reads each driver's
 OWN stamped lock name, so **run the two lock families separately** (a single
-`lock=` overrides every driver, which is wrong for the mixed set), and stage the dotted
-`dk.opam-lock.jsonc` that `TestPkg`'s `impsrclock` names:
+`lock=` overrides every driver, which is wrong for the mixed set), and stage
+the dotted `dk.opam-lock.jsonc` that `TestPkg`'s `impsrclock` names:
 
     # Dk0/Dk1 (+ their pair-files): the non-test lock.
     dk0 dialog CommonsLang_OCaml.Dk.OpamLock.Refresh@<DRIVER_VER>
@@ -186,35 +202,17 @@ OWN stamped lock name, so **run the two lock families separately** (a single
       drivers[]=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc
       version=2.4.3 lock=dk-opam-lock.jsonc
 
-    # TestPkg (with-test merged prefix): the test lock. `cp dk-opam-lock.jsonc
-    # dk.opam-lock.jsonc` first so the impsrclock resolves:
+    # TestPkg (with-test merged prefix): the test lock. `cp
+    # mlfront/dk.opam-lock.jsonc dk.opam-lock.jsonc` first so the impsrclock
+    # resolves:
     dk0 dialog CommonsLang_OCaml.Dk.OpamLock.Refresh@<DRIVER_VER>
       driver=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc
       version=2.4.3 lock=dk-opam-lock-test.jsonc
 
-Under `Dk.OpamBuild@1.0.26` these regenerate in the **closure family**
-(`F_BuildLockedClosure`): one `run-function` precommand reads the lock once and
-registers every per-package form (`CommonsBase_Dk.Dk0.Pkg.<Pkg>@<VER>`, SINGLE
-`.Pkg`) plus the aggregate `.Built` output, and the merged prefix is archived
-deterministically with the in-process `--zip` INSIDE the rule (so the form shows
-a `cp built/prefix.zip` line). `TestPkg.Closure` builds the
-MlFront `--with-test` external closure (astring, tezt, crowbar, sedlex, ...) as
-that one merged-prefix object so the gate imports it and skips the cold build
-of that closure; it reuses Dk0's packages via
-`impdep_<Pkg>=CommonsBase_Dk.Dk0.Pkg.<Pkg>@<VER>`
-(`skiplocal=t`/`mergedprefix=t`/`implib[]=CommonsBase_Dk.Dk0.Pkg`), so those
-single-`.Pkg` ids MUST match what `Dk0.Closure` exposes. `mode=check` above
-does not catch a mismatch; the CI TestPkg build fails on one with
-`[917b6e5f] ... does not exist`.
+**Rule version-only bump** (same generator, newer `rulefn`): drop `mode=check`.
+`Refresh` rewrites in place from the stamp, with no lock on disk needed and no
+reformatting drift.
 
-**First-time generation only** (a brand-new driver, no stamp to adopt) uses
-`GenerateDriver` directly; for an existing driver, adopt its stamp with
-`Refresh`. If you ever must hand-run the generator:
-`pkgpath=CommonsBase_Dk.Dk0` for Dk0 (the generator appends `.Pkg.<Pkg>`); `Dk1`
-differs only in `out`/`formid`/`pkgpath`/`roots[]=DkOne_Exec`; `TestPkg` adds
-`skiplocal=t mergedprefix=t implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=<new>
-impsrclock[]=dk.opam-lock.jsonc` and `roots[]` = the gate's TestDeps.
-
-`dist/Linux_x86_64.u` and `dist/Windows_x86_64.u` `get-object` the TestPkg object
-so it is built and published for the gate to import (Darwin slots pending the M4
-macOS gate).
+`dist/Linux_x86_64.u` and `dist/Windows_x86_64.u` `get-object` the TestPkg
+object so it is built and published for the gate to import (Darwin slots
+pending the M4 macOS gate).
