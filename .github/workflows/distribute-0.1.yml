@@ -292,8 +292,13 @@ jobs:
       - name: Upload macOS crash diagnostics
         if: ${{ always() && runner.os == 'macOS' }}
         continue-on-error: true
-        # Same pin as dk-distribute's own uploads (v7 == v7.0.1).
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        # Same pin as dk-distribute's own uploads (v7 == v7.0.1). Use the @v7
+        # tag form: dkpkg's org Actions policy allowlists actions/upload-artifact
+        # by that pattern, and a raw-SHA pin (043fb46...) is rejected at workflow
+        # startup ("not allowed ... must be from a repository owned by dkpkg or
+        # match one of the patterns"), which startup-failed the 0.1.20260829075904
+        # tag pipeline -- the first tag run to reach these crashdiag steps.
+        uses: actions/upload-artifact@v7
         with:
           # Attempt-suffixed so an auto-rerun can never clobber an earlier
           # attempt's evidence; leg-disambiguated because both macOS legs run
