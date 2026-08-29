@@ -8,7 +8,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Darwin_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Darwin_x86_64-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "opuhiyqk7pldho245lt673vm6mjhzts27neku5tfia6cpfq3vif7q")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "o4ax473iqbdv4aoek3mmuk4ykn2ofvodglpy6cqekkusg7l7cjp4q")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
@@ -20,7 +20,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Darwin_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Darwin_x86_64-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "og7fhndqrm3vo7ahdyqknvbddoigcnklmyqimrerdzshqef6ftqxq")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ol5ne457q7ipjsvx6ukcs6sqt3hyyvu26nhfd3op2ijsomzlk5f2a")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
@@ -32,4 +32,4 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Darwin_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ovn7iy7hdzrmzt5jglmhqcidfn5vszjcs2xuzmvdlyoedudidg5ba")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "o63herejzlywhdee5b2zlxok7ypkyije54dhxzgj273tih26qivrq")\;

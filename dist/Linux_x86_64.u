@@ -8,7 +8,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Linux_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Linux_x86_64-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64", value-id: "ojnw46bilxdfbbay4x4f6wbe4md55sfj5vrg7ssk25y722n7tjapq")\;
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "ozqijirqfxqrsgrexumlips7itof7hqe6etczrp6bjkxxd23u3clq")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
@@ -20,7 +20,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Linux_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86_64-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64", value-id: "ocugsqb254bl2dshjuw4wikomf2lypacjjyv4luqtjscpoyxrhm4a")\;
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "obcc6cigogketddlyweawnx32jlln7cgtsqhxveu2zf5wtrrinnjq")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
@@ -32,4 +32,4 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Linux_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64", value-id: "ogw7u5mzij3kzkm3kaejkvslge2pukdtdbaae647rh5ofj6pw3s3a")\;
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "op76dh2pdd7cvqdjjf5uwhmbq5jwmx3dsgvso4h5cfjkqoe3mhsmq")\;
