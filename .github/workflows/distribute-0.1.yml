@@ -248,8 +248,8 @@ jobs:
             # The action derives the slot from distscript and stages
             # dk-dist/dk{0,1}-<abi>[.exe]; combine then signs + attests + releases them.
             publish-objects: |
-              CommonsBase_Dk.Dk0@2.4.2|./bin/dk0.exe|dk0
-              CommonsBase_Dk.Dk1@2.4.2|./bin/dk1.exe|dk1
+              CommonsBase_Dk.Dk0@2.4.3|./bin/dk0.exe|dk0
+              CommonsBase_Dk.Dk1@2.4.3|./bin/dk1.exe|dk1
 
       # ---- macOS crash diagnostics (nondeterministic clang/linker SIGSEGV on
       # the Darwin_x86_64 cross slot; see run 33178191072). Runs on every macOS
