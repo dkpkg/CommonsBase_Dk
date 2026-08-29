@@ -1,7 +1,7 @@
-// CommonsBase_Dk.Dk0@2.4.2 -- the final dk0 executable per slot.
+// CommonsBase_Dk.Dk0@2.4.3 -- the final dk0 executable per slot.
 //
 // dk0 (MlFront's DkZero_Exec) is built from source as a per-package opam closure:
-// CommonsBase_Dk.Dk0.Closure@2.4.2 (the generated driver in
+// CommonsBase_Dk.Dk0.Closure@2.4.3 (the generated driver in
 // Dk0.Closure.values.jsonc) run-functions the generic OpamBuild rule for every
 // package in DkZero_Exec's locked dependency closure, in topological order, so
 // each package is its own content-addressed dk object and an interrupted build
@@ -16,16 +16,16 @@
 // path bin/dk0.exe.
 //
 // Validated: Release.Windows_x86_64 builds the full 68-package closure and this
-// form yields a bin/dk0.exe that reports `--version` 2.4.2+rev-287.
+// form yields a bin/dk0.exe that reports `--version` 2.4.3+rev-287.
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "forms": [
     {
-      "id": "CommonsBase_Dk.Dk0@2.4.2",
+      "id": "CommonsBase_Dk.Dk0@2.4.3",
       "precommands": {
         "private": [
-          "get-object CommonsBase_Dk.Dk0.Closure@2.4.2 -s ${SLOTNAME.request} -m ./install.zip -d ip"
+          "get-object CommonsBase_Dk.Dk0.Closure@2.4.3 -s ${SLOTNAME.request} -m ./install.zip -d ip"
         ]
       },
       "function": {

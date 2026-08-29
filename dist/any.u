@@ -6,8 +6,8 @@ content-addressed opam closure (`CommonsBase_Dk.Dk0.Closure` /
 `CommonsBase_Dk.Dk1.Closure`) and republished as a single native executable per
 slot:
 
-- `CommonsBase_Dk.Dk0@2.4.2` -> `bin/dk0.exe`
-- `CommonsBase_Dk.Dk1@2.4.2` -> `bin/dk1.exe`
+- `CommonsBase_Dk.Dk0@2.4.3` -> `bin/dk0.exe`
+- `CommonsBase_Dk.Dk1@2.4.3` -> `bin/dk1.exe`
 
 The executable slots are `Linux_x86_64`, `Linux_x86`, `Darwin_x86_64`,
 `Darwin_arm64`, `Windows_x86_64`, and `Windows_x86`. Each slot's distribution

@@ -1,4 +1,4 @@
-// CommonsBase_Dk.TestPkg.LockSrc@2.4.2 -- the with-test opam lock as a standalone
+// CommonsBase_Dk.TestPkg.LockSrc@2.4.3 -- the with-test opam lock as a standalone
 // content-addressed object, used as the TestPkg closure's OpamBuild localsrc=.
 //
 // The TestPkg closure builds only EXTERNAL opam packages (it was generated
@@ -21,7 +21,7 @@
   "schema_version": { "major": 1, "minor": 0 },
   "forms": [
     {
-      "id": "CommonsBase_Dk.TestPkg.LockSrc@2.4.2",
+      "id": "CommonsBase_Dk.TestPkg.LockSrc@2.4.3",
       "function": {
         "commands": [
           [
@@ -33,7 +33,7 @@
           [
             "$(get-object CommonsBase_Std.S7z@25.1.0 -s Release.execution_abi -e '*' -d :)/7zz.exe",
             "e", "-y",
-            "$(get-object CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 -s ${SLOTNAME.request} -m ./output.zip -f mlfront-output.zip)",
+            "$(get-object CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 -s ${SLOTNAME.request} -m ./output.zip -f mlfront-output.zip)",
             "mlfront/dk.opam-lock-test.jsonc"
           ],
           // Publish it under the top-level dash-form member name the TestPkg closure

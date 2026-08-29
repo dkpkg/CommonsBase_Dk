@@ -6,24 +6,24 @@ republished as a single native executable.
 
 ## Dk0 executable
 
-  $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Linux_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Linux_x86-dk0.exe
+  $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Linux_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Linux_x86-dk0.exe
   \test(pass)
   \dk.object(abi: "Release.Linux_x86", value-id: "ojwkvwzp7b4tfaks6mihcz5ztyled4rvb5xlezjoeoibh6gkjgo7q")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
-  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
+  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
   \test(pass)
   \dk.target(abi: "Linux_x86")[ELF 32-bit LSB executable, Intel i386, version 1 (SYSV)
   ]\;
 
 ## Dk1 executable
 
-  $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Linux_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86-dk1.exe
+  $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Linux_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Linux_x86-dk1.exe
   \test(pass)
   \dk.object(abi: "Release.Linux_x86", value-id: "ogfgbyjziz6c52kgrktgma2yr364kzrl4pjtk6ptoljcrpgo5frwa")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
-  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
+  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
   \test(pass)
   \dk.target(abi: "Linux_x86")[ELF 32-bit LSB executable, Intel i386, version 1 (SYSV)
   ]\;

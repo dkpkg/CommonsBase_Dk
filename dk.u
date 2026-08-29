@@ -19,9 +19,9 @@ wired to build the multi-threaded `DkOne_Exec` (dk1) the same way.
 Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 
 ## workspace
-  %% actual_version("2.4.2.329")
+  %% actual_version("2.4.2.342")
   'actual_version'
-  '2.4.2.329'
+  '2.4.2.342'
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
   \dk.import(type: "github-l2", library: "CommonsBase_Std",
@@ -33,9 +33,9 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
   \dk.import(type: "github-l2", library: "CommonsBase_Build",
     version: "0.1.20260718232516",
-    checksum: (blake2b-256: "cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0",
-      sha256: "f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec",
-      sha1: "abd205268d9a7ca456f22b3425404e0f8ea06dff"))\;
+    checksum: (blake2b-256: "df2dc776f330194cadec351ca2c073839c9be760161864c0e9c0220e7268d95d",
+      sha256: "b894642bd11e8571f980c7300d818216e1461245503798d6ce836fe53c7633de",
+      sha1: "4c6eb4b12e6b3d6a6dffdfd3bb51f796b403d418"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",
@@ -44,12 +44,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260823204309" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260828185957" }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260823204309",
-    checksum: (blake2b-256: "33353ea0c8acb958e6efef426906b281f5677b520b0acb29a109d1c13a593d42",
-      sha256: "d6346f1735eb348c63be554c492ba5d80fe7ffbf7698d49d2f690de851fab9c4",
-      sha1: "8d66ab03041d0cf8add05833f16431dc54be0eda"))\;
+    version: "0.1.20260828185957",
+    checksum: (blake2b-256: "3f613c0f9865ae44bbf794074d13658106678a2c06fb06e5b3891675996304e8",
+      sha256: "a2ed4152d89205059819efd3090509f1d2322552305baf9092b68629dbb6bffd",
+      sha1: "5831f4db6062ce052518e4fb218f61dbeb988a5d"))\;
 
 -- Assets for the per-package dk0 build: the MSVC build activator
 -- (Apparatus.Dk0BuildWin) and the MlFront localize wrapper (Dk0Localize.Script).
@@ -63,7 +63,7 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   % unified.asset { name="Dk0BuildWin", file="assets/dk0/dk0-build-win.bat" }
   \dk.asset(byteSize: "793", checksum: (sha256: "01498036219d67f5f28855cad32ead976d3161f33595af7e8538fa3d5b50ef15"))\;
 
-### CommonsBase_Dk.Dk0Localize@2.4.2
+### CommonsBase_Dk.Dk0Localize@2.4.3
 
   % unified.asset { name="Script", file="assets/dk0/localize.sh" }
   \dk.asset(byteSize: "2394", checksum: (sha256: "28c08d1e989ccaaa02220caa82c53d4c8a69ba7bf50ac3970e69206440f9c37c"))\;
@@ -105,10 +105,10 @@ flowchart TB
     PS --> Z[("mlfront-source/V4/MlFront-V4.zip -- V4 encoded in the top directory name")]
   end
   subgraph CB["CommonsBase_Dk (this repo; GitHub Actions on tag 0.1.TS)"]
-    Z -- "url+sha256 pin: etc/dk/v/CommonsBase_Dk/Dk0Localize.RawSrc.values.jsonc" --> RS["Dk0Localize.RawSrc@2.4.2"]
-    RS --> MS["Dk0.MlFrontSource@2.4.2: assets/dk0/localize.sh derives V4 from the directory name, stamps ci/version.source.sh + dune-project.template, runs localize-pristine; emits the mlfront/ tree + dk-opam-lock.jsonc"]
-    MS --> CL["Dk0.Closure@2.4.2 / Dk1.Closure@2.4.2: one CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage run per locked package; toolchain objects DkML, Dune, MSYS2, VSWhere; the binary's --version constant is baked here when dune builds DkZero_Exec/DkOne_Exec from the stamped tree"]
-    CL --> D0["Dk0@2.4.2 / Dk1@2.4.2: extract the root package install.zip, republish bin/dk0.exe per slot"]
+    Z -- "url+sha256 pin: etc/dk/v/CommonsBase_Dk/Dk0Localize.RawSrc.values.jsonc" --> RS["Dk0Localize.RawSrc@2.4.3"]
+    RS --> MS["Dk0.MlFrontSource@2.4.3: assets/dk0/localize.sh derives V4 from the directory name, stamps ci/version.source.sh + dune-project.template, runs localize-pristine; emits the mlfront/ tree + dk-opam-lock.jsonc"]
+    MS --> CL["Dk0.Closure@2.4.3 / Dk1.Closure@2.4.3: one CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage run per locked package; toolchain objects DkML, Dune, MSYS2, VSWhere; the binary's --version constant is baked here when dune builds DkZero_Exec/DkOne_Exec from the stamped tree"]
+    CL --> D0["Dk0@2.4.3 / Dk1@2.4.3: extract the root package install.zip, republish bin/dk0.exe per slot"]
     D0 --> M["distribute matrix: .github/workflows/distribute-0.1.yml, one dist/&lt;slot&gt;.u per ABI; driver pinned by DK0_BASE_URL/DK1_BASE_URL = dk-dist/DRV"]
     M --> A["distribution-&lt;part&gt; artifacts + flat dk-dist/dk{0,1}-&lt;abi&gt; staged by publish-objects"]
     A --> C["combine job: jsign Authenticode (Windows), rcodesign Developer ID (macOS), SLSA attest, gh-release under tag 0.1.TS"]
@@ -118,10 +118,10 @@ flowchart TB
     VF --> MAN["ci/gen-manifest.sh: version=V4, dk0_url_template to the 0.1.TS release, per-ABI sha256; ci/sign-release.sh signify-signs"]
     MAN --> DKD[("dk-dist/V4 generic package: manifest.txt + .sig + signed install.ps1/vendor.ps1")]
   end
-  DKD --> VI["verify-install:&lt;abi&gt; smoke jobs: install and assert dk0 --version == 2.4.2+rev-N"]
+  DKD --> VI["verify-install:&lt;abi&gt; smoke jobs: install and assert dk0 --version == 2.4.3+rev-N"]
   VI --> L["launchers + install.sh/install.ps1: signify-verify the manifest, fetch by dk0_url_template"] --> U["users"]
   DKD -. "the dk-dist/V4 manifest becomes the NEXT release's DK0_BASE_URL driver pin: driver version N-1 builds product version N" .-> M
-  M -. "store: none. The repin-invalidation hole (a store: release restore served the PREVIOUS release's objects after a source repin: rev-309-under-2.4.2.310, rev-312-under-2.4.2.313) is FIXED in the 2.4.2.317 driver (2.4.2.315 lazy-dependency evidence + 2.4.2.317 D3 locality escape). But store: release is NOT VIABLE here on performance: a source-version repin changes the universal Dk0.MlFrontSource, invalidating the whole @2.4.2 closure, so a correct store: release rebuilds ~everything AND pays per-object restore/lazy-force overhead -- the 2.4.2.318 proof ran the full 6h job limit without finishing vs ~35min for a store: none cold build. Keep store: none until the restore path is made performant for a full-closure invalidation" .-> D0
+  M -. "store: none. The repin-invalidation hole (a store: release restore served the PREVIOUS release's objects after a source repin: rev-309-under-2.4.2.310, rev-312-under-2.4.2.313) is FIXED in the 2.4.2.317 driver (2.4.2.315 lazy-dependency evidence + 2.4.2.317 D3 locality escape). But store: release is NOT VIABLE here on performance: a source-version repin changes the universal Dk0.MlFrontSource, invalidating the whole @2.4.3 closure, so a correct store: release rebuilds ~everything AND pays per-object restore/lazy-force overhead -- the 2.4.2.318 proof ran the full 6h job limit without finishing vs ~35min for a store: none cold build. Keep store: none until the restore path is made performant for a full-closure invalidation" .-> D0
 {% /mermaid %}
 
 Version overlay: `V4` rides the git tag, then the zip's top directory name, then
@@ -162,10 +162,10 @@ differs only in `out`, `formid`, `pkgpath`, and `roots[]=DkOne_Exec`:
     dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@<DRIVER_VER>
       lock=<dk-opam-lock.jsonc from Dk0.MlFrontSource>
       out=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc
-      formid=CommonsBase_Dk.Dk0.Closure@2.4.2 pkgpath=CommonsBase_Dk.Dk0.Pkg
-      version=2.4.2
+      formid=CommonsBase_Dk.Dk0.Closure@2.4.3 pkgpath=CommonsBase_Dk.Dk0.Pkg
+      version=2.4.3
       rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.18
-      localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 locksrcpath=./dk-opam-lock.jsonc
+      localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc
       roots[]=DkZero_Exec
 
 `TestPkg.Closure` builds the MlFront `--with-test` external closure (astring,
@@ -178,11 +178,11 @@ instead of building that closure cold. It uses the test lock, `skiplocal=t`,
       lock=<dk-opam-lock-test.jsonc from Dk0.MlFrontSource>
       out=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc
       skiplocal=t mergedprefix=t
-      formid=CommonsBase_Dk.TestPkg@2.4.2 pkgpath=CommonsBase_Dk.TestPkg.Pkg
-      version=2.4.2
+      formid=CommonsBase_Dk.TestPkg@2.4.3 pkgpath=CommonsBase_Dk.TestPkg.Pkg
+      version=2.4.3
       rulefn=CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedPackage@1.0.18
-      localsrc=CommonsBase_Dk.TestPkg.LockSrc@2.4.2 locksrcpath=./dk-opam-lock-test.jsonc
-      implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=2.4.2 impsrclock[]=dk.opam-lock.jsonc
+      localsrc=CommonsBase_Dk.TestPkg.LockSrc@2.4.3 locksrcpath=./dk-opam-lock-test.jsonc
+      implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=2.4.3 impsrclock[]=dk.opam-lock.jsonc
       roots[]=DkZero_Exec roots[]=DkOne_Exec ... (the same roots as the gate's TestDeps)
 
 `dist/Linux_x86_64.u` and `dist/Windows_x86_64.u` `get-object` the TestPkg object

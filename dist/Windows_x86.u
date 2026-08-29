@@ -6,24 +6,24 @@ republished as a single native executable.
 
 ## Dk0 executable
 
-  $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Windows_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Windows_x86-dk0.exe
+  $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Windows_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Windows_x86-dk0.exe
   \test(pass)
   \dk.object(abi: "Release.Windows_x86", value-id: "oslr7wzrh6iudyj6vrrcosxpr7f74xzammw53dgsi64w5htqsb3rq")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
-  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
+  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
   \test(pass)
   \dk.target(abi: "Windows_x86")[PE32 executable for MS Windows 6.00 (console),, 5 sections
   ]\;
 
 ## Dk1 executable
 
-  $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Windows_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Windows_x86-dk1.exe
+  $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Windows_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Windows_x86-dk1.exe
   \test(pass)
   \dk.object(abi: "Release.Windows_x86", value-id: "o4auic5ia6clasktaibqmgt6ycn5i5aw5lqx7pc4otaqsuujsfkeq")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
-  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
+  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
   \test(pass)
   \dk.target(abi: "Windows_x86")[PE32 executable for MS Windows 6.00 (console),, 5 sections
   ]\;

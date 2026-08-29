@@ -6,30 +6,30 @@ republished as a single native executable.
 
 ## Dk0 executable
 
-  $ get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.Windows_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Windows_x86_64-dk0.exe
+  $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Windows_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Windows_x86_64-dk0.exe
   \test(pass)
   \dk.object(abi: "Release.Windows_x86_64", value-id: "o7gc67phnxmcpcabywbcxg6jjdja2nyuvspowdxvi4z4qfw3vmzja")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
-  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
+  >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
   \test(pass)
   \dk.target(abi: "Windows_x86_64")[PE32+ executable for MS Windows 6.00 (console),, 7 sections
   ]\;
 
 ## Dk1 executable
 
-  $ get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.Windows_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Windows_x86_64-dk1.exe
+  $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Windows_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Windows_x86_64-dk1.exe
   \test(pass)
   \dk.object(abi: "Release.Windows_x86_64", value-id: "o3ltgg5f5wymy65idfqxyd7dhljmdtuaownktnawvncctaxqc7rra")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
-  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.2 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
+  >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
   \test(pass)
   \dk.target(abi: "Windows_x86_64")[PE32+ executable for MS Windows 6.00 (console),, 7 sections
   ]\;
 
 ## TestPkg (with-test external closure, imported by the MlFront test gate)
 
-  $ get-object CommonsBase_Dk.TestPkg@2.4.2 -s Release.Windows_x86_64 -m ./prefix.zip -d ./testpkg
+  $ get-object CommonsBase_Dk.TestPkg@2.4.3 -s Release.Windows_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
   \dk.object(abi: "Release.Windows_x86_64", value-id: "ocjfbatfma7cdx4lfhf6t45pm77bj23ulzlyytinv7ivuplbnlqda")\;

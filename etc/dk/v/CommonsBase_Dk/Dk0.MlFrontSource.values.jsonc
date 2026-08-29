@@ -1,4 +1,4 @@
-// CommonsBase_Dk.Dk0.MlFrontSource@2.4.2 -- the localized MlFront source as one
+// CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 -- the localized MlFront source as one
 // content-addressed output.zip object, which the generic OpamBuild rule stages
 // (get-object, via its localsrc= parameter) as the source for every local
 // (in-tree) dk0 package.
@@ -23,7 +23,7 @@
   "schema_version": { "major": 1, "minor": 0 },
   "forms": [
     {
-      "id": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.2",
+      "id": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.3",
       // Fetch + extract the raw source at top level: dk0 extracts the .zip
       // natively. It is extracted UNSTRIPPED into src/, keeping the archive's
       // version-specific top directory src/MlFront-<version>/, so the localize
@@ -32,7 +32,7 @@
       // the fixed dir mlfront/.
       "precommands": {
         "private": [
-          "get-asset CommonsBase_Dk.Dk0Localize.RawSrc@2.4.2 -p MlFront-2.4.2.342.zip -d src"
+          "get-asset CommonsBase_Dk.Dk0Localize.RawSrc@2.4.3 -p MlFront-2.4.3.2.zip -d src"
         ]
       },
       "function": {
@@ -53,54 +53,57 @@
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Windows_x86_64}", "--",
             "$(get-object CommonsLang_OCaml.MSYS2@2026.6.11 -s Release.Windows_x86_64 -e '*' -d :)/usr/bin/dash.exe",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Windows_x86}", "--",
             "$(get-object CommonsLang_OCaml.MSYS2@2026.6.11 -s Release.Windows_x86_64 -e '*' -d :)/usr/bin/dash.exe",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86_64}", "--",
             "/bin/sh",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86_64_musl}", "--",
             "/bin/sh",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_x86}", "--",
             "/bin/sh",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Linux_arm64}", "--",
             "/bin/sh",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Darwin_x86_64}", "--",
             "/bin/sh",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           [
             "$(get-object CommonsBase_Std.Coreutils@0.8.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
             "env", "-u", "${SLOT.Release.Darwin_arm64}", "--",
             "/bin/sh",
-            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.2 -p assets/dk0/localize.sh -f localize.sh)"
+            "$(get-asset CommonsBase_Dk.Dk0Localize.Script@2.4.3 -p assets/dk0/localize.sh -f localize.sh)"
           ],
           // Package the localized tree (a single mlfront/ top-level) as output.zip.
+          // The engine's in-process --zip special form (dk 2.4.2.342+) writes a
+          // deterministic archive, so identical content yields identical bytes on
+          // every rebuild and slot; it needs no third-party archiver, so this form
+          // no longer stages CommonsBase_Std.S7z.
           [
-            "$(get-object CommonsBase_Std.S7z@25.1.0 -s Release.execution_abi -e '*' -d :)/7zz.exe",
-            "a", "-tzip", "${SLOT.request}/output.zip", "./mlfront"
+            "--zip", "${SLOT.request}/output.zip", "mlfront"
           ],
           // Also emit the opam lock as a TOP-LEVEL object member so the generic
           // OpamBuild rule can fetch it directly (get-object -m ./dk-opam-lock.jsonc)
