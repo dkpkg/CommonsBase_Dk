@@ -46,6 +46,20 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "a2ed4152d89205059819efd3090509f1d2322552305baf9092b68629dbb6bffd",
       sha1: "5831f4db6062ce052518e4fb218f61dbeb988a5d"))\;
 
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260803042217"  }
+  \dk.import(type: "github-l2", library: "CommonsBase_GNU",
+    version: "0.1.20260803042217",
+    checksum: (blake2b-256: "bd175f8a384eb81f3a9dce85bc5248af1d0a62c8b927001385870f246bdc2ff7",
+      sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
+      sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
+
+  %% import { type="github-l2", repo="dkpkg/CommonsBase_FileMagic" }
+  \dk.import(type: "github-l2", library: "CommonsBase_FileMagic",
+    version: "0.1.20260820155756",
+    checksum: (blake2b-256: "2c5654de7480b5223aafd1381ffd551f1458905b806b0d968d150e0335ae32a3",
+      sha256: "b4b75a98463ac565675ec3a8d3e7190210e900f848da81177067a36e809f5473",
+      sha1: "f3bd2340e6e6e4e60212c58f1f9d6ba1053de04b"))\;
+
 ## Assets
 
 -- Assets for the per-package dk0 build: the MSVC build activator
@@ -64,29 +78,6 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 
   % unified.asset { name="Script", file="assets/dk0/localize.sh" }
   \dk.asset(byteSize: "2394", checksum: (sha256: "28c08d1e989ccaaa02220caa82c53d4c8a69ba7bf50ac3970e69206440f9c37c"))\;
-
-
-
-
-
-
-
-
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260803042217"  }
-  \dk.import(type: "github-l2", library: "CommonsBase_GNU",
-    version: "0.1.20260803042217",
-    checksum: (blake2b-256: "bd175f8a384eb81f3a9dce85bc5248af1d0a62c8b927001385870f246bdc2ff7",
-      sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
-      sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
-
-
-
-  %% import { type="github-l2", repo="dkpkg/CommonsBase_FileMagic" }
-  \dk.import(type: "github-l2", library: "CommonsBase_FileMagic",
-    version: "0.1.20260820155756",
-    checksum: (blake2b-256: "2c5654de7480b5223aafd1381ffd551f1458905b806b0d968d150e0335ae32a3",
-      sha256: "b4b75a98463ac565675ec3a8d3e7190210e900f848da81177067a36e809f5473",
-      sha1: "f3bd2340e6e6e4e60212c58f1f9d6ba1053de04b"))\;
 
 ## Data flow for building dk0/dk1 from source
 
