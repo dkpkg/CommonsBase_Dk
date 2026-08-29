@@ -1,13 +1,56 @@
-dk.u text eol=lf
-dk0 text eol=lf
-dk1 text eol=lf
-*.c text eol=lf
-*.cpp text eol=lf
-*.h text eol=lf
-*.json text eol=lf
-*.jsonc text eol=lf
-*.sed text eol=lf
-*.sh text eol=lf
-*.u text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
+# Line-ending policy.
+#
+# dk builds are content-addressed: every workspace asset (the dune files, the
+# src/ tree, the opam lock, the *.u scripts) is hashed by its raw bytes and that
+# hash is pinned in dk.u and etc/dk. The hashes are computed with LF endings, so
+# the working tree must check out LF on every platform. Without this file a
+# Windows checkout with core.autocrlf=true rewrites the assets to CRLF and
+# `dk1 run-object` fails asset verification (unexpected SHA256). The Windows
+# launchers (*.cmd/*.bat/*.ps1) must stay CRLF.
+
+# Normalize text in the repository; native endings on checkout unless overridden.
+* text=auto
+
+# Git LFS media.
+*.webp filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+
+# Always LF on checkout: the dk-hashed assets plus OCaml/dune sources.
+dune            text eol=lf
+dune-project    text eol=lf
+dune-workspace  text eol=lf
+*.dune          text eol=lf
+*.ml            text eol=lf
+*.mli           text eol=lf
+*.mll           text eol=lf
+*.mly           text eol=lf
+opam            text eol=lf
+*.opam          text eol=lf
+*.opam.template text eol=lf
+*.json          text eol=lf
+*.jsonc         text eol=lf
+*.u             text eol=lf
+*.t             text eol=lf
+*.sh            text eol=lf
+*.patch         text eol=lf
+*.sexp          text eol=lf
+*.pub           text eol=lf
+*.sec           text eol=lf
+*.sig           text eol=lf
+dk              text eol=lf
+dk0             text eol=lf
+dk1             text eol=lf
+configure       text eol=lf
+Makefile        text eol=lf
+
+# CommonsBase_Dk workspace assets and CI config not covered above.
+*.tsv           text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+
+# Always CRLF on checkout: Windows launchers/scripts.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text working-tree-encoding=UTF-8 eol=crlf
+*.psm1 text working-tree-encoding=UTF-8 eol=crlf
+*.sln  text eol=crlf
