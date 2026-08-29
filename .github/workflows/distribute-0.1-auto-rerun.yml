@@ -18,6 +18,11 @@
 # - run_attempt < 3 => at most 3 attempts total, then humans take over. A
 #   failed rerun attempt re-fires this workflow with run_attempt bumped, so
 #   the loop converges; success/cancelled/skipped conclusions never retry.
+# - Deterministic failures never retry: a distribute leg that fails on
+#   value-id drift uploads a non-empty dk-patches patch in its patches-*
+#   artifact. A rerun rebuilds the identical tree and produces the identical
+#   drift, so when any such patch exists this workflow exits without
+#   rerunning; the fix is reconciling dist/*.u from the patches.
 # - `gh run rerun --failed` restarts only failed jobs; successful matrix
 #   legs keep their artifacts, and the skipped `combine` re-runs as their
 #   dependent on the new attempt.
@@ -45,5 +50,23 @@ jobs:
       - name: Re-run failed jobs of ${{ github.event.workflow_run.name }} run ${{ github.event.workflow_run.id }} (completed attempt ${{ github.event.workflow_run.run_attempt }})
         env:
           GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          REPO: ${{ github.repository }}
         # -R: no checkout in this job, so gh cannot infer the repository.
-        run: gh run rerun ${{ github.event.workflow_run.id }} --failed -R ${{ github.repository }}
+        run: |
+          set -euf
+          # Deterministic-failure gate: a value-id drift failure uploads a
+          # non-empty *.patch inside a patches-* artifact. Retrying rebuilds
+          # the same tree and reproduces the same drift, so skip the rerun.
+          for aid in $(gh api "repos/${REPO}/actions/runs/${RUN_ID}/artifacts?per_page=100" \
+              --jq '.artifacts[] | select(.name | startswith("patches-")) | .id'); do
+            gh api "repos/${REPO}/actions/artifacts/${aid}/zip" > patches.zip
+            rm -rf p && mkdir p && unzip -o -q patches.zip -d p
+            if find p -name '*.patch' -size +0c | grep -q .; then
+              echo "::notice::value-id drift patch found (artifact ${aid});" \
+                "deterministic failure, not rerunning. Reconcile dist/*.u" \
+                "from the patches-* artifacts and push a new tag."
+              exit 0
+            fi
+          done
+          gh run rerun "${RUN_ID}" --failed -R "${REPO}"
