@@ -28,9 +28,9 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
   \dk.import(type: "github-l2", library: "CommonsBase_Build",
     version: "0.1.20260718232516",
-    checksum: (blake2b-256: "df2dc776f330194cadec351ca2c073839c9be760161864c0e9c0220e7268d95d",
-      sha256: "b894642bd11e8571f980c7300d818216e1461245503798d6ce836fe53c7633de",
-      sha1: "4c6eb4b12e6b3d6a6dffdfd3bb51f796b403d418"))\;
+    checksum: (blake2b-256: "cb34eae2806a11382fcc8466c4b083993f34d6854fc49bb2d92f3cf05d201cc0",
+      sha256: "f48d91a5fad0af891c79d2e56d5a9d68f45677d240565099aaf8dd947af591ec",
+      sha1: "abd205268d9a7ca456f22b3425404e0f8ea06dff"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",
@@ -39,12 +39,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "e4e77c1e3e6258358d7fb5c41a9bd9d0d717d4b4c8af3065833135ee83c269d3",
       sha1: "9133968f23bb9bb427393c257f3fdaecbbc09d84"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260828185957" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260830155740" }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260828185957",
-    checksum: (blake2b-256: "3f613c0f9865ae44bbf794074d13658106678a2c06fb06e5b3891675996304e8",
-      sha256: "a2ed4152d89205059819efd3090509f1d2322552305baf9092b68629dbb6bffd",
-      sha1: "5831f4db6062ce052518e4fb218f61dbeb988a5d"))\;
+    version: "0.1.20260830155740",
+    checksum: (blake2b-256: "bcc0a146862e44e621061bb579d634607c8cec345c4a5ab64ab17e48dd575256",
+      sha256: "04338a34a5f525c2ed738afe5962a80fa509f2d81dcdadc15d879c320829fb36",
+      sha1: "a2cf60bb96795bd960fa86b8f33ce1c8395e14c5"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260803042217"  }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",

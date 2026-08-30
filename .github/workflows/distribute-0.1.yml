@@ -24,7 +24,7 @@ jobs:
       - name: Check opam driver freshness
         run: |
           ./dk0 --dangerously-trust-all dialog \
-            CommonsLang_OCaml.Dk.OpamLock.Refresh@1.1.16 mode=check \
+            CommonsLang_OCaml.Dk.OpamLock.Refresh@1.1.20 mode=check \
             'drivers[]=etc/dk/v/CommonsBase_Dk/Dk0.Closure.values.jsonc' \
             'drivers[]=etc/dk/v/CommonsBase_Dk/Dk1.Closure.values.jsonc' \
             'drivers[]=etc/dk/v/CommonsBase_Dk/TestPkg.Closure.values.jsonc'
