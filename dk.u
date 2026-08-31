@@ -204,6 +204,7 @@ the dotted `dk.opam-lock.jsonc` that `TestPkg`'s `impsrclock` names:
 `Refresh` rewrites in place from the stamp, with no lock on disk needed and no
 reformatting drift.
 
-`dist/Linux_x86_64.u` and `dist/Windows_x86_64.u` `get-object` the TestPkg
-object so it is built and published for the gate to import (Darwin slots
-pending the M4 macOS gate).
+`dist/Linux_x86_64.u`, `dist/Windows_x86_64.u`, `dist/Darwin_arm64.u` and
+`dist/Darwin_x86_64.u` `get-object` the TestPkg object so it is built and
+published for the gate to import. The 32-bit cross slots `dist/Linux_x86.u`
+and `dist/Windows_x86.u` do not self-test it yet.
