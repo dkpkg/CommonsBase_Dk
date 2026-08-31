@@ -32,4 +32,4 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Darwin_arm64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Darwin_arm64", value-id: "ouegyfwlow4jg3vsmsnnf7sqnpv2kcmmlrpcdoxfblezzbvnryrta")\;
+  \dk.object(abi: "Release.Darwin_arm64", value-id: "ocrazmvujlf6s2yvhu72zyz5vci6d6uspr7blcn53a2zaz3kpiopq")\;
