@@ -8,7 +8,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Windows_x86 -m ./bin/dk0.exe -f ${RUNTIME}/Windows_x86-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86", value-id: "owbkaxodpdrw5i6jcvdjxdmlrhkfeprqt6x5cism27u6f7zyqk3ya")\;
+  \dk.object(abi: "Release.Windows_x86", value-id: "o7na4zqqxtr2eycvnxyqq27l4czatozb7boxp7vnapxfiaj5dte4q")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
@@ -20,7 +20,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Windows_x86 -m ./bin/dk1.exe -f ${RUNTIME}/Windows_x86-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86", value-id: "onogproacjfhi73u2opeyc2t3pk454bixb24fubqd4szore7i5cjq")\;
+  \dk.object(abi: "Release.Windows_x86", value-id: "oqug4srqx35wibzfv5wkk6tgitgqds6lmb77qt23azxb4b27yey2q")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
@@ -32,8 +32,8 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Windows_x86 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86", value-id: "o0000000000000000000000000000000000000000000000000000")\;
+  \dk.object(abi: "Release.Windows_x86", value-id: "odsfcxwzdgsfid3mbsrmyegldyf7dm26ydd4pzklb5u2akla7weaq")\;
 
   $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Windows_x86 -m ./prefix.zip -d ./testpkg-built
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86", value-id: "o0000000000000000000000000000000000000000000000000000")\;
+  \dk.object(abi: "Release.Windows_x86", value-id: "o3z3vehoz242z6cb6ll6pczyms6wwtvmsox6qe5jljcbhbjgad3bq")\;

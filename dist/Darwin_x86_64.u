@@ -8,7 +8,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.Darwin_x86_64 -m ./bin/dk0.exe -f ${RUNTIME}/Darwin_x86_64-dk0.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "o4ax473iqbdv4aoek3mmuk4ykn2ofvodglpy6cqekkusg7l7cjp4q")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "om5yekdsfba7oplvceaphvzdx4dfxtftvwzgpyium5bsbbx3uu5aq")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk0@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk0.exe
@@ -20,7 +20,7 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.Darwin_x86_64 -m ./bin/dk1.exe -f ${RUNTIME}/Darwin_x86_64-dk1.exe
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ol5ne457q7ipjsvx6ukcs6sqt3hyyvu26nhfd3op2ijsomzlk5f2a")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ok5ivaeichsfovyxkqy2bpyqenn3fvto2533qlcixx47wr3qac27a")\;
 
   $ run-object CommonsBase_FileMagic.File@7.8.50407 -s Release.execution_abi -m ./bin/file.exe -e bin/file.exe --
   >   -b $(get-object CommonsBase_Dk.Dk1@2.4.3 -s Release.target_abi -d : -e file.exe)/bin/dk1.exe
@@ -32,8 +32,8 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Darwin_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "oijxgjdi7al3eraeaw6xmnqxwssqrw36msuuav6sxiicbcqnyfv7a")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "ojwjzmceniuus6266wxf6bzoq4y4nzwrzhco3zubji235oeekcywa")\;
 
   $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Darwin_x86_64 -m ./prefix.zip -d ./testpkg-built
   \test(pass)
-  \dk.object(abi: "Release.Darwin_x86_64", value-id: "o0000000000000000000000000000000000000000000000000000")\;
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "o6scq6o7fdyj3xx2ctr34m22yrhh7pyrdd5vrxsoh5dih3b4qy2bq")\;
