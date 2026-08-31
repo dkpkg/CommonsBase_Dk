@@ -49,6 +49,12 @@ jobs:
           - runs-on: ubuntu-latest
             image: quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5
             distscript: dist/Linux_x86.u
+            # Pass BOTH ABIs on a cross leg, matching Darwin_x86_64 below.
+            # With target-abi alone the launcher takes the
+            # context_with_target_abi path, where the target ABI reaches the
+            # build but not the same way an explicit pair does; stating both
+            # keeps every cross leg on one code path.
+            execution-abi: Linux_x86_64
             target-abi: Linux_x86
           - runs-on: ubuntu-latest
             image: quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5
@@ -82,6 +88,8 @@ jobs:
             target-abi: Darwin_x86_64
           - runs-on: windows-latest
             distscript: dist/Windows_x86.u
+            # Pass BOTH ABIs on a cross leg (see dist/Linux_x86.u above).
+            execution-abi: Windows_x86_64
             target-abi: Windows_x86
           - runs-on: windows-latest
             distscript: dist/Windows_x86_64.u
@@ -190,11 +198,11 @@ jobs:
             # treats the `--zip` word as a missing executable and fails the
             # distribute with `command not found: .../--zip` (bumped up from
             # 2.4.2.322 for exactly that reason).
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.342
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.9
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.342
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.9
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
@@ -350,8 +358,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.342
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.2.342
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.9
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.9
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].

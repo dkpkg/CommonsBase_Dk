@@ -27,3 +27,13 @@ republished as a single native executable.
   \test(pass)
   \dk.target(abi: "Linux_x86")[ELF 32-bit LSB executable, Intel i386, version 1 (SYSV)
   ]\;
+
+## TestPkg (with-test external closure, imported by the MlFront test gate)
+
+  $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Linux_x86 -m ./prefix.zip -d ./testpkg
+  \test(pass)
+  \dk.object(abi: "Release.Linux_x86", value-id: "o0000000000000000000000000000000000000000000000000000")\;
+
+  $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Linux_x86 -m ./prefix.zip -d ./testpkg-built
+  \test(pass)
+  \dk.object(abi: "Release.Linux_x86", value-id: "o0000000000000000000000000000000000000000000000000000")\;

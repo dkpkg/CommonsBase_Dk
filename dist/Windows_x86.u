@@ -27,3 +27,13 @@ republished as a single native executable.
   \test(pass)
   \dk.target(abi: "Windows_x86")[PE32 executable for MS Windows 6.00 (console),, 5 sections
   ]\;
+
+## TestPkg (with-test external closure, imported by the MlFront test gate)
+
+  $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Windows_x86 -m ./prefix.zip -d ./testpkg
+  \test(pass)
+  \dk.object(abi: "Release.Windows_x86", value-id: "o0000000000000000000000000000000000000000000000000000")\;
+
+  $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Windows_x86 -m ./prefix.zip -d ./testpkg-built
+  \test(pass)
+  \dk.object(abi: "Release.Windows_x86", value-id: "o0000000000000000000000000000000000000000000000000000")\;
