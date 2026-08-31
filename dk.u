@@ -14,7 +14,7 @@ install prefix as `bin/dk0.exe`. `Dk1` is wired to build the multi-threaded
 Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 
 ## Workspace
-  %% actual_version("2.4.2.342")
+  %% actual_version("2.4.3.9")
   'actual_version'
   '2.4.2.342'
 
