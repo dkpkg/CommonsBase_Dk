@@ -13,7 +13,7 @@
   "schema_version": { "major": 1, "minor": 0 },
   "generated": {
     "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.20",
-    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.26",
+    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.27",
     "lock": "dk-opam-lock.jsonc",
     "lock-sha256": "926a5fcb7426957c89877652263885843389cb1e53d1f6a6ec8769732ee53484",
     "localsrc": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.3",
@@ -30,7 +30,7 @@
       "precommands": {
         "sequential": false,
         "private": [
-          "run-function CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.26 -d built modver=CommonsBase_Dk.Dk0.Closure.Built@2.4.3 pkgpath=CommonsBase_Dk.Dk0 version=2.4.3 root=DkZero_Exec localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc targetabi=Release.target_abi ocaml=CommonsLang_OCaml.DkML@4.14.3"
+          "run-function CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.27 -d built modver=CommonsBase_Dk.Dk0.Closure.Built@2.4.3 pkgpath=CommonsBase_Dk.Dk0 version=2.4.3 root=DkZero_Exec localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc targetabi=Release.target_abi ocaml=CommonsLang_OCaml.DkML@4.14.3"
         ]
       },
       "function": {
