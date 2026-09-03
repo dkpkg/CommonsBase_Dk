@@ -19,10 +19,13 @@
 #   failed rerun attempt re-fires this workflow with run_attempt bumped, so
 #   the loop converges; success/cancelled/skipped conclusions never retry.
 # - Deterministic failures never retry: a distribute leg that fails on
-#   value-id drift uploads a non-empty dk-patches patch in its patches-*
-#   artifact. A rerun rebuilds the identical tree and produces the identical
+#   value-id drift uploads a dk-patches patch whose ADDED lines carry a new
+#   value-id. A rerun rebuilds the identical tree and produces the identical
 #   drift, so when any such patch exists this workflow exits without
-#   rerunning; the fix is reconciling dist/*.u from the patches.
+#   rerunning; the fix is reconciling dist/*.u from the patches. A patch that
+#   is merely non-empty does not qualify: a crashed leg writes its error
+#   transcript into the same diff, which is how run 33648774264 was denied
+#   the retry this workflow exists to perform.
 # - `gh run rerun --failed` restarts only failed jobs; successful matrix
 #   legs keep their artifacts, and the skipped `combine` re-runs as their
 #   dependent on the new attempt.
@@ -56,13 +59,31 @@ jobs:
         run: |
           set -euf
           # Deterministic-failure gate: a value-id drift failure uploads a
-          # non-empty *.patch inside a patches-* artifact. Retrying rebuilds
+          # patch whose ADDED lines carry a new value-id. Retrying rebuilds
           # the same tree and reproduces the same drift, so skip the rerun.
+          #
+          # Non-emptiness is NOT that signal, and testing for it was a bug.
+          # The patch is the `distribute --diff` transcript, so a leg that
+          # CRASHES writes its error text where a passing test line was
+          # expected, and leaves a non-empty patch carrying no value-id change
+          # at all. The size test therefore declined to retry an Apple clang
+          # linker SIGSEGV twice on run 33648774264: the failing leg patches
+          # were 1673 and 1819 bytes with no value-id line in either, every
+          # passing leg left 0 bytes, and all three attempts of that release
+          # were started by a human. The retry this file exists to perform
+          # has never fired on the crash class it names at the top.
+          #
+          # The asymmetry decides which way the test points. Declining on a
+          # crash costs a person three manual reruns and blocks a release.
+          # Retrying a real drift costs at most two more runs, changes
+          # nothing, and is still bounded by run_attempt < 3, with the drift
+          # patch uploaded either way. So retry unless a POSITIVE drift
+          # signal is present, rather than unless a crash can be ruled out.
           for aid in $(gh api "repos/${REPO}/actions/runs/${RUN_ID}/artifacts?per_page=100" \
               --jq '.artifacts[] | select(.name | startswith("patches-")) | .id'); do
             gh api "repos/${REPO}/actions/artifacts/${aid}/zip" > patches.zip
             rm -rf p && mkdir p && unzip -o -q patches.zip -d p
-            if find p -name '*.patch' -size +0c | grep -q .; then
+            if find p -name '*.patch' -size +0c -exec grep -lE '^[+].*value-id:' {} + | grep -q .; then
               echo "::notice::value-id drift patch found (artifact ${aid});" \
                 "deterministic failure, not rerunning. Reconcile dist/*.u" \
                 "from the patches-* artifacts and push a new tag."
