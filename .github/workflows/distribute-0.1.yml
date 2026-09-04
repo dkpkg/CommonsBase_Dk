@@ -282,17 +282,47 @@ jobs:
             xcodebuild -version 2>/dev/null
             xcode-select -p 2>/dev/null
           } > "$staging/env.txt" || true
+          # WHY THIS RECORDS ITS OWN FAILURES. On 2026-09-04 a crashed leg and a
+          # SUCCESSFUL leg both uploaded byte-identical 330-byte artifacts holding
+          # only env.txt, so an inert step was indistinguishable from a working one.
+          # Every path below was already 2>/dev/null or || true, including the
+          # sudo -n the whole search depends on, so "collected nothing" and "could
+          # not look" produced the same artifact. Each probe now writes what it
+          # found, INCLUDING zero, and those counts are the evidence.
+          if sudo -n true 2>/dev/null; then
+            echo "sudo_n=ok" >> "$staging/env.txt"
+          else
+            echo "sudo_n=DENIED (the /var/folders search below cannot run)" >> "$staging/env.txt"
+          fi
           # Apple crash reports for any crashed clang/ld child (small, safe).
+          # BOTH locations: a child reaped by the system can land its report in
+          # the system-wide directory rather than under the runner user home.
           mkdir -p "$staging/DiagnosticReports"
-          cp -R "$HOME/Library/Logs/DiagnosticReports/." "$staging/DiagnosticReports/" 2>/dev/null || true
+          for dr in "$HOME/Library/Logs/DiagnosticReports" /Library/Logs/DiagnosticReports; do
+            if [ -d "$dr" ]; then
+              n=$(ls -1 "$dr" 2>/dev/null | wc -l | tr -d " ")
+              echo "diagnostic_reports $dr = ${n} entries" >> "$staging/env.txt"
+              cp -R "$dr/." "$staging/DiagnosticReports/" 2>/dev/null || true
+            else
+              echo "diagnostic_reports $dr = ABSENT" >> "$staging/env.txt"
+            fi
+          done
+          # An empty directory is not uploaded, so the artifact would silently lose
+          # the fact that we looked. Leave a marker that says so in words.
+          if [ -z "$(ls -A "$staging/DiagnosticReports" 2>/dev/null)" ]; then
+            echo "no Apple crash report in either location at capture time" > "$staging/DiagnosticReports/NONE-FOUND.txt"
+          fi
           # Linker crash snapshots + dune temp dirs. Search both this step's
           # $TMPDIR and all of /var/folders (the build may run under a
           # different per-sandbox TMPDIR; the observed snapshot was
           # /var/folders/.../T/build_XXXXXX_dune/linker-crash-XXXXXX).
           i=0
+          candidates="$staging/.candidates"
           sudo -n find "${TMPDIR:-/tmp}" /var/folders \
               -type d \( -name 'linker-crash-*' -o -name 'build_*_dune' \) \
-              -print 2>/dev/null | sort -u | while IFS= read -r d; do
+              -print 2>/dev/null | sort -u > "$candidates" || true
+          echo "tmpdir_candidates=$(wc -l < "$candidates" | tr -d " ")" >> "$staging/env.txt"
+          while IFS= read -r d; do
             sz=$(sudo -n du -sm "$d" 2>/dev/null | cut -f1)
             if [ "${sz:-0}" -gt 1024 ]; then
               echo "SKIPPED (>1GiB): $d (${sz} MiB)" >> "$staging/env.txt"
@@ -302,7 +332,8 @@ jobs:
             dest="$staging/$(printf '%02d' "$i")-$(basename "$d")"
             sudo -n cp -R "$d" "$dest" 2>/dev/null || true
             echo "captured: $d (${sz:-?} MiB)" >> "$staging/env.txt"
-          done
+          done < "$candidates"
+          rm -f "$candidates"
           sudo -n chown -R "$(id -u):$(id -g)" "$staging" || true
           du -sh "$staging" || true
       - name: Upload macOS crash diagnostics
