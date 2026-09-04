@@ -198,11 +198,11 @@ jobs:
             # treats the `--zip` word as a missing executable and fails the
             # distribute with `command not found: .../--zip` (bumped up from
             # 2.4.2.322 for exactly that reason).
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.10
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.11
             # The dk1 orchestrator's launcher reads DK1_BASE_URL, not
             # DK0_BASE_URL; same signed manifest (it carries the dk1 binaries
             # too). Keep both pins in lockstep.
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.10
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.11
         with:
             pubkey: ${{ secrets.distribute_0_1_pubkey }}
             seckey: ${{ secrets.distribute_0_1_seckey }}
@@ -358,8 +358,8 @@ jobs:
             # Same permanent driver pin as the distribute jobs above; bump
             # both together when adopting a new driver release. DK1_BASE_URL
             # is the dk1 orchestrator's launcher pin; keep in lockstep.
-            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.10
-            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.10
+            DK0_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.11
+            DK1_BASE_URL: https://gitlab.com/api/v4/projects/60486861/packages/generic/dk-dist/2.4.3.11
 
       # ---- Code-sign the flat dk0/dk1 executables BEFORE Attest + Release ----
       # publish-objects (in the distribute jobs) staged dk-dist/dk{0,1}-<abi>[.exe].
