@@ -32,8 +32,8 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Darwin_arm64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Darwin_arm64", value-id: "oqbodrbqrpzpshmw43ecpdyseggdxqeiie2j33kxlsolmk4sh5suq")\;
+  \dk.object(abi: "Release.Darwin_arm64", value-id: "o2gfpubcmsqsus7tum6ynvgbadofdcwhp4rbtefq6lruhqshj2ndq")\;
 
   $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Darwin_arm64 -m ./prefix.zip -d ./testpkg-built
   \test(pass)
-  \dk.object(abi: "Release.Darwin_arm64", value-id: "ozh6ek6djrifbnlhkxng4rb765522fcpw2ewywwfphrwdsu2flfca")\;
+  \dk.object(abi: "Release.Darwin_arm64", value-id: "otltt63y4ukj34y4mst4p5yhkeoscicekwdmzkawxlkqlmph5zacq")\;
