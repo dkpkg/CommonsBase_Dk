@@ -39,12 +39,12 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
       sha256: "9500243faab7e00ea8c604e4b6ace72f8784587fcee453f3959304934d37c5d1",
       sha1: "8da7deb3ace3080c5954958318bf1a91b16f2fb0"))\;
 
-  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260913085659" }
+  %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260915013223" }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260913085659",
-    checksum: (blake2b-256: "5a54f847c012fa0c9a87d097f137574f4543537a81c677d8e5a6cae089519a62",
-      sha256: "fca7b08779ba95e448d309ed5b8741c9b3a30123b563d38a08b08b219ef4112f",
-      sha1: "8091872bc4dc42c5c454ebd615a3de0570e11938"))\;
+    version: "0.1.20260915013223",
+    checksum: (blake2b-256: "7b858249a2b259e6c89780065dd79d1df4b62c483d4a220a2f88b693413e5006",
+      sha256: "f474cfb0433fd6bc55ff81e4a8d780173ccff029ae6c37579cfc4e45a1f57978",
+      sha1: "1149213ba1f706da36d3c07a89873e9c476ad351"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260913085659"  }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",
