@@ -7,15 +7,15 @@
 // `dk-opam-lock.jsonc`. Regenerate (do not hand-edit) when the lock changes.
 //
 // Regenerate with:
-//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.21 pkg=CommonsBase_Dk.Dk1@2.4.3 localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 lock=dk-opam-lock.jsonc roots[]=DkOne_Exec
+//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.22 pkg=CommonsBase_Dk.Dk1@2.4.3 localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 lock=dk-opam-lock.jsonc roots[]=DkOne_Exec
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "generated": {
-    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.21",
-    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.28",
+    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.22",
+    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.29",
     "lock": "dk-opam-lock.jsonc",
-    "lock-sha256": "b07527e5ec3c9710546549dba32d93491354c95c136bd70ca40b2fb47d13648e",
+    "lock-sha256": "c2dea9a25b28af5690dd4db95813621bd3870bb978a5997b48b27497b85eaec7",
     "localsrc": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.3",
     "locksrcpath": "./dk-opam-lock.jsonc",
     "roots": ["DkOne_Exec"],
@@ -30,7 +30,7 @@
       "precommands": {
         "sequential": false,
         "private": [
-          "run-function CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.28 -d built modver=CommonsBase_Dk.Dk1.Closure.Built@2.4.3 pkgpath=CommonsBase_Dk.Dk1 version=2.4.3 root=DkOne_Exec localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc targetabi=Release.target_abi ocaml=CommonsLang_OCaml.DkML@4.14.3"
+          "run-function CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.29 -d built modver=CommonsBase_Dk.Dk1.Closure.Built@2.4.3 pkgpath=CommonsBase_Dk.Dk1 version=2.4.3 root=DkOne_Exec localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc targetabi=Release.target_abi ocaml=CommonsLang_OCaml.DkML@4.14.3001"
         ]
       },
       "function": {
