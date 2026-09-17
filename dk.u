@@ -20,45 +20,45 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Std" }
   \dk.import(type: "github-l2", library: "CommonsBase_Std",
-    version: "2.6.20260913085659",
-    checksum: (blake2b-256: "8d601ad9945d5aae4afaa980e922f6d7bcb32a4effd0e3c12d03bf6c3b98839d",
-      sha256: "25224920a4b704b3693afe5343ce05c5cd2c0d9e19ce1641511707fb5af59887",
-      sha1: "f7dab451a2d2860aff9bdff09530b6de464255aa"))\;
+    version: "2.6.20260916234322",
+    checksum: (blake2b-256: "3a079f7fa7b3d8905185e9d6bf3ee7ddc07a467def1557a876084698ff1a4e70",
+      sha256: "eafd48ee3331a4be2fee20055a7d2f88c33b53989c2dcc7f9a6b5ac51349f250",
+      sha1: "4d68e449c8cdd5b3523b273cd3b59e45522a2ff5"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_Build" }
   \dk.import(type: "github-l2", library: "CommonsBase_Build",
-    version: "0.1.20260913085659",
-    checksum: (blake2b-256: "7f290d571c63df8c4972e9328e71a4cf7e1f02c5c7b1b956f1f6c32e93e97495",
-      sha256: "12b5a47d353d5abe52580ec47ff3c309107aee4594e6d52544a76b447216ed65",
-      sha1: "6886c41d776e257618b99b96e8425ac21d271a26"))\;
+    version: "0.1.20260916234322",
+    checksum: (blake2b-256: "1dad87e4885157bbfb6627e7cbb28a3436fd101cbbe0e10845c523f89cf061a5",
+      sha256: "4843aa52a49cc9c02574562407e196893c8f786a62674574de028b86b6fac751",
+      sha1: "a5412d092452a5891a3caab85ec72419116ebccd"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU" }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",
-    version: "0.1.20260913085659",
-    checksum: (blake2b-256: "eb84d4746b5c75ba21283c0b54f2cec8581d99185bfce016972198e1facfcf34",
-      sha256: "9500243faab7e00ea8c604e4b6ace72f8784587fcee453f3959304934d37c5d1",
-      sha1: "8da7deb3ace3080c5954958318bf1a91b16f2fb0"))\;
+    version: "0.1.20260916234322",
+    checksum: (blake2b-256: "a40c0a7f48bbb57dd40dc655f18de4eb135d141ec9b10e5976b638bb4d5d3fba",
+      sha256: "b244854bfcba1585234befef8d966f5fce276df458829850d926c2d5869beb34",
+      sha1: "5c6240dad1b0e87be4e917e5be03d05f95d41fb8"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsLang_OCaml", tag="0.1.20260916234322" }
   \dk.import(type: "github-l2", library: "CommonsLang_OCaml",
-    version: "0.1.20260916151007",
-    checksum: (blake2b-256: "cfae0663eefcfa73108e6501c42ba74e6b3cbae0238b01d342a23973d9dc5c13",
-      sha256: "eec79d51d9e8906d861310f9d9fb04a251e0208caf6cae46f8e6ded13a498132",
-      sha1: "17aac12d207f6e303c5c356144fd08a4004eada4"))\;
+    version: "0.1.20260916234322",
+    checksum: (blake2b-256: "27a0e0c83a4a55920a29bdaadc25ea54848763848bfff6ec46b356d3a4083177",
+      sha256: "bbd0879f0808f8fbe230df44ba1d9a9804ce6773eb8ecda93af47d1a765a00e3",
+      sha1: "57cf71bb137c5b76d20ff449bb455aee69ba7b7e"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_GNU", tag="0.1.20260916234322"  }
   \dk.import(type: "github-l2", library: "CommonsBase_GNU",
-    version: "0.1.20260913085659",
-    checksum: (blake2b-256: "eb84d4746b5c75ba21283c0b54f2cec8581d99185bfce016972198e1facfcf34",
-      sha256: "9500243faab7e00ea8c604e4b6ace72f8784587fcee453f3959304934d37c5d1",
-      sha1: "8da7deb3ace3080c5954958318bf1a91b16f2fb0"))\;
+    version: "0.1.20260916234322",
+    checksum: (blake2b-256: "a40c0a7f48bbb57dd40dc655f18de4eb135d141ec9b10e5976b638bb4d5d3fba",
+      sha256: "b244854bfcba1585234befef8d966f5fce276df458829850d926c2d5869beb34",
+      sha1: "5c6240dad1b0e87be4e917e5be03d05f95d41fb8"))\;
 
   %% import { type="github-l2", repo="dkpkg/CommonsBase_FileMagic" }
   \dk.import(type: "github-l2", library: "CommonsBase_FileMagic",
-    version: "0.1.20260913085659",
-    checksum: (blake2b-256: "8ade258eab5b54a7f177a84e7d3615a30d59a1bcdb778a5692cd1d8d82563b45",
-      sha256: "ac662bb7e78faddf667b007df133157d9f588fb635e5edbfdccc830a8823abdb",
-      sha1: "01899d41f833c8d175bf39a013ca53a45dffe7b1"))\;
+    version: "0.1.20260916234322",
+    checksum: (blake2b-256: "dbca3f947cbc720f20bfc0f1d520c2068cdea898bae1f26eafdc93d85e69e159",
+      sha256: "bdd8c70111bffdd6666e7dc2ff74bd92ce62faa64b2542fe217f321094a1c668",
+      sha1: "db4053da29323abc1ded5057ba409ad02f0687e6"))\;
 
 ## Assets
 
