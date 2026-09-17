@@ -6,12 +6,12 @@
 // hand-edit) when the exe set changes.
 //
 // Regenerate with:
-//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateFinal@1.1.16 pkg=CommonsBase_Dk.Dk1@2.4.3
+//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateFinal@1.1.22 pkg=CommonsBase_Dk.Dk1@2.4.3
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "generated": {
-    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateFinal@1.1.16",
+    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateFinal@1.1.22",
     "pkg": "CommonsBase_Dk.Dk1@2.4.3",
     "exes": ["dk1"]
   },
