@@ -43,9 +43,11 @@ jobs:
             #   docker run -v .:/work --workdir /work -it ubuntu:24.04 bash -c "apt update && apt install -y curl build-essential && sh ./dk0 distribute --actual-in-place --library CommonsBase_Dk@0.1.99 part1 dist/any.u"
             #   docker run -v .:/work --workdir /work -it quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5 sh ./dk0 distribute --actual-in-place --library CommonsBase_Dk@0.1.99 part1 dist/any.u
           # Linux builds run in the manylinux glibc 2.28 container (matches
-          # CommonsLang_OCaml): the DkML compiler was built there and its
-          # ocamlopt hardcodes gcc-toolset-14's assembler, absent on a plain
-          # ubuntu-latest runner.
+          # CommonsLang_OCaml): the DkML compiler was built against glibc 2.28,
+          # so the toolchain needs that floor. Its ocamlopt resolves the
+          # assembler from PATH, not a baked-in path (CommonsLang_OCaml
+          # glibc-compiler-env-to-ocaml-configure-env.sh:34-37,67); a plain
+          # ubuntu-latest runner is wrong for the glibc floor, not a missing as.
           - runs-on: ubuntu-latest
             image: quay.io/pypa/manylinux_2_28_x86_64:2026.04.08-5
             distscript: dist/Linux_x86.u
