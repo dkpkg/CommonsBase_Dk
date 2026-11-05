@@ -87,6 +87,8 @@ a *previous* release of dk0/dk1 that runs this build.
 
 {% mermaid %}
 flowchart TB
+  accTitle: Data flow for building dk0 and dk1 from source
+  accDescr: A signed MlFront git tag on GitLab is published as a source zip. CommonsBase_Dk pins that zip by URL and SHA-256, builds dk0 and dk1 for each platform, signs the Windows and macOS programs and publishes a GitHub release. A manual MlFront pipeline verifies the release and writes the signed dk-dist manifest that the install scripts check. The dk0 and dk1 that this manifest names then run the build of the next release.
   subgraph GL["MlFront GitLab (dkml/build-tools/MlFront tag pipeline)"]
     T["git tag V4, gitsign-signed"] --> PS["publish-source: gitsign verify, then ci/publish-source-zip.sh"]
     PS --> Z[("mlfront-source/V4/MlFront-V4.zip: V4 encoded in the top directory name")]
