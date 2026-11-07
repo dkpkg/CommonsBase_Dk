@@ -112,7 +112,11 @@ jobs:
 
       - name: Prepare Linux_x86 multilib toolchain
         if: ${{ matrix.distscript == 'dist/Linux_x86.u' }}
-        run: dnf install -y glibc-devel.i686 libgcc.i686 libstdc++.i686 gcc-toolset-14-libstdc++-devel.i686
+        # Upgrade the image's x86_64 libstdc++ first: multilib refuses an i686 libstdc++
+        # from the mirror that is newer than the x86_64 one the pinned image ships.
+        run: |
+          dnf upgrade -y libstdc++
+          dnf install -y glibc-devel.i686 libgcc.i686 libstdc++.i686 gcc-toolset-14-libstdc++-devel.i686
 
       # Derive the `sbom self` build identity for the flat dk0/dk1 from the same
       # pinned MlFront source this job builds. The repin step is the single
@@ -434,6 +438,8 @@ jobs:
           #    endpoint / account / certificate profile MlFront's sign CLI used.
           curl -fsSL -o "$RUNNER_TEMP/jsign.jar" \
             https://github.com/ebourg/jsign/releases/download/7.5/jsign-7.5.jar
+          #    Pin the jar: it runs with the signing credentials (W66 review).
+          echo "602a51c3545a6dc4fb99bd2ea7152b26d1345916d0c93ddfbd5936cb735af91c  $RUNNER_TEMP/jsign.jar" | sha256sum -c -
           for f in dk-dist/dk0-windows_x86_64.exe dk-dist/dk1-windows_x86_64.exe; do
             [ -f "$f" ] || continue
             java -jar "$RUNNER_TEMP/jsign.jar" \
