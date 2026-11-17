@@ -85,11 +85,13 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 -- the copy inside MlFrontSource. It is MlFront's with-test lock with the
 -- launch-only local packages removed: each kept package that depended on one
 -- now lists that package's own dependencies, so the same external packages
--- stay reachable. At the next normal repin, LockSrc goes back to
--- MlFrontSource and this asset is deleted.
+-- stay reachable. Its kdf is 1.1.2+dk1, the jonahbeckford/kdf branch
+-- fix/msvc-c-flags, because kdf 1.1.2 does not compile with MSVC. At the
+-- next normal repin, LockSrc goes back to MlFrontSource and this asset is
+-- deleted.
 
   % unified.asset { name="Lock", file="assets/testpkg/dk-opam-lock-test.jsonc" }
-  \dk.asset(byteSize: "169718", checksum: (sha256: "33e44aee56e681640f65b1796da02079baefcbc53e4ee3051d3820be1917ffed"))\;
+  \dk.asset(byteSize: "169778", checksum: (sha256: "057f2775a8f3889bc5a8a89d020418ce2c21566ba37ede3757a6a2054f0b709d"))\;
 
 ## Data flow for building dk0/dk1 from source
 

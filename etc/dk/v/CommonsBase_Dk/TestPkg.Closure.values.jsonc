@@ -15,7 +15,7 @@
     "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.23",
     "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.31",
     "lock": "dk-opam-lock-test.jsonc",
-    "lock-sha256": "33e44aee56e681640f65b1796da02079baefcbc53e4ee3051d3820be1917ffed",
+    "lock-sha256": "057f2775a8f3889bc5a8a89d020418ce2c21566ba37ede3757a6a2054f0b709d",
     "localsrc": "CommonsBase_Dk.TestPkg.LockSrc@2.4.3",
     "locksrcpath": "./dk-opam-lock-test.jsonc",
     "roots": ["DkZero_Exec", "DkOne_Exec", "DkZero_ExecCore", "DkZero_Base", "DkZero_RuntimeC", "DkOne_RuntimeC", "DkZero_Web", "UnifiedScript_Std", "UnifiedScript_Top", "MlFront_Core", "MlFront_Cache", "MlFront_Codept", "MlFront_Config", "MlFront_Console", "MlFront_Errors", "MlFront_Logs", "MlFront_Lua", "MlFront_Manip", "MlFront_Progress", "MlFront_ProgressPeriod", "MlFront_ProgressZig", "MlFront_Signify", "MlFront_Thunk", "MlFront_Tools", "MlFront_ZipFile"],

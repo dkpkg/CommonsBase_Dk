@@ -1709,7 +1709,7 @@
       },
       "version": "v0.16.0"
     },
-    "kdf.1.1.2": {
+    "kdf.1.1.2+dk1": {
       "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
@@ -1721,15 +1721,15 @@
       "install": null,
       "name": "kdf",
       "source": {
-        "archive": "tbz",
+        "archive": "tgz",
         "checksums": [
-          "sha256=a327e1daab2d367d75b2fba85f5e827886295225f94c09e68e24a2e2a7508100",
-          "sha512=1f644f6a3dc734d981e1867ad6b5662c0d5e10b71b02029f7998cb54aaf037f2e03e9b5f1562e98862ba3d492d5b78b898d126fab46ed030653adbb43ff509dd"
+          "sha256=75ee57b1c74544065c5fd9dd221d3f5917bc5306a9a35146c6698c62abb7111e",
+          "sha512=772f1128c418fe785cf1dec5c80ad67726ceb6da0d2272a51a8f94872d13c49a85ed5e76212df836c236c5231534bc8fb8521419a2f611100609855774244ef8"
         ],
-        "size": 12301,
-        "url": "https://github.com/robur-coop/kdf/releases/download/v1.1.2/kdf-1.1.2.tbz"
+        "size": 12913,
+        "url": "https://github.com/jonahbeckford/kdf/archive/7e4ac4faf67db7d70f6a0907280ffaf9147d7be4.tar.gz"
       },
-      "version": "1.1.2"
+      "version": "1.1.2+dk1"
     },
     "logs.0.7.0": {
       "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--pinned\"\r\n\"%{pinned}%\"\r\n\"--with-js_of_ocaml\"\r\n\"%{js_of_ocaml:installed}%\"\r\n\"--with-fmt\"\r\n\"%{fmt:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"\r\n\"--with-lwt\"\r\n\"%{lwt:installed}%\"\r\n\"--with-base-threads\"\r\n\"%{base-threads:installed}%\"",
@@ -3286,7 +3286,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -3434,7 +3434,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -3582,7 +3582,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -3730,7 +3730,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -3878,7 +3878,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -4026,7 +4026,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -4178,7 +4178,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
@@ -4334,7 +4334,7 @@
         "js_of_ocaml.6.2.0",
         "jsonm.1.0.2",
         "jst-config.v0.16.0",
-        "kdf.1.1.2",
+        "kdf.1.1.2+dk1",
         "logs.0.7.0",
         "lwt.5.9.1",
         "macaddr.5.6.2",
