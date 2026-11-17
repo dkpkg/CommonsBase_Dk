@@ -32,8 +32,8 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Windows_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86_64", value-id: "okbe57lspsylpd4r6pv3guzcabyd7e67dgoomcn5myjd4eqacxy4q")\;
+  \dk.object(abi: "Release.Windows_x86_64", value-id: "oruegrmhusqcgbcqt4tcce7lfhiesoaqyjxnekwrcxsurvjk2d4oq")\;
 
   $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Windows_x86_64 -m ./prefix.zip -d ./testpkg-built
   \test(pass)
-  \dk.object(abi: "Release.Windows_x86_64", value-id: "ot3oaz4klmnpi5owcz5t7qofidsy7iqquhcvxaivwsdtlsjrgpc4q")\;
+  \dk.object(abi: "Release.Windows_x86_64", value-id: "olauw6rdomyafhudq3or7dp7pctwt55ilfw43z3e5a5na6auuoyuq")\;
