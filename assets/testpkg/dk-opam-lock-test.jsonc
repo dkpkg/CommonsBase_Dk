@@ -1905,7 +1905,7 @@
       "source": null,
       "version": "1.0.1"
     },
-    "mirage-crypto-ec.2.4.1": {
+    "mirage-crypto-ec.2.4.1+dk1": {
       "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "dune",
@@ -1919,15 +1919,15 @@
       "install": null,
       "name": "mirage-crypto-ec",
       "source": {
-        "archive": "tbz",
+        "archive": "tgz",
         "checksums": [
-          "sha256=332886c365c6035077e3ce676a63da8f7500c15a1628b3c07e139b0e551f1f6f",
-          "sha512=cb8f4de93241cde0582bcd0283766c681a02dbcb9f3b4786eb0656c651f42ba2db467ff63bff79c5eacfd410e410d77dc31bfc51049c39e1e86685ec0a884c1f"
+          "sha256=2b09b013f01b5770759f4092330e26d6d3bcccfa259c134d51723dfdab4adf36",
+          "sha512=7fd59def7b075b2153a9f4b8f10cc8e04fc3b63d1be6c8ccc9e5bca6c21acadad014f0007fcc3a46e26cb39d4f0ca30710d8c6be7e23a7ace62bb86da3250259"
         ],
-        "size": 2785343,
-        "url": "https://github.com/mirage/mirage-crypto/releases/download/v2.4.1/mirage-crypto-2.4.1.tbz"
+        "size": 3431565,
+        "url": "https://github.com/jonahbeckford/mirage-crypto/archive/b6e9a05f483570b5cdd3efa989a41929f5ea08f9.tar.gz"
       },
-      "version": "2.4.1"
+      "version": "2.4.1+dk1"
     },
     "mirage-crypto-pk-nogmp.2.0.2": {
       "build": "\"dune\" \"build\" \"-p\" name \"-j\" jobs",
@@ -3294,7 +3294,7 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -3442,7 +3442,7 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -3590,7 +3590,7 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -3738,7 +3738,7 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -3886,7 +3886,7 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -4034,7 +4034,7 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -4187,7 +4187,7 @@
         "menhirLib.20231231",
         "menhirSdk.20231231",
         "mingw-w64-shims.1.0.1",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
@@ -4343,7 +4343,7 @@
         "menhirLib.20231231",
         "menhirSdk.20231231",
         "mingw-w64-shims.1.0.1",
-        "mirage-crypto-ec.2.4.1",
+        "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
