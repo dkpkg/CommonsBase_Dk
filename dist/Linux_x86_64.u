@@ -32,8 +32,8 @@ republished as a single native executable.
 
   $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.4 -s Release.Linux_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64", value-id: "o42sfscnwkwsazcfyftnrinad66siecquk44qysm3aotiy5wah24a")\;
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "o3vgabob5yrke4rhgfkahuhbd3u3twqb4zajjfcv3akvual6q33sq")\;
 
   $ get-object CommonsBase_Dk.TestPkg.Closure.Built@2.4.3 -s Release.Linux_x86_64 -m ./prefix.zip -d ./testpkg-built
   \test(pass)
-  \dk.object(abi: "Release.Linux_x86_64", value-id: "oc3h3ahh3wppsj56ityk4ncimkilxn52dkhleo6ulymj3s5mbmfxq")\;
+  \dk.object(abi: "Release.Linux_x86_64", value-id: "okgsprbptqi3jkrainxubmixlsp4vvnr2vqndwj3ek6cdt3t4jpdq")\;
