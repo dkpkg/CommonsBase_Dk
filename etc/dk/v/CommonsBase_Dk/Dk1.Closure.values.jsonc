@@ -15,7 +15,7 @@
     "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.23",
     "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.31",
     "lock": "dk-opam-lock.jsonc",
-    "lock-sha256": "9e2e7f624d58b30de7edd53a7fc81a3727e2f63d7b78975c93af8d0908b1e6cc",
+    "lock-sha256": "3aeb718916a75224a6315b6653bee34a26989936c691c82eedfe74a2c2a5cedd",
     "localsrc": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.3",
     "locksrcpath": "./dk-opam-lock.jsonc",
     "roots": ["DkOne_Exec"],
