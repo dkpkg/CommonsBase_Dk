@@ -2,36 +2,36 @@
   "ocaml": "CommonsLang_OCaml.DkML@4.14.3002",
   "$schema": "https://diskuv.com/dk/schema/dk-opam-lock-1.0.json",
   "generated": {
-    "opam_version": "2.5.0",
+    "opam_version": "2.5.1",
     "pins": "dk-opam-pins.txt",
     "roots": [
-      "DkZero_Exec",
-      "DkOne_Exec",
-      "DkZero_ExecCore",
-      "DkZero_Base",
-      "DkZero_RuntimeC",
-      "DkOne_RuntimeC",
-      "DkZero_Web",
-      "UnifiedScript_Std",
-      "UnifiedScript_Top",
-      "MlFront_Core",
-      "MlFront_Cache",
-      "MlFront_Codept",
-      "MlFront_Config",
-      "MlFront_Console",
-      "MlFront_Errors",
-      "MlFront_Logs",
-      "MlFront_Lua",
-      "MlFront_Manip",
-      "MlFront_Progress",
-      "MlFront_ProgressPeriod",
-      "MlFront_ProgressZig",
-      "MlFront_Signify",
-      "MlFront_Thunk",
+      "MlFront_ZipFile",
       "MlFront_Tools",
-      "MlFront_ZipFile"
+      "MlFront_Thunk",
+      "MlFront_Signify",
+      "MlFront_ProgressZig",
+      "MlFront_ProgressPeriod",
+      "MlFront_Progress",
+      "MlFront_Manip",
+      "MlFront_Lua",
+      "MlFront_Logs",
+      "MlFront_Errors",
+      "MlFront_Console",
+      "MlFront_Config",
+      "MlFront_Codept",
+      "MlFront_Cache",
+      "MlFront_Core",
+      "UnifiedScript_Top",
+      "UnifiedScript_Std",
+      "DkZero_Web",
+      "DkOne_RuntimeC",
+      "DkZero_RuntimeC",
+      "DkZero_Base",
+      "DkZero_ExecCore",
+      "DkOne_Exec",
+      "DkZero_Exec"
     ],
-    "tool": "CommonsLang_OCaml.Dk.OpamLock@1.1.22",
+    "tool": "CommonsLang_OCaml.Dk.OpamLock@1.1.23",
     "wdoc": "t",
     "wtest": "t"
   },
@@ -44,12 +44,12 @@
     {
       "commit": null,
       "name": "diskuv-mlfront-lock",
-      "url": "git+https://github.com/diskuv/diskuv-opam-repository.git#2.4.3-1"
+      "url": "git+https://github.com/diskuv/diskuv-opam-repository.git#2.4.3-2"
     }
   ],
   "packages": {
     "DkOne_Exec.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -70,9 +70,13 @@
         "tiny_httpd",
         "prometheus",
         "tls-nogmp",
-        "mirage-crypto-ec"
+        "x509-nogmp",
+        "mirage-crypto-ec",
+        "mirage-crypto-rng",
+        "ipaddr",
+        "mtime"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Logs\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"DkZero_Base\" {= version}\r\n\"DkZero_RuntimeC\" {= version}\r\n\"DkZero_ExecCore\" {= version}\r\n\"DkOne_RuntimeC\" {= version}\r\n\"tiny_httpd\" {>= \"0.22\"}\r\n\"prometheus\" {>= \"2.0\"}\r\n\"tls-nogmp\" {>= \"2.0.0\"}\r\n\"mirage-crypto-ec\" {>= \"2.0.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}\r\n\"MlFront_Core\"\r\n\"ptime\"\r\n\"MlFront_Json\"\r\n\"digestif\"\r\n\"MlFront_Cache\"\r\n\"uucp\"",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Logs\" {= version}\n\"UnifiedScript_Std\" {= version}\n\"DkZero_Base\" {= version}\n\"DkZero_RuntimeC\" {= version}\n\"DkZero_ExecCore\" {= version}\n\"DkOne_RuntimeC\" {= version}\n\"tiny_httpd\" {>= \"0.22\"}\n\"prometheus\" {>= \"2.0\"}\n\"tls-nogmp\" {>= \"2.0.0\"}\n\"x509-nogmp\" {>= \"1.2.0\"}\n\"mirage-crypto-ec\" {>= \"2.0.0\"}\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\n\"digestif\" {>= \"1.1.4\"}\n\"ipaddr\" {>= \"5.6.0\"}\n\"mtime\" {>= \"2.0.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}\n\"MlFront_Core\"\n\"ptime\"\n\"MlFront_Json\"\n\"MlFront_Cache\"\n\"uucp\"",
       "install": null,
       "local": "t",
       "name": "DkOne_Exec",
@@ -80,7 +84,7 @@
       "version": "2.4.3"
     },
     "DkOne_RuntimeC.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -89,7 +93,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"DkZero_Base\" {= version}\r\n\"DkZero_RuntimeC\" {= version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"DkZero_Base\" {= version}\n\"DkZero_RuntimeC\" {= version}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "DkOne_RuntimeC",
@@ -97,7 +101,7 @@
       "version": "2.4.3"
     },
     "DkZero_Base.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -116,7 +120,7 @@
         "xdg",
         "capnp"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Cache\" {= version}\r\n\"MlFront_Json\" {= version}\r\n\"MlFront_Signify\" {= version}\r\n\"MlFront_Thunk\" {= version}\r\n\"MlFront_ZipFile\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"dkml-c-probe\" {>= \"3.3.0\"}\r\n\"ptime\" {>= \"1.1.0\"}\r\n\"ppx_deriving\" {>= \"6.0.2\"}\r\n\"xdg\" {>= \"3.12.1\"}\r\n\"capnp\" {with-test & >= \"3.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}\r\n\"digestif\"",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Cache\" {= version}\n\"MlFront_Json\" {= version}\n\"MlFront_Signify\" {= version}\n\"MlFront_Thunk\" {= version}\n\"MlFront_ZipFile\" {= version}\n\"UnifiedScript_Std\" {= version}\n\"dkml-c-probe\" {>= \"3.3.0\"}\n\"ptime\" {>= \"1.1.0\"}\n\"ppx_deriving\" {>= \"6.0.2\"}\n\"xdg\" {>= \"3.12.1\"}\n\"capnp\" {with-test & >= \"3.6.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}\n\"digestif\"",
       "install": null,
       "local": "t",
       "name": "DkZero_Base",
@@ -124,7 +128,7 @@
       "version": "2.4.3"
     },
     "DkZero_Exec.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -140,7 +144,7 @@
         "DkZero_RuntimeC",
         "DkZero_ExecCore"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Console\" {= version}\r\n\"MlFront_Logs\" {= version}\r\n\"MlFront_ProgressPeriod\" {= version}\r\n\"MlFront_ProgressZig\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"DkZero_Base\" {= version}\r\n\"DkZero_RuntimeC\" {= version}\r\n\"DkZero_ExecCore\" {= version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}\r\n\"uucp\"",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Console\" {= version}\n\"MlFront_Logs\" {= version}\n\"MlFront_ProgressPeriod\" {= version}\n\"MlFront_ProgressZig\" {= version}\n\"UnifiedScript_Std\" {= version}\n\"DkZero_Base\" {= version}\n\"DkZero_RuntimeC\" {= version}\n\"DkZero_ExecCore\" {= version}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}\n\"uucp\"",
       "install": null,
       "local": "t",
       "name": "DkZero_Exec",
@@ -148,7 +152,7 @@
       "version": "2.4.3"
     },
     "DkZero_ExecCore.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -166,7 +170,7 @@
         "DkZero_Base",
         "DkZero_RuntimeC"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Json\" {= version}\r\n\"MlFront_Console\" {= version}\r\n\"MlFront_Logs\" {= version}\r\n\"MlFront_ProgressPeriod\" {= version}\r\n\"MlFront_ProgressZig\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"DkZero_Base\" {= version}\r\n\"DkZero_RuntimeC\" {= version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}\r\n\"MlFront_Core\"\r\n\"ptime\"\r\n\"digestif\"",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Json\" {= version}\n\"MlFront_Console\" {= version}\n\"MlFront_Logs\" {= version}\n\"MlFront_ProgressPeriod\" {= version}\n\"MlFront_ProgressZig\" {= version}\n\"UnifiedScript_Std\" {= version}\n\"DkZero_Base\" {= version}\n\"DkZero_RuntimeC\" {= version}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}\n\"MlFront_Core\"\n\"ptime\"\n\"digestif\"",
       "install": null,
       "local": "t",
       "name": "DkZero_ExecCore",
@@ -174,7 +178,7 @@
       "version": "2.4.3"
     },
     "DkZero_RuntimeC.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -185,7 +189,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"DkZero_Base\" {= version}\r\n\"spawn\" {>= \"v0.15.1\"}\r\n\"MlFront_ProgressZig\" {= version}\r\n\"MlFront_ProgressPeriod\" {with-test & = version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"DkZero_Base\" {= version}\n\"spawn\" {>= \"v0.15.1\"}\n\"MlFront_ProgressZig\" {= version}\n\"MlFront_ProgressPeriod\" {with-test & = version}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "DkZero_RuntimeC",
@@ -193,7 +197,7 @@
       "version": "2.4.3"
     },
     "DkZero_Web.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -202,7 +206,7 @@
         "js_of_ocaml-toplevel",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.15\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_ProgressZig\" {= version}\r\n\"js_of_ocaml\" {>= \"6.2.0\"}\r\n\"js_of_ocaml-toplevel\" {>= \"6.2.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.15\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_ProgressZig\" {= version}\n\"js_of_ocaml\" {>= \"6.2.0\"}\n\"js_of_ocaml-toplevel\" {>= \"6.2.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "DkZero_Web",
@@ -210,7 +214,7 @@
       "version": "2.4.3"
     },
     "MlFront_Cache.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -222,7 +226,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\r\n\"uuidm\" {>= \"0.9.8\"}\r\n\"MlFront_Core\" {= version}\r\n\"UnifiedScript_Top\" {with-test & = version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"fmt\" {>= \"0.9.0\"}\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\n\"uuidm\" {>= \"0.9.8\"}\n\"MlFront_Core\" {= version}\n\"UnifiedScript_Top\" {with-test & = version}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Cache",
@@ -230,7 +234,7 @@
       "version": "2.4.3"
     },
     "MlFront_Codept.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -250,7 +254,7 @@
         "tyre",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"bos\" {>= \"0.2.1\"}\r\n\"codept-lib\" {>= \"0.12.1\"}\r\n\"ezjsonm\" {>= \"1.3.0\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"fpath\" {>= \"0.7.3\"}\r\n\"logs\" {>= \"0.7.0\"}\r\n\"ppx_deriving\" {>= \"6.0.2\"}\r\n\"stringext\" {>= \"1.6.0\"}\r\n\"MlFront_Core\" {= version}\r\n\"MlFront_Config\" {= version}\r\n\"MlFront_Errors\" {= version}\r\n\"containers-data\" {with-test & >= \"3.13.1\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"tyre\" {with-test & >= \"0.5\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"bos\" {>= \"0.2.1\"}\n\"codept-lib\" {>= \"0.12.1\"}\n\"ezjsonm\" {>= \"1.3.0\"}\n\"fmt\" {>= \"0.9.0\"}\n\"fpath\" {>= \"0.7.3\"}\n\"logs\" {>= \"0.7.0\"}\n\"ppx_deriving\" {>= \"6.0.2\"}\n\"stringext\" {>= \"1.6.0\"}\n\"MlFront_Core\" {= version}\n\"MlFront_Config\" {= version}\n\"MlFront_Errors\" {= version}\n\"containers-data\" {with-test & >= \"3.13.1\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"tyre\" {with-test & >= \"0.5\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Codept",
@@ -258,7 +262,7 @@
       "version": "2.4.3"
     },
     "MlFront_Config.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -268,7 +272,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"cppo\" {>= \"1.6.8\"}\r\n\"MlFront_Core\" {= version}\r\n\"ppxlib\" {with-test & >= \"0.30.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"cppo\" {>= \"1.6.8\"}\n\"MlFront_Core\" {= version}\n\"ppxlib\" {with-test & >= \"0.30.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Config",
@@ -276,7 +280,7 @@
       "version": "2.4.3"
     },
     "MlFront_Console.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -290,7 +294,7 @@
       "version": "2.4.3"
     },
     "MlFront_Core.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -302,7 +306,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"tyre\" {with-test & >= \"0.5\"}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"stringext\" {>= \"1.6.0\"}\r\n\"crowbar\" {with-test & >= \"0.2.1\"}\r\n\"re\" {with-test & >= \"1.11.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"tyre\" {with-test & >= \"0.5\"}\n\"digestif\" {>= \"1.1.4\"}\n\"stringext\" {>= \"1.6.0\"}\n\"crowbar\" {with-test & >= \"0.2.1\"}\n\"re\" {with-test & >= \"1.11.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Core",
@@ -310,7 +314,7 @@
       "version": "2.4.3"
     },
     "MlFront_Errors.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -320,7 +324,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"logs\" {>= \"0.7.0\"}\r\n\"stringext\" {>= \"1.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"fmt\" {>= \"0.9.0\"}\n\"logs\" {>= \"0.7.0\"}\n\"stringext\" {>= \"1.6.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Errors",
@@ -328,7 +332,7 @@
       "version": "2.4.3"
     },
     "MlFront_Json.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -338,7 +342,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Core\" {= version}\r\n\"fmlib_parse\" {>= \"0.6.2\"}\r\n\"fmlib_std\" {>= \"0.6.2\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Core\" {= version}\n\"fmlib_parse\" {>= \"0.6.2\"}\n\"fmlib_std\" {>= \"0.6.2\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Json",
@@ -346,7 +350,7 @@
       "version": "2.4.3"
     },
     "MlFront_Logs.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -356,7 +360,7 @@
         "logs",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Console\" {= version}\r\n\"cmdliner\" {>= \"1.2.0\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"logs\" {>= \"0.7.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Console\" {= version}\n\"cmdliner\" {>= \"1.2.0\"}\n\"fmt\" {>= \"0.9.0\"}\n\"logs\" {>= \"0.7.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Logs",
@@ -364,16 +368,16 @@
       "version": "2.4.3"
     },
     "MlFront_Lua.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
-        "odoc",
         "fmlib_parse",
         "UnifiedScript_Top",
-        "tezt"
+        "tezt",
+        "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"fmlib_parse\" {>= \"0.6.2\"}\r\n\"UnifiedScript_Top\" {with-test & = version}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"fmlib_parse\" {>= \"0.6.2\"}\n\"UnifiedScript_Top\" {with-test & = version}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Lua",
@@ -381,7 +385,7 @@
       "version": "2.4.3"
     },
     "MlFront_Manip.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -389,7 +393,7 @@
         "ppxlib",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"ppxlib\" {with-test & >= \"0.30.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"ppxlib\" {with-test & >= \"0.30.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Manip",
@@ -397,7 +401,7 @@
       "version": "2.4.3"
     },
     "MlFront_Progress.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -411,14 +415,14 @@
       "version": "2.4.3"
     },
     "MlFront_ProgressPeriod.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
         "MlFront_Progress",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Progress\" {= version}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Progress\" {= version}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_ProgressPeriod",
@@ -426,7 +430,7 @@
       "version": "2.4.3"
     },
     "MlFront_ProgressZig.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -437,7 +441,7 @@
         "MlFront_Console",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"uucp\" {>= \"15.0.0\"}\r\n\"MlFront_Progress\" {= version}\r\n\"MlFront_Thunk\" {= version}\r\n\"MlFront_Core\" {= version}\r\n\"MlFront_Console\" {= version}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"uucp\" {>= \"15.0.0\"}\n\"MlFront_Progress\" {= version}\n\"MlFront_Thunk\" {= version}\n\"MlFront_Core\" {= version}\n\"MlFront_Console\" {= version}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_ProgressZig",
@@ -445,7 +449,7 @@
       "version": "2.4.3"
     },
     "MlFront_Signify.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -455,7 +459,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\r\n\"stringext\" {with-test & >= \"1.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"digestif\" {>= \"1.1.4\"}\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\n\"stringext\" {with-test & >= \"1.6.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Signify",
@@ -463,13 +467,12 @@
       "version": "2.4.3"
     },
     "MlFront_Thunk.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
         "MlFront_Core",
         "MlFront_Json",
-        "odoc",
         "MlFront_Lua",
         "MlFront_Progress",
         "MlFront_ZipFile",
@@ -481,9 +484,10 @@
         "fmlib_std",
         "mirage-crypto-rng",
         "ppx_deriving",
-        "tezt"
+        "tezt",
+        "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Core\" {= version}\r\n\"MlFront_Json\" {= version}\r\n\"MlFront_Lua\" {= version}\r\n\"MlFront_Progress\" {= version}\r\n\"MlFront_ZipFile\" {= version}\r\n\"UnifiedScript_Std\" {= version}\r\n\"betacalendars\" {>= \"1.0.0\"}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"fmlib_parse\" {>= \"0.6.2\"}\r\n\"fmlib_pretty\" {>= \"0.6.2\"}\r\n\"fmlib_std\" {>= \"0.6.2\"}\r\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\r\n\"ppx_deriving\" {>= \"6.0.2\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Core\" {= version}\n\"MlFront_Json\" {= version}\n\"MlFront_Lua\" {= version}\n\"MlFront_Progress\" {= version}\n\"MlFront_ZipFile\" {= version}\n\"UnifiedScript_Std\" {= version}\n\"betacalendars\" {>= \"1.0.0\"}\n\"digestif\" {>= \"1.1.4\"}\n\"fmlib_parse\" {>= \"0.6.2\"}\n\"fmlib_pretty\" {>= \"0.6.2\"}\n\"fmlib_std\" {>= \"0.6.2\"}\n\"mirage-crypto-rng\" {>= \"2.0.0\"}\n\"ppx_deriving\" {>= \"6.0.2\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Thunk",
@@ -491,7 +495,7 @@
       "version": "2.4.3"
     },
     "MlFront_Tools.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -510,7 +514,7 @@
         "MlFront_Logs",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"MlFront_Console\" {= version}\r\n\"bos\" {>= \"0.2.1\"}\r\n\"cmdliner\" {>= \"1.2.0\"}\r\n\"crunch\" {>= \"3.3.1\"}\r\n\"fmt\" {>= \"0.9.0\"}\r\n\"fpath\" {>= \"0.7.3\"}\r\n\"logs\" {>= \"0.7.0\"}\r\n\"ppx_deriving\" {>= \"6.0.2\"}\r\n\"stringext\" {>= \"1.6.0\"}\r\n\"diskuvbox\" {with-test & >= \"0.2.0\"}\r\n\"MlFront_Codept\" {= version}\r\n\"MlFront_Errors\" {= version}\r\n\"MlFront_Logs\" {= version}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"MlFront_Console\" {= version}\n\"bos\" {>= \"0.2.1\"}\n\"cmdliner\" {>= \"1.2.0\"}\n\"crunch\" {>= \"3.3.1\"}\n\"fmt\" {>= \"0.9.0\"}\n\"fpath\" {>= \"0.7.3\"}\n\"logs\" {>= \"0.7.0\"}\n\"ppx_deriving\" {>= \"6.0.2\"}\n\"stringext\" {>= \"1.6.0\"}\n\"diskuvbox\" {with-test & >= \"0.2.0\"}\n\"MlFront_Codept\" {= version}\n\"MlFront_Errors\" {= version}\n\"MlFront_Logs\" {= version}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_Tools",
@@ -518,7 +522,7 @@
       "version": "2.4.3"
     },
     "MlFront_ZipFile.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -528,7 +532,7 @@
         "tezt",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"re\" {>= \"1.11.0\"}\r\n\"digestif\" {with-test & >= \"1.1.4\"}\r\n\"stringext\" {with-test & >= \"1.6.0\"}\r\n\"tezt\" {with-test & >= \"4.1.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"re\" {>= \"1.11.0\"}\n\"digestif\" {with-test & >= \"1.1.4\"}\n\"stringext\" {with-test & >= \"1.6.0\"}\n\"tezt\" {with-test & >= \"4.1.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "MlFront_ZipFile",
@@ -536,7 +540,7 @@
       "version": "2.4.3"
     },
     "UnifiedScript_Std.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -550,14 +554,14 @@
       "version": "2.4.3"
     },
     "UnifiedScript_Top.2.4.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
         "UnifiedScript_Std",
         "odoc"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.14\"}\r\n\"UnifiedScript_Std\" {= version}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.14\"}\n\"UnifiedScript_Std\" {= version}\n\"odoc\" {with-doc}",
       "install": null,
       "local": "t",
       "name": "UnifiedScript_Top",
@@ -592,20 +596,20 @@
         "ocaml-base-compiler",
         "host-arch-x86_64"
       ],
-      "depends_raw": "(\"ocaml-base-compiler\" {post & >= \"4.13.0~\"} |\r\n \"ocaml-variants\" {post & >= \"4.13.0~\"})\r\n\"host-arch-x86_64\" {post}",
+      "depends_raw": "(\"ocaml-base-compiler\" {post & >= \"4.13.0~\"} |\n \"ocaml-variants\" {post & >= \"4.13.0~\"})\n\"host-arch-x86_64\" {post}",
       "install": null,
       "name": "arch-x86_64",
       "source": null,
       "version": "1"
     },
     "asn1-combinators.0.3.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "ptime"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\r\n\"dune\" {>= \"1.2.0\"}\r\n\"ptime\" {>= \"0.8.6\"}\r\n\"alcotest\" {with-test & >= \"0.8.1\"}\r\n\"ohex\" {with-test & >= \"0.2.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\n\"dune\" {>= \"1.2.0\"}\n\"ptime\" {>= \"0.8.6\"}\n\"alcotest\" {with-test & >= \"0.8.1\"}\n\"ohex\" {with-test & >= \"0.2.0\"}",
       "install": null,
       "name": "asn1-combinators",
       "source": {
@@ -627,7 +631,7 @@
         "ocamlbuild",
         "topkg"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.05.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build}",
+      "depends_raw": "\"ocaml\" {>= \"4.05.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build}",
       "install": null,
       "name": "astring",
       "source": {
@@ -688,7 +692,7 @@
         "dune",
         "dune-configurator"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"sexplib0\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"dune-configurator\"",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"sexplib0\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"dune-configurator\"",
       "install": null,
       "name": "base",
       "source": {
@@ -704,12 +708,12 @@
       "version": "v0.16.5"
     },
     "base64.3.5.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"dune\" {>= \"2.3\"}\r\n\"fmt\" {with-test & >= \"0.8.7\"}\r\n\"bos\" {with-test}\r\n\"rresult\" {with-test}\r\n\"alcotest\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\n\"dune\" {>= \"2.3\"}\n\"fmt\" {with-test & >= \"0.8.7\"}\n\"bos\" {with-test}\n\"rresult\" {with-test}\n\"alcotest\" {with-test}",
       "install": null,
       "name": "base64",
       "source": {
@@ -724,12 +728,12 @@
       "version": "3.5.1"
     },
     "betacalendars.1.0.0": {
-      "build": "\"dune\"\r\n\"build\"\r\n\"-p\"\r\nname\r\n\"-j\"\r\njobs\r\n\"@install\"\r\n\"@runtest\" {with-test}\r\n\"@doc\" {with-doc}",
+      "build": "\"dune\"\n\"build\"\n\"-p\"\nname\n\"-j\"\njobs\n\"@install\"\n\"@runtest\" {with-test}\n\"@doc\" {with-doc}",
       "depends": [
         "ocaml",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14\"}\r\n\"dune\" {>= \"3.11\"}\r\n\"alcotest\" {with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"ocaml\" {>= \"4.14\"}\n\"dune\" {>= \"3.11\"}\n\"alcotest\" {with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "betacalendars",
       "source": {
@@ -757,7 +761,7 @@
         "fmt",
         "logs"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}\r\n\"base-unix\"\r\n\"rresult\" {>= \"0.7.0\"}\r\n\"astring\"\r\n\"fpath\" {>= \"0.7.3\"}\r\n\"fmt\" {>= \"0.8.10\"}\r\n\"logs\"\r\n\"mtime\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.0.3\"}\n\"base-unix\"\n\"rresult\" {>= \"0.7.0\"}\n\"astring\"\n\"fpath\" {>= \"0.7.3\"}\n\"fmt\" {>= \"0.8.10\"}\n\"logs\"\n\"mtime\" {with-test}",
       "install": null,
       "name": "bos",
       "source": {
@@ -772,7 +776,7 @@
       "version": "0.2.1"
     },
     "camlp-streams.5.0.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml"
@@ -793,7 +797,7 @@
       "version": "5.0.1"
     },
     "capnp.3.6.0": {
-      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@runtest\"] {with-test}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@runtest\"] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -804,7 +808,7 @@
         "res",
         "stdint"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"2.3\"}\r\n\"result\"\r\n\"base\" {>= \"v0.11\"}\r\n\"stdio\"\r\n\"base_quickcheck\" {with-test}\r\n\"ocplib-endian\" {>= \"0.7\"}\r\n\"res\"\r\n\"stdint\" {>= \"0.5.1\"}\r\n\"ounit2\" {with-test}\r\n\"conf-capnproto\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"dune\" {>= \"2.3\"}\n\"result\"\n\"base\" {>= \"v0.11\"}\n\"stdio\"\n\"base_quickcheck\" {with-test}\n\"ocplib-endian\" {>= \"0.7\"}\n\"res\"\n\"stdint\" {>= \"0.5.1\"}\n\"ounit2\" {with-test}\n\"conf-capnproto\" {with-test}",
       "install": null,
       "name": "capnp",
       "source": {
@@ -819,7 +823,7 @@
       "version": "3.6.0"
     },
     "clap.0.3.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml"
@@ -845,7 +849,7 @@
         "ocaml"
       ],
       "depends_raw": "\"ocaml\" {>= \"4.08.0\"}",
-      "install": "[make \"install\" \"LIBDIR=%{_:lib}%\" \"DOCDIR=%{_:doc}%\"]\r\n[make \"install-doc\" \"LIBDIR=%{_:lib}%\" \"DOCDIR=%{_:doc}%\"]",
+      "install": "[make \"install\" \"LIBDIR=%{_:lib}%\" \"DOCDIR=%{_:doc}%\"]\n[make \"install-doc\" \"LIBDIR=%{_:lib}%\" \"DOCDIR=%{_:doc}%\"]",
       "name": "cmdliner",
       "source": {
         "archive": "tbz",
@@ -859,13 +863,13 @@
       "version": "1.3.0"
     },
     "codept-lib.0.12.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "dune",
         "menhir",
         "ocaml"
       ],
-      "depends_raw": "\"dune\" {>= \"2.8\"}\r\n\"menhir\" {>= \"20180523\"}\r\n\"ocaml\" {>= \"4.03\" & < \"5.4~\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"2.8\"}\n\"menhir\" {>= \"20180523\"}\n\"ocaml\" {>= \"4.03\" & < \"5.4~\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "codept-lib",
       "source": {
@@ -880,13 +884,12 @@
       "version": "0.12.1"
     },
     "conf-mingw-w64-gcc-i686.1": {
-      "build": "[\"i686-w64-mingw32-gcc\" \"--version\"]\r\n[\r\n  \"sh\"\r\n  \"./install-shim.sh\"\r\n  name\r\n  \"mingw64-i686-binutils mingw64-i686-gcc-core\"\r\n  bin\r\n  \"i686-w64-mingw32-gcc\"\r\n  \"_shim\"\r\n  \"cygpath\" {host-arch-x86_32:installed}\r\n] {os = \"win32\" & os-distribution = \"cygwin\" & mingw-w64-shims:installed}",
+      "build": "[\"i686-w64-mingw32-gcc\" \"--version\"]\n[\n  \"sh\"\n  \"./install-shim.sh\"\n  name\n  \"mingw64-i686-binutils mingw64-i686-gcc-core\"\n  bin\n  \"i686-w64-mingw32-gcc\"\n  \"_shim\"\n  \"cygpath\" {host-arch-x86_32:installed}\n] {os = \"win32\" & os-distribution = \"cygwin\" & mingw-w64-shims:installed}",
       "depends": [
         "host-arch-x86_64",
-        "host-arch-x86_32",
-        "mingw-w64-shims"
+        "host-arch-x86_32"
       ],
-      "depends_raw": "\"msys2\" {os-distribution = \"msys2\"}\r\n\"msys2-mingw32\" {os-distribution = \"msys2\"}\r\n(\"host-arch-x86_64\" | \"host-arch-x86_32\")",
+      "depends_raw": "\"msys2\" {os-distribution = \"msys2\"}\n\"msys2-mingw32\" {os-distribution = \"msys2\"}\n(\"host-arch-x86_64\" | \"host-arch-x86_32\")",
       "install": null,
       "name": "conf-mingw-w64-gcc-i686",
       "source": {
@@ -901,13 +904,12 @@
       "version": "1"
     },
     "conf-mingw-w64-gcc-x86_64.1": {
-      "build": "[\"x86_64-w64-mingw32-gcc\" \"--version\"]\r\n[\r\n  \"sh\"\r\n  \"./install-shim.sh\"\r\n  name\r\n  \"mingw64-x86_64-binutils mingw64-x86_64-gcc-core\"\r\n  bin\r\n  \"x86_64-w64-mingw32-gcc\"\r\n  \"shim\"\r\n  \"cygpath\" {host-arch-x86_64:installed}\r\n] {os = \"win32\" & os-distribution = \"cygwin\" & mingw-w64-shims:installed}",
+      "build": "[\"x86_64-w64-mingw32-gcc\" \"--version\"]\n[\n  \"sh\"\n  \"./install-shim.sh\"\n  name\n  \"mingw64-x86_64-binutils mingw64-x86_64-gcc-core\"\n  bin\n  \"x86_64-w64-mingw32-gcc\"\n  \"shim\"\n  \"cygpath\" {host-arch-x86_64:installed}\n] {os = \"win32\" & os-distribution = \"cygwin\" & mingw-w64-shims:installed}",
       "depends": [
         "host-arch-x86_64",
-        "host-arch-x86_32",
-        "mingw-w64-shims"
+        "host-arch-x86_32"
       ],
-      "depends_raw": "\"msys2\" {os-distribution = \"msys2\"}\r\n\"msys2-mingw64\" {os-distribution = \"msys2\"}\r\n(\"host-arch-x86_64\" | \"host-arch-x86_32\")",
+      "depends_raw": "\"msys2\" {os-distribution = \"msys2\"}\n\"msys2-mingw64\" {os-distribution = \"msys2\"}\n(\"host-arch-x86_64\" | \"host-arch-x86_32\")",
       "install": null,
       "name": "conf-mingw-w64-gcc-x86_64",
       "source": {
@@ -922,13 +924,13 @@
       "version": "1"
     },
     "containers-data.3.18": {
-      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"build\" \"@doc\" \"-p\" name] {with-doc}\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs]\r\n  {with-test & arch != \"x86_32\" & arch != \"arm32\"}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"build\" \"@doc\" \"-p\" name] {with-doc}\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs]\n  {with-test & arch != \"x86_32\" & arch != \"arm32\"}",
       "depends": [
         "dune",
         "ocaml",
         "containers"
       ],
-      "depends_raw": "\"dune\" {>= \"3.0\"}\r\n\"ocaml\" {>= \"4.08\"}\r\n\"containers\" {= version}\r\n\"qcheck-core\" {>= \"0.91\" & with-test}\r\n\"iter\" {with-test}\r\n\"gen\" {with-test}\r\n\"mdx\" {with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.0\"}\n\"ocaml\" {>= \"4.08\"}\n\"containers\" {= version}\n\"qcheck-core\" {>= \"0.91\" & with-test}\n\"iter\" {with-test}\n\"gen\" {with-test}\n\"mdx\" {with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "containers-data",
       "source": {
@@ -943,7 +945,7 @@
       "version": "3.18"
     },
     "containers.3.18": {
-      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"build\" \"@doc\" \"-p\" name] {with-doc}\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs]\r\n  {with-test & arch != \"x86_32\" & arch != \"arm32\"}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"build\" \"@doc\" \"-p\" name] {with-doc}\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs]\n  {with-test & arch != \"x86_32\" & arch != \"arm32\"}",
       "depends": [
         "dune",
         "ocaml",
@@ -952,7 +954,7 @@
         "base-unix",
         "base-threads"
       ],
-      "depends_raw": "\"dune\" {>= \"3.0\"}\r\n\"ocaml\" {>= \"4.08\"}\r\n\"either\"\r\n\"dune-configurator\"\r\n\"qcheck-core\" {>= \"0.91\" & with-test}\r\n\"yojson\" {with-test}\r\n\"iter\" {with-test}\r\n\"gen\" {with-test}\r\n\"csexp\" {with-test}\r\n\"uutf\" {with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.0\"}\n\"ocaml\" {>= \"4.08\"}\n\"either\"\n\"dune-configurator\"\n\"qcheck-core\" {>= \"0.91\" & with-test}\n\"yojson\" {with-test}\n\"iter\" {with-test}\n\"gen\" {with-test}\n\"csexp\" {with-test}\n\"uutf\" {with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "containers",
       "source": {
@@ -967,7 +969,7 @@
       "version": "3.18"
     },
     "cppo.1.6.9": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test & dune:version < \"3.24\"}\r\n[\"dune\" \"build\" \"-p\" name \"@doc\"] {with-doc}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test & dune:version < \"3.24\"}\n[\"dune\" \"build\" \"-p\" name \"@doc\"] {with-doc}",
       "depends": [
         "ocaml",
         "dune",
@@ -989,14 +991,14 @@
       "version": "1.6.9"
     },
     "crowbar.0.2.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"--promote-install-files=false\"\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]\r\n[\"dune\" \"install\" \"-p\" name \"--create-install-files\" name]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"--promote-install-files=false\"\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]\n[\"dune\" \"install\" \"-p\" name \"--create-install-files\" name]",
       "depends": [
         "dune",
         "ocaml",
         "cmdliner",
         "afl-persistent"
       ],
-      "depends_raw": "\"dune\" {>= \"2.9\"}\r\n\"ocaml\" {>= \"4.08\"}\r\n\"cmdliner\" {>= \"1.1.0\"}\r\n\"afl-persistent\" {>= \"1.1\"}\r\n\"calendar\" {>= \"2.00\" & with-test}\r\n\"fpath\" {with-test}\r\n\"pprint\" {with-test}\r\n\"uucp\" {with-test}\r\n\"uunf\" {with-test}\r\n\"uutf\" {with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"2.9\"}\n\"ocaml\" {>= \"4.08\"}\n\"cmdliner\" {>= \"1.1.0\"}\n\"afl-persistent\" {>= \"1.1\"}\n\"calendar\" {>= \"2.00\" & with-test}\n\"fpath\" {with-test}\n\"pprint\" {with-test}\n\"uucp\" {with-test}\n\"uunf\" {with-test}\n\"uutf\" {with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "crowbar",
       "source": {
@@ -1011,14 +1013,14 @@
       "version": "0.2.2"
     },
     "crunch.4.0.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test & dune:version < \"3.24\"}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test & dune:version < \"3.24\"}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "ocaml",
         "cmdliner",
         "ptime",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"cmdliner\" {>= \"1.1\"}\r\n\"ptime\"\r\n\"dune\" {>= \"2.5\"}\r\n\"lwt\" {with-test}\r\n\"mirage-kv\" {with-test & >= \"3.0.0\"}\r\n\"mirage-kv-mem\" {with-test & >= \"4.0.0\"}\r\n\"fmt\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"cmdliner\" {>= \"1.1\"}\n\"ptime\"\n\"dune\" {>= \"2.5\"}\n\"lwt\" {with-test}\n\"mirage-kv\" {with-test & >= \"3.0.0\"}\n\"mirage-kv-mem\" {with-test & >= \"4.0.0\"}\n\"fmt\" {with-test}",
       "install": null,
       "name": "crunch",
       "source": {
@@ -1033,7 +1035,7 @@
       "version": "4.0.0"
     },
     "csexp.1.5.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "dune",
         "ocaml"
@@ -1053,13 +1055,13 @@
       "version": "1.5.2"
     },
     "cstruct.6.2.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "fmt"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"alcotest\" {with-test}\r\n\"fmt\" {>= \"0.8.9\"}\r\n\"crowbar\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"dune\" {>= \"2.0.0\"}\n\"alcotest\" {with-test}\n\"fmt\" {>= \"0.8.9\"}\n\"crowbar\" {with-test}",
       "install": null,
       "name": "cstruct",
       "source": {
@@ -1074,14 +1076,14 @@
       "version": "6.2.0"
     },
     "digestif.1.3.0": {
-      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "eqaf"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"2.6.0\"}\r\n\"eqaf\"\r\n\"fmt\" {with-test & >= \"0.8.7\"}\r\n\"alcotest\" {with-test}\r\n\"bos\" {with-test & < \"0.3.0\"}\r\n\"astring\" {with-test}\r\n\"fpath\" {with-test}\r\n\"rresult\" {with-test}\r\n\"ocamlfind\" {with-test}\r\n\"crowbar\" {with-test}",
-      "install": "[\"dune\" \"install\" \"-p\" name] {with-test}\r\n[\"ocaml\" \"./test/test_runes.ml\"] {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"dune\" {>= \"2.6.0\"}\n\"eqaf\"\n\"fmt\" {with-test & >= \"0.8.7\"}\n\"alcotest\" {with-test}\n\"bos\" {with-test & < \"0.3.0\"}\n\"astring\" {with-test}\n\"fpath\" {with-test}\n\"rresult\" {with-test}\n\"ocamlfind\" {with-test}\n\"crowbar\" {with-test}",
+      "install": "[\"dune\" \"install\" \"-p\" name] {with-test}\n[\"ocaml\" \"./test/test_runes.ml\"] {with-test}",
       "name": "digestif",
       "source": {
         "archive": "tbz",
@@ -1095,7 +1097,7 @@
       "version": "1.3.0"
     },
     "diskuvbox.0.2.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -1106,7 +1108,7 @@
         "result",
         "cmdliner"
       ],
-      "depends_raw": "\"dune\" {>= \"2.9\"}\r\n\"odoc\" {>= \"1.5.3\" & with-doc}\r\n\"ocaml\" {>= \"4.10.0\"}\r\n\"ppx_deriving\" {>= \"5.2.1\"}\r\n\"bos\" {>= \"0.2.0\"}\r\n\"fmt\" {>= \"0.8.9\"}\r\n\"logs\" {>= \"0.7.0\"}\r\n\"result\" {>= \"1.5\"}\r\n\"mdx\" {>= \"2.0.0\" & with-test}\r\n\"cmdliner\" {>= \"1.1.0\" & < \"2.0.0\"}",
+      "depends_raw": "\"dune\" {>= \"2.9\"}\n\"odoc\" {>= \"1.5.3\" & with-doc}\n\"ocaml\" {>= \"4.10.0\"}\n\"ppx_deriving\" {>= \"5.2.1\"}\n\"bos\" {>= \"0.2.0\"}\n\"fmt\" {>= \"0.8.9\"}\n\"logs\" {>= \"0.7.0\"}\n\"result\" {>= \"1.5\"}\n\"mdx\" {>= \"2.0.0\" & with-test}\n\"cmdliner\" {>= \"1.1.0\" & < \"2.0.0\"}",
       "install": null,
       "name": "diskuvbox",
       "source": {
@@ -1121,13 +1123,13 @@
       "version": "0.2.0"
     },
     "dkml-c-probe.4.0.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@runtest\"] {with-test}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@doc\"] {with-doc}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@runtest\"] {with-test}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@doc\"] {with-doc}",
       "depends": [
         "dune",
         "ocaml",
         "dune-configurator"
       ],
-      "depends_raw": "\"dune\" {>= \"2.9\"}\r\n\"ocaml\" {>= \"4.12.1\"}\r\n\"ounit2\" {>= \"2.2.0\" & with-test}\r\n\"mdx\" {>= \"2.0.0\" & with-test}\r\n\"dune-configurator\" {>= \"2.9\" & build}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"2.9\"}\n\"ocaml\" {>= \"4.12.1\"}\n\"ounit2\" {>= \"2.2.0\" & with-test}\n\"mdx\" {>= \"2.0.0\" & with-test}\n\"dune-configurator\" {>= \"2.9\" & build}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "dkml-c-probe",
       "source": {
@@ -1142,7 +1144,7 @@
       "version": "4.0.0"
     },
     "domain-name.0.5.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
@@ -1162,14 +1164,14 @@
       "version": "0.5.0"
     },
     "dune-configurator.3.19.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"rm\" \"-rf\" \"vendor/csexp\"]\r\n[\"rm\" \"-rf\" \"vendor/pp\"]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"rm\" \"-rf\" \"vendor/csexp\"]\n[\"rm\" \"-rf\" \"vendor/pp\"]\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "dune",
         "ocaml",
         "base-unix",
         "csexp"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.08.0\"}\r\n\"base-unix\"\r\n\"csexp\" {>= \"1.5.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.08.0\"}\n\"base-unix\"\n\"csexp\" {>= \"1.5.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "dune-configurator",
       "source": {
@@ -1184,13 +1186,13 @@
       "version": "3.19.1"
     },
     "dune.3.19.1": {
-      "build": "[\"ocaml\" \"boot/bootstrap.ml\" \"-j\" jobs]\r\n[\r\n  \"./_boot/dune.exe\"\r\n  \"build\"\r\n  \"dune.install\"\r\n  \"--release\"\r\n  \"--profile\"\r\n  \"dune-bootstrap\"\r\n  \"-j\"\r\n  jobs\r\n]",
+      "build": "[\"ocaml\" \"boot/bootstrap.ml\" \"-j\" jobs]\n[\n  \"./_boot/dune.exe\"\n  \"build\"\n  \"dune.install\"\n  \"--release\"\n  \"--profile\"\n  \"dune-bootstrap\"\n  \"-j\"\n  jobs\n]",
       "depends": [
         "ocaml",
         "base-unix",
         "base-threads"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08\"}\r\n\"base-unix\"\r\n\"base-threads\"\r\n\"lwt\" {with-dev-setup & os != \"win32\"}\r\n\"cinaps\" {with-dev-setup}\r\n\"csexp\" {with-dev-setup & >= \"1.3.0\"}\r\n\"js_of_ocaml\" {with-dev-setup & >= \"6.0.1\" & os != \"win32\"}\r\n\"js_of_ocaml-compiler\" {with-dev-setup & >= \"6.0.1\" & os != \"win32\"}\r\n\"mdx\" {with-dev-setup & >= \"2.3.0\" & os != \"win32\"}\r\n\"menhir\" {with-dev-setup & os != \"win32\"}\r\n\"ocamlfind\" {with-dev-setup & os != \"win32\"}\r\n\"odoc\" {with-dev-setup & >= \"2.4.0\" & os != \"win32\"}\r\n\"ppx_expect\" {with-dev-setup & >= \"v0.17\" & os != \"win32\"}\r\n\"spawn\" {with-dev-setup}\r\n\"ppx_inline_test\" {with-dev-setup & os != \"win32\"}\r\n\"ppxlib\" {with-dev-setup & >= \"0.35.0\" & os != \"win32\"}\r\n\"ctypes\" {with-dev-setup & os != \"win32\"}\r\n\"utop\" {with-dev-setup & >= \"2.6.0\" & os != \"win32\"}\r\n\"melange\" {with-dev-setup & >= \"5.1.0-51\" & os != \"win32\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08\"}\n\"base-unix\"\n\"base-threads\"\n\"lwt\" {with-dev-setup & os != \"win32\"}\n\"cinaps\" {with-dev-setup}\n\"csexp\" {with-dev-setup & >= \"1.3.0\"}\n\"js_of_ocaml\" {with-dev-setup & >= \"6.0.1\" & os != \"win32\"}\n\"js_of_ocaml-compiler\" {with-dev-setup & >= \"6.0.1\" & os != \"win32\"}\n\"mdx\" {with-dev-setup & >= \"2.3.0\" & os != \"win32\"}\n\"menhir\" {with-dev-setup & os != \"win32\"}\n\"ocamlfind\" {with-dev-setup & os != \"win32\"}\n\"odoc\" {with-dev-setup & >= \"2.4.0\" & os != \"win32\"}\n\"ppx_expect\" {with-dev-setup & >= \"v0.17\" & os != \"win32\"}\n\"spawn\" {with-dev-setup}\n\"ppx_inline_test\" {with-dev-setup & os != \"win32\"}\n\"ppxlib\" {with-dev-setup & >= \"0.35.0\" & os != \"win32\"}\n\"ctypes\" {with-dev-setup & os != \"win32\"}\n\"utop\" {with-dev-setup & >= \"2.6.0\" & os != \"win32\"}\n\"melange\" {with-dev-setup & >= \"5.1.0-51\" & os != \"win32\"}",
       "install": null,
       "name": "dune",
       "source": {
@@ -1205,7 +1207,7 @@
       "version": "3.19.1"
     },
     "duration.0.3.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
@@ -1225,7 +1227,7 @@
       "version": "0.3.1"
     },
     "either.1.0.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml"
@@ -1245,13 +1247,13 @@
       "version": "1.0.0"
     },
     "eqaf.0.9": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" \"1\" \"--no-buffer\" \"--verbose\"] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" \"1\" \"--no-buffer\" \"--verbose\"] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "cstruct"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.07.0\"}\r\n\"dune\" {>= \"2.0\"}\r\n\"cstruct\" {>= \"1.1.0\"}\r\n\"base64\" {with-test}\r\n\"alcotest\" {with-test}\r\n\"crowbar\" {with-test}\r\n\"fmt\" {with-test & >= \"0.8.7\"}\r\n\"bechamel\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.07.0\"}\n\"dune\" {>= \"2.0\"}\n\"cstruct\" {>= \"1.1.0\"}\n\"base64\" {with-test}\n\"alcotest\" {with-test}\n\"crowbar\" {with-test}\n\"fmt\" {with-test & >= \"0.8.7\"}\n\"bechamel\" {with-test}",
       "install": null,
       "name": "eqaf",
       "source": {
@@ -1275,7 +1277,7 @@
         "sexplib0",
         "hex"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"2.0\"}\r\n\"alcotest\" {with-test & >= \"1.5.0\"}\r\n\"jsonm\" {>= \"1.0.0\"}\r\n\"uutf\"\r\n\"js_of_ocaml-compiler\" {with-test}\r\n\"conf-npm\" {with-test}\r\n\"sexplib0\"\r\n\"hex\"",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"dune\" {>= \"2.0\"}\n\"alcotest\" {with-test & >= \"1.5.0\"}\n\"jsonm\" {>= \"1.0.0\"}\n\"uutf\"\n\"js_of_ocaml-compiler\" {with-test}\n\"conf-npm\" {with-test}\n\"sexplib0\"\n\"hex\"",
       "install": null,
       "name": "ezjsonm",
       "source": {
@@ -1315,7 +1317,7 @@
         "fmlib_std",
         "fmlib_pretty"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0.0\"}\r\n\"odoc\" {with-doc}\r\n\"ppx_inline_test\" {>= \"v0.13.0\"}\r\n\"fmlib_std\" {= \"0.6.2\"}\r\n\"fmlib_pretty\" {= \"0.6.2\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"dune\" {>= \"3.0.0\"}\n\"odoc\" {with-doc}\n\"ppx_inline_test\" {>= \"v0.13.0\"}\n\"fmlib_std\" {= \"0.6.2\"}\n\"fmlib_pretty\" {= \"0.6.2\"}",
       "install": null,
       "name": "fmlib_parse",
       "source": {
@@ -1330,14 +1332,14 @@
       "version": "0.6.2+dk1"
     },
     "fmlib_pretty.0.6.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "ocaml",
         "dune",
         "ppx_inline_test",
         "fmlib_std"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0.0\"}\r\n\"odoc\" {with-doc}\r\n\"ppx_inline_test\" {>= \"v0.13.0\"}\r\n\"fmlib_std\" {= version}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"dune\" {>= \"3.0.0\"}\n\"odoc\" {with-doc}\n\"ppx_inline_test\" {>= \"v0.13.0\"}\n\"fmlib_std\" {= version}",
       "install": null,
       "name": "fmlib_pretty",
       "source": {
@@ -1351,13 +1353,13 @@
       "version": "0.6.2"
     },
     "fmlib_std.0.6.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "ocaml",
         "dune",
         "ppx_inline_test"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0.0\"}\r\n\"odoc\" {with-doc}\r\n\"ppx_inline_test\" {>= \"v0.13.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"dune\" {>= \"3.0.0\"}\n\"odoc\" {with-doc}\n\"ppx_inline_test\" {>= \"v0.13.0\"}",
       "install": null,
       "name": "fmlib_std",
       "source": {
@@ -1371,7 +1373,7 @@
       "version": "0.6.2"
     },
     "fmt.0.9.0": {
-      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-base-unix\"\r\n\"%{base-unix:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "build": "\"ocaml\"\n\"pkg/pkg.ml\"\n\"build\"\n\"--dev-pkg\"\n\"%{dev}%\"\n\"--with-base-unix\"\n\"%{base-unix:installed}%\"\n\"--with-cmdliner\"\n\"%{cmdliner:installed}%\"",
       "depends": [
         "ocaml",
         "ocamlfind",
@@ -1380,7 +1382,7 @@
         "base-unix",
         "cmdliner"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.0.3\"}",
       "install": null,
       "name": "fmt",
       "source": {
@@ -1403,7 +1405,7 @@
         "topkg",
         "astring"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"0.9.0\"}\r\n\"astring\"",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"0.9.0\"}\n\"astring\"",
       "install": null,
       "name": "fpath",
       "source": {
@@ -1418,13 +1420,13 @@
       "version": "0.7.3"
     },
     "gen.1.1": {
-      "build": "[\"dune\" \"build\" \"@install\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\r\n[\"dune\" \"build\" \"@doc\" \"-p\" name \"-j\" jobs] {with-doc}",
+      "build": "[\"dune\" \"build\" \"@install\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\n[\"dune\" \"build\" \"@doc\" \"-p\" name \"-j\" jobs] {with-doc}",
       "depends": [
         "dune",
         "seq",
         "ocaml"
       ],
-      "depends_raw": "\"dune\" {>= \"1.1\"}\r\n\"seq\"\r\n\"odoc\" {with-doc}\r\n\"qcheck\" {with-test & >= \"0.9\"}\r\n\"qtest\" {with-test}\r\n\"ounit2\" {with-test}\r\n\"ocaml\" {>= \"4.03.0\"}",
+      "depends_raw": "\"dune\" {>= \"1.1\"}\n\"seq\"\n\"odoc\" {with-doc}\n\"qcheck\" {with-test & >= \"0.9\"}\n\"qtest\" {with-test}\n\"ounit2\" {with-test}\n\"ocaml\" {>= \"4.03.0\"}",
       "install": null,
       "name": "gen",
       "source": {
@@ -1440,12 +1442,12 @@
       "version": "1.1"
     },
     "gmap.0.3.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.04.2\"}\r\n\"dune\" {>= \"1.0\"}\r\n\"alcotest\" {with-test}\r\n\"fmt\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.04.2\"}\n\"dune\" {>= \"1.0\"}\n\"alcotest\" {with-test}\n\"fmt\" {with-test}",
       "install": null,
       "name": "gmap",
       "source": {
@@ -1460,7 +1462,7 @@
       "version": "0.3.0"
     },
     "hex.1.5.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -1488,7 +1490,7 @@
         "ocamlbuild",
         "topkg"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.02.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build}",
+      "depends_raw": "\"ocaml\" {>= \"4.02.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build}",
       "install": null,
       "name": "hmap",
       "source": {
@@ -1530,7 +1532,7 @@
       "version": "1"
     },
     "iostream.0.2.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "ocaml",
         "dune",
@@ -1551,14 +1553,14 @@
       "version": "0.2.2"
     },
     "ipaddr.5.6.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "macaddr",
         "domain-name"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"1.9.0\"}\r\n\"macaddr\" {= version}\r\n\"domain-name\" {>= \"0.3.0\"}\r\n\"ounit2\" {with-test}\r\n\"ppx_sexp_conv\" {with-test & >= \"v0.9.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"dune\" {>= \"1.9.0\"}\n\"macaddr\" {= version}\n\"domain-name\" {>= \"0.3.0\"}\n\"ounit2\" {with-test}\n\"ppx_sexp_conv\" {with-test & >= \"v0.9.0\"}",
       "install": null,
       "name": "ipaddr",
       "source": {
@@ -1605,7 +1607,7 @@
         "yojson",
         "ocamlfind"
       ],
-      "depends_raw": "\"dune\" {>= \"3.19\"}\r\n\"ocaml\" {>= \"4.13\" & < \"5.5\"}\r\n\"num\" {with-test}\r\n\"ppx_expect\" {>= \"v0.16.1\" & with-test}\r\n\"ppxlib\" {>= \"0.35\"}\r\n\"re\" {with-test}\r\n\"cmdliner\" {>= \"1.1.0\"}\r\n\"sedlex\" {>= \"3.3\"}\r\n\"qcheck\" {with-test}\r\n\"menhir\"\r\n\"menhirLib\"\r\n\"menhirSdk\"\r\n\"yojson\" {>= \"2.1\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.19\"}\n\"ocaml\" {>= \"4.13\" & < \"5.5\"}\n\"num\" {with-test}\n\"ppx_expect\" {>= \"v0.16.1\" & with-test}\n\"ppxlib\" {>= \"0.35\"}\n\"re\" {with-test}\n\"cmdliner\" {>= \"1.1.0\"}\n\"sedlex\" {>= \"3.3\"}\n\"qcheck\" {with-test}\n\"menhir\"\n\"menhirLib\"\n\"menhirSdk\"\n\"yojson\" {>= \"2.1\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "js_of_ocaml-compiler",
       "source": {
@@ -1628,7 +1630,7 @@
         "ocamlfind",
         "ppxlib"
       ],
-      "depends_raw": "\"dune\" {>= \"3.19\"}\r\n\"ocaml\" {>= \"4.13\"}\r\n\"js_of_ocaml-compiler\" {= version}\r\n\"ocamlfind\" {>= \"1.5.1\"}\r\n\"graphics\" {with-test}\r\n\"num\" {with-test}\r\n\"ppx_expect\" {>= \"v0.14.2\" & with-test}\r\n\"ppxlib\" {>= \"0.35\"}\r\n\"re\" {>= \"1.9.0\" & with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.19\"}\n\"ocaml\" {>= \"4.13\"}\n\"js_of_ocaml-compiler\" {= version}\n\"ocamlfind\" {>= \"1.5.1\"}\n\"graphics\" {with-test}\n\"num\" {with-test}\n\"ppx_expect\" {>= \"v0.14.2\" & with-test}\n\"ppxlib\" {>= \"0.35\"}\n\"re\" {>= \"1.9.0\" & with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "js_of_ocaml-toplevel",
       "source": {
@@ -1650,7 +1652,7 @@
         "js_of_ocaml-compiler",
         "ppxlib"
       ],
-      "depends_raw": "\"dune\" {>= \"3.19\"}\r\n\"ocaml\" {>= \"4.13\"}\r\n\"js_of_ocaml-compiler\" {= version}\r\n\"num\" {with-test}\r\n\"ppx_expect\" {>= \"v0.14.2\" & with-test}\r\n\"ppxlib\" {>= \"0.35\"}\r\n\"re\" {>= \"1.9.0\" & with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.19\"}\n\"ocaml\" {>= \"4.13\"}\n\"js_of_ocaml-compiler\" {= version}\n\"num\" {with-test}\n\"ppx_expect\" {>= \"v0.14.2\" & with-test}\n\"ppxlib\" {>= \"0.35\"}\n\"re\" {>= \"1.9.0\" & with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "js_of_ocaml",
       "source": {
@@ -1673,7 +1675,7 @@
         "topkg",
         "uutf"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.05.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}\r\n\"uutf\" {> \"1.0.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.05.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.0.3\"}\n\"uutf\" {> \"1.0.0\"}",
       "install": null,
       "name": "jsonm",
       "source": {
@@ -1696,7 +1698,7 @@
         "dune",
         "dune-configurator"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_assert\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"dune-configurator\"",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_assert\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"dune-configurator\"",
       "install": null,
       "name": "jst-config",
       "source": {
@@ -1710,14 +1712,14 @@
       "version": "v0.16.0"
     },
     "kdf.1.1.2+dk1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "digestif",
         "mirage-crypto"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\r\n\"dune\" {>= \"1.8.0\"}\r\n\"digestif\" {>= \"1.2.0\"}\r\n\"mirage-crypto\" {>= \"1.0.0\"}\r\n\"alcotest\" {with-test & >= \"0.8.1\"}\r\n\"ohex\" {with-test & >= \"0.2.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\n\"dune\" {>= \"1.8.0\"}\n\"digestif\" {>= \"1.2.0\"}\n\"mirage-crypto\" {>= \"1.0.0\"}\n\"alcotest\" {with-test & >= \"0.8.1\"}\n\"ohex\" {with-test & >= \"0.2.0\"}",
       "install": null,
       "name": "kdf",
       "source": {
@@ -1732,7 +1734,7 @@
       "version": "1.1.2+dk1"
     },
     "logs.0.7.0": {
-      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--pinned\"\r\n\"%{pinned}%\"\r\n\"--with-js_of_ocaml\"\r\n\"%{js_of_ocaml:installed}%\"\r\n\"--with-fmt\"\r\n\"%{fmt:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"\r\n\"--with-lwt\"\r\n\"%{lwt:installed}%\"\r\n\"--with-base-threads\"\r\n\"%{base-threads:installed}%\"",
+      "build": "\"ocaml\"\n\"pkg/pkg.ml\"\n\"build\"\n\"--pinned\"\n\"%{pinned}%\"\n\"--with-js_of_ocaml\"\n\"%{js_of_ocaml:installed}%\"\n\"--with-fmt\"\n\"%{fmt:installed}%\"\n\"--with-cmdliner\"\n\"%{cmdliner:installed}%\"\n\"--with-lwt\"\n\"%{lwt:installed}%\"\n\"--with-base-threads\"\n\"%{base-threads:installed}%\"",
       "depends": [
         "ocaml",
         "ocamlfind",
@@ -1744,7 +1746,7 @@
         "lwt",
         "base-threads"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build}\r\n\"mtime\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build}\n\"mtime\" {with-test}",
       "install": null,
       "name": "logs",
       "source": {
@@ -1759,7 +1761,7 @@
       "version": "0.7.0"
     },
     "lwt.5.9.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"exec\"\r\n  \"-p\"\r\n  name\r\n  \"src/unix/config/discover.exe\"\r\n  \"--\"\r\n  \"--save\"\r\n  \"--use-libev\"\r\n  \"%{conf-libev:installed}%\"\r\n]\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"exec\"\n  \"-p\"\n  name\n  \"src/unix/config/discover.exe\"\n  \"--\"\n  \"--save\"\n  \"--use-libev\"\n  \"%{conf-libev:installed}%\"\n]\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -1769,7 +1771,7 @@
         "base-threads",
         "base-unix"
       ],
-      "depends_raw": "\"dune\" {>= \"2.7\"}\r\n\"ocaml\" {>= \"4.08\" & < \"5.5\"}\r\n\"cppo\" {build & >= \"1.1.0\"}\r\n\"ocamlfind\" {with-dev-setup & >= \"1.7.3-1\"}\r\n\"odoc\" {with-doc & >= \"2.3.0\"}\r\n\"dune-configurator\"\r\n\"ocplib-endian\"",
+      "depends_raw": "\"dune\" {>= \"2.7\"}\n\"ocaml\" {>= \"4.08\" & < \"5.5\"}\n\"cppo\" {build & >= \"1.1.0\"}\n\"ocamlfind\" {with-dev-setup & >= \"1.7.3-1\"}\n\"odoc\" {with-doc & >= \"2.3.0\"}\n\"dune-configurator\"\n\"ocplib-endian\"",
       "install": null,
       "name": "lwt",
       "source": {
@@ -1785,12 +1787,12 @@
       "version": "5.9.1"
     },
     "macaddr.5.6.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"dune\" {>= \"1.9.0\"}\r\n\"ounit2\" {with-test}\r\n\"ppx_sexp_conv\" {with-test & >= \"v0.9.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"dune\" {>= \"1.9.0\"}\n\"ounit2\" {with-test}\n\"ppx_sexp_conv\" {with-test & >= \"v0.9.0\"}",
       "install": null,
       "name": "macaddr",
       "source": {
@@ -1813,7 +1815,7 @@
         "menhirSdk",
         "menhirCST"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"dune\" {>= \"2.8.0\"}\r\n\"menhirLib\" {= version}\r\n\"menhirSdk\" {= version}\r\n\"menhirCST\" {= version}",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\n\"dune\" {>= \"2.8.0\"}\n\"menhirLib\" {= version}\n\"menhirSdk\" {= version}\n\"menhirCST\" {= version}",
       "install": null,
       "name": "menhir",
       "source": {
@@ -1891,22 +1893,8 @@
       },
       "version": "20231231"
     },
-    "mingw-w64-shims.1.0.1": {
-      "build": null,
-      "depends": [
-        "host-arch-x86_32",
-        "conf-mingw-w64-gcc-i686",
-        "host-arch-x86_64",
-        "conf-mingw-w64-gcc-x86_64"
-      ],
-      "depends_raw": "\"host-arch-x86_32\" & \"conf-mingw-w64-gcc-i686\" {post} |\r\n\"host-arch-x86_64\" & \"conf-mingw-w64-gcc-x86_64\" {post}",
-      "install": null,
-      "name": "mingw-w64-shims",
-      "source": null,
-      "version": "1.0.1"
-    },
     "mirage-crypto-ec.2.4.1+dk1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "dune",
         "ocaml",
@@ -1915,7 +1903,7 @@
         "mirage-crypto-rng",
         "digestif"
       ],
-      "depends_raw": "\"dune\" {>= \"2.7\"}\r\n\"ocaml\" {>= \"4.13.0\"}\r\n\"dune-configurator\"\r\n\"eqaf\" {>= \"0.7\"}\r\n\"mirage-crypto-rng\" {= version}\r\n\"digestif\" {>= \"1.2.0\"}\r\n\"alcotest\" {with-test & >= \"0.8.1\"}\r\n\"ppx_deriving_yojson\" {with-test}\r\n\"ppx_deriving\" {with-test}\r\n\"yojson\" {with-test & >= \"1.6.0\"}\r\n\"asn1-combinators\" {with-test & >= \"0.3.1\"}\r\n\"ohex\" {with-test & >= \"0.2.0\"}\r\n\"ounit2\" {with-test}",
+      "depends_raw": "\"dune\" {>= \"2.7\"}\n\"ocaml\" {>= \"4.13.0\"}\n\"dune-configurator\"\n\"eqaf\" {>= \"0.7\"}\n\"mirage-crypto-rng\" {= \"2.4.1\"}\n\"digestif\" {>= \"1.2.0\"}\n\"alcotest\" {with-test & >= \"0.8.1\"}\n\"ppx_deriving_yojson\" {with-test}\n\"ppx_deriving\" {with-test}\n\"yojson\" {with-test & >= \"1.6.0\"}\n\"asn1-combinators\" {with-test & >= \"0.3.1\"}\n\"ohex\" {with-test & >= \"0.2.0\"}\n\"ounit2\" {with-test}",
       "install": null,
       "name": "mirage-crypto-ec",
       "source": {
@@ -1937,7 +1925,7 @@
         "digestif",
         "mirage-crypto-rng"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"3.0\"}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"mirage-crypto-rng\" {>= \"2.0.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"dune\" {>= \"3.0\"}\n\"digestif\" {>= \"1.1.4\"}\n\"mirage-crypto-rng\" {>= \"2.0.0\"}",
       "install": null,
       "name": "mirage-crypto-pk-nogmp",
       "source": {
@@ -1952,7 +1940,7 @@
       "version": "2.0.2"
     },
     "mirage-crypto-rng.2.4.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -1962,7 +1950,7 @@
         "mirage-crypto",
         "digestif"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"dune\" {>= \"2.7\"}\r\n\"dune-configurator\" {>= \"2.0.0\"}\r\n\"duration\"\r\n\"logs\"\r\n\"mirage-crypto\" {= version}\r\n\"digestif\" {>= \"1.1.4\"}\r\n\"ounit2\" {with-test}\r\n\"randomconv\" {with-test & >= \"0.2.0\"}\r\n\"ohex\" {with-test & >= \"0.2.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"dune\" {>= \"2.7\"}\n\"dune-configurator\" {>= \"2.0.0\"}\n\"duration\"\n\"logs\"\n\"mirage-crypto\" {= version}\n\"digestif\" {>= \"1.1.4\"}\n\"ounit2\" {with-test}\n\"randomconv\" {with-test & >= \"0.2.0\"}\n\"ohex\" {with-test & >= \"0.2.0\"}",
       "install": null,
       "name": "mirage-crypto-rng",
       "source": {
@@ -1977,14 +1965,14 @@
       "version": "2.4.1"
     },
     "mirage-crypto.2.4.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "dune-configurator",
         "eqaf"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\r\n\"dune\" {>= \"2.7\"}\r\n\"dune-configurator\" {>= \"2.0.0\"}\r\n\"ounit2\" {with-test}\r\n\"ohex\" {with-test & >= \"0.2.0\"}\r\n\"eqaf\" {>= \"0.8\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\n\"dune\" {>= \"2.7\"}\n\"dune-configurator\" {>= \"2.0.0\"}\n\"ounit2\" {with-test}\n\"ohex\" {with-test & >= \"0.2.0\"}\n\"eqaf\" {>= \"0.8\"}",
       "install": null,
       "name": "mirage-crypto",
       "source": {
@@ -1998,8 +1986,30 @@
       },
       "version": "2.4.1"
     },
+    "mtime.2.2.0": {
+      "build": "\"ocaml\" \"pkg/pkg.ml\" \"build\" \"--dev-pkg\" \"%{dev}%\"",
+      "depends": [
+        "ocaml",
+        "ocamlfind",
+        "ocamlbuild",
+        "topkg"
+      ],
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build & != \"0.9.0\"}\n\"topkg\" {build & >= \"1.1.0\"}",
+      "install": null,
+      "name": "mtime",
+      "source": {
+        "archive": "tbz",
+        "checksums": [
+          "sha512=c7d0ef764c3cc803b9c06216601057d5092b624ee313780df70f6a0a462f12671986af69c90e811038419cae4648c62acbef71398ceb8d0d3c9dcda6ff0fab80",
+          "sha256=f9210a07c4a3eb1756a45fa8a32974d9b5ddad3583c3400442fdfe2c9d63d636"
+        ],
+        "size": 15691,
+        "url": "https://erratique.ch/software/mtime/releases/mtime-2.2.0.tbz"
+      },
+      "version": "2.2.0"
+    },
     "ocaml-base-compiler.4.14.4": {
-      "build": "[\r\n  \"./configure\"\r\n  \"--host=x86_64-pc-windows\" {system-msvc:installed & arch-x86_64:installed}\r\n  \"--host=x86_64-w64-mingw32\"\r\n    {os-distribution = \"cygwin\" & system-mingw:installed &\r\n     arch-x86_64:installed}\r\n  \"--host=i686-pc-windows\" {system-msvc:installed & arch-x86_32:installed}\r\n  \"--host=i686-w64-mingw32\"\r\n    {os-distribution = \"cygwin\" & system-mingw:installed &\r\n     arch-x86_32:installed}\r\n  \"--prefix=%{prefix}%\"\r\n  \"--docdir=%{doc}%/ocaml\"\r\n  \"--with-flexdll=%{flexdll:share}%\" {os = \"win32\" & flexdll:installed}\r\n  \"-C\"\r\n  \"CC=cc\" {os = \"openbsd\" | os = \"macos\"}\r\n  \"ASPP=cc -c\" {os = \"openbsd\" | os = \"macos\"}\r\n]\r\n[make \"-j%{jobs}%\"]",
+      "build": "[\n  \"./configure\"\n  \"--host=x86_64-pc-windows\" {system-msvc:installed & arch-x86_64:installed}\n  \"--host=x86_64-w64-mingw32\"\n    {os-distribution = \"cygwin\" & system-mingw:installed &\n     arch-x86_64:installed}\n  \"--host=i686-pc-windows\" {system-msvc:installed & arch-x86_32:installed}\n  \"--host=i686-w64-mingw32\"\n    {os-distribution = \"cygwin\" & system-mingw:installed &\n     arch-x86_32:installed}\n  \"--prefix=%{prefix}%\"\n  \"--docdir=%{doc}%/ocaml\"\n  \"--with-flexdll=%{flexdll:share}%\" {os = \"win32\" & flexdll:installed}\n  \"-C\"\n  \"CC=cc\" {os = \"openbsd\" | os = \"macos\"}\n  \"ASPP=cc -c\" {os = \"openbsd\" | os = \"macos\"}\n]\n[make \"-j%{jobs}%\"]",
       "depends": [
         "ocaml",
         "base-unix",
@@ -2010,7 +2020,7 @@
         "ocaml-options-vanilla",
         "flexdll"
       ],
-      "depends_raw": "\"ocaml\" {= \"4.14.4\" & post}\r\n\"base-unix\" {post}\r\n\"base-bigarray\" {post}\r\n\"base-threads\" {post}\r\n((\"arch-x86_64\" {os = \"win32\" & arch = \"x86_64\"} &\r\n  (\"system-mingw\" | \"system-msvc\")) |\r\n (\"arch-x86_32\" {os = \"win32\"} & (\"system-mingw\" | \"system-msvc\")) |\r\n \"base-unix\" {os != \"win32\" & post})\r\n\"ocaml-options-vanilla\" {post}\r\n\"flexdll\" {>= \"0.36\" & os = \"win32\"}",
+      "depends_raw": "\"ocaml\" {= \"4.14.4\" & post}\n\"base-unix\" {post}\n\"base-bigarray\" {post}\n\"base-threads\" {post}\n((\"arch-x86_64\" {os = \"win32\" & arch = \"x86_64\"} &\n  (\"system-mingw\" | \"system-msvc\")) |\n (\"arch-x86_32\" {os = \"win32\"} & (\"system-mingw\" | \"system-msvc\")) |\n \"base-unix\" {os != \"win32\" & post})\n\"ocaml-options-vanilla\" {post}\n\"flexdll\" {>= \"0.36\" & os = \"win32\"}",
       "install": "make \"install\"",
       "name": "ocaml-base-compiler",
       "source": {
@@ -2024,7 +2034,7 @@
       "version": "4.14.4"
     },
     "ocaml-compiler-libs.v0.12.4": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml"
@@ -2048,7 +2058,7 @@
       "depends": [
         "ocaml-base-compiler"
       ],
-      "depends_raw": "\"ocaml-base-compiler\" {>= \"4.12.0~\"} | \"ocaml-variants\" {>= \"4.12.0~\"} |\r\n\"ocaml-system\" {>= \"4.12.0~\"}",
+      "depends_raw": "\"ocaml-base-compiler\" {>= \"4.12.0~\"} | \"ocaml-variants\" {>= \"4.12.0~\"} |\n\"ocaml-system\" {>= \"4.12.0~\"}",
       "install": null,
       "name": "ocaml-config",
       "source": null,
@@ -2059,7 +2069,7 @@
       "depends": [
         "ocaml-base-compiler"
       ],
-      "depends_raw": "\"ocaml-base-compiler\" {>= \"5.0.0~\" | os = \"win32\"} |\r\n\"ocaml-variants\" {>= \"5.0.0~\" | os = \"win32\"} |\r\n\"ocaml-system\" {>= \"5.0.0~\" | os = \"win32\"} |\r\n\"dkml-base-compiler\" {>= \"4.12.0~\"}",
+      "depends_raw": "\"ocaml-base-compiler\" {>= \"5.0.0~\" | os = \"win32\"} |\n\"ocaml-variants\" {>= \"5.0.0~\" | os = \"win32\"} |\n\"ocaml-system\" {>= \"5.0.0~\" | os = \"win32\"} |\n\"dkml-base-compiler\" {>= \"4.12.0~\"}",
       "install": null,
       "name": "ocaml-config",
       "source": null,
@@ -2070,10 +2080,9 @@
       "depends": [
         "host-system-mingw",
         "host-arch-x86_32",
-        "conf-mingw-w64-gcc-i686",
-        "mingw-w64-shims"
+        "conf-mingw-w64-gcc-i686"
       ],
-      "depends_raw": "\"host-system-mingw\"\r\n\"host-arch-x86_32\"\r\n\"conf-mingw-w64-gcc-i686\"\r\n\"mingw-w64-shims\" {os-distribution = \"cygwin\"}",
+      "depends_raw": "\"host-system-mingw\"\n\"host-arch-x86_32\"\n\"conf-mingw-w64-gcc-i686\"\n\"mingw-w64-shims\" {os-distribution = \"cygwin\"}",
       "install": null,
       "name": "ocaml-env-mingw32",
       "source": null,
@@ -2084,10 +2093,9 @@
       "depends": [
         "host-system-mingw",
         "host-arch-x86_64",
-        "conf-mingw-w64-gcc-x86_64",
-        "mingw-w64-shims"
+        "conf-mingw-w64-gcc-x86_64"
       ],
-      "depends_raw": "\"host-system-mingw\"\r\n\"host-arch-x86_64\"\r\n\"conf-mingw-w64-gcc-x86_64\"\r\n\"mingw-w64-shims\" {os-distribution = \"cygwin\"}",
+      "depends_raw": "\"host-system-mingw\"\n\"host-arch-x86_64\"\n\"conf-mingw-w64-gcc-x86_64\"\n\"mingw-w64-shims\" {os-distribution = \"cygwin\"}",
       "install": null,
       "name": "ocaml-env-mingw64",
       "source": null,
@@ -2098,7 +2106,7 @@
       "depends": [
         "ocaml-base-compiler"
       ],
-      "depends_raw": "\"ocaml-base-compiler\" {post} | \"ocaml-system\" {post} |\r\n\"ocaml-variants\" {post & >= \"4.12.0~\"}",
+      "depends_raw": "\"ocaml-base-compiler\" {post} | \"ocaml-system\" {post} |\n\"ocaml-variants\" {post & >= \"4.12.0~\"}",
       "install": null,
       "name": "ocaml-options-vanilla",
       "source": null,
@@ -2112,7 +2120,7 @@
         "ocaml-env-mingw64",
         "ocaml-env-mingw32"
       ],
-      "depends_raw": "\"ocaml-config\" {>= \"2\"}\r\n\"ocaml-base-compiler\" {>= \"4.14.4~\" & < \"4.14.5~\"} |\r\n\"ocaml-variants\" {>= \"4.14.4~\" & < \"4.14.5~\"} |\r\n\"ocaml-system\" {>= \"4.14.4\" & < \"4.14.5~\"} |\r\n\"dkml-base-compiler\" {>= \"4.14.4~\" & < \"4.14.5~\"}\r\n(\"ocaml-env-mingw64\" {os = \"win32\"} | \"ocaml-env-mingw32\" {os = \"win32\"} |\r\n \"ocaml-env-msvc64\" {os = \"win32\"} |\r\n \"ocaml-env-msvc32\" {os = \"win32\"})",
+      "depends_raw": "\"ocaml-config\" {>= \"2\"}\n\"ocaml-base-compiler\" {>= \"4.14.4~\" & < \"4.14.5~\"} |\n\"ocaml-variants\" {>= \"4.14.4~\" & < \"4.14.5~\"} |\n\"ocaml-system\" {>= \"4.14.4\" & < \"4.14.5~\"} |\n\"dkml-base-compiler\" {>= \"4.14.4~\" & < \"4.14.5~\"}\n(\"ocaml-env-mingw64\" {os = \"win32\"} | \"ocaml-env-mingw32\" {os = \"win32\"} |\n \"ocaml-env-msvc64\" {os = \"win32\"} |\n \"ocaml-env-msvc32\" {os = \"win32\"})",
       "install": null,
       "name": "ocaml",
       "source": null,
@@ -2155,14 +2163,14 @@
       "version": "1.9.5"
     },
     "ocplib-endian.1.2": {
-      "build": "\"dune\"\r\n\"build\"\r\n\"-p\"\r\nname\r\n\"-j\"\r\njobs\r\n\"@install\"\r\n\"@runtest\" {with-test}\r\n\"@doc\" {with-doc}",
+      "build": "\"dune\"\n\"build\"\n\"-p\"\nname\n\"-j\"\njobs\n\"@install\"\n\"@runtest\" {with-test}\n\"@doc\" {with-doc}",
       "depends": [
         "base-bytes",
         "ocaml",
         "cppo",
         "dune"
       ],
-      "depends_raw": "\"base-bytes\"\r\n\"ocaml\" {>= \"4.03.0\"}\r\n\"cppo\" {>= \"1.1.0\" & build}\r\n\"dune\" {>= \"1.0\"}",
+      "depends_raw": "\"base-bytes\"\n\"ocaml\" {>= \"4.03.0\"}\n\"cppo\" {>= \"1.1.0\" & build}\n\"dune\" {>= \"1.0\"}",
       "install": null,
       "name": "ocplib-endian",
       "source": {
@@ -2178,14 +2186,14 @@
       "version": "1.2"
     },
     "odoc-parser.3.1.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@src/parser/runtest\" {with-test}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@src/parser/runtest\" {with-test}\n]",
       "depends": [
         "dune",
         "ocaml",
         "astring",
         "camlp-streams"
       ],
-      "depends_raw": "\"dune\" {>= \"3.18\"}\r\n\"ocaml\" {>= \"4.08.0\" & < \"5.5\"}\r\n\"astring\"\r\n\"camlp-streams\"\r\n\"ppx_expect\" {with-test}\r\n\"sexplib0\" {with-test}",
+      "depends_raw": "\"dune\" {>= \"3.18\"}\n\"ocaml\" {>= \"4.08.0\" & < \"5.5\"}\n\"astring\"\n\"camlp-streams\"\n\"ppx_expect\" {with-test}\n\"sexplib0\" {with-test}",
       "install": null,
       "name": "odoc-parser",
       "source": {
@@ -2200,7 +2208,7 @@
       "version": "3.1.0"
     },
     "odoc.3.1.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "odoc-parser",
         "astring",
@@ -2213,7 +2221,7 @@
         "fmt",
         "crunch"
       ],
-      "depends_raw": "\"odoc-parser\" {= version}\r\n\"astring\"\r\n\"cmdliner\" {>= \"1.3.0\"}\r\n\"cppo\" {build & >= \"1.1.0\"}\r\n\"dune\" {>= \"3.18.0\"}\r\n\"fpath\" {>= \"0.7.3\"}\r\n\"ocaml\" {>= \"4.08.0\" & < \"5.5\"}\r\n\"tyxml\" {>= \"4.4.0\"}\r\n\"fmt\"\r\n\"crunch\" {>= \"1.4.1\"}\r\n\"ocamlfind\" {with-test}\r\n\"yojson\" {>= \"2.1.0\" & with-test}\r\n\"sexplib0\" {with-test}\r\n\"conf-jq\" {with-test}\r\n\"ppx_expect\" {with-test}\r\n\"bos\" {with-test}\r\n\"bisect_ppx\" {with-test & > \"2.5.0\"}",
+      "depends_raw": "\"odoc-parser\" {= version}\n\"astring\"\n\"cmdliner\" {>= \"1.3.0\"}\n\"cppo\" {build & >= \"1.1.0\"}\n\"dune\" {>= \"3.18.0\"}\n\"fpath\" {>= \"0.7.3\"}\n\"ocaml\" {>= \"4.08.0\" & < \"5.5\"}\n\"tyxml\" {>= \"4.4.0\"}\n\"fmt\"\n\"crunch\" {>= \"1.4.1\"}\n\"ocamlfind\" {with-test}\n\"yojson\" {>= \"2.1.0\" & with-test}\n\"sexplib0\" {with-test}\n\"conf-jq\" {with-test}\n\"ppx_expect\" {with-test}\n\"bos\" {with-test}\n\"bisect_ppx\" {with-test & > \"2.5.0\"}",
       "install": null,
       "name": "odoc",
       "source": {
@@ -2228,7 +2236,7 @@
       "version": "3.1.0"
     },
     "ohex.0.2.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
@@ -2260,7 +2268,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_cold\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_here\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_cold\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_here\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_assert",
       "source": {
@@ -2286,7 +2294,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"ppx_cold\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_enumerate\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_globalize\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_hash\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"ppx_cold\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_enumerate\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_globalize\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_hash\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_base",
       "source": {
@@ -2307,7 +2315,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_cold",
       "source": {
@@ -2328,7 +2336,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_compare",
       "source": {
@@ -2362,7 +2370,7 @@
       "version": "1.2.1"
     },
     "ppx_deriving.6.0.3": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\r\n[\"dune\" \"build\" \"@doc\" \"-p\" name \"-j\" jobs] {with-doc}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\n[\"dune\" \"build\" \"@doc\" \"-p\" name \"-j\" jobs] {with-doc}",
       "depends": [
         "ocaml",
         "dune",
@@ -2371,7 +2379,7 @@
         "ppx_derivers",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.05.0\" & < \"5.4\"}\r\n\"dune\" {>= \"1.6.3\"}\r\n\"cppo\" {>= \"1.1.0\" & build}\r\n\"ocamlfind\"\r\n\"ppx_derivers\"\r\n\"ppxlib\" {>= \"0.32.0\" & < \"0.36.0\"}\r\n\"ounit2\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.05.0\" & < \"5.4\"}\n\"dune\" {>= \"1.6.3\"}\n\"cppo\" {>= \"1.1.0\" & build}\n\"ocamlfind\"\n\"ppx_derivers\"\n\"ppxlib\" {>= \"0.32.0\" & < \"0.36.0\"}\n\"ounit2\" {with-test}",
       "install": null,
       "name": "ppx_deriving",
       "source": {
@@ -2393,7 +2401,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_enumerate",
       "source": {
@@ -2414,7 +2422,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
       "install": null,
       "name": "ppx_globalize",
       "source": {
@@ -2437,7 +2445,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_compare\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_sexp_conv\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_hash",
       "source": {
@@ -2458,7 +2466,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\"}",
       "install": null,
       "name": "ppx_here",
       "source": {
@@ -2480,7 +2488,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"time_now\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"time_now\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
       "install": null,
       "name": "ppx_inline_test",
       "source": {
@@ -2502,7 +2510,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"time_now\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"3.11.1\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"time_now\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"3.11.1\"}\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
       "install": null,
       "name": "ppx_inline_test",
       "source": {
@@ -2526,7 +2534,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"stdio\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"stdio\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
       "install": null,
       "name": "ppx_optcomp",
       "source": {
@@ -2548,7 +2556,7 @@
         "dune",
         "ppxlib"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"sexplib0\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}\r\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"sexplib0\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}\n\"ppxlib\" {>= \"0.28.0\" & < \"0.36.0\"}",
       "install": null,
       "name": "ppx_sexp_conv",
       "source": {
@@ -2562,7 +2570,7 @@
       "version": "v0.16.0"
     },
     "ppxlib.0.35.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -2571,7 +2579,7 @@
         "sexplib0",
         "stdlib-shims"
       ],
-      "depends_raw": "\"dune\" {>= \"3.8\"}\r\n\"ocaml\" {>= \"4.08.0\" & < \"5.4.0\"}\r\n\"ocaml-compiler-libs\" {>= \"v0.11.0\"}\r\n\"ppx_derivers\" {>= \"1.0\"}\r\n\"sexplib0\" {>= \"v0.12\"}\r\n\"sexplib0\" {with-test & >= \"v0.15\"}\r\n\"stdlib-shims\"\r\n\"ocamlfind\" {with-test}\r\n\"re\" {with-test & >= \"1.9.0\"}\r\n\"cinaps\" {with-test & >= \"v0.12.1\"}\r\n\"ocamlformat\" {with-dev-setup & = \"0.26.2\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"3.8\"}\n\"ocaml\" {>= \"4.08.0\" & < \"5.4.0\"}\n\"ocaml-compiler-libs\" {>= \"v0.11.0\"}\n\"ppx_derivers\" {>= \"1.0\"}\n\"sexplib0\" {>= \"v0.12\"}\n\"sexplib0\" {with-test & >= \"v0.15\"}\n\"stdlib-shims\"\n\"ocamlfind\" {with-test}\n\"re\" {with-test & >= \"1.9.0\"}\n\"cinaps\" {with-test & >= \"v0.12.1\"}\n\"ocamlformat\" {with-dev-setup & = \"0.26.2\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "ppxlib",
       "source": {
@@ -2586,7 +2594,7 @@
       "version": "0.35.0"
     },
     "prometheus.2.0": {
-      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -2614,7 +2622,7 @@
         "ocamlbuild",
         "topkg"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build & != \"0.9.0\"}\r\n\"topkg\" {build & >= \"1.0.3\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build & != \"0.9.0\"}\n\"topkg\" {build & >= \"1.0.3\"}",
       "install": null,
       "name": "ptime",
       "source": {
@@ -2629,7 +2637,7 @@
       "version": "1.2.0"
     },
     "re.1.11.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -2650,7 +2658,7 @@
       "version": "1.11.0"
     },
     "res.5.0.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml"
@@ -2697,7 +2705,7 @@
         "ocamlbuild",
         "topkg"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.0.3\"}",
       "install": null,
       "name": "rresult",
       "source": {
@@ -2712,14 +2720,14 @@
       "version": "0.7.0"
     },
     "sedlex.3.7": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "ocaml",
         "dune",
         "ppxlib",
         "gen"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08\"}\r\n\"dune\" {>= \"3.0\"}\r\n\"ppxlib\" {>= \"0.26.0\"}\r\n\"gen\"\r\n\"ppx_expect\" {with-test}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"ocaml\" {>= \"4.08\"}\n\"dune\" {>= \"3.0\"}\n\"ppxlib\" {>= \"0.26.0\"}\n\"gen\"\n\"ppx_expect\" {with-test}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "sedlex",
       "source": {
@@ -2765,12 +2773,12 @@
       "version": "v0.16.0"
     },
     "spawn.v0.15.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml"
       ],
-      "depends_raw": "\"dune\" {>= \"2.8\"}\r\n\"ppx_expect\" {with-test}\r\n\"ocaml\" {>= \"4.05\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"2.8\"}\n\"ppx_expect\" {with-test}\n\"ocaml\" {>= \"4.05\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "spawn",
       "source": {
@@ -2785,7 +2793,7 @@
       "version": "v0.15.1"
     },
     "stdint.0.7.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "dune",
         "ocaml"
@@ -2845,12 +2853,12 @@
       "version": "0.3.0"
     },
     "stringext.1.6.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.02.3\"}\r\n\"dune\" {>= \"1.0\"}\r\n\"ounit\" {with-test}\r\n\"qtest\" {with-test & >= \"2.2\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.02.3\"}\n\"dune\" {>= \"1.0\"}\n\"ounit\" {with-test}\n\"qtest\" {with-test & >= \"2.2\"}",
       "install": null,
       "name": "stringext",
       "source": {
@@ -2871,14 +2879,14 @@
         "ocaml-env-mingw32",
         "ocaml-env-mingw64"
       ],
-      "depends_raw": "(\"ocaml-base-compiler\" {post & >= \"4.13.0~\"} |\r\n \"ocaml-variants\" {post & >= \"4.13.0~\"})\r\n(\"ocaml-env-mingw32\" | \"ocaml-env-mingw64\")",
+      "depends_raw": "(\"ocaml-base-compiler\" {post & >= \"4.13.0~\"} |\n \"ocaml-variants\" {post & >= \"4.13.0~\"})\n(\"ocaml-env-mingw32\" | \"ocaml-env-mingw64\")",
       "install": null,
       "name": "system-mingw",
       "source": null,
       "version": "1"
     },
     "tezt.4.3.0": {
-      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs]\r\n  {with-test & arch = \"x86_64\" & os = \"linux\" & os-distribution = \"debian\"}",
+      "build": "[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs]\n  {with-test & arch = \"x86_64\" & os = \"linux\" & os-distribution = \"debian\"}",
       "depends": [
         "dune",
         "ocaml",
@@ -2889,7 +2897,7 @@
         "clap",
         "js_of_ocaml"
       ],
-      "depends_raw": "\"dune\" {>= \"3.19.1\"}\r\n\"ocaml\" {>= \"4.13\"}\r\n\"re\" {>= \"1.7.2\"}\r\n\"lwt\" {>= \"5.6.0\" & < \"6.0.0\"}\r\n\"base-unix\"\r\n\"ezjsonm\" {>= \"1.1.0\"}\r\n\"clap\" {>= \"0.3.0\"}\r\n\"conf-npm\" {with-test}\r\n\"js_of_ocaml\" {with-test}\r\n\"js_of_ocaml-lwt\" {with-test}\r\n\"ocamlformat\" {with-test & = \"0.27.0\"}",
+      "depends_raw": "\"dune\" {>= \"3.19.1\"}\n\"ocaml\" {>= \"4.13\"}\n\"re\" {>= \"1.7.2\"}\n\"lwt\" {>= \"5.6.0\" & < \"6.0.0\"}\n\"base-unix\"\n\"ezjsonm\" {>= \"1.1.0\"}\n\"clap\" {>= \"0.3.0\"}\n\"conf-npm\" {with-test}\n\"js_of_ocaml\" {with-test}\n\"js_of_ocaml-lwt\" {with-test}\n\"ocamlformat\" {with-test & = \"0.27.0\"}",
       "install": null,
       "name": "tezt",
       "source": {
@@ -2915,7 +2923,7 @@
         "ppx_optcomp",
         "dune"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"jane-street-headers\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"jst-config\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_base\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"ppx_optcomp\" {>= \"v0.16\" & < \"v0.17\"}\r\n\"dune\" {>= \"2.0.0\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"base\" {>= \"v0.16\" & < \"v0.17\"}\n\"jane-street-headers\" {>= \"v0.16\" & < \"v0.17\"}\n\"jst-config\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_base\" {>= \"v0.16\" & < \"v0.17\"}\n\"ppx_optcomp\" {>= \"v0.16\" & < \"v0.17\"}\n\"dune\" {>= \"2.0.0\"}",
       "install": null,
       "name": "time_now",
       "source": {
@@ -2929,7 +2937,7 @@
       "version": "v0.16.0"
     },
     "tiny_httpd.0.22": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "seq",
@@ -2938,9 +2946,10 @@
         "hmap",
         "iostream",
         "ocaml",
-        "logs"
+        "logs",
+        "mtime"
       ],
-      "depends_raw": "\"dune\" {>= \"3.2\"}\r\n\"seq\"\r\n\"base-threads\"\r\n\"result\"\r\n\"hmap\"\r\n\"iostream\" {>= \"0.2\"}\r\n\"ocaml\" {>= \"4.13\"}\r\n\"odoc\" {with-doc}\r\n\"logs\" {with-test}\r\n\"conf-libcurl\" {with-test}\r\n\"ptime\" {with-test}\r\n\"qcheck-core\" {>= \"0.91\" & with-test}",
+      "depends_raw": "\"dune\" {>= \"3.2\"}\n\"seq\"\n\"base-threads\"\n\"result\"\n\"hmap\"\n\"iostream\" {>= \"0.2\"}\n\"ocaml\" {>= \"4.13\"}\n\"odoc\" {with-doc}\n\"logs\" {with-test}\n\"conf-libcurl\" {with-test}\n\"ptime\" {with-test}\n\"qcheck-core\" {>= \"0.91\" & with-test}",
       "install": null,
       "name": "tiny_httpd",
       "source": {
@@ -2955,7 +2964,7 @@
       "version": "0.22"
     },
     "tls-nogmp.2.1.4": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" \"tls\" \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" \"tls\" \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" \"tls\" \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" \"tls\" \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -2973,8 +2982,8 @@
         "digestif",
         "ptime"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\r\n\"dune\" {>= \"3.0\"}\r\n\"mirage-crypto\" {>= \"1.1.0\"}\r\n\"mirage-crypto-ec\" {>= \"1.0.0\"}\r\n\"mirage-crypto-pk-nogmp\"\r\n\"mirage-crypto-rng\" {>= \"1.2.0\"}\r\n\"x509-nogmp\" {>= \"1.2.0\"}\r\n\"domain-name\" {>= \"0.3.0\"}\r\n\"fmt\" {>= \"0.8.7\"}\r\n\"ounit2\" {with-test & >= \"2.2.0\"}\r\n\"kdf\" {>= \"1.0.0\"}\r\n\"logs\"\r\n\"ipaddr\"\r\n\"ohex\" {>= \"0.2.0\"}\r\n\"digestif\" {>= \"1.2.0\"}\r\n\"ptime\" {>= \"1.2.0\"}\r\n\"alcotest\" {with-test}\r\n\"cmdliner\" {with-test & >= \"1.3.0\"}",
-      "install": "\"dune\"\r\n\"install\"\r\n\"-p\"\r\n\"tls\"\r\n\"--prefix\"\r\n\"%{prefix}%\"\r\n\"--libdir\"\r\n\"%{lib}%\"\r\n\"--docdir\"\r\n\"%{doc}%\"\r\n\"--mandir\"\r\n\"%{man}%\"",
+      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\n\"dune\" {>= \"3.0\"}\n\"mirage-crypto\" {>= \"1.1.0\"}\n\"mirage-crypto-ec\" {>= \"1.0.0\"}\n\"mirage-crypto-pk-nogmp\"\n\"mirage-crypto-rng\" {>= \"1.2.0\"}\n\"x509-nogmp\" {>= \"1.2.0\"}\n\"domain-name\" {>= \"0.3.0\"}\n\"fmt\" {>= \"0.8.7\"}\n\"ounit2\" {with-test & >= \"2.2.0\"}\n\"kdf\" {>= \"1.0.0\"}\n\"logs\"\n\"ipaddr\"\n\"ohex\" {>= \"0.2.0\"}\n\"digestif\" {>= \"1.2.0\"}\n\"ptime\" {>= \"1.2.0\"}\n\"alcotest\" {with-test}\n\"cmdliner\" {with-test & >= \"1.3.0\"}",
+      "install": "\"dune\"\n\"install\"\n\"-p\"\n\"tls\"\n\"--prefix\"\n\"%{prefix}%\"\n\"--libdir\"\n\"%{lib}%\"\n\"--docdir\"\n\"%{doc}%\"\n\"--mandir\"\n\"%{man}%\"",
       "name": "tls-nogmp",
       "source": {
         "archive": "tbz",
@@ -3009,14 +3018,14 @@
       "version": "1.1.1"
     },
     "tyre.1.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
         "seq",
         "re"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.12.0\"}\r\n\"dune\" {>= \"3.10\"}\r\n\"seq\"\r\n\"re\" {>= \"1.9.0\"}\r\n\"gen\" {with-test & >= \"1.0\"}\r\n\"containers\" {with-test & >= \"3.0\"}\r\n\"alcotest\" {with-test & >= \"0.8.0\"}\r\n\"angstrom\" {with-test & >= \"0.16.1\"}\r\n\"benchmark\" {with-test & >= \"1.7\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"ocaml\" {>= \"4.12.0\"}\n\"dune\" {>= \"3.10\"}\n\"seq\"\n\"re\" {>= \"1.9.0\"}\n\"gen\" {with-test & >= \"1.0\"}\n\"containers\" {with-test & >= \"3.0\"}\n\"alcotest\" {with-test & >= \"0.8.0\"}\n\"angstrom\" {with-test & >= \"0.16.1\"}\n\"benchmark\" {with-test & >= \"1.7\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "tyre",
       "source": {
@@ -3031,7 +3040,7 @@
       "version": "1.0"
     },
     "tyxml.4.6.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
@@ -3039,7 +3048,7 @@
         "seq",
         "uutf"
       ],
-      "depends_raw": "\"dune\" {>= \"2.7\"}\r\n\"ocaml\" {>= \"4.04\"}\r\n\"alcotest\" {with-test}\r\n\"re\" {>= \"1.7.2\"}\r\n\"seq\"\r\n\"uutf\" {>= \"1.0.0\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"2.7\"}\n\"ocaml\" {>= \"4.04\"}\n\"alcotest\" {with-test}\n\"re\" {>= \"1.7.2\"}\n\"seq\"\n\"uutf\" {>= \"1.0.0\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "tyxml",
       "source": {
@@ -3054,7 +3063,7 @@
       "version": "4.6.0"
     },
     "uucp.17.0.0": {
-      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-uunf\"\r\n\"%{uunf:installed}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "build": "\"ocaml\"\n\"pkg/pkg.ml\"\n\"build\"\n\"--dev-pkg\"\n\"%{dev}%\"\n\"--with-uunf\"\n\"%{uunf:installed}%\"\n\"--with-cmdliner\"\n\"%{cmdliner:installed}%\"",
       "depends": [
         "ocaml",
         "ocamlfind",
@@ -3062,7 +3071,7 @@
         "topkg",
         "cmdliner"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.1.0\"}\r\n\"uucd\" {with-test & dev & >= \"17.0.0\" & < \"18.0.0\"}\r\n\"uunf\" {with-test}",
+      "depends_raw": "\"ocaml\" {>= \"4.14.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.1.0\"}\n\"uucd\" {with-test & dev & >= \"17.0.0\" & < \"18.0.0\"}\n\"uunf\" {with-test}",
       "install": null,
       "name": "uucp",
       "source": {
@@ -3077,7 +3086,7 @@
       "version": "17.0.0"
     },
     "uuidm.0.9.8": {
-      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "build": "\"ocaml\"\n\"pkg/pkg.ml\"\n\"build\"\n\"--dev-pkg\"\n\"%{dev}%\"\n\"--with-cmdliner\"\n\"%{cmdliner:installed}%\"",
       "depends": [
         "ocaml",
         "ocamlfind",
@@ -3085,7 +3094,7 @@
         "topkg",
         "cmdliner"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.08.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.0.3\"}",
       "install": null,
       "name": "uuidm",
       "source": {
@@ -3100,7 +3109,7 @@
       "version": "0.9.8"
     },
     "uutf.1.0.3": {
-      "build": "\"ocaml\"\r\n\"pkg/pkg.ml\"\r\n\"build\"\r\n\"--dev-pkg\"\r\n\"%{dev}%\"\r\n\"--with-cmdliner\"\r\n\"%{cmdliner:installed}%\"",
+      "build": "\"ocaml\"\n\"pkg/pkg.ml\"\n\"build\"\n\"--dev-pkg\"\n\"%{dev}%\"\n\"--with-cmdliner\"\n\"%{cmdliner:installed}%\"",
       "depends": [
         "ocaml",
         "ocamlfind",
@@ -3108,7 +3117,7 @@
         "topkg",
         "cmdliner"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\r\n\"ocamlfind\" {build}\r\n\"ocamlbuild\" {build}\r\n\"topkg\" {build & >= \"1.0.3\"}",
+      "depends_raw": "\"ocaml\" {>= \"4.03.0\"}\n\"ocamlfind\" {build}\n\"ocamlbuild\" {build}\n\"topkg\" {build & >= \"1.0.3\"}",
       "install": null,
       "name": "uutf",
       "source": {
@@ -3123,7 +3132,7 @@
       "version": "1.0.3"
     },
     "x509-nogmp.1.2.0": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"dune\" \"build\" \"-p\" \"x509\" \"-j\" jobs]\r\n[\"dune\" \"runtest\" \"-p\" \"x509\" \"-j\" jobs] {with-test}",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"dune\" \"build\" \"-p\" \"x509\" \"-j\" jobs]\n[\"dune\" \"runtest\" \"-p\" \"x509\" \"-j\" jobs] {with-test}",
       "depends": [
         "ocaml",
         "dune",
@@ -3142,8 +3151,8 @@
         "ohex",
         "ipaddr"
       ],
-      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\r\n\"dune\" {>= \"2.0\"}\r\n\"asn1-combinators\" {>= \"0.3.1\"}\r\n\"ptime\"\r\n\"base64\" {>= \"3.3.0\"}\r\n\"mirage-crypto\" {>= \"1.0.0\"}\r\n\"mirage-crypto-pk-nogmp\"\r\n\"mirage-crypto-ec\" {>= \"0.10.7\"}\r\n\"mirage-crypto-rng\"\r\n\"mirage-crypto-rng\" {with-test & >= \"1.2.0\"}\r\n\"fmt\" {>= \"0.8.7\"}\r\n\"alcotest\" {with-test}\r\n\"gmap\" {>= \"0.3.0\"}\r\n\"domain-name\" {>= \"0.3.0\"}\r\n\"logs\"\r\n\"kdf\" {>= \"1.0.0\"}\r\n\"ohex\" {>= \"0.2.0\"}\r\n\"ipaddr\" {>= \"5.2.0\"}",
-      "install": "\"dune\"\r\n\"install\"\r\n\"-p\"\r\n\"x509\"\r\n\"--prefix\"\r\n\"%{prefix}%\"\r\n\"--libdir\"\r\n\"%{lib}%\"\r\n\"--docdir\"\r\n\"%{doc}%\"\r\n\"--mandir\"\r\n\"%{man}%\"",
+      "depends_raw": "\"ocaml\" {>= \"4.13.0\"}\n\"dune\" {>= \"2.0\"}\n\"asn1-combinators\" {>= \"0.3.1\"}\n\"ptime\"\n\"base64\" {>= \"3.3.0\"}\n\"mirage-crypto\" {>= \"1.0.0\"}\n\"mirage-crypto-pk-nogmp\"\n\"mirage-crypto-ec\" {>= \"0.10.7\"}\n\"mirage-crypto-rng\"\n\"mirage-crypto-rng\" {with-test & >= \"1.2.0\"}\n\"fmt\" {>= \"0.8.7\"}\n\"alcotest\" {with-test}\n\"gmap\" {>= \"0.3.0\"}\n\"domain-name\" {>= \"0.3.0\"}\n\"logs\"\n\"kdf\" {>= \"1.0.0\"}\n\"ohex\" {>= \"0.2.0\"}\n\"ipaddr\" {>= \"5.2.0\"}",
+      "install": "\"dune\"\n\"install\"\n\"-p\"\n\"x509\"\n\"--prefix\"\n\"%{prefix}%\"\n\"--libdir\"\n\"%{lib}%\"\n\"--docdir\"\n\"%{doc}%\"\n\"--mandir\"\n\"%{man}%\"",
       "name": "x509-nogmp",
       "source": {
         "archive": "tbz",
@@ -3157,7 +3166,7 @@
       "version": "1.2.0"
     },
     "xdg.3.19.1": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\"rm\" \"-rf\" \"vendor/csexp\"]\r\n[\"rm\" \"-rf\" \"vendor/pp\"]\r\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\"rm\" \"-rf\" \"vendor/csexp\"]\n[\"rm\" \"-rf\" \"vendor/pp\"]\n[\"dune\" \"build\" \"-p\" name \"-j\" jobs \"@install\" \"@doc\" {with-doc}]",
       "depends": [
         "dune",
         "ocaml"
@@ -3177,14 +3186,14 @@
       "version": "3.19.1"
     },
     "yojson.2.1.2": {
-      "build": "[\"dune\" \"subst\"] {dev}\r\n[\r\n  \"dune\"\r\n  \"build\"\r\n  \"-p\"\r\n  name\r\n  \"-j\"\r\n  jobs\r\n  \"@install\"\r\n  \"@runtest\" {with-test}\r\n  \"@doc\" {with-doc}\r\n]",
+      "build": "[\"dune\" \"subst\"] {dev}\n[\n  \"dune\"\n  \"build\"\n  \"-p\"\n  name\n  \"-j\"\n  jobs\n  \"@install\"\n  \"@runtest\" {with-test}\n  \"@doc\" {with-doc}\n]",
       "depends": [
         "dune",
         "ocaml",
         "cppo",
         "seq"
       ],
-      "depends_raw": "\"dune\" {>= \"2.7\"}\r\n\"ocaml\" {>= \"4.02.3\"}\r\n\"cppo\" {build}\r\n\"alcotest\" {with-test & >= \"0.8.5\"}\r\n\"seq\" {>= \"0.2.2\"}\r\n\"odoc\" {with-doc}",
+      "depends_raw": "\"dune\" {>= \"2.7\"}\n\"ocaml\" {>= \"4.02.3\"}\n\"cppo\" {build}\n\"alcotest\" {with-test & >= \"0.8.5\"}\n\"seq\" {>= \"0.2.2\"}\n\"odoc\" {with-doc}",
       "install": null,
       "name": "yojson",
       "source": {
@@ -3298,6 +3307,7 @@
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.2",
@@ -3446,6 +3456,7 @@
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.2",
@@ -3594,6 +3605,7 @@
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.2",
@@ -3742,6 +3754,7 @@
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.2",
@@ -3890,6 +3903,7 @@
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.2",
@@ -4038,6 +4052,7 @@
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.2",
@@ -4186,11 +4201,11 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mingw-w64-shims.1.0.1",
         "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.3",
@@ -4342,11 +4357,11 @@
         "menhirCST.20231231",
         "menhirLib.20231231",
         "menhirSdk.20231231",
-        "mingw-w64-shims.1.0.1",
         "mirage-crypto-ec.2.4.1+dk1",
         "mirage-crypto-pk-nogmp.2.0.2",
         "mirage-crypto-rng.2.4.1",
         "mirage-crypto.2.4.1",
+        "mtime.2.2.0",
         "ocaml-base-compiler.4.14.4",
         "ocaml-compiler-libs.v0.12.4",
         "ocaml-config.3",

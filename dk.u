@@ -82,19 +82,20 @@ Apache-2.0 AND LGPL-2.1-only WITH OCaml-LGPL-linking-exception AND OSL-3.0
 ### CommonsBase_Dk.TestPkgLock@2.4.3
 
 -- The with-test opam lock that TestPkg.LockSrc publishes, for now in place of
--- the copy inside MlFrontSource. It is MlFront's with-test lock with the
--- launch-only local packages removed: each kept package that depended on one
--- now lists that package's own dependencies, so the same external packages
--- stay reachable. Its kdf is 1.1.2+dk1, the jonahbeckford/kdf branch
--- fix/msvc-c-flags, because kdf 1.1.2 does not compile with MSVC. Its
--- mirage-crypto-ec is 2.4.1+dk1, the jonahbeckford/mirage-crypto branch
--- fix/msvc-ec-tables, because mirage-crypto-ec 2.4.1 does not compile with
--- MSVC for 64-bit Windows, and its Ed25519 is wrong there once it does. At
--- the next normal repin, LockSrc goes back to MlFrontSource and this asset
--- is deleted.
+-- the copy inside MlFrontSource. It is the with-test lock of dksdk-coder 2.4
+-- 083c9d538 (ext/MlFront/dk.opam-lock-test.jsonc) with the launch-only local
+-- packages removed: each kept package that depended on one now lists that
+-- package's own dependencies, so the same external packages stay reachable.
+-- It has mtime 2.2.0, which 2.4's DkOne_Exec needs. Its kdf is 1.1.2+dk1,
+-- the jonahbeckford/kdf branch fix/msvc-c-flags, because kdf 1.1.2 does not
+-- compile with MSVC. Its mirage-crypto-ec is 2.4.1+dk1, the
+-- jonahbeckford/mirage-crypto branch fix/msvc-ec-tables, because
+-- mirage-crypto-ec 2.4.1 does not compile with MSVC for 64-bit Windows, and
+-- its Ed25519 is wrong there once it does. At the next normal repin, LockSrc
+-- goes back to MlFrontSource and this asset is deleted.
 
   % unified.asset { name="Lock", file="assets/testpkg/dk-opam-lock-test.jsonc" }
-  \dk.asset(byteSize: "169832", checksum: (sha256: "28bc9024f00b26fd9a7e30d87930106e900810316c5bb3bcc2b088ec8ab93de5"))\;
+  \dk.asset(byteSize: "167677", checksum: (sha256: "205e94fa5d387f2a07917dd8685bb35337f2d8ea87f1ee0f0c248a894d49448d"))\;
 
 ## Data flow for building dk0/dk1 from source
 
