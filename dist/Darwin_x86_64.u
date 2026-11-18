@@ -30,7 +30,7 @@ republished as a single native executable.
 
 ## TestPkg (with-test external closure, imported by the MlFront test gate)
 
-  $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Darwin_x86_64 -m ./prefix.zip -d ./testpkg
+  $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.4 -s Release.Darwin_x86_64 -m ./prefix.zip -d ./testpkg
   \test(pass)
   \dk.object(abi: "Release.Darwin_x86_64", value-id: "o3k5kqo3tiennrjamsip3li6o5x5r3xabobnpfbuzpdpacjp3usha")\;
 

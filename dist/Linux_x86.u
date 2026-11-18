@@ -30,7 +30,7 @@ republished as a single native executable.
 
 ## TestPkg (with-test external closure, imported by the MlFront test gate)
 
-  $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.3 -s Release.Linux_x86 -m ./prefix.zip -d ./testpkg
+  $ get-object CommonsBase_Dk.TestPkg.Closure@2.4.4 -s Release.Linux_x86 -m ./prefix.zip -d ./testpkg
   \test(pass)
   \dk.object(abi: "Release.Linux_x86", value-id: "ogbrvsl6nvoikskdf2hzktffg3a2uqaxruinj7ubiggvtblu7ld4a")\;
 
