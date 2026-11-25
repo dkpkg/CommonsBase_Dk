@@ -7,12 +7,12 @@
 // `dk-opam-lock-test.jsonc`. Regenerate (do not hand-edit) when the lock changes.
 //
 // Regenerate with:
-//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.26 pkg=CommonsBase_Dk.TestPkg.Pkg@2.4.3 formid=CommonsBase_Dk.TestPkg.Closure@2.4.4 localsrc=CommonsBase_Dk.TestPkg.LockSrc@2.4.3 locksrcpath=./dk-opam-lock-test.jsonc lock=dk-opam-lock-test.jsonc skiplocal=t mergedprefix=t implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=2.4.3 impsrclock[]=dk.opam-lock.jsonc
+//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.27 pkg=CommonsBase_Dk.TestPkg.Pkg@2.4.3 formid=CommonsBase_Dk.TestPkg.Closure@2.4.4 localsrc=CommonsBase_Dk.TestPkg.LockSrc@2.4.3 locksrcpath=./dk-opam-lock-test.jsonc lock=dk-opam-lock-test.jsonc skiplocal=t mergedprefix=t implib[]=CommonsBase_Dk.Dk0.Pkg impver[]=2.4.3 impsrclock[]=dk.opam-lock.jsonc
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "generated": {
-    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.26",
+    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.27",
     "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.32",
     "lock": "dk-opam-lock-test.jsonc",
     "lock-sha256": "205e94fa5d387f2a07917dd8685bb35337f2d8ea87f1ee0f0c248a894d49448d",
