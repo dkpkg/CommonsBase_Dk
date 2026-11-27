@@ -7,13 +7,13 @@
 // `dk-opam-lock.jsonc`. Regenerate (do not hand-edit) when the lock changes.
 //
 // Regenerate with:
-//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.27 pkg=CommonsBase_Dk.Dk0@2.4.3 localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 lock=dk-opam-lock.jsonc roots[]=DkZero_Exec
+//   dk0 dialog CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.28 pkg=CommonsBase_Dk.Dk0@2.4.3 localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 lock=dk-opam-lock.jsonc roots[]=DkZero_Exec
 {
   "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
   "schema_version": { "major": 1, "minor": 0 },
   "generated": {
-    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.27",
-    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.32",
+    "tool": "CommonsLang_OCaml.Dk.OpamLock.GenerateDriver@1.1.28",
+    "rulefn": "CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.33",
     "lock": "dk-opam-lock.jsonc",
     "lock-sha256": "3aeb718916a75224a6315b6653bee34a26989936c691c82eedfe74a2c2a5cedd",
     "localsrc": "CommonsBase_Dk.Dk0.MlFrontSource@2.4.3",
@@ -30,7 +30,7 @@
       "precommands": {
         "sequential": false,
         "private": [
-          "run-function CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.32 -d built modver=CommonsBase_Dk.Dk0.Closure.Built@2.4.3 pkgpath=CommonsBase_Dk.Dk0 version=2.4.3 root=DkZero_Exec localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc targetabi=Release.target_abi ocaml=CommonsLang_OCaml.DkML@4.14.3002"
+          "run-function CommonsLang_OCaml.Dk.OpamBuild.F_BuildLockedClosure@1.0.33 -d built modver=CommonsBase_Dk.Dk0.Closure.Built@2.4.3 pkgpath=CommonsBase_Dk.Dk0 version=2.4.3 root=DkZero_Exec localsrc=CommonsBase_Dk.Dk0.MlFrontSource@2.4.3 locksrcpath=./dk-opam-lock.jsonc targetabi=Release.target_abi ocaml=CommonsLang_OCaml.DkML@4.14.3002"
         ]
       },
       "function": {
